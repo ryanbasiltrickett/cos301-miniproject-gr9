@@ -18,9 +18,14 @@ const routes: Routes = [
           import('@mp/app/profile/feature').then((m) => m.ProfileModule),
       },
       {
+        path: 'feed',
+        loadChildren: () =>
+          import('@mp/app/feed/feature').then((m) => m.AppFeedFeatureModule),
+      },
+      {
         path: '',
         pathMatch: 'full',
-        redirectTo: '/home/dashboard',
+        redirectTo: '/home/feed',
       },
     ],
   },
