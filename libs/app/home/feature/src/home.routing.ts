@@ -23,6 +23,13 @@ const routes: Routes = [
           import('@mp/app/feed/feature').then((m) => m.AppFeedFeatureModule),
       },
       {
+        path: 'browse',
+        loadChildren: () =>
+          import('@mp/app/browse/feature').then(
+            (m) => m.AppBrowseFeatureModule
+          ),
+      },
+      {
         path: '',
         pathMatch: 'full',
         redirectTo: '/home/feed',
