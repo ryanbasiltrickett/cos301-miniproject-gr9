@@ -32,6 +32,13 @@
       ],
       "@mp/api/history/feature": ["libs/api/history/feature/src/index.ts"],
       "@mp/api/history/util": ["libs/api/history/util/src/index.ts"],
+      "@mp/api/notification/data-access": [
+        "libs/api/notification/data-access/src/index.ts"
+      ],
+      "@mp/api/notification/feature": [
+        "libs/api/notification/feature/src/index.ts"
+      ],
+      "@mp/api/notification/util": ["libs/api/notification/util/src/index.ts"],
       "@mp/api/profiles/data-access": [
         "libs/api/profiles/data-access/src/index.ts"
       ],
@@ -99,7 +106,10 @@
       ],
       "@mp/app/welcome/feature": ["libs/app/welcome/feature/src/index.ts"],
       "@mp/app/welcome/util": ["libs/app/welcome/util/src/index.ts"],
-      "@mp/cli/core/feature": ["libs/cli/core/feature/src/index.ts"]
+      "@mp/cli/core/feature": ["libs/cli/core/feature/src/index.ts"],
+      "@mp/notification/data-access/notification": [
+        "libs/notification/data-access/notification/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]
