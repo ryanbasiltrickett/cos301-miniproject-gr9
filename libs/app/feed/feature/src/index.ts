@@ -1,5 +1,5 @@
-export * from './lib/app-feed-feature.module';
+export * from './app-feed-feature.module';
 
-export * from './lib/lib.routes';
+export * from './lib.routes';
 
-export * from './lib/feed.component';
+export * from './feed.component';
