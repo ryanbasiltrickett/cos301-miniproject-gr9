@@ -2,7 +2,11 @@ import {
     ICommentRequest,
     ILikeRequest,
     IPostRequest,
-    IDeletePostRequest
+    IDeletePostRequest,
+    ICommentPostResponse,
+    ILikePostResponse,
+    IAddPostResponse,
+    IDeletePostResponse
 } from '@mp/api/posts/util';
 import { Injectable } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
@@ -31,19 +35,19 @@ export class PostService {
 
     async commentPost(
         request: ICommentRequest
-      ): Promise<IAddPostResponse> {
+      ): Promise<ICommentPostResponse> {
         return await this.commandBus.execute<
           AddPostCommand,
-          IAddPostResponse
+          ICommentPostResponse
         >(new AddPostCommand(request));
     }
 
     async deletePost(
         request: IDeletePostRequest
-      ): Promise<IAddPostResponse> {
+      ): Promise<IDeletePostResponse> {
         return await this.commandBus.execute<
-          AddPostCommand,
-          IAddPostResponse
-        >(new AddPostCommand(request));
+          DeletePostCommand,
+          IDeletePostResponse
+        >(new DeletePostCommand(request));
     }
 }
