@@ -1,1 +1,1 @@
-export * from './lib/api-posts-feature';
+export * from './posts.service';
