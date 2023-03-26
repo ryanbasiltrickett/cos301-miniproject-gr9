@@ -1,1 +1,1 @@
-export * from './lib/api-newsfeed-feature';
+export * from './newsfeed.service';

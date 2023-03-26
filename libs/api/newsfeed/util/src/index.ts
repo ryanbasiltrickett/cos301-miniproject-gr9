@@ -1,1 +1,3 @@
-export * from './lib/api-newsfeed-util';
+export * from './requests';
+export * from './responses';
+export * from './interfaces';
