@@ -1,1 +1,1 @@
-export * from './lib/api-notification-util';
+export * from './interfaces';

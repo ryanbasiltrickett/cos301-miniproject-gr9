@@ -1,1 +1,2 @@
-export * from './lib/api-notification-data-access';
+export * from './notification.module';
+export * from './notification.repository';
