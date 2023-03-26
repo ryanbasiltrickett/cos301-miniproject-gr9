@@ -1,1 +1,1 @@
-export * from './lib/api-events-feature';
+export * from './events.service';
