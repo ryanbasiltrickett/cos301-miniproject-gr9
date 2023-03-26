@@ -13,5 +13,13 @@ export const generateEvent = functions.https.onCall(
     ): (Promise<IEventResponse>) => {
       return request;
     }
-  );
+);
+
+export const notifyAboutEvent = functions.https.onCall(
+    async (
+      request: IEventRequest,
+    ): (Promise<IEventResponse>) => {
+      return request;
+    }
+);
 
