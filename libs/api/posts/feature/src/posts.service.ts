@@ -1,8 +1,8 @@
 import {
-    IComment,
-    ILike,
-    IPost,
-    IDeletePost
+    ICommentRequest,
+    ILikeRequest,
+    IPostRequest,
+    IDeletePostRequest
 } from '@mp/api/posts/util';
 import { Injectable } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
@@ -12,7 +12,7 @@ export class PostService {
     constructor(private readonly commandBus: CommandBus) {}
 
     async addPost(
-        request: IPost
+        request: IPostRequest
       ): Promise<IAddPostResponse> {
         return await this.commandBus.execute<
           AddPostCommand,
@@ -21,7 +21,7 @@ export class PostService {
     }
 
     async likePost(
-        request: ILike
+        request: ILikeRequest
         ): Promise<ILikePostResponse> {
         return await this.commandBus.execute<
             LikePostCommand,
@@ -30,7 +30,7 @@ export class PostService {
     }
 
     async commentPost(
-        request: IComment
+        request: ICommentRequest
       ): Promise<IAddPostResponse> {
         return await this.commandBus.execute<
           AddPostCommand,
@@ -39,7 +39,7 @@ export class PostService {
     }
 
     async deletePost(
-        request: IDeletePost
+        request: IDeletePostRequest
       ): Promise<IAddPostResponse> {
         return await this.commandBus.execute<
           AddPostCommand,
