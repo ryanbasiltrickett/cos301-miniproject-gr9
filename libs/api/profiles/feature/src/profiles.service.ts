@@ -12,6 +12,7 @@ import {
     IUpdatePersonalDetailsRequest,
     IUpdatePersonalDetailsResponse,
     UpdateAccountDetailsCommand,
+    UpdateAccountVisibilityCommand,
     // UpdateAddressDetailsCommand, //
     UpdateContactDetailsCommand,
     // UpdateOccupationDetailsCommand, //
@@ -66,8 +67,10 @@ export class ProfilesService {
   async updateAccountVisibility (
       request:IUpdateAccountVisibilityRequest
     ): Promise<IUpdateAccountVisibilityResponse> {
-      // Update Account visibility code to be done here
-      //...
+      return await this.commandBus.execute<
+      UpdateAccountVisibilityCommand,
+      IUpdateAccountVisibilityResponse
+    >(new UpdateAccountVisibilityCommand(request));
     }
 
 
