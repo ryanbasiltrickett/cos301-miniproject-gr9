@@ -21,7 +21,7 @@ export class ProfilesSagas {
         ofType(AddPostEvent),
         map(
           (event: AddPostEvent) =>
-            new LikePostCommand({ post: event.post })
+            new AddPostCommand({ post: event.post })
         )
       );
   };
