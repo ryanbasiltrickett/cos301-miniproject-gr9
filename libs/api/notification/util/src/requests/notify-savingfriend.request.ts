@@ -1,5 +1,5 @@
 import { INotification } from '../interfaces';
 
-export interface INotifySavingFriendRequestRequest {
+export interface INotifySavingFriendRequest {
   notification: INotification;
 }
