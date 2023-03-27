@@ -1,5 +1,5 @@
 import { ILike } from '@mp/api/posts/util';
 
-export interface ILikeRequest{
+export interface ILikePostRequest{
   post: ILike;
 }
