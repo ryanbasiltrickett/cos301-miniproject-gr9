@@ -1,5 +1,5 @@
 {
-  "name": "@mp/app/notification/ui",
+  "name": "@mp/app/notification/data-access",
   "version": "0.0.1",
   "type": "commonjs"
 }
