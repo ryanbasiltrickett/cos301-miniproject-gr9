@@ -32,13 +32,12 @@
       ],
       "@mp/api/history/feature": ["libs/api/history/feature/src/index.ts"],
       "@mp/api/history/util": ["libs/api/history/util/src/index.ts"],
-      "@mp/api/notification/data-access": [
-        "libs/api/notification/data-access/src/index.ts"
+      "@mp/api/notification/util/src/request": [
+        "libs/api/notification/util/src/request/src/index.ts"
       ],
-      "@mp/api/notification/feature": [
-        "libs/api/notification/feature/src/index.ts"
+      "@mp/api/notification/util/src/response": [
+        "libs/api/notification/util/src/response/src/index.ts"
       ],
-      "@mp/api/notification/util": ["libs/api/notification/util/src/index.ts"],
       "@mp/api/profiles/data-access": [
         "libs/api/profiles/data-access/src/index.ts"
       ],
@@ -71,9 +70,6 @@
       "@mp/app/login/data-access": ["libs/app/login/data-access/src/index.ts"],
       "@mp/app/login/feature": ["libs/app/login/feature/src/index.ts"],
       "@mp/app/login/util": ["libs/app/login/util/src/index.ts"],
-      "@mp/app/notification/data-access": [
-        "libs/app/notification/data-access/src/index.ts"
-      ],
       "@mp/app/notification/feature": [
         "libs/app/notification/feature/src/index.ts"
       ],
@@ -81,13 +77,6 @@
       "@mp/app/notification/util": ["libs/app/notification/util/src/index.ts"],
       "@mp/app/notifications/data-access": [
         "libs/app/notifications/data-access/src/index.ts"
-      ],
-      "@mp/app/notifications/feature": [
-        "libs/app/notifications/feature/src/index.ts"
-      ],
-      "@mp/app/notifications/ui": ["libs/app/notifications/ui/src/index.ts"],
-      "@mp/app/notifications/util": [
-        "libs/app/notifications/util/src/index.ts"
       ],
       "@mp/app/privacy/feature": ["libs/app/privacy/feature/src/index.ts"],
       "@mp/app/profile/data-access": [
