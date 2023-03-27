@@ -1,6 +1,6 @@
-//for later
-//import {} from '@mp/api/newsfeed/util'
 
+import {genNewsfeedCommand,genNewsfeedEvent} from '@mp/api/newsfeed/util'
+//import { UserCreatedEvent } from '@mp/api/users/util';
 import { Injectable } from '@nestjs/common';
 import { ICommand, ofType, Saga } from '@nestjs/cqrs';
 import { map, Observable } from 'rxjs';
@@ -8,5 +8,15 @@ import { map, Observable } from 'rxjs';
 //for later maybe
 @Injectable()
 export class NewsfeedSagas {
+  @Saga()
+  onGenNewsfeed = (events$: Observable<any>): Observable<ICommand> => {
+    return events$.pipe(
+      ofType(genNewsfeedEvent),
+      map(
+        (event: genNewsfeedEvent) =>
+          new genNewsfeedCommand({ dud: event.newsfeed })
+      )
+    );
+  };
 
 }
