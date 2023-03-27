@@ -60,6 +60,12 @@
       ],
       "@mp/app/errors/feature": ["libs/app/errors/feature/src/index.ts"],
       "@mp/app/errors/util": ["libs/app/errors/util/src/index.ts"],
+      "@mp/app/events/data-access": [
+        "libs/app/events/data-access/src/index.ts"
+      ],
+      "@mp/app/events/feature": ["libs/app/events/feature/src/index.ts"],
+      "@mp/app/events/ui": ["libs/app/events/ui/src/index.ts"],
+      "@mp/app/events/util": ["libs/app/events/util/src/index.ts"],
       "@mp/app/forgot/data-access": [
         "libs/app/forgot/data-access/src/index.ts"
       ],
