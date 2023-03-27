@@ -64,8 +64,9 @@ export const updateAccountVisibility =  functions.https.onCall(
   async (
     request:IUpdateAccountVisibilityRequest
   ): Promise<IUpdateAccountVisibilityResponse> => {
-    // Update Account visibility code to be done here
-    //...
+    const app = await NestFactory.createApplicationContext(CoreModule);
+    const service = app.get(ProfilesService);
+    return service.updateAccountVisibility(request);
   }
 ); 
 
