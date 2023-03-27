@@ -1,1 +1,4 @@
-export * from './lib/api-notification-feature';
+export * from './notification.service';
+// export * from './notification.sagas';
+// export * from './notification.module';
+
