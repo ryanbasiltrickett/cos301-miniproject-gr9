@@ -1,26 +1,16 @@
 import { updateAccountDetails }  from './profiles.functions';
 import { IUpdateAccountDetailsRequest, IUpdateAccountDetailsResponse } from '@mp/api/profiles/util';
-import * as admin from 'firebase-admin';
+// import * as admin from 'firebase-admin';
+import dotenv from 'dotenv';
 import * as firebaseFunctionsTest from 'firebase-functions-test';
 import { ProfilesService } from '@mp/api/profiles/feature';
 
 
 // Firebase config
-const firebaseConfig = {
-    apiKey: "AIzaSyCN6RzYvnaCMJO3QEd8g43UxLp6-SV2ZKU",
-    authDomain: "cos301-miniproject-gr9-d-46ded.firebaseapp.com",
-    projectId: "cos301-miniproject-gr9-d-46ded",
-    storageBucket: "cos301-miniproject-gr9-d-46ded.appspot.com",
-    messagingSenderId: "186165950071",
-    appId: "1:186165950071:web:48b4c10bba70ec99c6f872",
-    measurementId: "G-PWY8191PD7"
-  };
+dotenv.config();
 
-  admin.initializeApp(firebaseConfig);
-
-
-  // Firebase test function library
-  const test = firebaseFunctionsTest();
+// Firebase test function library
+const test = firebaseFunctionsTest();
 
 
  describe('updateAccountDetails', () =>{
