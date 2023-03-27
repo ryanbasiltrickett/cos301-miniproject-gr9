@@ -16,7 +16,7 @@ import {
 import { NotImplementedException } from '@nestjs/common';
 
 @Injectable()
-export class postsApi {
+export class PostApi {
   constructor(
     private readonly firestore: Firestore,
     private readonly functions: Functions
