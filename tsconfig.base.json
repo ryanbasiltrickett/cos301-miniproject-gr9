@@ -69,6 +69,12 @@
       "@mp/app/login/data-access": ["libs/app/login/data-access/src/index.ts"],
       "@mp/app/login/feature": ["libs/app/login/feature/src/index.ts"],
       "@mp/app/login/util": ["libs/app/login/util/src/index.ts"],
+      "@mp/app/newsfeed/data-access": [
+        "libs/app/newsfeed/data-access/src/index.ts"
+      ],
+      "@mp/app/newsfeed/feature": ["libs/app/newsfeed/feature/src/index.ts"],
+      "@mp/app/newsfeed/ui": ["libs/app/newsfeed/ui/src/index.ts"],
+      "@mp/app/newsfeed/util": ["libs/app/newsfeed/util/src/index.ts"],
       "@mp/app/privacy/feature": ["libs/app/privacy/feature/src/index.ts"],
       "@mp/app/profile/data-access": [
         "libs/app/profile/data-access/src/index.ts"
