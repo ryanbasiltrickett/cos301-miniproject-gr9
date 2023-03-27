@@ -1,7 +1,7 @@
 import {
-    ICommentRequest,
-    ILikeRequest,
-    IPostRequest,
+    ICommentPostRequest,
+    ILikePostRequest,
+    IAddPostRequest,
     IDeletePostRequest,
     ICommentPostResponse,
     ILikePostResponse,
@@ -20,7 +20,7 @@ export class PostService {
     constructor(private readonly commandBus: CommandBus) {}
 
     async addPost(
-        request: IPostRequest
+        request: IAddPostRequest
       ): Promise<IAddPostResponse> {
         return await this.commandBus.execute<
           AddPostCommand,
@@ -29,7 +29,7 @@ export class PostService {
     }
 
     async likePost(
-        request: ILikeRequest
+        request: ILikePostRequest
         ): Promise<ILikePostResponse> {
         return await this.commandBus.execute<
             LikePostCommand,
@@ -38,7 +38,7 @@ export class PostService {
     }
 
     async commentPost(
-        request: ICommentRequest
+        request: ICommentPostRequest
       ): Promise<ICommentPostResponse> {
         return await this.commandBus.execute<
           CommentPostCommand,
