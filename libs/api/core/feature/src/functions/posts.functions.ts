@@ -1,9 +1,9 @@
 import { PostService } from '@mp/api/posts/feature';
-import {IPostRequest,
+import {IAddPostRequest,
         IAddPostResponse,
-        ICommentRequest,
+        ICommentPostRequest,
         ICommentPostResponse,
-        ILikeRequest,
+        ILikePostRequest,
         ILikePostResponse,
         IDeletePostRequest,
         IDeletePostResponse} from '@mp/api/posts/util';
@@ -13,7 +13,7 @@ import { CoreModule } from '../core.module';
 
 export const addPost = functions.https.onCall(
     async (
-        request: IPostRequest
+        request: IAddPostRequest
       ): Promise<IAddPostResponse> => {
         const app = await NestFactory.createApplicationContext(CoreModule);
         const service = app.get(PostService);
@@ -23,7 +23,7 @@ export const addPost = functions.https.onCall(
 
 export const likePost = functions.https.onCall(
     async (
-        request: ILikeRequest
+        request: ILikePostRequest
       ): Promise<ILikePostResponse> => {
         const app = await NestFactory.createApplicationContext(CoreModule);
         const service = app.get(PostService);
@@ -33,7 +33,7 @@ export const likePost = functions.https.onCall(
 
 export const commentPost = functions.https.onCall(
     async (
-        request: ICommentRequest
+        request: ICommentPostRequest
       ): Promise<ICommentPostResponse> => {
         const app = await NestFactory.createApplicationContext(CoreModule);
         const service = app.get(PostService);

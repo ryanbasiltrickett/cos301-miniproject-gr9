@@ -1,5 +1,5 @@
-import { ICommentRequest} from '../requests';
+import { ICommentPostRequest} from '../requests';
 
 export class CommentPostCommand {
-  constructor(public readonly request: ICommentRequest) {}
+  constructor(public readonly request: ICommentPostRequest) {}
 }

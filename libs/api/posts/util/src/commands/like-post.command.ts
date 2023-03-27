@@ -1,5 +1,5 @@
-import { ILikeRequest } from '../requests';
+import { ILikePostRequest } from '../requests';
 
 export class LikePostCommand {
-  constructor(public readonly request: ILikeRequest) {}
+  constructor(public readonly request: ILikePostRequest) {}
 }
