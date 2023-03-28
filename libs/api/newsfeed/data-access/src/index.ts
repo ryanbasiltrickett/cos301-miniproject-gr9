@@ -1,1 +1,2 @@
-export * from './lib/api-newsfeed-data-access';
+export * from './newsfeed.module';
+export * from './newsfeed.repository';
