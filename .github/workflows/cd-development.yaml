@@ -37,7 +37,7 @@ jobs:
           channelId: live
           projectId: cos301-miniproject-gr9-d-46ded
 
-    build_and_deploy_api:
+  build_and_deploy_api:
     environment: Development
     runs-on: ubuntu-latest
     steps:
