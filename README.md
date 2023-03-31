@@ -8,14 +8,6 @@
 Description
 
 
-## Documentation
-
-- [System Documentation](https://linktodocumentation)
-- [Design Documentation](https://linktodocumentation)
-- [Integration Documentation](https://linktodocumentation)
-- [Data Design Documentation](https://linktodocumentation)
-
-
 ## Features
 
 - Features
