@@ -1,6 +1,9 @@
 
 # TimeShare (Mini Project 2023)
 
+[![codecov](https://codecov.io/github/ryanbasiltrickett/cos301-miniproject-gr9/branch/develop/graph/badge.svg?token=1jTA7rirTi)](https://codecov.io/github/ryanbasiltrickett/cos301-miniproject-gr9)
+[![Production Continous Integration (CI)](https://github.com/ryanbasiltrickett/cos301-miniproject-gr9/actions/workflows/ci-production.yaml/badge.svg?branch=main&event=push)](https://github.com/ryanbasiltrickett/cos301-miniproject-gr9/actions/workflows/ci-production.yaml)
+
 Description
 
 
