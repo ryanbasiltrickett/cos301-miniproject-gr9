@@ -64,6 +64,6 @@ jobs:
       - name: Deploy Firebase Functions
         uses: w9jds/firebase-action@master
         with:
-          args: target:development deploy --only functions
+          args: deploy --only functions -P development
         env:
           GCP_SA_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_COS301_MINIPROJECT_GR9_D_46DED }}
