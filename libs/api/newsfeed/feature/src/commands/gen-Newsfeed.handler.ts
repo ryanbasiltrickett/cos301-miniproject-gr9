@@ -1,4 +1,4 @@
-//import { Repositoryname } from '@mp/api/newsfeed/data-access';
+import { NewsfeedRepository } from '@mp/api/newsfeed/data-access';
 import { IgenNewsfeedResponse ,genNewsfeedCommand } from "@mp/api/newsfeed/util";
 import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
 //import { /* */ } from '../models';
@@ -8,12 +8,12 @@ export class genNewsfeedHandler
   implements ICommandHandler<genNewsfeedCommand,IgenNewsfeedResponse>
 {
     constructor(
-      private publisher: EventPublisher
-      //private readonly repository:(Respository)
+      private publisher: EventPublisher,
+      private readonly repository:(NewsfeedRepository)
       ) {}
     async execute(command: genNewsfeedCommand): Promise<any> {
         //Unimplemented
-        //const response: IgenNewsfeedResponse{model};
-        //return response;
+        console.log(`${genNewsfeedHandler.name}`);
+        const request = command.request;
     }
 }

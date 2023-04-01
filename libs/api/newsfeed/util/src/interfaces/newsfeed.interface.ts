@@ -1,3 +1,3 @@
 export interface INewsfeed {
-    dud: string;
+    dud?: string|null;
 }
