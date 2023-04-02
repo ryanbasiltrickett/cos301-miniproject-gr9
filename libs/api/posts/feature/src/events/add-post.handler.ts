@@ -1,14 +1,14 @@
 import { PostRepository } from '@mp/api/posts/data-access';
-import { AddPostEvent } from '@mp/api/posts/util';
+import { NewPostEvent } from '@mp/api/posts/util';
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
 
-@EventsHandler(AddPostEvent)
+@EventsHandler(NewPostEvent)
 export class AddPostHandler
-  implements IEventHandler<AddPostEvent>
+  implements IEventHandler<NewPostEvent>
 {
   constructor(private readonly repository: PostRepository) {}
 
-  async handle(event: AddPostEvent) {
+  async handle(event: NewPostEvent) {
     console.log("Not implemented");
   }
 }
