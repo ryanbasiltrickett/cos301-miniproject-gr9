@@ -1,4 +1,4 @@
-import { IComment } from '@mp/api/posts/util';
+import { IComment } from '../interfaces';
 
 export interface ICommentPostRequest{
   post: IComment;

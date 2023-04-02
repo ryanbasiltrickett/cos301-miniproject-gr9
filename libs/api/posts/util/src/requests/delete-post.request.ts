@@ -1,4 +1,4 @@
-import { IDeletePost } from '@mp/api/posts/util';
+import { IDeletePost } from '../interfaces';
 
 export interface IDeletePostRequest{
   post: IDeletePost;

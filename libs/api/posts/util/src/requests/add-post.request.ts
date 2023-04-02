@@ -1,4 +1,4 @@
-import { IPost } from '@mp/api/posts/util';
+import { IPost } from '../interfaces';
 
 export interface IAddPostRequest{
   post: IPost;
