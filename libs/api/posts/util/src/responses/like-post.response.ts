@@ -1,5 +1,5 @@
-import { ILike } from '../interfaces';
+import { IPost } from '../interfaces';
 
 export interface ILikePostResponse {
-  post: ILike;
+  post: IPost;
 }
