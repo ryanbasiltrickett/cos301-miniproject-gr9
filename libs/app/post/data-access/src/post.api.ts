@@ -2,17 +2,19 @@ import { Injectable } from '@angular/core';
 import { doc, docData, Firestore } from '@angular/fire/firestore';
 import { Functions, httpsCallable } from '@angular/fire/functions';
 import {
-   IPost,
-   IAddPostRequest,
-   IAddPostResponse,
-   ICommentPostRequest,
-   ICommentPostResponse,
-   IDeletePostRequest,
-   IDeletePostResponse,
-   ILikePostRequest,
-   ILikePostResponse
-
-} from '@mp/api/posts/util';1
+  IPost,
+  IAddPostRequest,
+  IAddPostResponse,
+  ICommentPostRequest,
+  ICommentPostResponse,
+  IDeletePostRequest,
+  IDeletePostResponse,
+  ILikePostRequest,
+  ILikePostResponse,
+  IUpdatePostTimeRequest,
+  IUpdatePostTimeResponse,
+} from '@mp/api/posts/util';
+1;
 import { NotImplementedException } from '@nestjs/common';
 
 @Injectable()
@@ -34,6 +36,13 @@ export class PostApi {
   //   });
   //   return docData(docRef, { idField: 'id' });
   // }
+
+  async updatePostTime(request: IUpdatePostTimeRequest) {
+    return await httpsCallable<IUpdatePostTimeRequest, IUpdatePostTimeResponse>(
+      this.functions,
+      'updatePostTime'
+    )(request);
+  }
 
   async updateAddPost(request: IAddPostRequest) {
     return NotImplementedException;

@@ -3,7 +3,7 @@ import {
     LikePostCommand,
     CommentPostCommand,
     DeletePostCommand,
-    AddPostEvent,
+    NewPostEvent,
     LikePostEvent,
     CommentPostEvent,
     DeletePostEvent
@@ -18,9 +18,9 @@ export class ProfilesSagas {
   @Saga()
   onAddPost = (events$: Observable<any>): Observable<ICommand> => {
     return events$.pipe(
-        ofType(AddPostEvent),
+        ofType(NewPostEvent),
         map(
-          (event: AddPostEvent) =>
+          (event: NewPostEvent) =>
             new AddPostCommand({ post: event.post })
         )
       );

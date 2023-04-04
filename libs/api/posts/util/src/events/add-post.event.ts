@@ -1,5 +1,5 @@
 import { IPost } from '../interfaces';
 
-export class AddPostEvent {
+export class NewPostEvent {
   constructor(public readonly post: IPost) {}
 }
