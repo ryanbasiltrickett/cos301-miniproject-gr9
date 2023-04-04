@@ -11,6 +11,6 @@ export class NotifyEventHandler
 {
     constructor(private publisher: EventPublisher) {}
     async execute(command: NotifyEventCommand): Promise<any> {
-        console.log("Not yet implemented");
+        return [];
     }
 }
