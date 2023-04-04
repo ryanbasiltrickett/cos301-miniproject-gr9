@@ -11,6 +11,6 @@ export class GenerateEventHandler
 {
     constructor(private publisher: EventPublisher) {}
     async execute(command: GenerateEventCommand): Promise<any> {
-        console.log("Not yet implemented");
+        return [];
     }
 }
