@@ -9,6 +9,6 @@ export class NotifyEventHandler
   constructor(private readonly repository: NotificationRepository) {}
 
   async handle(event: NotifyEventEvent) {
-    console.log("Not implemented");
+    return [];
   }
 }
