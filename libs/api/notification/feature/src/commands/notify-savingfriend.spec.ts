@@ -1,16 +1,16 @@
 import { Test } from '@nestjs/testing';
-import { NotifyFriendActivityHandler } from './notify-friendactivity.handler';
+import { NotifySavingFriendHandler } from './notify-savingfriend.handler';
 import { EventPublisher } from '@nestjs/cqrs';
 import { NotifyFriendActivityCommand, INotifyFriendActivityRequest, INotification, ITags} from '@mp/api/notification/util';
 
-describe('NotifyFriendActivityHandler', () => {
-  let handler: NotifyFriendActivityHandler;
+describe('NotifySavingFriendHandler', () => {
+  let handler: NotifySavingFriendHandler;
   let publisher: EventPublisher;
 
   beforeEach(async () => {
     const moduleRef = await Test.createTestingModule({
       providers: [
-        NotifyFriendActivityHandler,
+        NotifySavingFriendHandler,
         {
           provide: EventPublisher,
           useValue: {
@@ -20,7 +20,7 @@ describe('NotifyFriendActivityHandler', () => {
       ],
     }).compile();
 
-    handler = moduleRef.get<NotifyFriendActivityHandler>(NotifyFriendActivityHandler);
+    handler = moduleRef.get<NotifySavingFriendHandler>(NotifySavingFriendHandler);
     publisher = moduleRef.get<EventPublisher>(EventPublisher);
   });
 
