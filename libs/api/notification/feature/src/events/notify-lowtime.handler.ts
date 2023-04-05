@@ -9,6 +9,6 @@ export class NotifyLowTimeHandler
   constructor(private readonly repository: NotificationRepository) {}
 
   async handle(event: NotifyLowTimeEvent) {
-    console.log("Not implemented");
+    return [];
   }
 }
