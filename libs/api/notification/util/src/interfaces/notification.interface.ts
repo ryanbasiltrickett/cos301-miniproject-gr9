@@ -1,4 +1,4 @@
-interface ITags{
+export interface ITags{
     postId : string;
     userId : string;
 }

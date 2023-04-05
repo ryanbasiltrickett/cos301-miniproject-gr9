@@ -9,6 +9,6 @@ export class NotifySavingFriendHandler
   constructor(private readonly repository: NotificationRepository) {}
 
   async handle(event: NotifySavingFriendEvent) {
-    console.log("Not implemented");
+    return [];
   }
 }

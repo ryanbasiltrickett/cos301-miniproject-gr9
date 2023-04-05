@@ -9,6 +9,6 @@ export class NotifyFriendActivityHandler
   constructor(private readonly repository: NotificationRepository) {}
 
   async handle(event: NotifyFriendActivityEvent) {
-    console.log("Not implemented");
+    return [];
   }
 }
