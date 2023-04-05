@@ -1,4 +1,7 @@
-import {IgenNewsfeedRequest,IgenNewsfeedResponse,genNewsfeedCommand} from '@mp/api/newsfeed/util'
+import {
+  IgenNewsfeedRequest,IgenNewsfeedResponse,genNewsfeedCommand,
+  IupdateNFPostRequest,IupdateNFPostResponse,updateNFPostCommand
+} from '@mp/api/newsfeed/util'
 import { Injectable } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
 
@@ -13,5 +16,14 @@ export class  NewsfeedService {
         genNewsfeedCommand,
         IgenNewsfeedResponse
       >(new genNewsfeedCommand(request));
+    }
+
+    async updateNFPost(
+      request: IupdateNFPostRequest
+    ): Promise<IupdateNFPostResponse> {
+      return await this.commandBus.execute<
+      updateNFPostCommand,
+      IgenNewsfeedResponse
+      >(new updateNFPostCommand(request));
     }
 }
