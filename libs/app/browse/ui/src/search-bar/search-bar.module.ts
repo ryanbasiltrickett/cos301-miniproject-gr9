@@ -5,10 +5,10 @@ import { IonicModule } from '@ionic/angular';
 import { ProfileModule } from '@mp/app/profile/data-access';
 import { NgxsFormPluginModule } from '@ngxs/form-plugin';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { PostListComponent } from './post-list.component';
+import { SearchBarComponent } from './search-bar.component';
 
 @NgModule({
-    declarations: [PostListComponent],
+    declarations: [SearchBarComponent],
     imports: [
       CommonModule,
       IonicModule,
@@ -17,8 +17,6 @@ import { PostListComponent } from './post-list.component';
       ReactiveFormsModule,
       ProfileModule,
     ],
-    exports: [PostListComponent],
+    exports: [SearchBarComponent],
   })
-  export class PostListModule {
-    
-  }
+  export class SearchBarModule {}
