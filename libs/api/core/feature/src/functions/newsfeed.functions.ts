@@ -12,7 +12,7 @@ export const genNewsfeed = functions.https.onCall(async ( request: IgenNewsfeedR
   return request;//dud
 });
 
-export const updateFeed = functions.https.onCall(async ( request: IupdateNFPostRequest): Promise<IupdateNFPostResponse> =>{
+export const updateNFPost = functions.https.onCall(async ( request: IupdateNFPostRequest): Promise<IupdateNFPostResponse> =>{
   return request;
 });
 
