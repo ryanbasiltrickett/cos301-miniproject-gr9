@@ -34,6 +34,7 @@ export interface ProfileStateModel {
   profile: IProfile | null;
   accountDetailsForm: {
     model: {
+      timeLeft: any;
       displayName: string | null;
       email: string | null;
       photoURL: string | null;
@@ -91,6 +92,7 @@ export interface ProfileStateModel {
         email: null,
         photoURL: null,
         password: null,
+        timeLeft: undefined
       },
       dirty: false,
       status: '',
@@ -179,6 +181,7 @@ export class ProfileState {
       const email = state.accountDetailsForm.model.email;
       // const photoURL = state.accountDetailsForm.model.photoURL;
       const password = state.accountDetailsForm.model.password;
+      const timeLeft = state.accountDetailsForm.model.timeLeft;
 
       if (!userId || !displayName || !email || !password)
         return ctx.dispatch(
@@ -195,6 +198,7 @@ export class ProfileState {
             email,
             password,
           },
+          timeLeft,
         },
       };
       const responseRef = await this.profileApi.updateAccountDetails(request);
@@ -205,123 +209,123 @@ export class ProfileState {
     }
   }
 
-  @Action(UpdateContactDetails)
-  async updateContactDetails(ctx: StateContext<ProfileStateModel>) {
-    try {
-      const state = ctx.getState();
-      const userId = state.profile?.userId;
-      const cellphone = state.contactDetailsForm.model.cellphone;
+  // @Action(UpdateContactDetails)
+  // async updateContactDetails(ctx: StateContext<ProfileStateModel>) {
+  //   try {
+  //     const state = ctx.getState();
+  //     const userId = state.profile?.userId;
+  //     const cellphone = state.contactDetailsForm.model.cellphone;
 
-      if (!userId || !cellphone)
-        return ctx.dispatch(new SetError('UserId or cellphone not set'));
+  //     if (!userId || !cellphone)
+  //       return ctx.dispatch(new SetError('UserId or cellphone not set'));
 
-      const request: IUpdateContactDetailsRequest = {
-        profile: {
-          userId,
-          contactDetails: {
-            cellphone,
-          },
-        },
-      };
-      const responseRef = await this.profileApi.updateContactDetails(request);
-      const response = responseRef.data;
-      return ctx.dispatch(new SetProfile(response.profile));
-    } catch (error) {
-      return ctx.dispatch(new SetError((error as Error).message));
-    }
-  }
+  //     const request: IUpdateContactDetailsRequest = {
+  //       profile: {
+  //         userId,
+  //         contactDetails: {
+  //           cellphone,
+  //         },
+  //       },
+  //     };
+  //     const responseRef = await this.profileApi.updateContactDetails(request);
+  //     const response = responseRef.data;
+  //     return ctx.dispatch(new SetProfile(response.profile));
+  //   } catch (error) {
+  //     return ctx.dispatch(new SetError((error as Error).message));
+  //   }
+  // }
 
-  @Action(UpdateAddressDetails)
-  async updateAddressDetails(ctx: StateContext<ProfileStateModel>) {
-    try {
-      const state = ctx.getState();
-      const userId = state.profile?.userId;
-      const residentialArea = state.addressDetailsForm.model.residentialArea;
-      const workArea = state.addressDetailsForm.model.workArea;
+  // @Action(UpdateAddressDetails)
+  // async updateAddressDetails(ctx: StateContext<ProfileStateModel>) {
+  //   try {
+  //     const state = ctx.getState();
+  //     const userId = state.profile?.userId;
+  //     const residentialArea = state.addressDetailsForm.model.residentialArea;
+  //     const workArea = state.addressDetailsForm.model.workArea;
 
-      if (!userId || !residentialArea || !workArea)
-        return ctx.dispatch(
-          new SetError('UserId or residential area or work area not set')
-        );
+  //     if (!userId || !residentialArea || !workArea)
+  //       return ctx.dispatch(
+  //         new SetError('UserId or residential area or work area not set')
+  //       );
 
-      const request: IUpdateAddressDetailsRequest = {
-        profile: {
-          userId,
-          addressDetails: {
-            residentialArea,
-            workArea,
-          },
-        },
-      };
-      const responseRef = await this.profileApi.updateAddressDetails(request);
-      const response = responseRef.data;
-      return ctx.dispatch(new SetProfile(response.profile));
-    } catch (error) {
-      return ctx.dispatch(new SetError((error as Error).message));
-    }
-  }
+  //     const request: IUpdateAddressDetailsRequest = {
+  //       profile: {
+  //         userId,
+  //         addressDetails: {
+  //           residentialArea,
+  //           workArea,
+  //         },
+  //       },
+  //     };
+  //     const responseRef = await this.profileApi.updateAddressDetails(request);
+  //     const response = responseRef.data;
+  //     return ctx.dispatch(new SetProfile(response.profile));
+  //   } catch (error) {
+  //     return ctx.dispatch(new SetError((error as Error).message));
+  //   }
+  // }
 
-  @Action(UpdatePersonalDetails)
-  async updatePersonalDetails(ctx: StateContext<ProfileStateModel>) {
-    try {
-      const state = ctx.getState();
-      const userId = state.profile?.userId;
-      const age = state.personalDetailsForm.model.age;
-      const gender = state.personalDetailsForm.model.gender;
-      const ethnicity = state.personalDetailsForm.model.ethnicity;
+  // @Action(UpdatePersonalDetails)
+  // async updatePersonalDetails(ctx: StateContext<ProfileStateModel>) {
+  //   try {
+  //     const state = ctx.getState();
+  //     const userId = state.profile?.userId;
+  //     const age = state.personalDetailsForm.model.age;
+  //     const gender = state.personalDetailsForm.model.gender;
+  //     const ethnicity = state.personalDetailsForm.model.ethnicity;
 
-      if (!userId || !age || !gender || !ethnicity)
-        return ctx.dispatch(
-          new SetError('UserId or age or gender or ethnicity not set')
-        );
+  //     if (!userId || !age || !gender || !ethnicity)
+  //       return ctx.dispatch(
+  //         new SetError('UserId or age or gender or ethnicity not set')
+  //       );
 
-      const request: IUpdatePersonalDetailsRequest = {
-        profile: {
-          userId,
-          personalDetails: {
-            age,
-            gender,
-            ethnicity,
-          },
-        },
-      };
-      const responseRef = await this.profileApi.updatePersonalDetails(request);
-      const response = responseRef.data;
-      return ctx.dispatch(new SetProfile(response.profile));
-    } catch (error) {
-      return ctx.dispatch(new SetError((error as Error).message));
-    }
-  }
+  //     const request: IUpdatePersonalDetailsRequest = {
+  //       profile: {
+  //         userId,
+  //         personalDetails: {
+  //           age,
+  //           gender,
+  //           ethnicity,
+  //         },
+  //       },
+  //     };
+  //     const responseRef = await this.profileApi.updatePersonalDetails(request);
+  //     const response = responseRef.data;
+  //     return ctx.dispatch(new SetProfile(response.profile));
+  //   } catch (error) {
+  //     return ctx.dispatch(new SetError((error as Error).message));
+  //   }
+  // }
 
-  @Action(UpdateOccupationDetails)
-  async updateOccupationDetails(ctx: StateContext<ProfileStateModel>) {
-    try {
-      const state = ctx.getState();
-      const userId = state.profile?.userId;
-      const householdIncome = state.occupationDetailsForm.model.householdIncome;
-      const occupation = state.occupationDetailsForm.model.occupation;
+  // @Action(UpdateOccupationDetails)
+  // async updateOccupationDetails(ctx: StateContext<ProfileStateModel>) {
+  //   try {
+  //     const state = ctx.getState();
+  //     const userId = state.profile?.userId;
+  //     const householdIncome = state.occupationDetailsForm.model.householdIncome;
+  //     const occupation = state.occupationDetailsForm.model.occupation;
 
-      if (!userId || !householdIncome || !occupation)
-        return ctx.dispatch(
-          new SetError('UserId or householdIncome or occupation not set')
-        );
+  //     if (!userId || !householdIncome || !occupation)
+  //       return ctx.dispatch(
+  //         new SetError('UserId or householdIncome or occupation not set')
+  //       );
 
-      const request: IUpdateOccupationDetailsRequest = {
-        profile: {
-          userId,
-          occupationDetails: {
-            householdIncome,
-            occupation,
-          },
-        },
-      };
-      const responseRef = await this.profileApi.updateOccupationDetails(
-        request
-      );
-      const response = responseRef.data;
-      return ctx.dispatch(new SetProfile(response.profile));
-    } catch (error) {
-      return ctx.dispatch(new SetError((error as Error).message));
-    }
-  }
+  //     const request: IUpdateOccupationDetailsRequest = {
+  //       profile: {
+  //         userId,
+  //         occupationDetails: {
+  //           householdIncome,
+  //           occupation,
+  //         },
+  //       },
+  //     };
+  //     const responseRef = await this.profileApi.updateOccupationDetails(
+  //       request
+  //     );
+  //     const response = responseRef.data;
+  //     return ctx.dispatch(new SetProfile(response.profile));
+  //   } catch (error) {
+  //     return ctx.dispatch(new SetError((error as Error).message));
+  //   }
+  // }
 }
