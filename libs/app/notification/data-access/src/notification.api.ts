@@ -14,7 +14,7 @@ import{
     INotifyLowTimeResponse,
     INotifyRecievedTimeResponse,
     INotifySavingFriendResponse
-    } from '@mp/api/2notification/util';
+    } from '@mp/api/notification/util';
 
 @Injectable()
 //send functionality specified on the system requirement
@@ -25,7 +25,7 @@ export class NotificationApi{
       private readonly functions: Functions
     ) {}
 
-  notification$(userId: ITags){
+  /*notification$(userId: ITags){
     const docRef = doc(
       this.firestore,
       `notification/${userId}`
@@ -36,7 +36,7 @@ export class NotificationApi{
       toFirestore: (it: INotification) => it,
     });
     return docData(docRef, { idField: 'id' });
-  } 
+  } */
    
   async notifyEvent(request:INotifyEventRequest){
     return await httpsCallable<
