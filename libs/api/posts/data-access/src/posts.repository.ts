@@ -1,4 +1,4 @@
-import { IPost, IComment } from '@mp/api/posts/util';
+import { IPost, IComment, ILike } from '@mp/api/posts/util';
 import { IProfile } from '@mp/api/profiles/util';
 import { Injectable, NotImplementedException } from '@nestjs/common';
 import * as admin from 'firebase-admin';
@@ -27,7 +27,19 @@ export class PostsRepository {
       .get();
   }
 
+  async deletePost(post: IPost) {
+    return NotImplementedException;
+  }
+
+  async getPost(post: IPost) {
+    return NotImplementedException;
+  }
+
   async addTags(post: IPost) {
+    return NotImplementedException;
+  }
+
+  async deleteTags(post: IPost) {
     return NotImplementedException;
   }
 
@@ -35,7 +47,24 @@ export class PostsRepository {
     return NotImplementedException;
   }
 
-  async addLike(user: IProfile, post: IPost) {
+  async deleteComment(comment: IComment, post: IPost){
     return NotImplementedException;
+  }
+
+  async addLike(user: IProfile, post: IPost) {
+    const like: ILike = {postId: post.id, userId: user.userId, value: 1}
+    post.likes++;
+
+    await admin
+      .firestore()
+      .collection('likes')
+      .doc(user.userId + '_' + post.id)
+      .create(like);
+
+    return await admin
+      .firestore()
+      .collection('posts')
+      .doc(post.id)
+      .update({likes: post.likes});
   }
 }
