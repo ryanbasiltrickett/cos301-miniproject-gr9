@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { collection, doc, docData, Firestore } from '@angular/fire/firestore';
 import { Functions, httpsCallable } from '@angular/fire/functions';
 import { getDocs } from '@firebase/firestore';
-import { ILikePostRequest, IPost } from '@mp/api/posts/util';
+import { ILikePostRequest, ILikePostResponse, IPost } from '@mp/api/posts/util';
 
 @Injectable()
 export class FeedApi {
@@ -29,7 +29,7 @@ export class FeedApi {
   }
 
   async updatePostLikeCount(request: ILikePostRequest) {
-    return await httpsCallable<ILikePostRequest, void>(
+    return await httpsCallable<ILikePostRequest, ILikePostResponse>(
       this.functions,
       'updatePostLikeCount'
     )(request);

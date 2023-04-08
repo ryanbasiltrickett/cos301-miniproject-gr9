@@ -1,5 +1,3 @@
-export * from './app-feed-feature.module';
-
-export * from './lib.routes';
-
-export * from './feed.component';
+export * from './feed.module';
+export * from './feed.page.component';
+export * from './feed.routing';

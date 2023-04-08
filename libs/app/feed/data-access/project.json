@@ -1,10 +1,26 @@
 {
   "name": "app-feed-data-access",
-  "$schema": "../node_modules/nx/schemas/project-schema.json",
-  "projectType": "library",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/app/feed/data-access/src",
-  "prefix": "mp",
+  "projectType": "library",
   "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/app/feed/data-access",
+        "main": "libs/app/feed/data-access/src/index.ts",
+        "tsConfig": "libs/app/feed/data-access/tsconfig.lib.json",
+        "assets": ["libs/app/feed/data-access/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/app/feed/data-access/**/*.ts"]
+      }
+    },
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
@@ -17,16 +33,6 @@
           "ci": true,
           "codeCoverage": true
         }
-      }
-    },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "libs/app/feed/data-access/**/*.ts",
-          "libs/app/feed/data-access/**/*.html"
-        ]
       }
     }
   },

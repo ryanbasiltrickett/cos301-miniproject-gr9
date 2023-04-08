@@ -20,7 +20,7 @@ const routes: Routes = [
       {
         path: 'feed',
         loadChildren: () =>
-          import('@mp/app/feed/feature').then((m) => m.AppFeedFeatureModule),
+          import('@mp/app/feed/feature').then((m) => m.FeedModule),
       },
       {
         path: '',

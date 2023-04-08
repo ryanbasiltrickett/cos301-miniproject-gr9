@@ -1,29 +1,42 @@
-import { Action, State, StateContext, Store } from '@ngxs/store';
+import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { FeedApi } from './feed.api';
 import { Injectable } from '@angular/core';
 import { LikePost } from '@mp/app/feed/util';
 import { IPost } from '@mp/api/posts/util';
 import { ILikePostRequest } from '@mp/api/posts/util';
+// import { Timestamp } from 'firebase-admin/firestore';
 
 export interface FeedStateModel {
-  feed: IPost[];
+  feed: IPost[] | undefined;
 }
 
 @State<FeedStateModel>({
   name: 'feed',
   defaults: {
-    feed: [
-      {
-        id: '1',
-        likes: 5,
-        published: FirebaseFirestore.Timestamp.now(),
-      },
-    ],
+    // feed: [
+    //   {
+    //     id: '1',
+    //     likes: 5,
+    //     published: Timestamp.now(),
+    //     author: 'thuthuka'
+    //   },
+    // ],
+    feed: [],
   },
 })
 @Injectable()
 export class FeedState {
   constructor(readonly feedApi: FeedApi, private readonly store: Store) {}
+
+  @Selector()
+  static feed(state: FeedStateModel) {
+    if (state.feed) {
+      if (state.feed.length > 0) {
+        return state.feed;
+      }
+    } 
+    return undefined;
+  }
 
   @Action(LikePost)
   async likePost(ctx: StateContext<FeedStateModel>, { post }: LikePost) {
