@@ -1,4 +1,10 @@
 <ion-card>
+
+  <ion-card-header>
+    <ion-card-title>{{ post.id }}</ion-card-title>
+    <ion-card-subtitle>{{ post.published }}</ion-card-subtitle>
+  </ion-card-header>
+
   <ion-card-content>
     <ngx-skeleton-loader
       count="1"
@@ -7,12 +13,12 @@
   </ion-card-content>
 
   <ion-card-header>
-    <ion-card-subtitle
-      >Description Lorem ipsum dolor sit amet.
-    </ion-card-subtitle>
+    <ion-card-subtitle>{{ post.description }} </ion-card-subtitle>
   </ion-card-header>
 
-  <ion-button fill="clear" (click)="likePost()">Like</ion-button>
+  <ion-button fill="clear" (click)="likePost()">
+    Likes: {{ post.likes }}
+  </ion-button>
   <ion-button fill="clear">Comments</ion-button>
   <ion-button style="float: right; margin-right: 1rem" fill="outline"
     >Timer</ion-button
