@@ -1,4 +1,4 @@
-import { IPost, IComment, ILike } from '@mp/api/posts/util';
+import { IPost, IComment, ILike, IRecentPost } from '@mp/api/posts/util';
 import { IProfile } from '@mp/api/profiles/util';
 import { Injectable, NotImplementedException } from '@nestjs/common';
 import * as admin from 'firebase-admin';
@@ -6,6 +6,20 @@ import * as admin from 'firebase-admin';
 @Injectable()
 export class PostsRepository {
   async createPost(post: IPost) {
+    //add post to the follwers recentPosts array and update the lastPost timestamp accordingly
+    const docRef = admin.firestore().collection('followers').doc(post.author);
+    const newFollowersRecentPost: IRecentPost = {
+      postId: post.id, 
+      postDescription: post.description, 
+      published: post.published, 
+      image: post.image,
+      location: post.location};
+    await docRef.update({
+      recentPosts: admin.firestore.FieldValue.arrayUnion(newFollowersRecentPost),
+      lastPost: post.published,
+    });
+
+    //create the new post in the posts array
     return await admin
       .firestore()
       .collection('posts')
