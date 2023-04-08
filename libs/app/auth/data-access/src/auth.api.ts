@@ -6,6 +6,8 @@ import {
   GoogleAuthProvider,
   signInWithEmailAndPassword,
   signInWithPopup,
+  TwitterAuthProvider,
+  FacebookAuthProvider
 } from '@angular/fire/auth';
 import { signOut } from '@firebase/auth';
 
@@ -28,6 +30,16 @@ export class AuthApi {
   async continueWithGoogle() {
     const provider = new GoogleAuthProvider();
     return await signInWithPopup(this.auth, provider);
+  }
+
+  async continueWithFacebook(){
+    const provider=new FacebookAuthProvider();
+    return await signInWithPopup(this.auth,provider);
+  }
+
+  async continueWithTwitter(){
+    const provider=new TwitterAuthProvider();
+    return await signInWithPopup(this.auth,provider);
   }
 
   async logout() {
