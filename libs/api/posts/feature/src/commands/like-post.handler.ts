@@ -12,7 +12,6 @@ export class LikePostHandler implements ICommandHandler<LikePostCommand> {
   ) {}
 
   async execute(command: LikePostCommand) {
-    console.log('Attpempting to update the like count for a post');
     console.log(`${LikePostCommand.name}`);
 
     const request = command.request;
@@ -28,6 +27,7 @@ export class LikePostHandler implements ICommandHandler<LikePostCommand> {
     post.commit();
 
     const response: ILikePostResponse = { post };
+
     return response;
   }
 }

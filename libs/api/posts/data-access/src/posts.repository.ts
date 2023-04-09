@@ -9,13 +9,16 @@ export class PostsRepository {
     //add post to the follwers recentPosts array and update the lastPost timestamp accordingly
     const docRef = admin.firestore().collection('followers').doc(post.author);
     const newFollowersRecentPost: IRecentPost = {
-      postId: post.id, 
-      postDescription: post.description, 
-      published: post.published, 
+      postId: post.id,
+      postDescription: post.description,
+      published: post.published,
       image: post.image,
-      location: post.location};
+      location: post.location,
+    };
     await docRef.update({
-      recentPosts: admin.firestore.FieldValue.arrayUnion(newFollowersRecentPost),
+      recentPosts: admin.firestore.FieldValue.arrayUnion(
+        newFollowersRecentPost
+      ),
       lastPost: post.published,
     });
 
@@ -28,17 +31,31 @@ export class PostsRepository {
   }
 
   async findOne(post: IPost) {
+    // return await admin.firestore().collection('posts').doc(post.id).get();
     return await admin
       .firestore()
       .collection('posts')
       .withConverter<IPost>({
         fromFirestore: (snapshot) => {
-          return snapshot.data() as IPost;
+          const snapshotData = snapshot.data();
+          const data = {
+            id: snapshot.id,
+            ...snapshotData,
+          };
+          return data as IPost;
         },
         toFirestore: (it: IPost) => it,
       })
       .doc(post.id)
       .get();
+  }
+
+  async updatePost(post: IPost) {
+    return await admin
+      .firestore()
+      .collection('posts')
+      .doc(post.id)
+      .set(post, { merge: true });
   }
 
   async deletePost(post: IPost) {
@@ -61,12 +78,12 @@ export class PostsRepository {
     return NotImplementedException;
   }
 
-  async deleteComment(comment: IComment, post: IPost){
+  async deleteComment(comment: IComment, post: IPost) {
     return NotImplementedException;
   }
 
   async addLike(user: IProfile, post: IPost) {
-    const like: ILike = {postId: post.id, userId: user.userId, value: 1}
+    const like: ILike = { postId: post.id, userId: user.userId, value: 1 };
     post.likes++;
 
     await admin
@@ -79,6 +96,6 @@ export class PostsRepository {
       .firestore()
       .collection('posts')
       .doc(post.id)
-      .update({likes: post.likes});
+      .update({ likes: post.likes });
   }
 }

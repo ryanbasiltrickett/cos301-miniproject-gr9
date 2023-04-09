@@ -52,10 +52,11 @@ export class FeedState {
   @Action(LikePost)
   async likePost(ctx: StateContext<FeedStateModel>, { post }: LikePost) {
     const request: ILikePostRequest = {
-      post,
+      post
     };
+    console.log("Attempting to like post");
     const responseRef = await this.feedApi.updatePostLikeCount(request);
-    const response = responseRef.data;
-    console.log('Response from like Post: ', response);
+    // const response = responseRef.data;
+    // console.log('Response from like Post: ', response);
   }
 }

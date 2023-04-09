@@ -21,7 +21,7 @@ export const addPost = functions.https.onCall(
       }
 );
 
-export const likePost = functions.https.onCall(
+export const updatePostLikes = functions.https.onCall(
     async (
         request: ILikePostRequest
       ): Promise<ILikePostResponse> => {

@@ -1,4 +1,9 @@
-import { IComment, IPost, NewPostEvent } from '@mp/api/posts/util';
+import {
+  IComment,
+  IPost,
+  NewPostEvent,
+  PostLikedEvent,
+} from '@mp/api/posts/util';
 import { AggregateRoot } from '@nestjs/cqrs';
 
 export class Post extends AggregateRoot implements IPost {
@@ -6,6 +11,7 @@ export class Post extends AggregateRoot implements IPost {
   constructor(
     public id: string,
     public likes: number,
+    public author: string,
     public published: FirebaseFirestore.Timestamp,
     public description?: string | null | undefined,
     public imageURL?: string | null | undefined,
@@ -18,6 +24,7 @@ export class Post extends AggregateRoot implements IPost {
     const instance = new Post(
       post.id,
       post.likes,
+      post.author,
       post.published,
       post.description,
       post.image,
@@ -32,7 +39,7 @@ export class Post extends AggregateRoot implements IPost {
 
   likePost() {
     this.likes++;
-    // this.apply(new PostLikedEvent(this.toJSON()); // TODO set to correct event
+    this.apply(new PostLikedEvent(this.toJSON()));
   }
 
   toJSON() {
@@ -43,6 +50,7 @@ export class Post extends AggregateRoot implements IPost {
       published: this.published,
       image: this.imageURL,
       comments: this.comments,
+      author: this.author,
     };
   }
 }

@@ -1,4 +1,4 @@
-import { PostRepository } from '@mp/api/posts/data-access';
+import { PostsRepository } from '@mp/api/posts/data-access';
 import { DeletePostEvent } from '@mp/api/posts/util';
 import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
 
@@ -6,7 +6,7 @@ import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
 export class DeletePostHandler
   implements IEventHandler<DeletePostEvent>
 {
-  constructor(private readonly repository: PostRepository) {}
+  constructor(private readonly repository: PostsRepository) {}
 
   async handle(event: DeletePostEvent) {
     console.log("Not implemented");
