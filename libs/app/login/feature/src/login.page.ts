@@ -67,4 +67,20 @@ export class LoginPage {
   toggleShowPassword() {
     this.showPassword = !this.showPassword;
   }
+
+  googleLogin() {
+    console.log("Loggin with Google");
+  }
+
+  facebookLogin() {
+    console.log("Loggin with Google");
+  }
+
+  appleLogin() {
+    console.log("Loggin with Google");
+  }
+
+  twitterLogin() {
+    console.log("Loggin with Google");
+  }
 }
