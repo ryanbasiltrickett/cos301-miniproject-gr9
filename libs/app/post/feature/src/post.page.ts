@@ -5,9 +5,9 @@ import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'ms-post-page',
+  selector: 'mp-post-page',
   templateUrl: './post.page.html',
 })
-export class PostPage {
+export class PostPageComponent {
   @Select(PostState.post) post$!: Observable<IPost | null>;
 }
