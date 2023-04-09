@@ -14,12 +14,6 @@ import { Observable } from 'rxjs';
 
     // @Select(PostState.posts) posts$!: Observable<IPost[]>;
     // searchUser: string = '';
-    filterByMedia() {
-      // Add logic for filtering by media here
-    }
   
-    filterByText() {
-      // Add logic for filtering by text here
-    }
   }
   

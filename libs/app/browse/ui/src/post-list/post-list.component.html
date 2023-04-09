@@ -1,37 +1,33 @@
-<!-- <div class="post-list">
-    <div *ngFor="let post of posts" class="post">
-      <div class="post-header">
-        <img [src]="post.imageUrl" alt="User avatar" class="user-avatar" />
-        <p class="username">{{ post.username }}</p>
-      </div>
-      <img [src]="post.imageUrl" alt="Post image" class="post-image" />
-      <div class="post-caption">
-        <p>{{ post.caption }}</p>
-      </div>
-    </div>
-  </div>
-   -->
-
-   <ion-header [translucent]="true">
-    <ion-toolbar>
-      <ion-title>Trending</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-content>
-    <div class="filter-buttons">
-      <ion-button (click)="filterByMedia()">Media</ion-button>
-      <ion-button (click)="filterByText()">Text</ion-button>
-    </div>
-  
+<ion-content>
+  <div class="container">
     <ion-grid>
       <ion-row>
-        <ion-col *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11,12,13,14,15]" size="6">
+        <ion-col>
+          <ion-segment value="Media" mode="md">
+            <ion-segment-button value="Media">
+              <ion-label>Media</ion-label>
+            </ion-segment-button>
+            <ion-segment-button value="Text">
+              <ion-label>Text</ion-label>
+            </ion-segment-button>
+          </ion-segment>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <h2>Trending</h2>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]">
           <div class="image-container">
             <img src="https://picsum.photos/200/200?random={{i}}" alt="Placeholder image" class="image">
           </div>
         </ion-col>
       </ion-row>
     </ion-grid>
-  </ion-content>
-  
+  </div>
+</ion-content>
