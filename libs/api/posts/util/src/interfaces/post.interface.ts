@@ -11,4 +11,5 @@ export interface IPost{
     location? : string | null | undefined;
     hashtags? : string[];
     comments? : IComment[];
+    time: number;
 }

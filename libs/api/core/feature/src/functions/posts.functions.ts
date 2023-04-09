@@ -8,6 +8,8 @@ import {
   ILikePostResponse,
   IDeletePostRequest,
   IDeletePostResponse,
+  IUpdatePostTimeRequest,
+  IUpdatePostTimeResponse,
 } from '@mp/api/posts/util';
 import { NestFactory } from '@nestjs/core';
 import * as functions from 'firebase-functions';
@@ -42,5 +44,13 @@ export const deletePost = functions.https.onCall(
     const app = await NestFactory.createApplicationContext(CoreModule);
     const service = app.get(PostService);
     return service.deletePost(request);
+  }
+);
+
+export const updatePostTime = functions.https.onCall(
+  async (request: IUpdatePostTimeRequest): Promise<IUpdatePostTimeResponse> => {
+    const app = await NestFactory.createApplicationContext(CoreModule);
+    const service = app.get(PostService);
+    return service.updatePostTime(request);
   }
 );

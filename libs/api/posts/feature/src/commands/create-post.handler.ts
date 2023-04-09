@@ -19,6 +19,7 @@ export class CreatePostHandler implements ICommandHandler<CreatePostCommand> {
       description: request.post.description,
       mediaUrl: request.post.mediaUrl,
       likes: 0,
+      time: 0,
     };
 
     const post = this.publisher.mergeObjectContext(Post.fromData(data));

@@ -3,6 +3,7 @@ import {
   IPost,
   NewPostEvent,
   PostLikedEvent,
+  PostTimeUpdatedEvent,
 } from '@mp/api/posts/util';
 import { AggregateRoot } from '@nestjs/cqrs';
 
@@ -13,6 +14,7 @@ export class Post extends AggregateRoot implements IPost {
     public likes: number,
     public author: string,
     public published: FirebaseFirestore.Timestamp,
+    public time: number,
     public description?: string | null | undefined,
     public imageURL?: string | null | undefined,
     public comments?: IComment[]
@@ -26,6 +28,7 @@ export class Post extends AggregateRoot implements IPost {
       post.likes,
       post.author,
       post.published,
+      post.time,
       post.description,
       post.mediaUrl,
       post.comments
@@ -42,6 +45,11 @@ export class Post extends AggregateRoot implements IPost {
     this.apply(new PostLikedEvent(this.toJSON()));
   }
 
+  updateTime() {
+    this.time++;
+    this.apply(new PostTimeUpdatedEvent(this.toJSON()));
+  }
+
   toJSON() {
     return {
       id: this.id,
@@ -51,6 +59,7 @@ export class Post extends AggregateRoot implements IPost {
       image: this.imageURL,
       comments: this.comments,
       author: this.author,
+      time: this.time,
     };
   }
 }
