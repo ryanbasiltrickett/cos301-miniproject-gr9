@@ -6,7 +6,7 @@ import {
   query,
 } from '@angular/fire/firestore';
 import { Functions, httpsCallable } from '@angular/fire/functions';
-import { ILikePostRequest, ILikePostResponse, IPost } from '@mp/api/posts/util';
+import { ILikePostRequest, ILikePostResponse, IPost, IUpdatePostTimeRequest } from '@mp/api/posts/util';
 import { Subject } from 'rxjs';
 
 @Injectable()
@@ -43,6 +43,13 @@ export class FeedApi {
     return await httpsCallable<ILikePostRequest, ILikePostResponse>(
       this.functions,
       'updatePostLikes'
+    )(request);
+  }
+
+  async updatePostTime(request: IUpdatePostTimeRequest) {
+    return await httpsCallable<IUpdatePostTimeRequest, IUpdatePostTimeRequest>(
+      this.functions,
+      'updatePostTime'
     )(request);
   }
 }

@@ -1,7 +1,7 @@
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { FeedApi } from './feed.api';
 import { Injectable } from '@angular/core';
-import { LikePost, SetFeed, SubscribeToFeed } from '@mp/app/feed/util';
+import { GivePostTime, LikePost, SetFeed, SubscribeToFeed } from '@mp/app/feed/util';
 import { IPost } from '@mp/api/posts/util';
 import { ILikePostRequest } from '@mp/api/posts/util';
 // import { Timestamp } from 'firebase-admin/firestore';
@@ -54,8 +54,17 @@ export class FeedState {
     const request: ILikePostRequest = {
       post
     };
-    console.log("Attempting to like post");
     const responseRef = await this.feedApi.updatePostLikeCount(request);
+    // const response = responseRef.data;
+    // console.log('Response from like Post: ', response);
+  }
+
+  @Action(GivePostTime)
+  async givePostTime(ctx: StateContext<FeedStateModel>, { post }: GivePostTime) {
+    const request: ILikePostRequest = {
+      post
+    };
+    const responseRef = await this.feedApi.updatePostTime(request);
     // const response = responseRef.data;
     // console.log('Response from like Post: ', response);
   }

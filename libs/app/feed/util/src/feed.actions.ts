@@ -13,3 +13,8 @@ export class SetFeed {
 export class SubscribeToFeed {
   static readonly type = '[Feed] SubscribeToFeed';
 }
+
+export class GivePostTime {
+  static readonly type = '[Feed] GivePostTime';
+  constructor(public readonly post: IPost) {}
+}
