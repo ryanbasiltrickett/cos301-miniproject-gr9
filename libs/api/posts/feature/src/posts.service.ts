@@ -1,13 +1,13 @@
 import {
   ICommentPostRequest,
   ILikePostRequest,
-  IAddPostRequest,
+  ICreatePostRequest as IAddPostRequest,
   IDeletePostRequest,
   ICommentPostResponse,
   ILikePostResponse,
   IAddPostResponse,
   IDeletePostResponse,
-  AddPostCommand,
+  CreatePostCommand,
   DeletePostCommand,
   LikePostCommand,
   CommentPostCommand,
@@ -22,9 +22,9 @@ import { CommandBus } from '@nestjs/cqrs';
 export class PostService {
   constructor(private readonly commandBus: CommandBus) {}
 
-  async addPost(request: IAddPostRequest): Promise<IAddPostResponse> {
-    return await this.commandBus.execute<AddPostCommand, IAddPostResponse>(
-      new AddPostCommand(request)
+  async createPost(request: IAddPostRequest): Promise<IAddPostResponse> {
+    return await this.commandBus.execute<CreatePostCommand, IAddPostResponse>(
+      new CreatePostCommand(request)
     );
   }
 

@@ -1,5 +1,5 @@
 import {
-    AddPostCommand,
+    CreatePostCommand,
     LikePostCommand,
     CommentPostCommand,
     DeletePostCommand,

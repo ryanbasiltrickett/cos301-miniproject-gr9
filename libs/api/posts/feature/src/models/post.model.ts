@@ -27,7 +27,7 @@ export class Post extends AggregateRoot implements IPost {
       post.author,
       post.published,
       post.description,
-      post.image,
+      post.mediaUrl,
       post.comments
     );
     return instance;

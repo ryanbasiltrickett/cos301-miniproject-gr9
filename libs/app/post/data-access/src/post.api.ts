@@ -3,7 +3,7 @@ import { doc, docData, Firestore } from '@angular/fire/firestore';
 import { Functions, httpsCallable } from '@angular/fire/functions';
 import {
   IPost,
-  IAddPostRequest,
+  ICreatePostRequest,
   IAddPostResponse,
   ICommentPostRequest,
   ICommentPostResponse,
@@ -14,8 +14,6 @@ import {
   IUpdatePostTimeRequest,
   IUpdatePostTimeResponse,
 } from '@mp/api/posts/util';
-1;
-import { NotImplementedException } from '@nestjs/common';
 
 @Injectable()
 export class PostApi {
@@ -44,19 +42,10 @@ export class PostApi {
     )(request);
   }
 
-  async updateAddPost(request: IAddPostRequest) {
-    return NotImplementedException;
-  }
-
-  async updateCommentPost(request: ICommentPostRequest) {
-    return NotImplementedException;
-  }
-
-  async updateDeletePost(request: IDeletePostRequest) {
-    return NotImplementedException;
-  }
-
-  async updateLikePost(request: ILikePostRequest) {
-    return NotImplementedException;
+  async createPost(request: ICreatePostRequest) {
+    return await httpsCallable<ICreatePostRequest, IAddPostResponse>(
+      this.functions,
+      'createPost'
+    )(request);
   }
 }

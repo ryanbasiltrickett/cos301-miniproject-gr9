@@ -6,23 +6,34 @@ import * as admin from 'firebase-admin';
 @Injectable()
 export class PostsRepository {
   async createPost(post: IPost) {
-    //add post to the follwers recentPosts array and update the lastPost timestamp accordingly
-    const docRef = admin.firestore().collection('followers').doc(post.author);
-    const newFollowersRecentPost: IRecentPost = {
-      postId: post.id,
-      postDescription: post.description,
+    const flag = false;
+    if (flag) {
+      //add post to the follwers recentPosts array and update the lastPost timestamp accordingly
+      // TODO do this after the post is added so that we have access to the postId
+      const docRef = admin.firestore().collection('followers').doc(post.author);
+      const newFollowersRecentPost: IRecentPost = {
+        postId: post.id,
+        postDescription: post.description,
+        published: post.published,
+        image: post.mediaUrl,
+        location: post.location,
+      };
+      await docRef.update({
+        recentPosts: admin.firestore.FieldValue.arrayUnion(
+          newFollowersRecentPost
+        ),
+        lastPost: post.published,
+      });
+    }
+
+    return await admin.firestore().collection('posts').add({
+      author: post.author,
+      description: post.description,
+      likes: 0,
       published: post.published,
-      image: post.image,
-      location: post.location,
-    };
-    await docRef.update({
-      recentPosts: admin.firestore.FieldValue.arrayUnion(
-        newFollowersRecentPost
-      ),
-      lastPost: post.published,
     });
 
-    //create the new post in the posts array
+    //create the new post in the posts collection
     return await admin
       .firestore()
       .collection('posts')

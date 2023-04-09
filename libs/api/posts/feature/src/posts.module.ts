@@ -2,11 +2,11 @@ import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { PostsModule as PostsDataAccessModule } from '@mp/api/posts/data-access';
 import { PostService } from './posts.service';
-import { AddPostHandler, LikePostHandler } from './commands';
-import { PostLikedHandler } from './events';
+import { CreatePostHandler, LikePostHandler } from './commands';
+import { PostCreatedHandler, PostLikedHandler } from './events';
 
-export const CommandHandlers = [AddPostHandler, LikePostHandler];
-export const EventHandlers = [PostLikedHandler];
+export const CommandHandlers = [CreatePostHandler, LikePostHandler];
+export const EventHandlers = [PostCreatedHandler, PostLikedHandler];
 
 @Module({
   imports: [CqrsModule, PostsDataAccessModule],

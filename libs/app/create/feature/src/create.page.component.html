@@ -15,14 +15,17 @@
   </ion-header>
 
   <ion-item>
-    <ion-input label="description" placeholder="What would you like to say"></ion-input>
+    <ion-input
+      label="description"
+      placeholder="What would you like to say"
+      [(ngModel)]="description"></ion-input>
   </ion-item>
   <ion-button (click)="uploadMedia()">
     <ion-icon slot="start" name="camera"></ion-icon>
     <ion-label>Upload Media</ion-label>
   </ion-button>
 
-  <ion-button expand="block">
+  <ion-button expand="block" (click)="post()">
     <ion-label>Post</ion-label>
   </ion-button>
 </ion-content>
