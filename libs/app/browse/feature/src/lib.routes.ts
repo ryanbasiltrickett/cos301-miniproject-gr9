@@ -12,4 +12,4 @@ export const appBrowseFeatureRoutes: Route[] = [
   imports: [RouterModule.forChild(appBrowseFeatureRoutes)],
   exports: [RouterModule],
 })
-export class ProfileRouting {}
+export class BrowseRouting {}

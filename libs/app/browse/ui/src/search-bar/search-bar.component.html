@@ -1,12 +1,4 @@
-<div class="search-bar">
-    <form (ngSubmit)="searchUsers()" [formGroup]="searchForm">
-      <input
-        type="text"
-        formControlName="searchInput"
-        placeholder="Search User"
-        class="search-input"
-      />
-      <button type="submit" class="search-button">Search</button>
-    </form>
-  </div>
+<ion-header>
+  <ion-searchbar animated="true" placeholder="Search User"></ion-searchbar>
+</ion-header>
   

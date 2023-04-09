@@ -6,9 +6,9 @@ import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
-    selector: 'mp-post-list',
-    templateUrl: './post-list.component.html',
-    styleUrls: ['./post-list.component.scss'],
+    selector: 'ms-search-bar',
+    templateUrl: './search-bar.component.html',
+    styleUrls: ['./search-bar.component.scss'],
   })
   export class SearchBarComponent{
     searchForm: FormGroup;
