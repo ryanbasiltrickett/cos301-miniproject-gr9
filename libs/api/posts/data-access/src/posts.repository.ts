@@ -26,19 +26,13 @@ export class PostsRepository {
       });
     }
 
+    //create the new post in the posts collection
     return await admin.firestore().collection('posts').add({
       author: post.author,
       description: post.description,
       likes: 0,
       published: post.published,
     });
-
-    //create the new post in the posts collection
-    return await admin
-      .firestore()
-      .collection('posts')
-      .doc(post.id)
-      .create(post);
   }
 
   async findOne(post: IPost) {
