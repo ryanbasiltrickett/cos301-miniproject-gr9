@@ -68,20 +68,4 @@ export class RegisterPage {
   toggleShowPassword() {
     this.showPassword = !this.showPassword;
   }
-
-  googleSignUp() {
-    console.log("Loggin with Google");
-  }
-
-  facebookSignUp() {
-    console.log("Loggin with Google");
-  }
-
-  appleSignUp() {
-    console.log("Loggin with Google");
-  }
-
-  twitterSignUp() {
-    console.log("Loggin with Google");
-  }
 }
