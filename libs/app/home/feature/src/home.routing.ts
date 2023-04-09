@@ -23,6 +23,11 @@ const routes: Routes = [
           import('@mp/app/feed/feature').then((m) => m.FeedModule),
       },
       {
+        path: 'create',
+        loadChildren: () => 
+          import('@mp/app/create/feature').then((m) => m.CreateModule),
+      },
+      {
         path: '',
         pathMatch: 'full',
         redirectTo: '/home/feed',
