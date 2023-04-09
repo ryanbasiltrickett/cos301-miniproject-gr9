@@ -77,7 +77,6 @@
       "@mp/app/login/feature": ["libs/app/login/feature/src/index.ts"],
       "@mp/app/login/util": ["libs/app/login/util/src/index.ts"],
       "@mp/app/post/data-access": ["libs/app/post/data-access/src/index.ts"],
-      "@mp/app/post/feature": ["libs/app/post/feature/src/index.ts"],
       "@mp/app/post/ui": ["libs/app/post/ui/src/index.ts"],
       "@mp/app/privacy/feature": ["libs/app/privacy/feature/src/index.ts"],
       "@mp/app/profile/data-access": [
