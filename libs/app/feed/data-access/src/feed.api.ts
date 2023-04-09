@@ -6,7 +6,12 @@ import {
   query,
 } from '@angular/fire/firestore';
 import { Functions, httpsCallable } from '@angular/fire/functions';
-import { ILikePostRequest, ILikePostResponse, IPost, IUpdatePostTimeRequest } from '@mp/api/posts/util';
+import {
+  ILikePostRequest,
+  ILikePostResponse,
+  IPost,
+  IUpdatePostTimeRequest,
+} from '@mp/api/posts/util';
 import { Subject } from 'rxjs';
 
 @Injectable()
@@ -24,15 +29,13 @@ export class FeedApi {
 
     // maybe unsubscribe from this subscription
     const unsubscribe = onSnapshot(postsSnapshot, (snapshot) => {
-      console.log('snapshot: ', snapshot);
-
       this.feed$.next(
         snapshot.docs.map((doc) => {
           const post = doc.data();
           const data = {
             id: doc.id,
             ...post,
-          }
+          };
           return data as IPost;
         })
       );

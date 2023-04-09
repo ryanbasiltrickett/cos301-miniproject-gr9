@@ -1,5 +1,4 @@
-<ion-card>
-
+<ion-card #card>
   <ion-card-header>
     <ion-card-title>{{ post.id }}</ion-card-title>
     <ion-card-subtitle>{{ post.published }}</ion-card-subtitle>
@@ -20,7 +19,7 @@
     Likes: {{ post.likes }}
   </ion-button>
   <ion-button fill="clear">Comments</ion-button>
-  <ion-button style="float: right; margin-right: 1rem" fill="outline"
-    >Timer</ion-button
-  >
+  <ion-button style="float: right; margin-right: 1rem" fill="outline">
+    Time: {{ post.time }}
+  </ion-button>
 </ion-card>
