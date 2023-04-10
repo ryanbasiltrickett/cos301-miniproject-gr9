@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
+import {} from '@mp/app/auth/data-access'
 import { FormBuilder, Validators } from '@angular/forms';
 import { Login } from '@mp/app/login/util';
 import {
     ActionsExecuting,
     actionsExecuting
 } from '@ngxs-labs/actions-executing';
+
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
+import { AuthApi } from 'libs/app/auth/data-access/src/auth.api';
 
 @Component({
   selector: 'ms-login-page',
@@ -14,6 +17,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage {
+
+  
   @Select(actionsExecuting([Login])) busy$!: Observable<ActionsExecuting>;
   loginForm = this.fb.group({
     email: [
@@ -55,7 +60,8 @@ export class LoginPage {
 
   constructor(
     private readonly fb: FormBuilder,
-    private readonly store: Store
+    private readonly store: Store,
+    private auth : AuthApi
   ) {}
 
   login() {
@@ -69,18 +75,22 @@ export class LoginPage {
   }
 
   googleLogin() {
+    this.auth.continueWithGoogle();
     console.log("Loggin with Google");
   }
 
   facebookLogin() {
+    this.auth.continueWithFacebook();
     console.log("Loggin with Google");
   }
 
   appleLogin() {
+    this.auth.continueWithApple();
     console.log("Loggin with Google");
   }
 
   twitterLogin() {
+    this.auth.continueWithTwitter();
     console.log("Loggin with Google");
   }
 }
