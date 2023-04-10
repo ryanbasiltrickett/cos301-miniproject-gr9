@@ -2,41 +2,46 @@ import { IPost, IComment, ILike, IRecentPost } from '@mp/api/posts/util';
 import { IProfile } from '@mp/api/profiles/util';
 import { Injectable, NotImplementedException } from '@nestjs/common';
 import * as admin from 'firebase-admin';
+import { Timestamp } from 'firebase-admin/firestore';
 
 @Injectable()
 export class PostsRepository {
   async createPost(post: IPost) {
-    const flag = false;
-    if (flag) {
-      //add post to the follwers recentPosts array and update the lastPost timestamp accordingly
-      // TODO do this after the post is added so that we have access to the postId
-      const docRef = admin.firestore().collection('followers').doc(post.author);
-      const newFollowersRecentPost: IRecentPost = {
-        postId: post.id,
-        postDescription: post.description,
-        published: post.published,
-        image: post.mediaUrl,
-        location: post.location,
-      };
-      await docRef.update({
-        recentPosts: admin.firestore.FieldValue.arrayUnion(
-          newFollowersRecentPost
-        ),
-        lastPost: post.published,
-      });
-    }
 
     //create the new post in the posts collection
-    return await admin.firestore().collection('posts').add({
+    const newPost = await admin.firestore().collection('posts').add({
       author: post.author,
       description: post.description,
       likes: 0,
-      published: post.published,
+      published: Timestamp.now(),
+      time: 0,
+      image: post.mediaUrl,
     });
+    
+    //get data from the new post
+    const newPostData = (await newPost.get()).data();
+
+    //add post to the follwers recentPosts array and update the lastPost timestamp accordingly
+    const docRef = admin.firestore().collection('followers').doc(post.author);
+    const newFollowersRecentPost: IRecentPost = {
+      postId: newPostData!['id'],
+      postDescription: post.description,
+      published: newPostData!['published'],
+      image: post.mediaUrl,
+      location: post.location,
+    };
+
+    await docRef.update({
+      recentPosts: admin.firestore.FieldValue.arrayUnion(
+        newFollowersRecentPost
+      ),
+      lastPost: newFollowersRecentPost.published,
+    });
+
+    return admin.firestore().collection('posts').doc(post.id);
   }
 
   async findOne(post: IPost) {
-    // return await admin.firestore().collection('posts').doc(post.id).get();
     return await admin
       .firestore()
       .collection('posts')
