@@ -10,7 +10,11 @@ export class Auth extends AggregateRoot implements IAuth {
     public photoURL?: string | null | undefined,
     public phoneNumber?: string | null | undefined,
     public customClaims?: { [key: string]: any } | null | undefined,
-    public created?: Timestamp | null | undefined
+    public created?: Timestamp | null | undefined,
+    public bio?: string | null | undefined,
+    public name?: string | null | undefined,
+    public visibility?: boolean | null | undefined,
+    public timeLeft?: number | null | undefined,
   ) {
     super();
   }
@@ -23,7 +27,11 @@ export class Auth extends AggregateRoot implements IAuth {
       user.photoURL,
       user.phoneNumber,
       user.customClaims,
-      user.created
+      user.created,
+      user.bio,
+      user.name,
+      user.visibility,
+      user.timeLeft,
     );
     return instance;
   }
@@ -45,6 +53,10 @@ export class Auth extends AggregateRoot implements IAuth {
       phoneNumber: this.phoneNumber,
       customClaims: this.customClaims,
       created: this.created,
+      bio: this.bio,
+      name: this.name,
+      visibility: this.visibility,
+      timeLeft: this.timeLeft,
     };
   }
 }

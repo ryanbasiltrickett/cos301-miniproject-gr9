@@ -24,6 +24,10 @@ export class AuthSagas {
               email: event.profile.accountDetails?.email,
               photoURL: event.profile.accountDetails?.photoURL,
               password: event.profile.accountDetails?.password,
+              bio: event.profile.accountDetails?.bio,
+              name: event.profile.accountDetails?.name,
+              visibility: event.profile.accountDetails?.visibility,
+              timeLeft: event.profile.accountDetails?.timeLeft,
             },
           })
       )
