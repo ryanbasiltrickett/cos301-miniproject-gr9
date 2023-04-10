@@ -5,8 +5,16 @@ import {
     ActionsExecuting,
     actionsExecuting
 } from '@ngxs-labs/actions-executing';
+
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
+
+import {
+  ContinueWithApple,
+  ContinueWithFacebook,
+  ContinueWithGoogle,
+  ContinueWithTwitter,
+} from '@mp/app/auth/util';
 
 @Component({
   selector: 'ms-register-page',
@@ -70,18 +78,18 @@ export class RegisterPage {
   }
 
   googleSignUp() {
-    console.log("Loggin with Google");
+    this.store.dispatch(new ContinueWithGoogle());
   }
 
   facebookSignUp() {
-    console.log("Loggin with Google");
+    this.store.dispatch(new ContinueWithFacebook());
   }
 
   appleSignUp() {
-    console.log("Loggin with Google");
+    this.store.dispatch(new ContinueWithApple());
   }
 
   twitterSignUp() {
-    console.log("Loggin with Google");
+    this.store.dispatch(new ContinueWithTwitter());
   }
 }
