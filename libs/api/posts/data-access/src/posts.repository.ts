@@ -20,7 +20,7 @@ export class PostsRepository {
     
     //get data from the new post
     const newPostData = (await newPost.get()).data();
-
+    await newPost.update({id: newPost.id});
     //add post to the follwers recentPosts array and update the lastPost timestamp accordingly
     const docRef = admin.firestore().collection('followers').doc(post.author);
     const newFollowersRecentPost: IRecentPost = {
@@ -38,7 +38,7 @@ export class PostsRepository {
       lastPost: newFollowersRecentPost.published,
     });
 
-    return admin.firestore().collection('posts').doc(post.id);
+    return newPost;
   }
 
   async findOne(post: IPost) {
@@ -69,11 +69,19 @@ export class PostsRepository {
   }
 
   async deletePost(post: IPost) {
-    return NotImplementedException;
+    return await admin
+      .firestore()
+      .collection('posts')
+      .doc(post.id)
+      .delete();
   }
 
   async getPost(post: IPost) {
-    return NotImplementedException;
+    return await admin
+      .firestore()
+      .collection('posts')
+      .doc(post.id)
+      .get();
   }
 
   async addTags(post: IPost) {
