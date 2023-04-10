@@ -7,7 +7,7 @@ export class ProfilesRepository {
   async findOne(profile: IProfile) {
     return await admin
       .firestore()
-      .collection('profiles')
+      .collection('users')
       .withConverter<IProfile>({
         fromFirestore: (snapshot) => {
           return snapshot.data() as IProfile;
@@ -23,7 +23,7 @@ export class ProfilesRepository {
     delete profile.accountDetails?.password;
     return await admin
       .firestore()
-      .collection('profiles')
+      .collection('users')
       .doc(profile.userId)
       .create(profile);
   }
@@ -33,12 +33,16 @@ export class ProfilesRepository {
     delete profile.accountDetails?.password;
     return await admin
       .firestore()
-      .collection('profiles')
+      .collection('users')
       .doc(profile.userId)
       .set(profile, { merge: true });
   }
 
   async getProfile(profile: IProfile) {
-    return NotImplementedException;
+    return await admin
+    .firestore()
+    .collection('users')
+    .doc(profile.userId)
+    .get();
   }
 }

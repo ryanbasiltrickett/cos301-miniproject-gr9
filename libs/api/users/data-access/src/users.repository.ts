@@ -11,4 +11,20 @@ export class UsersRepository {
       .doc(user.id)
       .create(user);
   }
+
+  async updateUser(user: IUser){
+    return await admin
+      .firestore()
+      .collection('users')
+      .doc(user.id)
+      .set(user, {merge: true})
+  }
+
+  async getUser(user: IUser){
+    return await admin
+      .firestore()
+      .collection('users')
+      .doc(user.id)
+      .get();
+  }
 }
