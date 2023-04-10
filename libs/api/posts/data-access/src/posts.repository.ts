@@ -7,7 +7,6 @@ import { Timestamp } from 'firebase-admin/firestore';
 @Injectable()
 export class PostsRepository {
   async createPost(post: IPost) {
-
     //create the new post in the posts collection
     const newPost = await admin.firestore().collection('posts').add({
       author: post.author,

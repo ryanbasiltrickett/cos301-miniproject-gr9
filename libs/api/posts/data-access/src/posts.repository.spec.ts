@@ -2,38 +2,52 @@ import { IPost } from '@mp/api/posts/util';
 import { Timestamp } from 'firebase-admin/firestore';
 import { PostsRepository } from './posts.repository';
 
-const collectionMock = jest.fn().mockReturnValue({ doc: jest.fn().mockReturnThis() });
-const withConverterMock = jest.fn().mockReturnThis();
-const getMock = jest.fn().mockResolvedValue({ data: () => ({}) });
-const addMock = jest.fn().mockResolvedValue({ get: jest.fn().mockResolvedValue({ data: jest.fn() }) });
-const updateMock = jest.fn().mockResolvedValue(undefined);
-const setMock = jest.fn().mockResolvedValue(undefined);
-const createMock = jest.fn().mockResolvedValue(undefined);
-
-jest.mock('firebase-admin', () => {
-  const FirestoreMock = {
-    collection: collectionMock,
-    withConverter: withConverterMock,
-    doc: jest.fn().mockReturnThis(),
-    get: getMock,
-    add: addMock,
-    update: updateMock,
-    set: setMock,
-    create: createMock,
-  };
-
-  const FieldValueMock = {
-    arrayUnion: jest.fn().mockReturnThis(),
-  };
-
-  return {
-    firestore: () => FirestoreMock,
-    FieldValue: FieldValueMock,
-  };
-});
-
 describe('PostsRepository', () => {
     let postsRepository: PostsRepository;
+    let collectionMock: jest.Mock;
+    let withConverterMock: jest.Mock;
+    let getMock: jest.Mock;
+    let addMock: jest.Mock;
+    let updateMock: jest.Mock;
+    let setMock: jest.Mock;
+    let createMock: jest.Mock;
+  
+    beforeAll(() => {
+        collectionMock = jest.fn().mockReturnValue({ doc: jest.fn().mockReturnThis() });
+        withConverterMock = jest.fn().mockReturnThis();
+        getMock = jest.fn().mockResolvedValue({ data: () => ({}) });
+        addMock = jest.fn().mockResolvedValue({ get: jest.fn().mockResolvedValue({ data: jest.fn() }) });
+        updateMock = jest.fn().mockResolvedValue(undefined);
+        setMock = jest.fn().mockResolvedValue(undefined);
+        createMock = jest.fn().mockResolvedValue(undefined);
+
+        jest.mock('firebase-admin', () => {
+            const FirestoreMock = {
+                collection: collectionMock,
+                withConverter: withConverterMock,
+                doc: jest.fn().mockReturnThis(),
+                get: getMock,
+                add: addMock,
+                update: updateMock,
+                set: setMock,
+                create: createMock,
+            };
+
+            const FieldValueMock = {
+                arrayUnion: jest.fn().mockReturnThis(),
+            };
+
+            return {
+                firestore: () => FirestoreMock,
+                FieldValue: FieldValueMock,
+            };
+        });
+    });
+
+    beforeEach(() => {
+        jest.clearAllMocks();
+        postsRepository = new PostsRepository();
+    });
   
     beforeEach(() => {
         jest.clearAllMocks();
