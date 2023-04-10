@@ -1,7 +1,6 @@
-import { PostsRepository } from './posts.repository';
-import * as admin from 'firebase-admin';
+import { IPost } from '@mp/api/posts/util';
 import { Timestamp } from 'firebase-admin/firestore';
-import { IPost } from '../../util/src/interfaces';
+import { PostsRepository } from './posts.repository';
 
 const collectionMock = jest.fn().mockReturnValue({ doc: jest.fn().mockReturnThis() });
 const withConverterMock = jest.fn().mockReturnThis();
