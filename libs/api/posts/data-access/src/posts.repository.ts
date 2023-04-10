@@ -80,7 +80,8 @@ export class PostsRepository {
     return await admin
       .firestore()
       .collection('posts')
-      .doc(post.id)
+      .where('author', "==", post.author)
+      .where('published', "==", post.published)
       .get();
   }
 
@@ -115,5 +116,21 @@ export class PostsRepository {
       .collection('posts')
       .doc(post.id)
       .update({ likes: post.likes });
+  }
+
+  async removeLike(user: IProfile, post: IPost){
+    post.likes--;
+
+    await admin
+      .firestore()
+      .collection('likes')
+      .doc(user.userId + '_' + post.id)
+      .delete();
+
+    return await admin
+      .firestore()
+      .collection('posts')
+      .doc(post.id)
+      .update({ like: post.likes });
   }
 }
