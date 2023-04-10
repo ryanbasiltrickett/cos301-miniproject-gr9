@@ -99,6 +99,7 @@
     "@nrwl/workspace": "15.7.1",
     "@nxtend/capacitor": "^13.0.0",
     "@schematics/angular": "~15.1.0",
+    "@types/jasmine": "4.x.x",
     "@types/jest": "28.1.1",
     "@types/node": "^18.13.0",
     "@typescript-eslint/eslint-plugin": "^5.36.1",
@@ -111,6 +112,7 @@
     "firebase-functions-test": "^3.0.0",
     "glob": "^9.3.2",
     "http-server": "^14.1.1",
+    "jasmine": "^4.6.0",
     "jest": "28.1.1",
     "jest-environment-jsdom": "28.1.1",
     "jest-preset-angular": "~12.2.3",
@@ -119,6 +121,6 @@
     "pwa-asset-generator": "^6.2.1",
     "ts-jest": "28.0.5",
     "ts-node": "10.9.1",
-    "typescript": "~4.8.2"
+    "typescript": "4.4.3"
   }
 }
