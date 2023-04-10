@@ -14,9 +14,10 @@ export class UpdateAuthHandler implements ICommandHandler<UpdateAuthCommand> {
     const data: IAuth = {
       id: request.auth.id,
       email: request.auth.email,
-      displayName: request.auth.displayName,
+      username: request.auth.username,
       photoURL: request.auth.photoURL,
-      phoneNumber: request.auth.phoneNumber,
+      bio: request.auth.bio,
+      private: request.auth.private,
       password: request.auth.password,
       created: Timestamp.fromDate(new Date()),
     };
