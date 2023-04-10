@@ -13,9 +13,7 @@ jobs:
       - name: Create Temporary .env
         run: |
           touch .env
-          echo ${{ secrets.ENVIROMENT }} >> .env
-          echo ${{ secrets.FIREBASE_USE_EMULATORS }} >> .env
-          echo ${{ secrets.FIREBASE_API_KEY }} >> .env
+          echo ${{ secrets.ENV_FILE }} >> .env
 
       - name: Cache Dependencies
         uses: actions/cache@v2
