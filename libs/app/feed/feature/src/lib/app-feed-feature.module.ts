@@ -6,12 +6,16 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { appFeedFeatureRoutes } from './lib.routes';
 import { FeedComponent } from './feed.component';
 
+import { FeedModule as FeedUiModule } from '@mp/app/feed/ui';
+
+
 @NgModule({
   imports: [
     CommonModule,
     IonicModule,
     NgxSkeletonLoaderModule,
     RouterModule.forChild(appFeedFeatureRoutes),
+    FeedUiModule,
   ],
   declarations: [FeedComponent],
   exports: [FeedComponent],
