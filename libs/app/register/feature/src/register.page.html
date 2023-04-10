@@ -9,7 +9,9 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-img src="/assets/logos/main-logo.png" class="ion-align-self-center"></ion-img>
+  <div class="ion-padding-bottom" style="display: flex; justify-content: center;">
+    <ion-img src="/assets/logos/main-logo.png" class="ion-align-self-center" style="width:50%;"></ion-img>
+  </div>
 
   <form
     [formGroup]="registerForm"
@@ -68,7 +70,7 @@
           </ion-button>
         </ion-col>
       </ion-row>
-      <ion-row>
+      <ion-row class="ion-padding-top">
         <ion-col class="ion-text-center ">
           <p class="horizontal-line"><span>or sign up with</span></p>
         </ion-col>
@@ -136,7 +138,3 @@
     </ion-grid>
   </form>
 </ion-content>
-
-<ion-footer collapse="condense" class="ion-padding ion-text-center">
-  <ms-copyright-component></ms-copyright-component>
-</ion-footer>

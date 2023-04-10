@@ -13,4 +13,20 @@ export class AuthRepository {
       password: auth.password ? auth.password : undefined,
     });
   }
+
+  async createProfile(auth: IAuth){
+    await admin.auth()
+      .createUser({
+        uid: auth.id,
+        email: auth.email,
+        displayName: auth.displayName,
+        photoURL: auth.photoURL,
+        phoneNumber: auth.phoneNumber,
+        password: auth.password
+      });
+  }
+
+  async deleteProfile(auth: IAuth){
+    await admin.auth().deleteUser(auth.id);
+  }
 }

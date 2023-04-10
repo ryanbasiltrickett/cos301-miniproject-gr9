@@ -9,10 +9,12 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-img src="/assets/logos/main-logo.png" class="ion-align-self-center"></ion-img>
+  <div class="ion-padding-bottom" style="display: flex; justify-content: center;">
+    <ion-img src="/assets/logos/main-logo.png" class="ion-align-self-center" style="width:50%;"></ion-img>
+  </div>
 
   <form [formGroup]="loginForm" ngxsForm="login.loginForm" (submit)="login()">
-    <ion-text class="ion-padding-start">Welcome Back</ion-text>
+    <ion-text class="ion-padding-start" >Welcome Back</ion-text>
     <ion-list>
       <ion-item>
         <ion-input
@@ -76,7 +78,7 @@
           </ion-button>
         </ion-col>
       </ion-row>
-      <ion-row>
+      <ion-row class="ion-padding-top">
         <ion-col class="ion-text-center ">
           <p class="horizontal-line"><span>or sign in with</span></p>
         </ion-col>
@@ -133,7 +135,7 @@
             </ion-button>
         </ion-col>
       </ion-row>
-      <ion-row>
+      <ion-row class="ion-padding-top">
         <ion-col class="ion-text-center">
           No account?
           <ion-nav-link routerLink="/register">
