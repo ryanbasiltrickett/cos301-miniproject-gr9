@@ -34,7 +34,7 @@ export interface ProfileStateModel {
   profile: IProfile | null;
   accountDetailsForm: {
     model: {
-      displayName: string | null;
+      username: string | null;
       email: string | null;
       photoURL: string | null;
       password: string | null;
@@ -87,7 +87,7 @@ export interface ProfileStateModel {
     profile: null,
     accountDetailsForm: {
       model: {
-        displayName: null,
+        username: null,
         email: null,
         photoURL: null,
         password: null,
@@ -175,12 +175,12 @@ export class ProfileState {
     try {
       const state = ctx.getState();
       const userId = state.profile?.userId;
-      const displayName = state.accountDetailsForm.model.displayName;
+      const username = state.accountDetailsForm.model.username;
       const email = state.accountDetailsForm.model.email;
       // const photoURL = state.accountDetailsForm.model.photoURL;
       const password = state.accountDetailsForm.model.password;
 
-      if (!userId || !displayName || !email || !password)
+      if (!userId || !username || !email || !password)
         return ctx.dispatch(
           new SetError(
             'UserId or display name or email or photo URL or password not set'
@@ -191,7 +191,7 @@ export class ProfileState {
         profile: {
           userId,
           accountDetails: {
-            displayName,
+            username,
             email,
             password,
           },

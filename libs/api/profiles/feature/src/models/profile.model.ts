@@ -94,9 +94,9 @@ export class Profile extends AggregateRoot implements IProfile {
 
   updateAccountDetails(accountDetails: IAccountDetails) {
     if (!this.accountDetails) this.accountDetails = {};
-    this.accountDetails.displayName = accountDetails.displayName
-      ? accountDetails.displayName
-      : this.accountDetails.displayName;
+    this.accountDetails.username = accountDetails.username
+      ? accountDetails.username
+      : this.accountDetails.username;
     this.accountDetails.email = accountDetails.email
       ? accountDetails.email
       : this.accountDetails.email;
@@ -117,7 +117,7 @@ export class Profile extends AggregateRoot implements IProfile {
       return;
     }
 
-    if (!this.accountDetails.displayName || !this.accountDetails.email) {
+    if (!this.accountDetails.username || !this.accountDetails.email) {
       this.accountDetails.status = ProfileStatus.INCOMPLETE;
       this.status = ProfileStatus.INCOMPLETE;
       return;

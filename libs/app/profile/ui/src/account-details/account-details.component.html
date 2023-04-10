@@ -29,18 +29,18 @@
               maxlength="64"
               required="true"
               placeholder="Enter display name"
-              formControlName="displayName"
-              [value]="accountDetails.displayName"
+              formControlName="username"
+              [value]="accountDetails.username"
               autocomplete="name"></ion-input>
           </ion-item>
           <ion-text
             *ngIf="
-              displayName?.invalid &&
-              (displayName?.dirty || displayName?.touched)
+            username?.invalid &&
+              (username?.dirty || username?.touched)
             "
             class="ion-padding-start"
             color="danger">
-            <small>{{ displayNameError }}</small>
+            <small>{{ usernameError }}</small>
           </ion-text>
           <ion-item class="ion-no-padding">
             <ion-label position="floating" class="required">Email</ion-label>

@@ -13,7 +13,7 @@ export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
     const data: IUser = {
       id: request.auth.id,
       email: request.auth.email,
-      displayName: request.auth.displayName,
+      username: request.auth.username,
       photoURL: request.auth.photoURL,
       phoneNumber: request.auth.phoneNumber,
       customClaims: request.auth.customClaims,

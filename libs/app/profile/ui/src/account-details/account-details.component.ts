@@ -20,15 +20,15 @@ export class AccountDetailsComponent {
   @Select(actionsExecuting([UpdateAccountDetails]))
   busy$!: Observable<ActionsExecuting>;
   accountDetailsForm = this.fb.group({
-    displayName: ['', [Validators.minLength(6), Validators.maxLength(64)]],
+    username: ['', [Validators.minLength(6), Validators.maxLength(64)]],
     email: ['', [Validators.minLength(6), Validators.maxLength(64)]],
-    photoURL: ['', [Validators.minLength(6), Validators.maxLength(64)]],
+    // photoURL: ['', [Validators.minLength(6), Validators.maxLength(64)]],
     password: ['', [Validators.minLength(6), Validators.maxLength(64)]],
   });
   showPassword = false;
 
-  get displayName() {
-    return this.accountDetailsForm.get('displayName');
+  get username() {
+    return this.accountDetailsForm.get('username');
   }
 
   get email() {
@@ -43,12 +43,12 @@ export class AccountDetailsComponent {
     return this.accountDetailsForm.get('password');
   }
 
-  get displayNameError(): string {
-    if (this.displayName?.errors?.['required'])
+  get usernameError(): string {
+    if (this.username?.errors?.['required'])
       return 'Display name is required';
-    if (this.displayName?.errors?.['minlength'])
+    if (this.username?.errors?.['minlength'])
       return 'Display name should be longer than 6 characters';
-    if (this.displayName?.errors?.['maxlength'])
+    if (this.username?.errors?.['maxlength'])
       return 'Display name should be shorter than 64 characters';
 
     return 'Display name is invalid';

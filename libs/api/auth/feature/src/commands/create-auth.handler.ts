@@ -14,7 +14,7 @@ export class CreateAuthHandler implements ICommandHandler<CreateAuthCommand> {
     const data: IAuth = {
       id: request.userRecord.uid,
       email: request.userRecord.email,
-      displayName: request.userRecord.displayName,
+      username: request.userRecord.displayName,
       photoURL: request.userRecord.photoURL,
       phoneNumber: request.userRecord.phoneNumber,
       customClaims: request.userRecord.customClaims,
