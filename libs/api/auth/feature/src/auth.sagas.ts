@@ -20,7 +20,7 @@ export class AuthSagas {
           new UpdateAuthCommand({
             auth: {
               id: event.profile.userId,
-              displayName: event.profile.accountDetails?.displayName,
+              displayName: event.profile.accountDetails?.username,
               email: event.profile.accountDetails?.email,
               photoURL: event.profile.accountDetails?.photoURL,
               password: event.profile.accountDetails?.password,

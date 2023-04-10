@@ -18,11 +18,11 @@ export class AuthRepository {
     await admin.auth()
       .createUser({
         uid: auth.id,
-        email: auth.email,
+        email:auth.email ? auth.email : undefined,
         displayName: auth.displayName,
         photoURL: auth.photoURL,
         phoneNumber: auth.phoneNumber,
-        password: auth.password
+        password: auth.password ? auth.password : undefined,
       });
   }
 
