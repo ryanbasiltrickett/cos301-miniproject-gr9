@@ -1,15 +1,21 @@
 import { Component } from '@angular/core';
-import {} from '@mp/app/auth/data-access'
+import {} from '@mp/app/auth/data-access';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Login } from '@mp/app/login/util';
 import {
-    ActionsExecuting,
-    actionsExecuting
+  ActionsExecuting,
+  actionsExecuting,
 } from '@ngxs-labs/actions-executing';
 
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { AuthApi } from 'libs/app/auth/data-access/src/auth.api';
+import {
+  ContinueWithApple,
+  ContinueWithFacebook,
+  ContinueWithGoogle,
+  ContinueWithTwitter,
+} from '@mp/app/auth/util';
 
 @Component({
   selector: 'ms-login-page',
@@ -17,8 +23,6 @@ import { AuthApi } from 'libs/app/auth/data-access/src/auth.api';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage {
-
-  
   @Select(actionsExecuting([Login])) busy$!: Observable<ActionsExecuting>;
   loginForm = this.fb.group({
     email: [
@@ -61,7 +65,7 @@ export class LoginPage {
   constructor(
     private readonly fb: FormBuilder,
     private readonly store: Store,
-    private auth : AuthApi
+    private auth: AuthApi
   ) {}
 
   login() {
@@ -75,22 +79,18 @@ export class LoginPage {
   }
 
   googleLogin() {
-    this.auth.continueWithGoogle();
-    console.log("Loggin with Google");
+    this.store.dispatch(new ContinueWithGoogle());
   }
 
   facebookLogin() {
-    this.auth.continueWithFacebook();
-    console.log("Loggin with Google");
+    this.store.dispatch(new ContinueWithFacebook());
   }
 
   appleLogin() {
-    this.auth.continueWithApple();
-    console.log("Loggin with Google");
+    this.store.dispatch(new ContinueWithApple());
   }
 
   twitterLogin() {
-    this.auth.continueWithTwitter();
-    console.log("Loggin with Google");
+    this.store.dispatch(new ContinueWithTwitter());
   }
 }
