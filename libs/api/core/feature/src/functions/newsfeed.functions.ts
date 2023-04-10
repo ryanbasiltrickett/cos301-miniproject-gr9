@@ -9,11 +9,15 @@ import { NotImplementedException } from '@nestjs/common';
 import { CoreModule } from '../core.module';
 
 export const genNewsfeed = functions.https.onCall(async ( request: IgenNewsfeedRequest): Promise<IgenNewsfeedResponse> => {
-  return request;//dud
+  const app = await NestFactory.createApplicationContext(CoreModule);
+  const service = app.get(NewsfeedService);
+  return service.genNewsfeed(request);
 });
 
 export const updateNFPost = functions.https.onCall(async ( request: IupdateNFPostRequest): Promise<IupdateNFPostResponse> =>{
-  return request;
+  const app = await NestFactory.createApplicationContext(CoreModule);
+  const service = app.get(NewsfeedService);
+  return service.updateNFPost(request);
 });
 
 

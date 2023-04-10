@@ -3,7 +3,7 @@ import {
   INewsfeed, IgenNewsfeedResponse, IgenNewsfeedRequest,genNewsfeedEvent,
   INFPost, IupdateNFPostResponse, IupdateNFPostRequest, updateNFPostEvent
 } from '@mp/api/newsfeed/util';
-import { NewsfeedService } from '../newsfeed.service';
+import { NewsfeedService } from './newsfeed.service';
 import { request } from 'http';
 
 describe('NewsfeedService', () => {
