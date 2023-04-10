@@ -9,7 +9,7 @@ import {
 
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { AuthApi } from 'libs/app/auth/data-access/src/auth.api';
+
 import {
   ContinueWithApple,
   ContinueWithFacebook,
@@ -64,8 +64,7 @@ export class LoginPage {
 
   constructor(
     private readonly fb: FormBuilder,
-    private readonly store: Store,
-    private auth: AuthApi
+    private readonly store: Store
   ) {}
 
   login() {
