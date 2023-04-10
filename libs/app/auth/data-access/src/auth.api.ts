@@ -7,7 +7,8 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   TwitterAuthProvider,
-  FacebookAuthProvider
+  FacebookAuthProvider,
+  OAuthProvider
 } from '@angular/fire/auth';
 import { signOut } from '@firebase/auth';
 
@@ -39,6 +40,11 @@ export class AuthApi {
 
   async continueWithTwitter(){
     const provider=new TwitterAuthProvider();
+    return await signInWithPopup(this.auth,provider);
+  }
+
+  async continueWithApple(){
+    const provider = new OAuthProvider('apple.com');
     return await signInWithPopup(this.auth,provider);
   }
 
