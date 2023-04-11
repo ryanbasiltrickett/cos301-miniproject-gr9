@@ -6,11 +6,26 @@ import * as functions from 'firebase-functions';
 import { CoreModule } from '../core.module';
 import { NotImplementedException } from '@nestjs/common';
 import { IEvent } from '@nestjs/cqrs';
+import * as admin from 'firebase-admin';
 
 export const generateEvent = functions.https.onCall(
     async (
       request: IEventRequest,
     ): (Promise<IEventResponse>) => {
+
+      const title = request.event.eventTitle;
+      const time = request.event.eventTime;
+
+      const notification: admin.messaging.Notification = {
+        title: title,
+        body: "The event will happen at: " + time,
+      }
+      
+      const payload: admin.messaging.Message = {
+        notification,
+        topic: "Events"
+      }
+      admin.messaging().send(payload);
       return request;
     }
 );

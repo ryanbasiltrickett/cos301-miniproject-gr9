@@ -1,0 +1,12 @@
+{
+"type": "service_account",
+  "project_id": "cos301-miniproject-2023-b1f6d",
+  "private_key_id": "51369e9d0fb421736d166b22732c848692cf00ae",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDqu+4hVbRenTXg\nbqe9PWUh6fl4ZD9AxZMgIuvWFxLM3TES4wxA0YsYXJYPenUZtczzBhr11fDsENGe\nitl9DEyaLBFc3JazhxeV/fzc4tE2Zo7lXmwAjY7FH4bfoshAk9m7jnJ0jZoxhz3K\nu/qbcN4yFwzBxuAO68WtLJlb+QYR6Vr62F2BWY3CNGh6HQfCzKiAzAmpXYWfiIEn\nvoQG9ZM6D7JHenjvB7SdiQ4ZaNCslZkFfkw81nJrq2jd6Cg5AxFSZy61yXTw9jbN\nrWdgEZZobli64op8/oTBHWxi009SiJPqIrJJ/+ha227BvUed89q5F2HbwhJ+MvWR\nyF/L0CBRAgMBAAECggEAAa5j5fSqzIyuQmH4gl2G7YP6NfBd3n/y395wKTOpcBZN\nQbumrom4yAnU1YjEuEZBHyRAqfVPeu6xBFKffLVn5e/lMmJ1aL+nHcKDVBF0erPE\nV+ga1OwuoW1cNlOAiDnfwRJq8f9Q+JJlrYM2YOZL/nGD7kOXVAJAn+tmIgPkhtkU\nO0m+Fddj3giAcSpwLHnu9zaKqlh/S1NYi/fj3F2r627e+5+sr7UluQ36KJnj19wU\nHQhMNIFDDwahaehUpRyL6/3XAI7Il62jzo5ykZw5qsm4S+AVmmyZiUyVfYLdFJAa\nOrwucWcXFs894JFM7L2No2uMCY5NlXfC1WQAcksFeQKBgQD2Ns89dCnVHxSR/U5U\nxb1oX2G3KWl/2e2+YU6rv0l2e7UaR6lJn+5geCXyg8F1Zov2ecJ5x2KyAiHZvyUX\n++wd2llJ7MuGooXwWKeLN4sBNs9LW4EpsdA/Sk/qPSbbHNbBKaBsIzLLZbRIRUbN\nXT+YGxaJcIX97kWwRSAGOO9IPQKBgQD0EFA/F837jMYx/cv/yJ0F4C02xtNnlZBo\nT7pSu15EzY6iJweVwUweQR+Lf5G5CQ6mJstL+fB1sDaxVnh3xeiLXpyMAMTTTNPB\no3RS9hF5w/+42IWgwEiP/sgb1awCmLwWOf9njmhAMKHSY1aq1KsVwhwrHE0Aib1L\nN0uhrVjlpQKBgDLn1iVQlS2ZRXmBs+ZXE/g2cE+cYlGqzzrjh45++ENlBGawllHA\nnVqYvM/NafxJ/XoyZoEjNkazpigNGzBAR+tML9XW/aWSiLrOuaVREI5ptKZR/vyN\n5Q6Q4MD/b78x0T0SzDZPeLsRBhtDJ4ZiVzmtsBUujKWZ1BLD2AExWFfJAoGBALL/\nN+teCQsBbuaBLdl1h3wksuRmo+tnbNakCpHcq0GoxIA2QcDaWHoj5v/HWterRdwj\nvZwGPg4CY8piEc4+DtQQWp3vfms+AFwXBhxGLgDw957Y5gBEpbM9+AM6DYKGBAQF\nG0UW02yofjYv9wMpICTADSqtAehwHK2Ka2SzHuylAoGAJ9IAPCcESOEV9zRrTGQd\njbwF+DDawrE+xjfRcRp2J/0QSYQvmJAy+CGrFyfKbQMuf1d5CBCyJbo62+hpCojZ\ndcf24i5uVGXmfVkvo0A0wXLGJxkpkFxAKXYQNJZWcvUAtSsSThBOTh0QlkYnjqLb\njDDim1Cr2Ku0JNpOV2tJZYo=\n-----END PRIVATE KEY-----\n",
+  "client_email": "github@cos301-miniproject-2023-b1f6d.iam.gserviceaccount.com",
+  "client_id": "107755830992242103533",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/github%40cos301-miniproject-2023-b1f6d.iam.gserviceaccount.com"
+}

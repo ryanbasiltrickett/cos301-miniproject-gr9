@@ -25,14 +25,19 @@ describe('NotifyEventHandler', () => {
   });
 
   describe('execute()', () => {
-    it('should return an empty array', async () => {
-        const eventI: IEvent = {eventId: "test"};
-        const eventReq: IEventRequest = {event: eventI};
-        const command = new NotifyEventCommand(eventReq)
-
-        const result = await handler.execute(command);
-
-        expect(result).toEqual([]);
+    it('should send a notification', async () => {
+      const command = new NotifyEventCommand({
+        event: {
+          eventTitle: "Test Event",
+          eventTime: new Date(),
+        },
+      });
+  
+      const result = await handler.execute(command);
+  
+      expect(result.notification.title).toEqual("Its time for Timeshare");
+      expect(result.notification.body).toEqual("Test Event");
+      expect(result.topic).toEqual("all");
     });
   });
 });

@@ -1,7 +1,7 @@
 import {
     GenerateEventCommand
 } from '@mp/api/events/util';
-import { CommandHandler, EventPublisher, ICommandHandler } from '@nestjs/cqrs';
+import { CommandHandler, EventPublisher, ICommandHandler, IEvent } from '@nestjs/cqrs';
 import { Timestamp } from 'firebase-admin/firestore';
 
 
@@ -29,6 +29,14 @@ export class GenerateEventHandler
 
         const eventIndex = Math.floor(Math.random() * 6);
 
-        return [`${formattedHours}:${formattedMinutes}`, possibleEvents[eventIndex]];
+        const generetedTime =  formattedHours + ":" + formattedMinutes;
+        const [h, m] = generetedTime.split(":");
+        const realTime = new Date();
+        realTime.setHours(parseInt(h, 10));
+        realTime.setMinutes(parseInt(m, 10));
+
+        const event: IEvent = {eventTitle: possibleEvents[eventIndex], eventTime: realTime};
+
+        return event;
     }
 }

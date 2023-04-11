@@ -1,3 +1,6 @@
+import { Timestamp } from "firebase-admin/firestore";
+
 export interface IEvent{
-    eventId: string;
+    eventTitle: string;
+    eventTime: Date;
 }

@@ -26,10 +26,11 @@ describe('GenerateEventHandler', () => {
 
   describe('execute()', () => {
     it('should return an empty array', async () => {
-        const eventI: IEvent = {eventId: "test"};
+        const now = new Date();
+        const eventI: IEvent = {eventTitle: "test", eventTime: now};
         const eventReq: IEventRequest = {event: eventI};
         const command = new GenerateEventCommand(eventReq)
-        
+
         const result = await handler.execute(command);
 
         const [time, event] = result;
