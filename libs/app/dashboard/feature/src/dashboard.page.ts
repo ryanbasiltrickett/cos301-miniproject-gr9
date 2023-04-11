@@ -9,7 +9,7 @@ import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 import { AngularFireFunctions} from '@angular/fire/compat/functions';
 // import { EventsService } from '@mp/api/events/feature';
 import { IEvent, IEventRequest } from '@mp/api/events/util';
-// import { Functions, httpsCallable } from '@angular/fire/functions';
+import { Functions, httpsCallable } from '@angular/fire/functions';
 import { GenerateEvent } from '@mp/app/dashboard/util';
 import { Store } from '@ngxs/store';
 
@@ -22,12 +22,13 @@ import { Store } from '@ngxs/store';
 export class DashboardPage {
   @Select(ProfileState.profile) profile$!: Observable<IProfile | null>;
 
-
+  token: any;
   constructor(public alertController: AlertController,
      private toastController: ToastController, 
-    //  private afMessaging: AngularFireMessaging,
-     private readonly store: Store
-    //  private  functions: Functions
+     private afMessaging: AngularFireMessaging,
+     private readonly store: Store,
+     private  functions: Functions,
+     private fun: AngularFireFunctions
     //  private eventService: EventsService
     ) {}
 
@@ -40,14 +41,37 @@ export class DashboardPage {
     toast.present();
   }
 
-  generateEvent(){
-    this.makeToast('Fired')
-    this.store.dispatch(
-      new GenerateEvent({
-        eventTitle: 'Test1',
-        eventTime: new Date(),
+  getPermissions(){
+    return this.afMessaging.requestToken.pipe(
+      tap(token => this.token = token)
+    );
+  }
+
+  showMessages(){
+    return this.afMessaging.messages.pipe(
+      tap(msg => {
+        const body: any = (msg as any).notification.body;
+        this.makeToast(body);
       })
     );
+  }
+
+  generateEvent(){
+    this.makeToast('Fired')
+    // this.store.dispatch(
+    //   new GenerateEvent({
+    //     eventTitle: 'Test1',
+    //     eventTime: new Date(),
+    //   })
+    // );
+    const event: IEvent = {
+      eventTitle: 'Test1',
+      eventTime: new Date(),
+    }
+
+    const req: IEventRequest = {event: event};
+    this.fun.httpsCallable('generateEvent')(req).subscribe();
+    this.makeToast('Fired1')
   }
 
 }
