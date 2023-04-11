@@ -13,7 +13,7 @@ export interface GenerateStateModel {
 }
 
 @State<GenerateStateModel>({
-  name: 'generate',
+  name: 'generateEvent',
   defaults: {
     eventTitle: 'Test1',
     eventTime: new Date(),
@@ -29,7 +29,8 @@ export class GenerateState {
   }
 
   @Action(GenerateEvent)
-  createPost(ctx: StateContext<GenerateEvent>, { event }: GenerateEvent) {
+  generateEvent(ctx: StateContext<GenerateStateModel>, { event }: GenerateEvent) {
+    console.log('This')
     const request: IEventRequest = {
       event,
     };

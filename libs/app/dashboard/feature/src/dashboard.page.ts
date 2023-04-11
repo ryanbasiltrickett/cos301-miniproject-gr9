@@ -34,13 +34,14 @@ export class DashboardPage {
   async makeToast(message: any){
     const toast = await this.toastController.create({
       message,
-      duration: 5000,
+      duration: 2000,
       position: 'top',
     })
     toast.present();
   }
 
   generateEvent(){
+    this.makeToast('Fired')
     this.store.dispatch(
       new GenerateEvent({
         eventTitle: 'Test1',

@@ -5,7 +5,6 @@ import {
     IEventRequest,
     IEventResponse 
 } from '@mp/api/events/util';
-import { generate } from 'rxjs';
 
 @Injectable()
 export class DashboardAPI{
