@@ -10,6 +10,8 @@ import { AngularFireFunctions} from '@angular/fire/compat/functions';
 // import { EventsService } from '@mp/api/events/feature';
 import { IEvent, IEventRequest } from '@mp/api/events/util';
 // import { Functions, httpsCallable } from '@angular/fire/functions';
+import { Store } from '@ngxs/store';
+import { GenerateEvent } from '@mp/app/dashboard/util';
 
 @Component({
   selector: 'ms-dashboard-page',
@@ -23,6 +25,7 @@ export class DashboardPage {
   constructor(public alertController: AlertController,
      private toastController: ToastController, 
      private afMessaging: AngularFireMessaging,
+     private store: Store
     //  private  functions: Functions
     //  private eventService: EventsService
     ) {}
@@ -34,5 +37,14 @@ export class DashboardPage {
       position: 'top',
     })
     toast.present();
+  }
+
+  event(): void {
+    this.store.dispatch(
+      new GenerateEvent({
+        title: 'Test1',
+        time: new Date(),
+      })
+    );
   }
 }

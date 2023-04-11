@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 // import { doc, docData, Firestore } from '@angular/fire/firestore';
 import { Functions, httpsCallable } from '@angular/fire/functions';
 import {
-    IEventRequest
+    IEventRequest,
+    IEventResponse 
 } from '@mp/api/events/util';
 import { generate } from 'rxjs';
 
@@ -14,7 +15,7 @@ export class DashboardAPI{
     
 async generateEvent(request: IEventRequest) {
     return await httpsCallable<
-        IEventRequest
+        IEventRequest, IEventResponse
     >(
       this.functions,
       'generateEvent'
