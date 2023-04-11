@@ -42,8 +42,8 @@ export class DashboardPage {
   event(): void {
     this.store.dispatch(
       new GenerateEvent({
-        title: 'Test1',
-        time: new Date(),
+        eventTitle: 'Test1',
+        eventTime: new Date(),
       })
     );
   }
