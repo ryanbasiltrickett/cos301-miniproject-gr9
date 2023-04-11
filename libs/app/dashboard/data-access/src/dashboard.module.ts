@@ -8,4 +8,4 @@ import { DashboardAPI } from './dashboard.api';
   imports: [CommonModule, NgxsModule.forFeature([GenerateState])],
   providers: [DashboardAPI],
 })
-export class CreateModule {}
+export class GenerateModule {}
