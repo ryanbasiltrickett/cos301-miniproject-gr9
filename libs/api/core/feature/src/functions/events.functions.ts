@@ -7,12 +7,12 @@ import { CoreModule } from '../core.module';
 import { NotImplementedException } from '@nestjs/common';
 import { IEvent } from '@nestjs/cqrs';
 import * as admin from 'firebase-admin';
+import cors from 'cors';
 
 export const generateEvent = functions.https.onCall(
     async (
       request: IEventRequest,
     ): (Promise<IEventResponse>) => {
-
       const title = request.event.eventTitle;
       const time = request.event.eventTime;
 

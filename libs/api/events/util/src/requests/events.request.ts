@@ -1,4 +1,4 @@
-import { IEvent } from '@mp/api/events/util';
+import { IEvent } from '../interfaces';
 
 export interface IEventRequest {
   event: IEvent;
