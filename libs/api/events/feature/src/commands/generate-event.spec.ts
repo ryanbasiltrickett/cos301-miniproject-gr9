@@ -29,10 +29,17 @@ describe('GenerateEventHandler', () => {
         const eventI: IEvent = {eventId: "test"};
         const eventReq: IEventRequest = {event: eventI};
         const command = new GenerateEventCommand(eventReq)
-
+        
         const result = await handler.execute(command);
 
-        expect(result).toEqual([]);
+        const [time, event] = result;
+        const [hours, minutes] = time.split(":");
+    
+        expect(parseInt(hours, 10)).toBeGreaterThanOrEqual(8);
+        expect(parseInt(hours, 10)).toBeLessThanOrEqual(23);
+        expect(parseInt(minutes, 10)).toBeGreaterThanOrEqual(0);
+        expect(parseInt(minutes, 10)).toBeLessThanOrEqual(59);
+        expect(event).toMatch(/Post now|Tag a friend in a post|Send a frind a message|Follow someone new|Like posts|Give some time to someone you might think need it/);
     });
   });
 });
