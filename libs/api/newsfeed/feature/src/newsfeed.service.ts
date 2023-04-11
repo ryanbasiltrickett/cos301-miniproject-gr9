@@ -1,13 +1,19 @@
 import {
   IgenNewsfeedRequest,IgenNewsfeedResponse,genNewsfeedCommand,
-  IupdateNFPostRequest,IupdateNFPostResponse,updateNFPostCommand
+  IupdateNFPostRequest,IupdateNFPostResponse,updateNFPostCommand,
+  generatePostQuery
 } from '@mp/api/newsfeed/util'
 import { Injectable } from '@nestjs/common';
-import { CommandBus } from '@nestjs/cqrs';
+import { CommandBus, QueryBus } from '@nestjs/cqrs';
+import { Query } from 'firebase-admin/firestore';
 
 @Injectable()
 export class  NewsfeedService {
-  constructor(private readonly commandBus: CommandBus) {}
+
+  constructor(
+    private readonly commandBus: CommandBus,
+    private readonly queryBus: QueryBus
+    ) {}
 
     async genNewsfeed(
       request: IgenNewsfeedRequest
@@ -23,7 +29,16 @@ export class  NewsfeedService {
     ): Promise<IupdateNFPostResponse> {
       return await this.commandBus.execute<
       updateNFPostCommand,
-      IgenNewsfeedResponse
+      IupdateNFPostResponse
       >(new updateNFPostCommand(request));
+    }
+
+    async generatePost(
+      request: IgenNewsfeedRequest
+    ): Promise<IgenNewsfeedResponse> {
+      return await this.queryBus.execute<
+      generatePostQuery,
+      IgenNewsfeedResponse
+      >(new generatePostQuery(request))
     }
 }

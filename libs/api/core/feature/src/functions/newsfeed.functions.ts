@@ -20,4 +20,10 @@ export const updateNFPost = functions.https.onCall(async ( request: IupdateNFPos
   return service.updateNFPost(request);
 });
 
+export const generatePost = functions.https.onCall(async ( request: IgenNewsfeedRequest): Promise<IgenNewsfeedResponse> =>{
+  const app = await NestFactory.createApplicationContext(CoreModule);
+  const service = app.get(NewsfeedService);
+  return service.generatePost(request);
+}
+)
 
