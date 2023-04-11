@@ -9,7 +9,7 @@ import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 import { AngularFireFunctions} from '@angular/fire/compat/functions';
 // import { EventsService } from '@mp/api/events/feature';
 import { IEvent, IEventRequest } from '@mp/api/events/util';
-import { Functions, httpsCallable } from '@angular/fire/functions';
+// import { Functions, httpsCallable } from '@angular/fire/functions';
 
 @Component({
   selector: 'ms-dashboard-page',
@@ -23,25 +23,9 @@ export class DashboardPage {
   constructor(public alertController: AlertController,
      private toastController: ToastController, 
      private afMessaging: AngularFireMessaging,
-     private  functions: Functions
+    //  private  functions: Functions
     //  private eventService: EventsService
     ) {}
-  
-    generate() {
-      console.log('Here');
-      const eventI: IEvent = {eventTitle: "test", eventTime: new Date()};
-      const eventReq: IEventRequest = {event: eventI};
-      this.generateEvent(eventReq);
-    }
-
-    async generateEvent(request: IEventRequest) {
-      return await httpsCallable<
-        IEventRequest
-      >(
-        this.functions,
-        'generateEvent'
-      )(request);
-    }
 
   async makeToast(message: any){
     const toast = await this.toastController.create({
@@ -50,33 +34,5 @@ export class DashboardPage {
       position: 'top',
     })
     toast.present();
-  }
-
-  getPermissions(){
-    let mtoken;
-    return this.afMessaging.requestToken.pipe(
-      tap(token => (mtoken = token))
-    );
-  }
-
-  messages(){
-    return this.afMessaging.messages.pipe(
-      tap(msg => {
-        const body: any = (msg as any).notification.body;
-        this.makeToast(body);
-      })
-    );
-  }
-
-  async presentAlert() {
-    this.getPermissions();
-
-    const alert = await this.alertController.create({
-      header: 'Notification',
-      message: 'Notification sent!',
-      buttons: ['OK']
-    });
-
-    await alert.present();
   }
 }
