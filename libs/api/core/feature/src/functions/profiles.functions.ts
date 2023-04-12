@@ -41,6 +41,7 @@ export const updateContactDetails = functions.https.onCall(
   ): Promise<IUpdateContactDetailsResponse> => {
     const app = await NestFactory.createApplicationContext(CoreModule);
     const service = app.get(ProfilesService);
+    console.log("Updated");
     return service.updateContactDetails(request);
   }
 );

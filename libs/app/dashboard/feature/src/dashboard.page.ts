@@ -60,7 +60,7 @@ export class DashboardPage {
   }
 
   async generateEvent(){
-    this.makeToast('Fired')
+    this.makeToast('Fired');
     //     this.getPermissions();
     //     console.log('Permission granted');
     // const event: IEvent = {eventTitle: "Test", eventTime: new Date()};

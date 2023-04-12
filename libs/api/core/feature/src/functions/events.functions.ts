@@ -13,32 +13,21 @@ export const generateEvent = functions.https.onCall(
     async (
       request: IEventRequest,
     ): (Promise<IEventResponse>) => {
-      console.log("Called");
       const app = await NestFactory.createApplicationContext(CoreModule);
       const service = app.get(EventsService);
-      // service.generateEvent();
-      const title = request.event.eventTitle;
-      const time = request.event.eventTime;
-
-      const notification: admin.messaging.Notification = {
-        title: title,
-        body: "The event will happen at: " + time,
-      }
-      
-      const payload: admin.messaging.Message = {
-        notification,
-        topic: "Events"
-      }
-      admin.messaging().send(payload);
-      return request;
+      return service.notifyAboutEvent(request);
     }
 );
 
-export const notifyAboutEvent = functions.https.onCall(
-    async (
-      request: IEventRequest,
-    ): (Promise<IEventResponse>) => {
-      return request;
-    }
-);
+// export const notifyAboutEvent = functions.https.onCall(
+//   async (data, context) => {
+//     // Check if the request is coming from an authenticated user
+//     if (!context.auth) {
+//       throw new functions.https.HttpsError('unauthenticated', 'You must be logged in to call this function.');
+//     }
+//     const app = await NestFactory.createApplicationContext(CoreModule);
+//     const service = app.get(EventsService);
+//     return service.;
+//   });
+
 

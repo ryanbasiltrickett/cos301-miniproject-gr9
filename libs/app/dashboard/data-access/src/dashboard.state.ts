@@ -31,16 +31,16 @@ export class DashboardEventState {
     }
 
   @Action(DashboardEvent)
-  async dashboardEvent(ctx: StateContext<DashboardEventStateModel>) {
+  async dashboardEvent(ctx: StateContext<DashboardEventStateModel>, {event}: IEventRequest) {
     try{
       console.log("State Fired");
     }catch(err){
       console.log(err);
     }
     
-    // const request: IEventRequest = {
-    //   event,
-    // };
-    // const responseRef = this.api.generateEvent(request);
+    const request: IEventRequest = {
+      event,
+    };
+    const responseRef = this.api.dashboardEvent(request);
   }
 }
