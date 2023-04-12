@@ -4,17 +4,16 @@ import { IEventRequest,
         IEventResponse} from '@mp/api/events/util';
 import * as functions from 'firebase-functions';
 import { CoreModule } from '../core.module';
-import { NotImplementedException } from '@nestjs/common';
-import { IEvent } from '@nestjs/cqrs';
-import * as admin from 'firebase-admin';
-import cors from 'cors';
 
 export const generateEvent = functions.https.onCall(
     async (
       request: IEventRequest,
     ): (Promise<IEventResponse>) => {
+      console.log(request);
       const app = await NestFactory.createApplicationContext(CoreModule);
+      console.log('App initialized');
       const service = app.get(EventsService);
+      console.log('Service initialized');
       return service.notifyAboutEvent(request);
     }
 );

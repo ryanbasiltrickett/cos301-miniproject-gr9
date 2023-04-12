@@ -3,7 +3,7 @@ import { CqrsModule } from '@nestjs/cqrs';
 // import { PostsModule as PostsDataAccessModule } from '@mp/api/events/data-access';
 import { EventsService } from './events.service';
 import {
-  GenerateEventHandler,
+  NotifyEventHandler,
 } from './commands';
 
 import {
@@ -11,7 +11,7 @@ import {
 } from './events';
 
 export const CommandHandlers = [
-    GenerateEventHandler,
+    NotifyEventHandler,
 ];
 export const EventHandlers = [
     EventGenerateHandler,
@@ -19,7 +19,7 @@ export const EventHandlers = [
 
 @Module({
   imports: [CqrsModule],
-  providers: [ ...CommandHandlers, ...EventHandlers],
-  exports: [EventsModule],
+  providers: [ EventsService,...CommandHandlers, ...EventHandlers],
+  exports: [EventsService],
 })
 export class EventsModule {}
