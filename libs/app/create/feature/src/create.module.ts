@@ -1,19 +1,24 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { CreateModule as CreateDataAccessModule } from '@mp/app/create/data-access';
-import { CreateRouting } from './create.routing';
-import { CreatePage } from './create.page.component';
+import { IonicModule } from '@ionic/angular';
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
+import { RouterModule } from '@angular/router';
+import { appCreateFeatureRoutes} from './create.routing';
+
+import { CreateModule as CreateUiModule } from '@mp/app/create/ui';
+import { CreateComponent } from './create.page.component';
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule.forChild(appCreateFeatureRoutes),
+    NgxSkeletonLoaderModule,
     IonicModule,
     FormsModule,
-    CreateDataAccessModule,
-    CreateRouting,
+    CreateUiModule,
   ],
-  declarations: [CreatePage],
+  declarations: [CreateComponent],
+  exports: [CreateComponent],
 })
 export class CreateModule {}
