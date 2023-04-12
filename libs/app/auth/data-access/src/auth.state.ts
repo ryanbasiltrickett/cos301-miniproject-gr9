@@ -61,7 +61,7 @@ export class AuthState {
       await this.authApi.login(email, password);
       return ctx.dispatch(new Navigate(['home']));
     } catch (error) {
-      return ctx.dispatch(new SetError((error as Error).message));
+      return ctx.dispatch(new SetError("There is no account registered to your email"));
     }
   }
 
