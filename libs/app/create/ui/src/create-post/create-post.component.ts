@@ -4,6 +4,8 @@ import { ProfileState } from '@mp/app/profile/data-access';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { CreatePost } from '@mp/app/create/util';
+import { Store } from '@ngxs/store';
 
 @Component({
     selector: 'ms-create-post',
@@ -11,6 +13,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
     styleUrls: ['./create-post.component.scss'],
   })
   export class CreatePostComponent{
+    constructor(private readonly store: Store) {}
     description = '';
     hashtags = '';
   
@@ -34,9 +37,16 @@ import { FormBuilder, FormGroup } from '@angular/forms';
       // Upload video functionality
     }
   
-    post() {
-      // Post functionality
-    }
+
+  post(): void {
+    this.store.dispatch(
+      new CreatePost({
+        poster: 'thuthuka',
+        description: this.description,
+      })
+    );
+  }
+    
   
     onFileSelected(event: any) {
       if (event.target.files && event.target.files[0]) {
