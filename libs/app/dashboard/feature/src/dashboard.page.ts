@@ -10,7 +10,7 @@ import { AngularFireFunctions} from '@angular/fire/compat/functions';
 // import { EventsService } from '@mp/api/events/feature';
 import { IEvent, IEventRequest } from '@mp/api/events/util';
 import { Functions, httpsCallable } from '@angular/fire/functions';
-import { GenerateEvent } from '@mp/app/dashboard/util';
+import { DashboardEvent, MyTest } from '@mp/app/dashboard/util';
 import { Store } from '@ngxs/store';
 
 
@@ -58,20 +58,22 @@ export class DashboardPage {
 
   generateEvent(){
     this.makeToast('Fired')
-    // this.store.dispatch(
-    //   new GenerateEvent({
-    //     eventTitle: 'Test1',
-    //     eventTime: new Date(),
-    //   })
-    // );
-    const event: IEvent = {
-      eventTitle: 'Test1',
-      eventTime: new Date(),
-    }
+    this.store.dispatch(
+      new DashboardEvent({
+        eventTitle: 'Test12',
+        eventTime: new Date(),
+      })
+    );
 
-    const req: IEventRequest = {event: event};
-    this.fun.httpsCallable('generateEvent')(req).subscribe();
-    this.makeToast('Fired1')
+    // this.store.dispatch(new MyTest());
+    // const event: IEvent = {
+    //   eventTitle: 'Test1',
+    //   eventTime: new Date(),
+    // }
+
+    // const req: IEventRequest = {event: event};
+    // this.fun.httpsCallable('generateEvent')(req).subscribe();
+    // this.makeToast('Fired1')
   }
 
 }

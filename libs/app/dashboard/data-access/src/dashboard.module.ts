@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NgxsModule } from '@ngxs/store';
-import { GenerateState } from './dashboard.state';
+import { DashboardEventState } from './dashboard.state';
 import { DashboardAPI } from './dashboard.api';
 
 @NgModule({
-  imports: [CommonModule, NgxsModule.forFeature([GenerateState])],
+  imports: [CommonModule, NgxsModule.forFeature([DashboardEventState])],
   providers: [DashboardAPI],
 })
 export class GenerateModule {}

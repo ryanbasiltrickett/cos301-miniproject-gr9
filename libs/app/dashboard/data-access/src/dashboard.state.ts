@@ -1,39 +1,43 @@
-import { Action, State, StateContext, Store } from '@ngxs/store';
+import { Action, State, StateContext, Store, Selector } from '@ngxs/store';
 // import { ICreatePostRequest } from '@mp/api/posts/util';
 import { Injectable } from '@angular/core';
 // import { PostApi } from '@mp/app/post/data-access';
-import { GenerateEvent } from '@mp/app/dashboard/util';
+import { DashboardEvent } from '@mp/app/dashboard/util';
 import { IEvent, IEventRequest } from '@mp/api/events/util';
 import { DashboardAPI } from './dashboard.api';
 
 //TODO export this to the create library in data-access
-export interface GenerateStateModel {
+export interface DashboardEventStateModel {
   eventTitle: string | undefined;
   eventTime: Date | undefined;
 }
 
-@State<GenerateStateModel>({
-  name: 'generateEvent',
+@State<DashboardEventStateModel>({
+  name: 'dashboard',
   defaults: {
-    eventTitle: 'Test1',
+    eventTitle: 'Test',
     eventTime: new Date(),
   },
 })
+
 @Injectable()
-export class GenerateState {
+export class DashboardEventState {
   constructor(
     private readonly api: DashboardAPI,
     private readonly store: Store
-  ) {
-    console.log('This thing is somewhere');
+  ) {}
+
+  @Selector()
+  static dashboard(state: DashboardEventStateModel) {
+    return state.eventTitle;
   }
 
-  @Action(GenerateEvent)
-  generateEvent(ctx: StateContext<GenerateStateModel>, { event }: GenerateEvent) {
-    console.log('This')
-    const request: IEventRequest = {
-      event,
-    };
-    const responseRef = this.api.generateEvent(request);
+  @Action(DashboardEvent)
+  async generateEvent(ctx: StateContext<DashboardEventStateModel>) {
+    console.log("State Fired");
+    // const request: IEventRequest = {
+    //   event,
+    // };
+    // const responseRef = this.api.generateEvent(request);
   }
 }

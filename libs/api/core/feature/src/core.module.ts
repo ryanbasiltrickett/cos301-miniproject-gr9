@@ -7,5 +7,6 @@ import { Module } from '@nestjs/common';
 
 @Module({
   imports: [AuthModule, EventstoreModule, ProfilesModule, UsersModule, EventsModule],
+
 })
 export class CoreModule {}

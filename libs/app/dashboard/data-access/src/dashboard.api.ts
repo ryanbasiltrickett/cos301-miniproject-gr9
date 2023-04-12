@@ -12,7 +12,8 @@ export class DashboardAPI{
         private readonly functions: Functions
       ) {}
     
-async generateEvent(request: IEventRequest) {
+async dashboardEvent(request: IEventRequest) {
+    console.log("Calling Firebase");
     return await httpsCallable<
         IEventRequest, IEventResponse
     >(
