@@ -1,74 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Create Post Component</title>
-<style>
-  .create-post {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #f5f5f5;
-    padding: 1rem;
-    margin-top: 1rem;
-  }
-  .user-info {
-    display: flex;
-    align-items: center;
-  }
-  .user-info img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 1rem;
-  }
-  .post-box {
-    width: 100%;
-    margin-top: 1rem;
-    background-color: #ffffff;
-    padding: 1rem;
-    border-radius: 5px;
-  }
-  textarea {
-    width: 100%;
-    resize: none;
-  }
-  .hashtags-location {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1rem;
-  }
-  .media-buttons {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin-top: 1rem;
-  }
-  button {
-    padding: 0.5rem 1rem;
-    margin-left: 0.5rem;
-  }
-</style>
-</head>
-<body>
-<div class="create-post">
-  <div class="user-info">
-    <img src="profile_photo.jpg" alt="Profile Photo">
-    <span>Username</span>
-  </div>
-  <div class="post-box">
-    <textarea rows="4" placeholder="Write your post..."></textarea>
-    <div class="hashtags-location">
-      <input type="text" placeholder="#hashtags">
-      <button>Add Location</button>
+
+
+    <div class = "content-div">
+        
+  
+   
+
+    <div>
+        <ion-header collapse="condense">
+            <ion-toolbar>
+              <ion-title size="large">Create</ion-title>
+            </ion-toolbar>
+          </ion-header>
+        
+          <ion-item lines="none" class="user-info">
+            <ion-avatar slot="start">
+              <img src="https://via.placeholder.com/50">
+            </ion-avatar>
+            <ion-label>John Doe</ion-label>
+            <ion-avatar slot="end">
+              <img src="https://via.placeholder.com/150">
+            </ion-avatar>
+          </ion-item>
+        
+          <ion-item class="post-input">
+            <ion-textarea
+              label="description"
+              placeholder="What would you like to say"
+              [(ngModel)]="description"
+              class="description-textarea"></ion-textarea>
+          </ion-item>
     </div>
-  </div>
-  <div class="media-buttons">
-    <button>Add Photo</button>
-    <button>Add Video</button>
-  </div>
-</div>
-</body>
-</html>
+
+    <div>
+         
+    <ion-item class="post-input">
+        <ion-input
+          label="hashtags"
+          placeholder="#hashtags"
+          [(ngModel)]="hashtags"></ion-input>
+        <ion-button (click)="addLocation()" fill="outline" class="location-button">
+          <ion-icon slot="start" name="location"></ion-icon>
+          <ion-label>Add Location</ion-label>
+        </ion-button>
+      </ion-item>
+    
+      <div class="media-buttons">
+        <input type="file" (change)="onFileSelected($event)" #fileInput style="display: none" accept="image/*">
+    
+        <ion-button (click)="fileInput.click()" fill="outline">
+          <ion-icon slot="start" name="image"></ion-icon>
+          <ion-label>Upload Photo</ion-label>
+        </ion-button>
+        
+        <input type="file" (change)="onVideoSelected($event)" #videoInput style="display: none" accept="video/*">
+    
+        <ion-button (click)="videoInput.click()" fill="outline">
+          <ion-icon slot="start" name="videocam"></ion-icon>
+          <ion-label>Upload Video</ion-label>
+        </ion-button>
+        
+      </div>
+    
+      <ion-button expand="block" (click)="post()" class="post-button">
+        <ion-label>Post</ion-label>
+      </ion-button>
+    </div>
+    </div>

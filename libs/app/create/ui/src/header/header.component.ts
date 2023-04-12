@@ -10,4 +10,18 @@ import { FormBuilder, FormGroup } from '@angular/forms';
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
   })
-  export class HeaderComponent{}
+  export class HeaderComponent{
+    //constructor() {}
+
+    // Add the goToEvents method
+    goToEvents(): void {
+      console.log('Go to Events');
+      // Implement navigation to the events page
+    }
+  
+    // Add the goToMessages method
+    goToMessages(): void {
+      console.log('Go to Messages');
+      // Implement navigation to the messages page
+    }
+  }

@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { CreatePost } from '@mp/app/create/util';
 import { Store } from '@ngxs/store';
-
+import { Observable } from 'rxjs';
 @Component({
   selector: 'mp-create-page',
   templateUrl: './create.page.component.html',
+  styleUrls: ['./create.page.component.scss'],
 })
-export class CreatePage {
+export class CreateComponent {
   // remove this, put the state where it belongs
   // description = '';
 
@@ -25,48 +26,7 @@ export class CreatePage {
   //   );
   // }
 
-  description = '';
-  hashtags = '';
-
-  goToEvents() {
-    // Navigate to the Events page
-  }
-
-  goToMessages() {
-    // Navigate to the Messages page
-  }
-
-  addLocation() {
-    // Add location to the post
-  }
-
-  uploadPhoto() {
-    // Upload photo functionality
-  }
-
-  uploadVideo() {
-    // Upload video functionality
-  }
-
-  post() {
-    // Post functionality
-  }
-
-  onFileSelected(event: any) {
-    if (event.target.files && event.target.files[0]) {
-      const file = event.target.files[0];
-      // Perform any action you want with the file, such as uploading it to a server
-      alert(file.name);
-    }
-  }
-
-  onVideoSelected(event: any) {
-    if (event.target.files && event.target.files[0]) {
-      const file = event.target.files[0];
-      // Perform any action you want with the file, such as uploading it to a server
-      console.log(file);
-    }
-  }
+ 
   
   
 }

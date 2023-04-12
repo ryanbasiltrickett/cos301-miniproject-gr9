@@ -1,11 +1,15 @@
-import { RouterModule, Routes } from '@angular/router';
-import { CreatePage } from './create.page.component';
+import { Route } from '@angular/router';
+import { CreateComponent } from './create.page.component';
 import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [{ path: '', pathMatch: 'full', component: CreatePage }];
+export const appCreateFeatureRoutes: Route[] = [
+  { path: '', pathMatch: 'full', component: CreateComponent },
+];
+
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(appCreateFeatureRoutes)],
   exports: [RouterModule],
 })
-export class CreateRouting {}
+export class CreatePostRouting {}

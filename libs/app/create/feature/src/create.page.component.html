@@ -1,70 +1,7 @@
-<ion-header>
-  <ion-toolbar>
-    <div style="display: flex; flex-direction: row; justify-content: space-between; align-items: center; width: 100%;">
-      <p>Time Remaining: 1h 25m</p>
-      <p><strong>App Logo</strong></p>
-      <div>
-        <ion-button (click)="goToEvents()" fill="clear">Events</ion-button>
-        <ion-button (click)="goToMessages()" fill="clear">Messages</ion-button>
-      </div>
-    </div>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true" class="content">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Create</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ms-header></ms-header>
+<ms-create-post></ms-create-post>
 
-  <ion-item lines="none" class="user-info">
-    <ion-avatar slot="start">
-      <img src="https://via.placeholder.com/50">
-    </ion-avatar>
-    <ion-label>John Doe</ion-label>
-    <ion-avatar slot="end">
-      <img src="https://via.placeholder.com/150">
-    </ion-avatar>
-  </ion-item>
 
-  <ion-item class="post-input">
-    <ion-textarea
-      label="description"
-      placeholder="What would you like to say"
-      [(ngModel)]="description"
-      class="description-textarea"></ion-textarea>
-  </ion-item>
-  
-  <ion-item class="post-input">
-    <ion-input
-      label="hashtags"
-      placeholder="#hashtags"
-      [(ngModel)]="hashtags"></ion-input>
-    <ion-button (click)="addLocation()" fill="outline" class="location-button">
-      <ion-icon slot="start" name="location"></ion-icon>
-      <ion-label>Add Location</ion-label>
-    </ion-button>
-  </ion-item>
 
-  <div class="media-buttons">
-    <input type="file" (change)="onFileSelected($event)" #fileInput style="display: none" accept="image/*">
 
-    <ion-button (click)="fileInput.click()" fill="outline">
-      <ion-icon slot="start" name="image"></ion-icon>
-      <ion-label>Upload Photo</ion-label>
-    </ion-button>
-    
-    <input type="file" (change)="onVideoSelected($event)" #videoInput style="display: none" accept="video/*">
-
-    <ion-button (click)="videoInput.click()" fill="outline">
-      <ion-icon slot="start" name="videocam"></ion-icon>
-      <ion-label>Upload Video</ion-label>
-    </ion-button>
-    
-  </div>
-
-  <ion-button expand="block" (click)="post()" class="post-button">
-    <ion-label>Post</ion-label>
-  </ion-button>
-</ion-content>
