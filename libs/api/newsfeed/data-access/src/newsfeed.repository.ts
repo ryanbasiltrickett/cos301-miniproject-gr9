@@ -45,10 +45,15 @@ export class NewsfeedRepository {
   }
 
   async showNewsfeed(newsfeed: INewsfeed) {
-    return await admin
-    .firestore()
-    .collection('followers')
-    .doc() 
+    const db = admin.firestore(); 
+    const followed = await db.collection('followers')
+    .where('followers', 'array-contains', 'personA') // need to get username in a variable. 
+    .orderBy('lastPost', 'desc')
     .get(); 
-  } 
+
+    const data = followed.docs.map(doc => doc.data()); 
+    const posts = data.reduce((acc,cur) => acc.concat(cur['recentPosts']), []);
+    const sortedPosts = posts.sort((a,b) => b.published); 
+    return sortedPosts; 
+  }   
 }
