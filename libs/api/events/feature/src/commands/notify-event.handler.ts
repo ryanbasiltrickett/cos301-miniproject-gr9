@@ -53,16 +53,17 @@ export class NotifyEventHandler
       command.request.event.eventTitle = possibleEvents[eventIndex];
       command.request.event.eventTime = realTime;
       const event = eventReq.event;
-      const message = {
-          notification: {
-            title: "Its time for Timeshare",
-            body: event.eventTitle + ". This event will occur at: " + event.eventTime,
-          },
-          topic: 'all',
-        };
+      const notification: admin.messaging.Notification = {
+        title: "Its time for Timeshare",
+        body: event.eventTitle + ". This event will occur at: " + event.eventTime,
+      };
 
-        console.log(message);
-        // admin.messaging().send(message);
-        return message;
+      const payload: admin.messaging.Message = {
+        notification,
+        topic: 'all'
+      }
+      console.log(payload);
+      // admin.messaging().send(payload);
+      return payload;
     }
 }
