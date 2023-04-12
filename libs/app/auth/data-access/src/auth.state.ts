@@ -74,7 +74,7 @@ export class AuthState {
       await this.authApi.register(email, password);
       return ctx.dispatch(new Navigate(['home']));
     } catch (error) {
-      return ctx.dispatch(new SetError((error as Error).message));
+      return ctx.dispatch(new SetError("Unfortunately there was an error with your registration"));
     }
   }
 
