@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Post Component</title>
+<style>
+  .create-post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f5f5f5;
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+  .user-info img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 1rem;
+  }
+  .post-box {
+    width: 100%;
+    margin-top: 1rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 5px;
+  }
+  textarea {
+    width: 100%;
+    resize: none;
+  }
+  .hashtags-location {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  .media-buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  button {
+    padding: 0.5rem 1rem;
+    margin-left: 0.5rem;
+  }
+</style>
+</head>
+<body>
+<div class="create-post">
+  <div class="user-info">
+    <img src="profile_photo.jpg" alt="Profile Photo">
+    <span>Username</span>
+  </div>
+  <div class="post-box">
+    <textarea rows="4" placeholder="Write your post..."></textarea>
+    <div class="hashtags-location">
+      <input type="text" placeholder="#hashtags">
+      <button>Add Location</button>
+    </div>
+  </div>
+  <div class="media-buttons">
+    <button>Add Photo</button>
+    <button>Add Video</button>
+  </div>
+</div>
+</body>
+</html>

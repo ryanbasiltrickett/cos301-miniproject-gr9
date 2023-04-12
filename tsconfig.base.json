@@ -52,6 +52,7 @@
         "libs/app/create/data-access/src/index.ts"
       ],
       "@mp/app/create/feature": ["libs/app/create/feature/src/index.ts"],
+      "@mp/app/create/ui": ["libs/app/create/ui/src/index.ts"],
       "@mp/app/create/util": ["libs/app/create/util/src/index.ts"],
       "@mp/app/dashboard/data-access": [
         "libs/app/dashboard/data-access/src/index.ts"
