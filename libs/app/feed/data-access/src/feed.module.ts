@@ -9,4 +9,4 @@ import { FeedApi } from './feed.api';
   imports: [CommonModule, NgxsModule.forFeature([FeedState]), AuthModule],
   providers: [FeedApi],
 })
-export class ProfileModule {}
+export class FeedModule {}
