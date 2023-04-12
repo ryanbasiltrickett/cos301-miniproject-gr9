@@ -94,6 +94,14 @@ export class PostsRepository {
   }
 
   async addComment(comment: IComment, post: IPost) {
+/*   const comment: IComment = {userId: user.userId, text: //comment text};
+
+    return await admin
+      .firestore()
+      .collection('posts')
+      .doc(post.id)
+      .update({ comments: post.comments });
+*/
     return NotImplementedException;
   }
 
