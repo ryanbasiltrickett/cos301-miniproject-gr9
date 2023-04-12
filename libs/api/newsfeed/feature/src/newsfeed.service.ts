@@ -1,7 +1,7 @@
 import {
   IgenNewsfeedRequest,IgenNewsfeedResponse,genNewsfeedCommand,
   IupdateNFPostRequest,IupdateNFPostResponse,updateNFPostCommand,
-  generatePostQuery
+  generatePostQuery, IgeneratePostRequest, IgeneratePostResponse
 } from '@mp/api/newsfeed/util'
 import { Injectable } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
@@ -34,11 +34,11 @@ export class  NewsfeedService {
     }
 
     async generatePost(
-      request: IgenNewsfeedRequest
-    ): Promise<IgenNewsfeedResponse> {
+      request: IgeneratePostRequest
+    ): Promise<IgeneratePostResponse> {
       return await this.queryBus.execute<
       generatePostQuery,
-      IgenNewsfeedResponse
+      IgeneratePostResponse
       >(new generatePostQuery(request))
     }
 }

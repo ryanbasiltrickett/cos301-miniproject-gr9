@@ -12,9 +12,17 @@ import {
   updateNFPHandler
 } from './events'
 
+import {
+  generatePostHandler
+} from './queries'
+
 export const CommandHandlers = [
   genNewsfeedHandler,
   updateNFPostHandler
+];
+
+export const QueryHandlers = [
+  generatePostHandler
 ];
 
 export const EventHandlers = [
@@ -25,7 +33,7 @@ export const EventHandlers = [
 @Module (
   {
     imports: [CqrsModule, NewsfeedModuleDA],
-   providers: [NewsfeedService, ...CommandHandlers, ...EventHandlers],
+   providers: [NewsfeedService, ...CommandHandlers, ...EventHandlers, ...QueryHandlers],
    exports: [NewsfeedService],
   }
 )

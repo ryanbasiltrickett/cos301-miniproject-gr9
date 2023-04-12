@@ -1,1 +1,1 @@
-export * from './lib/app-feed-util';
+export * from './fead.actions';

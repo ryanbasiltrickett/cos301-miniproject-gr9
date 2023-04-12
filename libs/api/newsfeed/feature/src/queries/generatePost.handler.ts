@@ -13,9 +13,10 @@ export class generatePostHandler implements IQueryHandler<generatePostQuery,Igen
 
   async execute(query: generatePostQuery) : Promise<any> {
     const request = query.request;
-    const followersDoc = await this.repository.getFollowers(request.userInfo);
+    const followersDoc = await this.repository.getFollowers(request.userID);
     const followers = followersDoc.data();
-
+    console.log(followers);
+    console.log(followersDoc);
     //const posts = await this.repository.generatePosts(followers.)
     //const data = post.data();
 
