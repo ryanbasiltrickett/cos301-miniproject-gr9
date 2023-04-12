@@ -5,7 +5,7 @@ export class DashboardEvent {
         eventTitle: string,
         eventTime: Date
       }
-    ) {}
+    ) {console.log("Created");}
 }
 
 export class MyTest{

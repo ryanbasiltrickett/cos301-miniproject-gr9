@@ -1,7 +1,5 @@
 import { Action, State, StateContext, Store, Selector } from '@ngxs/store';
-// import { ICreatePostRequest } from '@mp/api/posts/util';
 import { Injectable } from '@angular/core';
-// import { PostApi } from '@mp/app/post/data-access';
 import { DashboardEvent } from '@mp/app/dashboard/util';
 import { IEvent, IEventRequest } from '@mp/api/events/util';
 import { DashboardAPI } from './dashboard.api';
@@ -28,13 +26,18 @@ export class DashboardEventState {
   ) {}
 
   @Selector()
-  static dashboard(state: DashboardEventStateModel) {
-    return state.eventTitle;
-  }
+    static getEventTitle(state: DashboardEventStateModel) {
+      return state.eventTitle;
+    }
 
   @Action(DashboardEvent)
-  async generateEvent(ctx: StateContext<DashboardEventStateModel>) {
-    console.log("State Fired");
+  async dashboardEvent(ctx: StateContext<DashboardEventStateModel>) {
+    try{
+      console.log("State Fired");
+    }catch(err){
+      console.log(err);
+    }
+    
     // const request: IEventRequest = {
     //   event,
     // };

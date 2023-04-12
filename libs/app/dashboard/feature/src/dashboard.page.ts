@@ -12,6 +12,7 @@ import { IEvent, IEventRequest } from '@mp/api/events/util';
 import { Functions, httpsCallable } from '@angular/fire/functions';
 import { DashboardEvent, MyTest } from '@mp/app/dashboard/util';
 import { Store } from '@ngxs/store';
+import { DashboardEventState } from '@mp/app/dashboard/data-access';
 
 
 @Component({
@@ -56,7 +57,7 @@ export class DashboardPage {
     );
   }
 
-  generateEvent(){
+  generateEvent() : void{
     this.makeToast('Fired')
     this.store.dispatch(
       new DashboardEvent({
@@ -64,6 +65,7 @@ export class DashboardPage {
         eventTime: new Date(),
       })
     );
+    console.log(this.store.select(DashboardEventState.getEventTitle));
 
     // this.store.dispatch(new MyTest());
     // const event: IEvent = {
