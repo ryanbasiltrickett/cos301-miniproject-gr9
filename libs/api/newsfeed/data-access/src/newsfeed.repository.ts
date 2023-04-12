@@ -47,10 +47,8 @@ export class NewsfeedRepository {
   async showNewsfeed(newsfeed: INewsfeed) {
     return await admin
     .firestore()
-    .collection('posts')
-    .doc() // need to return recent posts from users the user follows. 
+    .collection('followers')
+    .doc() 
     .get(); 
-  }
-
-  
+  } 
 }
