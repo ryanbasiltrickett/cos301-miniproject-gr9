@@ -8,11 +8,12 @@ import { ToastController } from '@ionic/angular';
 import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 import { AngularFireFunctions} from '@angular/fire/compat/functions';
 // import { EventsService } from '@mp/api/events/feature';
-import { IEvent, IEventRequest } from '@mp/api/events/util';
+import { IEvent, IEventRequest, IEventResponse } from '@mp/api/events/util';
 import { Functions, httpsCallable } from '@angular/fire/functions';
-import { DashboardEvent, MyTest } from '@mp/app/dashboard/util';
+import { DashboardEvent } from '@mp/app/dashboard/util';
 import { Store } from '@ngxs/store';
-import { DashboardEventState } from '@mp/app/dashboard/data-access';
+// import { DashboardAPI } from '@mp/app/dashboard/data-access';
+// import { DashboardEventState } from '@mp/app/dashboard/data-access';
 
 
 @Component({
@@ -29,7 +30,8 @@ export class DashboardPage {
      private afMessaging: AngularFireMessaging,
      private readonly store: Store,
      private  functions: Functions,
-     private fun: AngularFireFunctions
+     private fun: AngularFireFunctions,
+    //  private api: DashboardAPI,
     //  private eventService: EventsService
     ) {}
 
@@ -57,22 +59,28 @@ export class DashboardPage {
     );
   }
 
-  generateEvent() : void{
+  async generateEvent(){
     this.makeToast('Fired')
+    //     this.getPermissions();
+    //     console.log('Permission granted');
+    // const event: IEvent = {eventTitle: "Test", eventTime: new Date()};
+    // const req: IEventRequest = {event: event};
+    // await httpsCallable<
+    //     IEventRequest, IEventResponse
+    // >(
+    //   this.functions,
+    //   'generateEvent'
+    // )(req);
+
+    
     this.store.dispatch(
       new DashboardEvent({
         eventTitle: 'Test12',
         eventTime: new Date(),
       })
     );
-    console.log(this.store.select(DashboardEventState.getEventTitle));
-
-    // this.store.dispatch(new MyTest());
-    // const event: IEvent = {
-    //   eventTitle: 'Test1',
-    //   eventTime: new Date(),
-    // }
-
+    // console.log(this.store.select(DashboardEventState.getEventTitle));
+    // const event: IEvent = {eventTitle: "Test", eventTime: new Date()};
     // const req: IEventRequest = {event: event};
     // this.fun.httpsCallable('generateEvent')(req).subscribe();
     // this.makeToast('Fired1')

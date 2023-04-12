@@ -13,6 +13,7 @@ export const generateEvent = functions.https.onCall(
     async (
       request: IEventRequest,
     ): (Promise<IEventResponse>) => {
+      console.log("Called");
       const app = await NestFactory.createApplicationContext(CoreModule);
       const service = app.get(EventsService);
       // service.generateEvent();
