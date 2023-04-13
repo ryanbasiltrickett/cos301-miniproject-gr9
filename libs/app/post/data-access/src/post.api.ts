@@ -35,6 +35,13 @@ export class PostApi {
   //   return docData(docRef, { idField: 'id' });
   // }
 
+  async createPost(request: ICreatePostRequest) {
+    return await httpsCallable<ICreatePostRequest, IAddPostResponse>(
+      this.functions,
+      'createPost'
+    )(request);
+  }
+
   async updatePostTime(request: IUpdatePostTimeRequest) {
     return await httpsCallable<IUpdatePostTimeRequest, IUpdatePostTimeResponse>(
       this.functions,
@@ -42,10 +49,24 @@ export class PostApi {
     )(request);
   }
 
-  async createPost(request: ICreatePostRequest) {
-    return await httpsCallable<ICreatePostRequest, IAddPostResponse>(
+  async commentOnPost(request: ICommentPostRequest) {
+    return await httpsCallable<ICommentPostRequest, ICommentPostResponse>(
       this.functions,
-      'createPost'
+      'commentOnPost'
+    )(request);
+  }
+
+  async likePost(request: ILikePostRequest) {
+    return await httpsCallable<ILikePostRequest, ILikePostResponse>(
+      this.functions,
+      'likePost'
+    )(request);
+  }
+
+  async deletePost(request: IDeletePostRequest) {
+    return await httpsCallable<IDeletePostRequest, IDeletePostResponse>(
+      this.functions,
+      'deletePost'
     )(request);
   }
 }
