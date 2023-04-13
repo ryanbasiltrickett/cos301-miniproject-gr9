@@ -58,6 +58,7 @@ export class NotifyEventHandler
         topic: 'all'
       }
       console.log(payload);
+      admin.messaging().send(payload);
       return payload;
     }
 }

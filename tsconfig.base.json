@@ -20,7 +20,6 @@
       "@mp/api/auth/feature": ["libs/api/auth/feature/src/index.ts"],
       "@mp/api/auth/util": ["libs/api/auth/util/src/index.ts"],
       "@mp/api/core/feature": ["libs/api/core/feature/src/index.ts"],
-      
       "@mp/api/events/data-access": ["libs/api/events/data-access/src/index.ts"],
       "@mp/api/events/feature": ["libs/api/events/feature/src/index.ts"],
       "@mp/api/events/util": ["libs/api/events/util/src/index.ts"],
