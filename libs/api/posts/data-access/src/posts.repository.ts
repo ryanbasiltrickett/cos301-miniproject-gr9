@@ -106,6 +106,11 @@ export class PostsRepository {
   }
 
   async deleteComment(comment: IComment, post: IPost) {
+    /*return await admin
+      .firestore()
+      .collection('posts')
+      .doc(post.id.)
+      //.delete();*/
     return NotImplementedException;
   }
 
