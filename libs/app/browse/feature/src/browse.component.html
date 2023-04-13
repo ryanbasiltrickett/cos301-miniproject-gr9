@@ -1,47 +1,40 @@
-<ion-header [translucent]="true">
-  <div
-    style="display: flex; flex-direction: row; justify-content: space-evenly">
-    <p>_time_remaining</p>
-    <p>_logo_</p>
-    <p>_messages_</p>
-  </div>
-</ion-header>
+<div
+style="display: flex; flex-direction: row; justify-content: space-evenly">
+<p>_time_remaining</p>
+<p>_logo_</p>
+<p>_messages_</p>
+</div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Feed</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <ion-searchbar animated="true" placeholder="Search User"></ion-searchbar>
+<ion-content>
 
-  <ion-row style="margin-left: 1rem">
-    <ion-chip [outline]="true">Media</ion-chip>
-    <ion-chip>Text</ion-chip>
+
+
+
+
+<ms-search-bar></ms-search-bar>
+
+<!-- <ion-row style="margin-left: 1rem">
+<ion-chip [outline]="true">Media</ion-chip>
+<ion-chip>Text</ion-chip>
+</ion-row>
+<ion-text>
+<h2 style="margin-left: 0.7rem">Trending</h2>
+</ion-text> -->
+
+
+<mp-post-list></mp-post-list>
+<!-- <ion-content>
+<ion-grid>
+  <ion-row>
+    <ion-col *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]" size="6">
+      <div class="image-container">
+        <img src="https://picsum.photos/200/200?random={{i}}" alt="Placeholder image" class="image">
+      </div>
+    </ion-col>
   </ion-row>
+</ion-grid>
+</ion-content>
 
-  <ion-text>
-    <h2 style="margin-left: 0.7rem">Trending</h2>
-  </ion-text>
-
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ngx-skeleton-loader
-          *ngFor="let i of [1, 2, 3, 4, 5]"
-          count="1"
-          [theme]="{ height: '250px' }"
-          appearance="line"></ngx-skeleton-loader>
-      </ion-col>
-
-      <ion-col>
-        <ngx-skeleton-loader
-          *ngFor="let i of [1, 2, 3, 4, 5, 6]"
-          count="1"
-          [theme]="{ height: '200px' }"
-          appearance="line"></ngx-skeleton-loader>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+-->
 </ion-content>

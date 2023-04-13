@@ -11,4 +11,19 @@ import { FormBuilder, FormGroup } from '@angular/forms';
     templateUrl: './post.component.html',
     styleUrls: ['./post.component.scss'],
   })
-  export class PostComponent{}
+  export class PostComponent{
+    onDonateClick() {
+      console.log('Donate button clicked');
+      // Add your donate functionality here
+    }
+  
+    onCommentClick() {
+      console.log('Comment button clicked');
+      // Add your comment functionality here
+    }
+  
+    onShareClick() {
+      console.log('Share button clicked');
+      // Add your share functionality here
+    }
+  }

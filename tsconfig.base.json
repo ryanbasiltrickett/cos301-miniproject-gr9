@@ -49,8 +49,17 @@
       "@mp/app/auth/feature": ["libs/app/auth/feature/src/index.ts"],
       "@mp/app/auth/util": ["libs/app/auth/util/src/index.ts"],
       "@mp/app/browse/feature": ["libs/app/browse/feature/src/index.ts"],
+      "@mp/app/browse/ui": ["libs/app/browse/ui/src/index.ts"],
       "@mp/app/copyright/ui": ["libs/app/copyright/ui/src/index.ts"],
       "@mp/app/core/feature": ["libs/app/core/feature/src/index.ts"],
+      "@mp/app/create/data-access": [
+        "libs/app/create/data-access/src/index.ts"
+      ],
+      "@mp/app/create/feature": ["libs/app/create/feature/src/index.ts"],
+      "@mp/app/create/ui": ["libs/app/create/ui/src/index.ts"],
+      "@mp/app/createpost/feature": [
+        "libs/app/createpost/feature/src/index.ts"
+      ],
       "@mp/app/dashboard/data-access": [
         "libs/app/dashboard/data-access/src/index.ts"
       ],
@@ -80,6 +89,10 @@
       "@mp/app/newsfeed/feature": ["libs/app/newsfeed/feature/src/index.ts"],
       "@mp/app/newsfeed/ui": ["libs/app/newsfeed/ui/src/index.ts"],
       "@mp/app/newsfeed/util": ["libs/app/newsfeed/util/src/index.ts"],
+      "@mp/app/notification/feature": [
+        "libs/app/notification/feature/src/index.ts"
+      ],
+      "@mp/app/notification/ui": ["libs/app/notification/ui/src/index.ts"],
       "@mp/app/privacy/feature": ["libs/app/privacy/feature/src/index.ts"],
       "@mp/app/profile/data-access": [
         "libs/app/profile/data-access/src/index.ts"
