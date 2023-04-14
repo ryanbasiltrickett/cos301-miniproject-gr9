@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as admin from 'firebase-admin';
-import { INewsfeed, IPost, IUserPosts } from '@mp/api/newsfeed/util'; //isnt it '@mp/api/newsfeed/util
+import { INewsfeed, IPost, IRecentPost } from '@mp/api/newsfeed/util'; //isnt it '@mp/api/newsfeed/util
 import { IUser } from '@mp/api/users/util';
 import { IProfile } from '@mp/api/profiles/util';
 import { IFollowers } from '@mp/api/newsfeed/util';
@@ -37,15 +37,16 @@ export class NewsfeedRepository {
     .get();
   }
 
-  async getNewsfeed(user: IProfile) { //will return a sorted array (IUserPosts) of the recentPosts of all the people you follow
+  async getNewsfeed(user: IProfile) { //will return a sorted array (IRecentPost) of the recentPosts of all the people you follow
     const db = admin.firestore(); 
     const followed = await db.collection('followers')
     .where('followers', 'array-contains', user.userId)
     .orderBy('lastPost', 'desc')
+    .limit(10)
     .get(); 
 
     const data = followed.docs.map((doc) => doc.data() as IFollowers);
-    const posts = data.reduce<IUserPosts[]>((acc, curr) => acc.concat(curr.recentPosts), []);
+    const posts = data.reduce<IRecentPost[]>((acc, curr) => acc.concat(curr.recentPosts), []);
     const sortedPosts = posts.sort((a, b) => b.published.toMillis() - a.published.toMillis());
     return sortedPosts;
   }   
