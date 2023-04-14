@@ -4,7 +4,6 @@ import { INewsfeed, IPost, IPostArray } from '@mp/api/newsfeed/util'; //isnt it 
 import { IUser } from '@mp/api/users/util';
 import { IProfile } from '@mp/api/profiles/util';
 import { IFollowers } from '@mp/api/newsfeed/util';
-//import { INewsfeed } from '../newsfeed/util/src'
 
 @Injectable()
 export class NewsfeedRepository {
@@ -51,9 +50,9 @@ export class NewsfeedRepository {
     .orderBy('lastPost', 'desc')
     .get(); 
 
-    const data = followed.docs.map(doc => doc.data()); 
-    const posts = data.reduce((acc,cur) => acc.concat(cur['recentPosts']), []);
-    const sortedPosts = posts.sort((a,b) => b.published); 
-    return sortedPosts; 
+    const data = followed.docs.map((doc) => doc.data());
+    const posts = data.reduce((acc, curr) => acc.concat(curr.recentPosts), []);
+    const sortedPosts = posts.sort((a, b) => b.published);
+    return sortedPosts;
   }   
 }
