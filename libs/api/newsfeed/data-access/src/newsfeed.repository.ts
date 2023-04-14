@@ -43,10 +43,10 @@ export class NewsfeedRepository {
     .get();
   }
 
-  async showNewsfeed(newsfeed: INewsfeed) {
+  async showNewsfeed(newsfeed: INewsfeed, currentUser: string) {
     const db = admin.firestore(); 
     const followed = await db.collection('followers')
-    .where('followers', 'array-contains', 'personA') // need to get username in a variable. 
+    .where('followers', 'array-contains', currentUser) // need to get username in a variable. 
     .orderBy('lastPost', 'desc')
     .get(); 
 
