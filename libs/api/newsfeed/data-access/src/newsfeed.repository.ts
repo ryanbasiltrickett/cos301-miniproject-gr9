@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as admin from 'firebase-admin';
-import { INewsfeed, IPost, IPostArray } from '@mp/api/newsfeed/util'; //isnt it '@mp/api/newsfeed/util
+import { INewsfeed, IPost, IUserPosts } from '@mp/api/newsfeed/util'; //isnt it '@mp/api/newsfeed/util
 import { IUser } from '@mp/api/users/util';
 import { IProfile } from '@mp/api/profiles/util';
 import { IFollowers } from '@mp/api/newsfeed/util';
@@ -29,30 +29,24 @@ export class NewsfeedRepository {
       .get();
   }
 
-  async getFollowers(userID: string) {
+  async getFollowers(user: IProfile) {
     return await admin
     .firestore()
     .collection('followers')
-    .withConverter<IFollowers>({
-      fromFirestore: (snapshot) => {
-        return snapshot.data() as IFollowers;
-      },
-      toFirestore: (it: IFollowers) => it,
-    })
-    .doc(userID)
+    .doc(user.userId)
     .get();
   }
 
-  async showNewsfeed(newsfeed: INewsfeed, currentUser: string) {
+  async getNewsfeed(user: IProfile) { //will return a sorted array (IUserPosts) of the recentPosts of all the people you follow
     const db = admin.firestore(); 
     const followed = await db.collection('followers')
-    .where('followers', 'array-contains', currentUser) // need to get username in a variable. 
+    .where('followers', 'array-contains', user.userId)
     .orderBy('lastPost', 'desc')
     .get(); 
 
-    const data = followed.docs.map((doc) => doc.data());
-    const posts = data.reduce((acc, curr) => acc.concat(curr.recentPosts), []);
-    const sortedPosts = posts.sort((a, b) => b.published);
+    const data = followed.docs.map((doc) => doc.data() as IFollowers);
+    const posts = data.reduce<IUserPosts[]>((acc, curr) => acc.concat(curr.recentPosts), []);
+    const sortedPosts = posts.sort((a, b) => b.published.toMillis() - a.published.toMillis());
     return sortedPosts;
   }   
 }
