@@ -11,4 +11,27 @@ import { FormBuilder, FormGroup } from '@angular/forms';
     templateUrl: './post.component.html',
     styleUrls: ['./post.component.scss'],
   })
-  export class PostComponent{}
+  export class PostComponent{
+    
+      public NoOfLikes = 0 ;
+    	public Isliked = false;
+
+      public toggleLike(event: Event) {
+
+      this.Isliked = !this.Isliked;
+
+
+      if (this.Isliked) 
+      {
+        this.NoOfLikes++;
+        (event.currentTarget as HTMLIonButtonElement).querySelector('#heartIcon')?.setAttribute("name", "heart");
+        
+      } 
+      else 
+      {
+        this.NoOfLikes--;
+        (event.currentTarget as HTMLIonButtonElement).querySelector('#heartIcon')?.setAttribute("name", "heart-outline");
+      }
+
+    }
+  }
