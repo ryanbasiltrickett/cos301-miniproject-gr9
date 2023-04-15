@@ -1,14 +1,13 @@
 
 import {
   genNewsfeedCommand,genNewsfeedEvent,
-  updateNFPostCommand,updateNFPostEvent
+  updateNFPostCommand,updateNFPostEvent,
 } from '@mp/api/newsfeed/util'
-//import { UserCreatedEvent } from '@mp/api/users/util';
+import { UserCreatedEvent } from '@mp/api/users/util';
 import { Injectable } from '@nestjs/common';
 import { ICommand, ofType, Saga } from '@nestjs/cqrs';
 import { map, Observable } from 'rxjs';
 
-//for later maybe
 @Injectable()
 export class NewsfeedSagas {
   @Saga()

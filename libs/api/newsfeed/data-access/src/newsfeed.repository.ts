@@ -37,12 +37,12 @@ export class NewsfeedRepository {
     .get();
   }
 
-  async getNewsfeed(user: INFProfile) { //will return a sorted array (IRecentPost) of the recentPosts of all the people you follow
+  async getNewsfeed(user: INFProfile,limit: number) { //will return a sorted array (IRecentPost) of the recentPosts of all the people you follow
     const db = admin.firestore();
     const followed = await db.collection('followers')
     .where('followers', 'array-contains', user.userId)
     .orderBy('lastPost', 'desc')
-    .limit(10)
+    .limit(limit)
     .get();
 
     const data = followed.docs.map((doc) => doc.data() as IFollowers);
