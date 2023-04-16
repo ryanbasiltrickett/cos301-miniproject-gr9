@@ -11,4 +11,53 @@ import { Observable } from 'rxjs';
 })
 export class ProfilePage {
   @Select(ProfileState.profile) profile$!: Observable<IProfile | null>;
+
+  segment: string = 'all'; 
+
+  allPosts = [
+    {
+      id: 1,
+      image: "https://picsum.photos/id/237/200/200",
+      title: "Post 1",
+      content: "This is the content of post 1"
+    },
+    {
+      id: 2,
+      image: "https://picsum.photos/id/238/200/200",
+      title: "Post 2",
+      content: "This is the content of post 2"
+    },
+    // add more posts here
+  ];
+  
+  mediaPosts = [
+    {
+      id: 1,
+      image: "https://picsum.photos/id/237/200/200",
+      title: "Post 1",
+      content: "This is the content of post 1"
+    },
+    {
+      id: 2,
+      image: "https://picsum.photos/id/238/200/200",
+      title: "Post 2",
+      content: "This is the content of post 2"
+    },
+    // add more posts here
+  ];
+  
+  textPosts = [
+    {
+      id: 1,
+      title: "Post 1",
+      content: "This is the content of post 1"
+    },
+    {
+      id: 2,
+      title: "Post 2",
+      content: "This is the content of post 2"
+    },
+    // add more posts here
+  ];
+  
 }

@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title class="ion-align-items-center">
       Profile
@@ -53,4 +53,75 @@
       </ion-row>
     </ion-grid>
   </ng-template>
+</ion-content> -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/settings">
+        <ion-icon name="settings-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="banner">
+    <img src="https://picsum.photos/id/237/1200/400" alt="Banner image" />
+  </div>
+  <ion-avatar class="profile-picture">
+    <img src="https://picsum.photos/id/1015/200/200" alt="Profile picture" />
+  </ion-avatar>
+  
+  <h2 class="name">Name (Bold)</h2>
+  <p class="username">@Username</p>
+  <div class="bio">
+    <p>User's bio goes here(LHS)</p>
+  </div>
+  <div class="stats">
+    <span>Posts</span> | <span>Followers</span> | <span>Following</span> | <span>Time Remaining</span>
+  </div>
+  <ion-button routerLink="/settings" class="edit-profile">Edit Profile</ion-button>
+  <ion-segment [(ngModel)]="segment">
+    <ion-segment-button value="all">
+      All
+    </ion-segment-button>
+    <ion-segment-button value="media">
+      Media
+    </ion-segment-button>
+    <ion-segment-button value="text">
+      Text
+    </ion-segment-button>
+  </ion-segment>
+  <div [ngSwitch]="segment">
+    <div *ngSwitchCase="'all'" class="posts">
+      <!-- All posts content -->
+      <ion-card *ngFor="let post of allPosts">
+        <ion-img src="{{post.image}}"></ion-img>
+        <ion-card-header>
+          <ion-card-title>{{post.title}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          {{post.content}}
+        </ion-card-content>
+      </ion-card>
+    </div>
+    <div *ngSwitchCase="'media'" class="media-posts">
+      <!-- Media posts content (2 columns) -->
+      <ion-card *ngFor="let post of mediaPosts">
+        <ion-img src="{{post.image}}"></ion-img>
+      </ion-card>
+    </div>
+    <div *ngSwitchCase="'text'" class="text-posts">
+      <!-- Text posts content (list) -->
+      <ion-card *ngFor="let post of textPosts">
+        <ion-card-header>
+          <ion-card-title>{{post.title}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          {{post.content}}
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
 </ion-content>

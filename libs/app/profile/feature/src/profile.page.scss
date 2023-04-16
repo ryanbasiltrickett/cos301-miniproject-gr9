@@ -1,15 +1,124 @@
-ion-title {
+// ion-title {
+//   display: flex;
+// }
+
+// ion-card-title {
+//   display: flex;
+// }
+
+// ion-card-title > ion-icon {
+//   margin-top: 0px;
+// }
+
+// ion-icon {
+//   padding-left: 5px;
+// }
+
+ion-content {
+  --background: #ffffff;
+}
+
+.banner {
+  position: relative;
+  width: 100%;
+  height: 275px;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background-color: #000;
+    border-radius: 2px;
+    margin: 0 auto;
+    width: 50px;
+  }
+}
+
+.profile-picture {
+  position: absolute;
+  top: 220px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 120px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.name {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 70px;
+}
+
+.username {
+  text-align: center;
+}
+
+.bio {
+  padding: 0 16px;
+}
+
+.stats {
+  text-align: center;
+  margin: 16px 0;
+  span {
+    margin: 0 8px;
+  }
+}
+
+.edit-profile {
+  display: block;
+  margin: 0 auto;
+  width: 50%;
+}
+
+.posts,
+.media-posts,
+.text-posts {
   display: flex;
+  flex-wrap: wrap;
+  padding: 0 8px;
+  gap: 8px;
 }
 
-ion-card-title {
-  display: flex;
+.media-posts ion-card {
+  flex-basis: calc(50% - 8px);
+  margin-bottom: 8px;
 }
 
-ion-card-title > ion-icon {
-  margin-top: 0px;
+.media-posts ion-card:last-child {
+  margin-bottom: 0;
 }
 
-ion-icon {
-  padding-left: 5px;
+.posts ion-card {
+  flex-basis: 100%;
+  margin-bottom: 8px;
+}
+
+.posts ion-card:last-child {
+  margin-bottom: 0;
+}
+
+ion-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+  
+
+
+.text-posts {
+  ion-card {
+    flex-basis: 100%;
+  }
 }
