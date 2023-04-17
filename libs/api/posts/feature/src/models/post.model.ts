@@ -1,4 +1,5 @@
 import {
+  CommentAddedEvent,
   IComment,
   IPost,
   NewPostEvent,
@@ -43,6 +44,11 @@ export class Post extends AggregateRoot implements IPost {
   likePost() {
     this.likes++;
     this.apply(new PostLikedEvent(this.toJSON()));
+  }
+
+  addComment(comment: IComment) {
+    this.comments?.push(comment);
+    this.apply(new CommentAddedEvent(this.toJSON()));
   }
 
   updateTime() {

@@ -10,6 +10,8 @@ import {
   IDeletePostResponse,
   IUpdatePostTimeRequest,
   IUpdatePostTimeResponse,
+  IAddCommentRequest,
+  IAddCommentResponse,
 } from '@mp/api/posts/util';
 import { NestFactory } from '@nestjs/core';
 import * as functions from 'firebase-functions';
@@ -52,5 +54,13 @@ export const updatePostTime = functions.https.onCall(
     const app = await NestFactory.createApplicationContext(CoreModule);
     const service = app.get(PostService);
     return service.updatePostTime(request);
+  }
+);
+
+export const addComment = functions.https.onCall(
+  async (request: IAddCommentRequest): Promise<IAddCommentResponse> => {
+    const app = await NestFactory.createApplicationContext(CoreModule);
+    const service = app.get(PostService);
+    return service.addComment(request);
   }
 );
