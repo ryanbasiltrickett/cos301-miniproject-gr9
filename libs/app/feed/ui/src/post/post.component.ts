@@ -5,6 +5,7 @@ import { ProfileState } from '@mp/app/profile/data-access';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ToastController } from '@ionic/angular'
 
 @Component({
     selector: 'ms-post',
@@ -16,14 +17,24 @@ import { FormBuilder, FormGroup } from '@angular/forms';
       console.log('Donate button clicked');
       // Add your donate functionality here
     }
-  
+
+    constructor(private toastController: ToastController) {
+
+    }
+
     onCommentClick() {
       console.log('Comment button clicked');
       // Add your comment functionality here
     }
-  
-    onShareClick() {
+
+    async onShareClick() {
       console.log('Share button clicked');
       // Add your share functionality here
+
+      const toast = await this.toastController.create({
+        message: 'copied to clipboard',
+        duration: 2000,
+      });
+      toast.present();
     }
   }
