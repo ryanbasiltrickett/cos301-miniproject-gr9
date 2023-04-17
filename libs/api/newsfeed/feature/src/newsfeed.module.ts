@@ -33,10 +33,9 @@ export const EventHandlers = [
 @Module (
   {
     imports: [CqrsModule, NewsfeedModuleDA],
-   providers: [NewsfeedService, ...CommandHandlers, ...EventHandlers, ...QueryHandlers],
+   providers: [NewsfeedService, ...CommandHandlers, ...EventHandlers, ...QueryHandlers, NewsfeedSagas],
    exports: [NewsfeedService],
   }
 )
 
-//for later
 export class NewsfeedModule {}

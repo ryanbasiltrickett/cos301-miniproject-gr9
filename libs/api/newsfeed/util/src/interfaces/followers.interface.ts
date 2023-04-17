@@ -1,9 +1,8 @@
 import { Timestamp } from "firebase-admin/firestore";
-import { IuserPosts } from "./userPosts.interface";
+import { IRecentPost} from "./recentPost.interface";
 
 export interface IFollowers {
-    UserID: string;
     followers: string[];
-    lastpost: Timestamp;
-    recentPost: IuserPosts[];
+    lastPost: Timestamp;
+    recentPosts: IRecentPost[];
 }
