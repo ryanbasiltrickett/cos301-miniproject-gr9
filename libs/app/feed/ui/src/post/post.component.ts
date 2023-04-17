@@ -21,7 +21,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
       this.Isliked = !this.Isliked;
 
 
-      if (this.Isliked) 
+      if (this.Isliked)  
       {
         this.NoOfLikes++;
         (event.currentTarget as HTMLIonButtonElement).querySelector('#heartIcon')?.setAttribute("name", "heart");
