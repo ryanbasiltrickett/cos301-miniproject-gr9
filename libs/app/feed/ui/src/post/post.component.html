@@ -9,8 +9,11 @@
   </div>
   <div class="post-actions">
     <span class="post-action">
-      <ion-icon name="cash-outline"></ion-icon>
-      <span>Donate</span>
+      <!--<ion-icon name="cash-outline"></ion-icon>-->
+      <ion-button fill="clear" (click) = "toggleLike($event)">
+        <ion-icon id="heartIcon" name="heart-outline" aria-hidden="true"></ion-icon> <p *ngIf="NoOfLikes > 0" style="padding-left: 4px;" >{{ NoOfLikes }}</p>
+        <p *ngIf="NoOfLikes > 1" style="padding-left: 4px;" >likes</p><p *ngIf="NoOfLikes == 1" style="padding-left: 4px;" >like</p>
+      </ion-button>  
     </span>
     <span class="post-action">
       <ion-icon name="chatbox-outline"></ion-icon>
