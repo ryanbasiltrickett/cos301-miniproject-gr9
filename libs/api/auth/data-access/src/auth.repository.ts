@@ -1,5 +1,6 @@
 import { IAuth } from '@mp/api/auth/util';
 import { Injectable } from '@nestjs/common';
+import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 import * as admin from 'firebase-admin';
 
 @Injectable()
@@ -29,4 +30,21 @@ export class AuthRepository {
   async deleteProfile(auth: IAuth){
     await admin.auth().deleteUser(auth.id);
   }
+
+  async sendPasswordReset(email: string){
+    const auth = getAuth();
+
+    await sendPasswordResetEmail(auth, email)
+      .then(() => {
+        // Password reset email sent!
+        // ..
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        // ..
+      });
+  }
+  //don't forget about the confirm password reset function
 }
