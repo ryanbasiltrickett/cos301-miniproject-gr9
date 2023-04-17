@@ -1,0 +1,62 @@
+<ion-content [fullscreen]="true">
+  
+  <div class="center-container ion-align-items-center">
+
+    <ion-grid>
+      
+      <ion-item>
+        <ion-input
+          type="email"
+          minlength="8"
+          maxlength="64"
+          placeholder="Enter your recovery email"
+          required="true"
+          autocomplete="email"
+          formControlName="email"></ion-input>
+      </ion-item>
+
+      <ion-text
+        *ngIf="email?.invalid && (email?.dirty || email?.touched)"
+        class="ion-padding-start"
+        color="danger">
+        <small>{{ emailError }}</small>
+      </ion-text>
+
+      <ion-row>
+        <ion-col>
+          <ion-nav-link [routerLink]="['welcome']">
+            <ion-button (click)="sendVerificationCode()" expand="block">Send Verification Code</ion-button>
+          </ion-nav-link>
+        </ion-col>
+      </ion-row>
+      
+      <ion-row>
+        <ion-col>
+          <ion-nav-link>
+            <ion-button
+              expand="block"
+              fill="outline"
+              color="dark"
+              (click)="sendViaGoogle()">
+              <ion-icon name="logo-google"></ion-icon>
+              <ion-text style="padding-left: 5px">
+                Send message via Google
+              </ion-text>
+            </ion-button>
+          </ion-nav-link>
+        </ion-col>
+      </ion-row>
+
+      <ion-row class="ion-padding-top">
+        <ion-col style="display: flex" class="ion-justify-content-center">
+          <ion-nav-link [routerLink]="['login']">
+            <ion-button fill="clear"> Return </ion-button>
+          </ion-nav-link>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+  </div>
+
+</ion-content>
