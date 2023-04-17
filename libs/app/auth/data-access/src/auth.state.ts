@@ -61,7 +61,8 @@ export class AuthState {
       await this.authApi.login(email, password);
       return ctx.dispatch(new Navigate(['home']));
     } catch (error) {
-      return ctx.dispatch(new SetError("There is no account registered to your email"));
+      //return ctx.dispatch(new SetError("There is no account registered to your email"));
+      return ctx.dispatch(new SetError((error as Error).message));
     }
   }
 
@@ -74,7 +75,8 @@ export class AuthState {
       await this.authApi.register(email, password);
       return ctx.dispatch(new Navigate(['home']));
     } catch (error) {
-      return ctx.dispatch(new SetError("Unfortunately there was an error with your registration"));
+      //return ctx.dispatch(new SetError("Unfortunately there was an error with your registration"));
+      return ctx.dispatch(new SetError((error as Error).message));
     }
   }
 
