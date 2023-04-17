@@ -24,3 +24,4 @@ export class BrowseApi {
     });
     return docData(docRef, { idField: 'id' });
   }
+}
