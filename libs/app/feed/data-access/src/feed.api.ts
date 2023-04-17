@@ -3,8 +3,12 @@ import { doc, docData, Firestore } from '@angular/fire/firestore';
 import { Functions, httpsCallable } from '@angular/fire/functions';
 import {
     IPost,
+    IgenNewsfeedRequest,
+    IgenNewsfeedResponse,
     IgeneratePostRequest,
-    IgeneratePostResponse
+    IgeneratePostResponse,
+    IupdateNFPostRequest,
+    IupdateNFPostResponse
 } from '@mp/api/newsfeed/util'
 import {
     IUser
@@ -41,6 +45,26 @@ export class FeedApi {
     >(
       this.functions,
       'generatePost'
+    )(request);
+  }
+
+  async generateNewsFeed(request: IgenNewsfeedRequest){
+    return await httpsCallable<
+      IgenNewsfeedRequest,
+      IgenNewsfeedResponse
+    >(
+      this.functions,
+      'generateNewsFeed'
+    )(request);
+  }
+
+  async updateNewsFeedPost(request: IupdateNFPostRequest){
+    return httpsCallable<
+      IupdateNFPostRequest,
+      IupdateNFPostResponse
+    >(
+      this.functions,
+      'updateNewFeedPost'
     )(request);
   }
 }
