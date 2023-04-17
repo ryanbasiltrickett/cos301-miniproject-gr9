@@ -29,6 +29,18 @@ export class ContinueWithGoogle {
   static readonly type = '[Auth] ContinueWithGoogle';
 }
 
+export class ContinueWithFacebook {
+  static readonly type = '[Auth] ContinueWithFacebook';
+}
+
+export class ContinueWithApple {
+  static readonly type = '[Auth] ContinueWithApple';
+}
+
+export class ContinueWithTwitter {
+  static readonly type = '[Auth] ContinueWithTwitter';
+}
+
 export class Logout {
   static readonly type = '[Auth] Logout';
 }

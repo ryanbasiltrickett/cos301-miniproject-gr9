@@ -74,6 +74,9 @@
       "@mp/app/feed/feature": ["libs/app/feed/feature/src/index.ts"],
       "@mp/app/feed/ui": ["libs/app/feed/ui/src/index.ts"],
       "@mp/app/feed/util": ["libs/app/feed/util/src/index.ts"],
+      "@mp/app/forget/data-access": [
+        "libs/app/forget/data-access/src/index.ts"
+      ],
       "@mp/app/forgot/data-access": [
         "libs/app/forgot/data-access/src/index.ts"
       ],

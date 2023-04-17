@@ -18,7 +18,7 @@ export class CreateProfileHandler
 
     const request = command.request;
     const userId = request.user.id;
-    const displayName = request.user.displayName;
+    const username = request.user.username;
     const email = request.user.email;
     const photoURL = request.user.photoURL;
     const cellphone = request.user.phoneNumber;
@@ -26,7 +26,7 @@ export class CreateProfileHandler
     const data: IProfile = {
       userId,
       accountDetails: {
-        displayName,
+        username,
         email,
         photoURL,
         status: ProfileStatus.INCOMPLETE,
