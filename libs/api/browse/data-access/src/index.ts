@@ -1,1 +1,2 @@
-export * from './lib/api-browse-data-access';
+export * from './browse.repository';
+export * from './browse.module';
