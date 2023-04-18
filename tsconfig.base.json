@@ -77,6 +77,7 @@
       "@mp/app/forget/data-access": [
         "libs/app/forget/data-access/src/index.ts"
       ],
+      "@mp/app/forget/util": ["libs/app/forget/util/src/index.ts"],
       "@mp/app/forgot/data-access": [
         "libs/app/forgot/data-access/src/index.ts"
       ],
