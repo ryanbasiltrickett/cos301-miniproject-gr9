@@ -9,19 +9,21 @@ import { where } from '@firebase/firestore';
 export class BrowseRepository{
     async getUser(user: IGetUser){
         console.log(user.id);
-        const db = admin.firestore();
-        const users = await db.collection('users')
-        .where('email', '>=',  user.id)
-        .where('email', '<', user.id + '\uf8ff')
-        .limit(5)
-        .get();
+        if(user.id.length != 0){
+            const db = admin.firestore();
+            const users = await db.collection('users')
+            .where('email', '>=',  user.id)
+            .where('email', '<', user.id + '\uf8ff')
+            .limit(5)
+            .get();
 
-        const data = users.docs.map((doc) => doc.data() as IUser);
-        // const 
-        // let foundUsers: IGetUserResponse[];
-        // data.forEach(user => {
-        //     console.log(user.displayName);
-        // });
-        return data;
+            const data = users.docs.map((doc) => doc.data() as IUser);
+            // const 
+            // let foundUsers: IGetUserResponse[];
+            // data.forEach(user => {
+            //     console.log(user.displayName);
+            // });
+            return data;            
+        }
     }
 }

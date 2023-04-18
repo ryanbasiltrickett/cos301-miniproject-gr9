@@ -6,3 +6,7 @@ export class BrowseAction{
         }
       ) {}
 }
+
+export class ClearBrowseAction{
+  static readonly type = '[Browse] Clear';
+}
