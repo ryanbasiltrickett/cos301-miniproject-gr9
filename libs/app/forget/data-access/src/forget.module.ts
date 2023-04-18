@@ -4,14 +4,14 @@ import { IonicModule } from '@ionic/angular';
 import { CopyrightModule } from '@mp/app/copyright/ui';
 import { ForgetPage } from './forget.page';
 import { ForgetRouting } from './forget.routing';
-import { ForgetModule as ForgetDataAccessModule } from '@mp/app/forget/data-access';
+//import { ForgetModule as ForgetDataAccessModule } from '@mp/app/forget/data-access';
 
 @NgModule({
   imports: [
     CommonModule,
     IonicModule,
     ForgetRouting,
-    ForgetDataAccessModule,
+    //ForgetDataAccessModule,
     CopyrightModule,
   ],
   declarations: [ForgetPage],

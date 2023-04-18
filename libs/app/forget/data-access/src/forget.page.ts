@@ -13,4 +13,8 @@ export class ForgetPage {
   forget() {
       this.store.dispatch(new Forget());
   }
+
+  sendVerificationCode(){
+    return;
+  }
 }

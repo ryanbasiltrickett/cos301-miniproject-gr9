@@ -62,6 +62,7 @@ const routes: Routes = [
   // },
   {
     path: 'forget',
+    canActivate: [AuthGuard],
     data: { authGuardPipe: redirectLoggedIn },
     loadChildren: () =>
       import('@mp/app/forget/data-access').then((m) => m.ForgetModule),
