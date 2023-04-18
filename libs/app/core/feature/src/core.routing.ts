@@ -55,7 +55,7 @@ const routes: Routes = [
   // {
   //   path: 'reset',
   //   pathMatch: 'full',
-  //   canActivate: [AuthGuard],
+  //   canActivate: [AuthGuard],`
   //   data: { authGuardPipe: redirectLoggedIn },
   //   loadChildren: () =>
   //     import('./reset/reset.module').then((m) => m.ResetPageModule),

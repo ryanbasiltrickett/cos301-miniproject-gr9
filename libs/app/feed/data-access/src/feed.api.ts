@@ -20,18 +20,18 @@ export class FeedApi {
     private readonly functions: Functions
   ) {}
 
-  profile$(id: string) {
-    const docRef = doc(
-      this.firestore,
-      `profiles/${id}`
-    ).withConverter<IProfile>({
-      fromFirestore: (snapshot) => {
-        return snapshot.data() as IProfile;
-      },
-      toFirestore: (it: IProfile) => it,
-    });
-    return docData(docRef, { idField: 'id' });
-  }
+  // profile$(id: string) {
+  //   const docRef = doc(
+  //     this.firestore,
+  //     `profiles/${id}`
+  //   ).withConverter<IProfile>({
+  //     fromFirestore: (snapshot) => {
+  //       return snapshot.data() as IProfile;
+  //     },
+  //     toFirestore: (it: IProfile) => it,
+  //   });
+  //   return docData(docRef, { idField: 'id' });
+  // }
 
 
   async generatePost(request: IgeneratePostRequest) {
