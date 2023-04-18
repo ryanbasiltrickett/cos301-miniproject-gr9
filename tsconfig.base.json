@@ -19,6 +19,11 @@
       "@mp/api/auth/data-access": ["libs/api/auth/data-access/src/index.ts"],
       "@mp/api/auth/feature": ["libs/api/auth/feature/src/index.ts"],
       "@mp/api/auth/util": ["libs/api/auth/util/src/index.ts"],
+      "@mp/api/browse/data-access": [
+        "libs/api/browse/data-access/src/index.ts"
+      ],
+      "@mp/api/browse/feature": ["libs/api/browse/feature/src/index.ts"],
+      "@mp/api/browse/util": ["libs/api/browse/util/src/index.ts"],
       "@mp/api/core/feature": ["libs/api/core/feature/src/index.ts"],
       "@mp/api/eventstore/data-access": [
         "libs/api/eventstore/data-access/src/index.ts"
@@ -32,6 +37,11 @@
       ],
       "@mp/api/history/feature": ["libs/api/history/feature/src/index.ts"],
       "@mp/api/history/util": ["libs/api/history/util/src/index.ts"],
+      "@mp/api/newsfeed/data-access": [
+        "libs/api/newsfeed/data-access/src/index.ts"
+      ],
+      "@mp/api/newsfeed/feature": ["libs/api/newsfeed/feature/src/index.ts"],
+      "@mp/api/newsfeed/util": ["libs/api/newsfeed/util/src/index.ts"],
       "@mp/api/profiles/data-access": [
         "libs/api/profiles/data-access/src/index.ts"
       ],
@@ -61,6 +71,11 @@
       "@mp/app/errors/feature": ["libs/app/errors/feature/src/index.ts"],
       "@mp/app/errors/util": ["libs/app/errors/util/src/index.ts"],
       "@mp/app/feed/feature": ["libs/app/feed/feature/src/index.ts"],
+      "@mp/app/feed/data-access": ["libs/app/feed/data-access/src/index.ts"],
+      "@mp/app/feed/feature": ["libs/app/feed/feature/src/index.ts"],
+      "@mp/app/feed/ui": ["libs/app/feed/ui/src/index.ts"],
+      "@mp/app/feed/util": ["libs/app/feed/util/src/index.ts"],
+
       "@mp/app/forgot/data-access": [
         "libs/app/forgot/data-access/src/index.ts"
       ],
@@ -70,6 +85,12 @@
       "@mp/app/login/data-access": ["libs/app/login/data-access/src/index.ts"],
       "@mp/app/login/feature": ["libs/app/login/feature/src/index.ts"],
       "@mp/app/login/util": ["libs/app/login/util/src/index.ts"],
+      "@mp/app/newsfeed/data-access": [
+        "libs/app/newsfeed/data-access/src/index.ts"
+      ],
+      "@mp/app/newsfeed/feature": ["libs/app/newsfeed/feature/src/index.ts"],
+      "@mp/app/newsfeed/ui": ["libs/app/newsfeed/ui/src/index.ts"],
+      "@mp/app/newsfeed/util": ["libs/app/newsfeed/util/src/index.ts"],
       "@mp/app/privacy/feature": ["libs/app/privacy/feature/src/index.ts"],
       "@mp/app/profile/data-access": [
         "libs/app/profile/data-access/src/index.ts"
