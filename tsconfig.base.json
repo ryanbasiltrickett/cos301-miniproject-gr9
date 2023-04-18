@@ -43,6 +43,8 @@
       "@mp/app/auth/data-access": ["libs/app/auth/data-access/src/index.ts"],
       "@mp/app/auth/feature": ["libs/app/auth/feature/src/index.ts"],
       "@mp/app/auth/util": ["libs/app/auth/util/src/index.ts"],
+      
+      "@mp/app/browse/data-access": ["libs/app/browse/data-access/src/index.ts"],
       "@mp/app/browse/feature": ["libs/app/browse/feature/src/index.ts"],
       "@mp/app/browse/ui": ["libs/app/browse/ui/src/index.ts"],
       "@mp/app/browse/util": ["libs/app/browse/util/src/index.ts"],

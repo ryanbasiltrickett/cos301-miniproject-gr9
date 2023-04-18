@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { appBrowseFeatureRoutes } from './lib.routes';
 
 import { BrowseModule as BrowseUiModule } from '@mp/app/browse/ui';
+
 import { BrowseComponent } from './browse.component';
 
 @NgModule({
