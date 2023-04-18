@@ -4,8 +4,9 @@ import { ProfilesModule } from '@mp/api/profiles/feature';
 import { UsersModule } from '@mp/api/users/feature';
 import { NewsfeedModule } from '@mp/api/newsfeed/feature'
 import { Module } from '@nestjs/common';
+import { BrowseModule} from '@mp/api/browse/feature';
 
 @Module({
-  imports: [AuthModule, EventstoreModule, ProfilesModule, UsersModule, NewsfeedModule],
+  imports: [AuthModule, EventstoreModule, ProfilesModule, UsersModule, NewsfeedModule, BrowseModule],
 })
 export class CoreModule {}

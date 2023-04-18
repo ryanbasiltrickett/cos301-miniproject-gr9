@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
-import { NewsfeedModule as NewsfeedModuleDA } from '@mp/api/newsfeed/data-access';
+import { BrowseModule as BrowseModuleDA } from '@mp/api/browse/data-access';
 import { BrowseService } from './browse.service';
 
 import {
@@ -14,10 +14,10 @@ export const QueryHandlers = [
 
 @Module (
   {
-    imports: [CqrsModule, NewsfeedModuleDA],
+    imports: [CqrsModule, BrowseModuleDA],
    providers: [BrowseService, ...QueryHandlers],
    exports: [BrowseService],
   }
 )
 
-export class NewsfeedModule {}
+export class BrowseModule {}

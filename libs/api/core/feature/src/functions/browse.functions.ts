@@ -1,17 +1,17 @@
-import { NewsfeedService } from "@mp/api/newsfeed/feature";
+import { BrowseService } from "@mp/api/browse/feature";
 import {
-  IupdateNFPostRequest, IupdateNFPostResponse,
-  IgeneratePostRequest, IgeneratePostResponse
-} from '@mp/api/newsfeed/util'
+  IGetUserRequest, 
+  IGetUserResponse
+} from '@mp/api/browse/util'
 import { NestFactory } from '@nestjs/core';
 import * as functions from 'firebase-functions';
 import { CoreModule } from '../core.module';
 
 
-export const generatePost = functions.https.onCall(
-  async (request: IgeneratePostRequest): Promise<IgeneratePostResponse> =>{
+export const getUser = functions.https.onCall(
+  async (request: IGetUserRequest): Promise<IGetUserResponse> =>{
     const app = await NestFactory.createApplicationContext(CoreModule);
-    const service = app.get(NewsfeedService);
-    return service.generatePost(request);
+    const service = app.get(BrowseService);
+    return service.getUser(request);
   }
 );
