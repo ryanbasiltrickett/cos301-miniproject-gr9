@@ -4,6 +4,7 @@ import { Functions, httpsCallable } from '@angular/fire/functions';
 import { IProfile } from '@mp/api/profiles/util';
 import { Timestamp } from 'firebase-admin/firestore';
 import * as admin from 'firebase-admin';
+import { IGetUser, IGetUserRequest, IGetUserResponse } from '@mp/api/browse/util';
 // import {
 //     IBrowse,
 // } from '@mp/api/browse/util';
@@ -45,6 +46,14 @@ export class BrowseApi {
     return docData(docRef, { idField: 'id' });
   }
 
-
+  async getUser(request: IGetUserRequest) {
+    return await httpsCallable<
+      IGetUserRequest,
+      IGetUserResponse
+    >(
+      this.functions,
+      'getUser'
+    )(request);
+  }
  
 }

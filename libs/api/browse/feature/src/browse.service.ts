@@ -16,7 +16,8 @@ export class BrowseService{
     async getUser(
         request: IGetUserRequest
     ): Promise<IGetUserResponse>{
-        return await this.commandBus.execute<
+        console.log("Here");
+        return await this.queryBus.execute<
         GetUserQuery,
         IGetUserResponse
         >(new GetUserQuery(request))
