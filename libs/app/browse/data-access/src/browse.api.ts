@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { doc, docData, Firestore } from '@angular/fire/firestore';
+import { collection, doc, docData, Firestore, query } from '@angular/fire/firestore';
 import { Functions, httpsCallable } from '@angular/fire/functions';
 import { IProfile } from '@mp/api/profiles/util';
 import { Timestamp } from 'firebase-admin/firestore';
 import * as admin from 'firebase-admin';
 import { IGetUser, IGetUserRequest, IGetUserResponse } from '@mp/api/browse/util';
+import { IUser } from '@mp/api/users/util';
+import { Subject } from 'rxjs';
 // import {
 //     IBrowse,
 // } from '@mp/api/browse/util';
@@ -29,8 +31,6 @@ export class BrowseApi {
     private readonly functions: Functions
   ) {}
 
-
-
   browse$(id: string) {
     const docRef = doc(
       this.firestore,
@@ -49,11 +49,10 @@ export class BrowseApi {
   async getUser(request: IGetUserRequest) {
     return await httpsCallable<
       IGetUserRequest,
-      IGetUserResponse
+      IUser[]
     >(
       this.functions,
       'getUser'
     )(request);
   }
- 
 }

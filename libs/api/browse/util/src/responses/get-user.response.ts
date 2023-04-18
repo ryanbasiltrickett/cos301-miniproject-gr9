@@ -1,5 +1,5 @@
-import { IGetUser } from "../interfaces";
+import { IUser } from "@mp/api/users/util";
 
 export interface IGetUserResponse {
-    user: IGetUser
+    user: IUser[]
 }

@@ -14,10 +14,11 @@ export class GetUserHandler implements IQueryHandler<GetUserQuery, IGetUserRespo
   async execute(query: GetUserQuery) : Promise<any> {
     const request = query.request;
     const username = request.user;
-    const response: IGetUserResponse = {user: request.user};
+    // const response: IGetUserResponse = {user: request.user};
     if(username){
-        await this.repository.getUser(username);
-        return response;
+        const results = await this.repository.getUser(username);
+        console.log(results);
+        return results;
     }else{
         throw new InvalidQueryHandlerException();
     }
