@@ -46,5 +46,8 @@ export class AuthRepository {
         // ..
       });
   }
-  //don't forget about the confirm password reset function
+
+  async confirmPasswordReset(code: string, email: string){
+    await this.confirmPasswordReset(code, email);
+  }
 }
