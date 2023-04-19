@@ -32,6 +32,11 @@
       ],
       "@mp/api/history/feature": ["libs/api/history/feature/src/index.ts"],
       "@mp/api/history/util": ["libs/api/history/util/src/index.ts"],
+      "@mp/api/newsfeed/data-access": [
+        "libs/api/newsfeed/data-access/src/index.ts"
+      ],
+      "@mp/api/newsfeed/feature": ["libs/api/newsfeed/feature/src/index.ts"],
+      "@mp/api/newsfeed/util": ["libs/api/newsfeed/util/src/index.ts"],
       "@mp/api/posts/data-access": ["libs/api/posts/data-access/src/index.ts"],
       "@mp/api/posts/feature": ["libs/api/posts/feature/src/index.ts"],
       "@mp/api/posts/util": ["libs/api/posts/util/src/index.ts"],
