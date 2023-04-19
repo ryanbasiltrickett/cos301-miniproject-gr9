@@ -18,11 +18,6 @@ export class BrowseRepository{
             .get();
 
             const data = users.docs.map((doc) => doc.data() as IUser);
-            // const 
-            // let foundUsers: IGetUserResponse[];
-            // data.forEach(user => {
-            //     console.log(user.displayName);
-            // });
             return data;            
         }
     }
