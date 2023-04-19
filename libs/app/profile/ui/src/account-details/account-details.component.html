@@ -7,28 +7,20 @@
       <ion-card-header>
         <ion-card-title class="ion-align-items-center">
           Account Details
-          <ion-icon
-            *ngIf="accountDetails.status == 'Incomplete'"
-            color="danger"
-            name="alert-circle-outline"></ion-icon>
-          <ion-icon
-            *ngIf="accountDetails.status == 'Complete'"
-            color="success"
-            name="checkmark-circle-outline"></ion-icon>
         </ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <ion-list>
           <ion-item class="ion-no-padding">
-            <ion-label position="floating" class="required"
-              >Display name</ion-label
-            >
+            <ion-label position="floating" class="required">
+              Username
+            </ion-label>
             <ion-input
               type="text"
               minlength="4"
               maxlength="64"
               required="true"
-              placeholder="Enter display name"
+              placeholder="Enter username"
               formControlName="username"
               [value]="accountDetails.username"
               autocomplete="name"></ion-input>
@@ -43,7 +35,37 @@
             <small>{{ usernameError }}</small>
           </ion-text>
           <ion-item class="ion-no-padding">
-            <ion-label position="floating" class="required">Email</ion-label>
+            <ion-label position="floating" class="required">
+              Bio
+            </ion-label>
+            <ion-input
+              type="text"
+              minlength="4"
+              maxlength="64"
+              required="true"
+              placeholder="Enter your bio"
+              formControlName="bio"
+              [value]="accountDetails.bio"
+              autocomplete="name"></ion-input>
+          </ion-item>
+          <ion-item class="ion-no-padding">
+            <ion-label position="floating" class="required">
+              Name
+            </ion-label>
+            <ion-input
+              type="text"
+              minlength="4"
+              maxlength="64"
+              required="true"
+              placeholder="Enter your name"
+              formControlName="name"
+              [value]="accountDetails.name"
+              autocomplete="name"></ion-input>
+          </ion-item>
+          <ion-item class="ion-no-padding">
+            <ion-label position="floating" class="required">
+              Email
+            </ion-label>
             <ion-input
               type="email"
               minlength="4"
@@ -88,9 +110,9 @@
         (click)="logout()">
         Logout
       </ion-button>
-      <ion-button fill="clear" class="ion-float-right" type="submit"
-        >Save</ion-button
-      >
+      <ion-button fill="clear" class="ion-float-right" type="submit">
+        Save
+      </ion-button>
     </ion-card>
   </form>
 </ng-container>

@@ -8,7 +8,7 @@ export interface IAccountDetails {
   timeLeft?: number | null | undefined;
 
   email?: string | null | undefined;
-  photoURL?: string | null | undefined;
+  // photoURL?: string | null | undefined;
   password?: string | null | undefined;
   status?: ProfileStatus | null | undefined;
 }

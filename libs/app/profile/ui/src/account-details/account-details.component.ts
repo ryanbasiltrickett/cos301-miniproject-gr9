@@ -22,7 +22,6 @@ export class AccountDetailsComponent {
   accountDetailsForm = this.fb.group({
     username: ['', [Validators.minLength(6), Validators.maxLength(64)]],
     email: ['', [Validators.minLength(6), Validators.maxLength(64)]],
-    // photoURL: ['', [Validators.minLength(6), Validators.maxLength(64)]],
     password: ['', [Validators.minLength(6), Validators.maxLength(64)]],
   });
   showPassword = false;
@@ -31,12 +30,16 @@ export class AccountDetailsComponent {
     return this.accountDetailsForm.get('username');
   }
 
-  get email() {
-    return this.accountDetailsForm.get('email');
+  get bio() {
+    return this.accountDetailsForm.get('bio');
   }
 
-  get photoURL() {
-    return this.accountDetailsForm.get('photoURL');
+  get name() {
+    return this.accountDetailsForm.get('name');
+  }
+
+  get email() {
+    return this.accountDetailsForm.get('email');
   }
 
   get password() {
@@ -73,16 +76,6 @@ export class AccountDetailsComponent {
       return 'Password should be shorter than 64 characters';
 
     return 'Password is invalid';
-  }
-
-  get photoURLError(): string {
-    if (this.photoURL?.errors?.['required']) return 'Photo URL is required';
-    if (this.photoURL?.errors?.['minlength'])
-      return 'Photo URL should be longer than 6 characters';
-    if (this.photoURL?.errors?.['maxlength'])
-      return 'Photo URL should be shorter than 64 characters';
-
-    return 'Photo URL is invalid';
   }
 
   constructor(
