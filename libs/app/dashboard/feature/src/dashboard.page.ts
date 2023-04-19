@@ -3,7 +3,7 @@ import { AlertController } from '@ionic/angular';
 import { IProfile } from '@mp/api/profiles/util';
 import { ProfileState } from '@mp/app/profile/data-access';
 import { Select } from '@ngxs/store';
-import { Observable, tap } from 'rxjs';
+import { Observable, firstValueFrom, tap } from 'rxjs';
 import { ToastController } from '@ionic/angular';
 import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 import { AngularFireFunctions} from '@angular/fire/compat/functions';
@@ -24,7 +24,7 @@ import { Store } from '@ngxs/store';
 export class DashboardPage {
   @Select(ProfileState.profile) profile$!: Observable<IProfile | null>;
 
-  token: any;
+  event$: Observable<IEvent>;
   constructor(public alertController: AlertController,
      private toastController: ToastController, 
      private afMessaging: AngularFireMessaging,
@@ -33,7 +33,8 @@ export class DashboardPage {
      private fun: AngularFireFunctions,
     //  private api: DashboardAPI,
     //  private eventService: EventsService
-    ) {}
+    
+    ) {this.event$ = this.store.select(state => state.dashboard.event);}
 
   async makeToast(message: any){
     const toast = await this.toastController.create({
@@ -44,46 +45,21 @@ export class DashboardPage {
     toast.present();
   }
 
-  getPermissions(){
-    return this.afMessaging.requestToken.pipe(
-      tap(token => this.token = token)
-    );
-  }
-
-  showMessages(){
-    return this.afMessaging.messages.pipe(
-      tap(msg => {
-        const body: any = (msg as any).notification.body;
-        this.makeToast(body);
-      })
-    );
-  }
-
+  newEvent: string[] = [];
   async generateEvent(){
     this.makeToast('Fired');
-    //     this.getPermissions();
-    //     console.log('Permission granted');
-    // const event: IEvent = {eventTitle: "Test", eventTime: new Date()};
-    // const req: IEventRequest = {event: event};
-    // await httpsCallable<
-    //     IEventRequest, IEventResponse
-    // >(
-    //   this.functions,
-    //   'generateEvent'
-    // )(req);
 
-    
     this.store.dispatch(
       new DashboardEvent({
         eventTitle: 'Test12',
         eventTime: new Date(),
       })
     );
-    // console.log(this.store.select(DashboardEventState.getEventTitle));
-    // const event: IEvent = {eventTitle: "Test", eventTime: new Date()};
-    // const req: IEventRequest = {event: event};
-    // this.fun.httpsCallable('generateEvent')(req).subscribe();
-    // this.makeToast('Fired1')
+
+    const event = await firstValueFrom(this.event$);
+    this.newEvent.push(event.eventTitle);
+    this.newEvent.push(event.eventTime);
+
   }
 
 }

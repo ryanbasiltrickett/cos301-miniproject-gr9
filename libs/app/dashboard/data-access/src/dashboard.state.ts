@@ -6,15 +6,13 @@ import { DashboardAPI } from './dashboard.api';
 
 //TODO export this to the create library in data-access
 export interface DashboardEventStateModel {
-  eventTitle: string | undefined;
-  eventTime: Date | undefined;
+  event: IEvent | null;
 }
 
 @State<DashboardEventStateModel>({
   name: 'dashboard',
   defaults: {
-    eventTitle: 'Test',
-    eventTime: new Date(),
+    event: null
   },
 })
 
@@ -27,7 +25,7 @@ export class DashboardEventState {
 
   @Selector()
     static getEventTitle(state: DashboardEventStateModel) {
-      return state.eventTitle;
+      return state.event;
     }
 
   @Action(DashboardEvent)
@@ -42,11 +40,15 @@ export class DashboardEventState {
       event,
     };
     const responseRef = await this.api.dashboardEvent(request);
-    console.log(responseRef.data.event.eventTime);
+    // console.log(responseRef.data.event.eventTime);
     const eventDate = new Date();
     const [h, m] = responseRef.data.event.eventTime.split(":");
     eventDate.setHours(parseInt(h, 10));
     eventDate.setMinutes(parseInt(m, 10));
-    console.log(eventDate);
+    // console.log(eventDate);
+
+    const dashboardModel: DashboardEventStateModel = { event: {eventTitle: responseRef.data.event.eventTitle, eventTime: responseRef.data.event.eventTime}};
+    ctx.setState(dashboardModel);
+    // console.log(ctx.getState());
   }
 }

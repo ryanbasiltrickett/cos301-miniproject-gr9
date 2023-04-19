@@ -30,7 +30,7 @@ export class NotifyEventHandler
       const possibleEvents: string[] = [
           "Post now",
           "Tag a friend in a post",
-          "Send a frind a message",
+          "Send a friend a message",
           "Follow someone new",
           "Like posts",
           "Give some time to someone you might think need it"
