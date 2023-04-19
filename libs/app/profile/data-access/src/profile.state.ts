@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import {
-    AgeGroup,
-    Ethnicity,
-    Gender,
-    HouseholdIncome,
+    // AgeGroup,
+    // Ethnicity,
+    // Gender,
+    // HouseholdIncome,
     IProfile,
     IUpdateAccountDetailsRequest,
-    IUpdateAddressDetailsRequest,
-    IUpdateContactDetailsRequest,
-    IUpdateOccupationDetailsRequest,
-    IUpdatePersonalDetailsRequest
+    // IUpdateAddressDetailsRequest,
+    // IUpdateContactDetailsRequest,
+    // IUpdateOccupationDetailsRequest,
+    // IUpdatePersonalDetailsRequest
 } from '@mp/api/profiles/util';
 import { AuthState } from '@mp/app/auth/data-access';
 import { Logout as AuthLogout } from '@mp/app/auth/util';
@@ -19,10 +19,10 @@ import {
     SetProfile,
     SubscribeToProfile,
     UpdateAccountDetails,
-    UpdateAddressDetails,
-    UpdateContactDetails,
-    UpdateOccupationDetails,
-    UpdatePersonalDetails
+    // UpdateAddressDetails,
+    // UpdateContactDetails,
+    // UpdateOccupationDetails,
+    // UpdatePersonalDetails
 } from '@mp/app/profile/util';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import produce from 'immer';
@@ -40,6 +40,7 @@ export interface ProfileStateModel {
       email: string | null;
       // photoURL: string | null;
       password: string | null;
+      visibility: boolean | null;
     };
     dirty: false;
     status: string;
@@ -95,6 +96,7 @@ export interface ProfileStateModel {
         email: null,
         // photoURL: null,
         password: null,
+        visibility: true,
       },
       dirty: false,
       status: '',
@@ -185,6 +187,7 @@ export class ProfileState {
       const email = state.accountDetailsForm.model.email;
       // const photoURL = state.accountDetailsForm.model.photoURL;
       const password = state.accountDetailsForm.model.password;
+      const visibility = state.accountDetailsForm.model.visibility;
 
       if (!userId || !username || !email || !password)
         return ctx.dispatch(
@@ -202,6 +205,7 @@ export class ProfileState {
             name,
             email,
             password,
+            visibility,
           },
         },
       };

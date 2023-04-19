@@ -101,6 +101,10 @@
             color="danger">
             <small>{{ passwordError }}</small>
           </ion-text>
+          <ion-item class="ion-no-padding">
+            <ion-label class="ion-padding-end">Public Visibility</ion-label>
+            <ion-checkbox [value]="accountDetails.visibility"></ion-checkbox>
+          </ion-item>
         </ion-list>
       </ion-card-content>
       <ion-button

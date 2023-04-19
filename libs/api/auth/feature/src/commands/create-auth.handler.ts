@@ -15,14 +15,14 @@ export class CreateAuthHandler implements ICommandHandler<CreateAuthCommand> {
       id: request.userRecord.uid,
       email: request.userRecord.email,
       username: request.userRecord.email,
-      photoURL: request.userRecord.photoURL,
-      phoneNumber: request.userRecord.phoneNumber,
-      customClaims: request.userRecord.customClaims,
+      // photoURL: request.userRecord.photoURL,
+      // phoneNumber: request.userRecord.phoneNumber,
+      // customClaims: request.userRecord.customClaims,
       created: Timestamp.fromDate(new Date()),
       bio: null,
-      visibility: null,
+      visibility: true,
       name: null,
-      timeLeft: null,
+      timeLeft: 1000,
     };
     const auth = this.publisher.mergeObjectContext(Auth.fromData(data));
 

@@ -4,7 +4,7 @@ export interface IAccountDetails {
   username?: string | null | undefined;
   bio?: string | null | undefined;
   name?: string | null | undefined;
-  visibility?: boolean | false | undefined;
+  visibility?: boolean | null | undefined;
   timeLeft?: number | null | undefined;
 
   email?: string | null | undefined;
