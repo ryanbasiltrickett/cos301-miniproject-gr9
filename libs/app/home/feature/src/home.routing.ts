@@ -8,9 +8,11 @@ const routes: Routes = [
     component: HomePage,
     children: [
       {
-        path: 'dashboard',
+        path: 'notification',
         loadChildren: () =>
-          import('@mp/app/dashboard/feature').then((m) => m.DashboardModule),
+          import('@mp/app/notification/feature').then(
+            (m) => m.NotificationModule
+          ),
       },
       {
         path: 'profile',
@@ -24,7 +26,7 @@ const routes: Routes = [
       },
       {
         path: 'create',
-        loadChildren: () => 
+        loadChildren: () =>
           import('@mp/app/create/feature').then((m) => m.CreateModule),
       },
       {

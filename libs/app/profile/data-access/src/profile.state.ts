@@ -34,7 +34,7 @@ export interface ProfileStateModel {
   profile: IProfile | null;
   accountDetailsForm: {
     model: {
-      displayName: string | null;
+      username: string | null;
       email: string | null;
       photoURL: string | null;
       password: string | null;
@@ -87,7 +87,7 @@ export interface ProfileStateModel {
     profile: null,
     accountDetailsForm: {
       model: {
-        displayName: null,
+        username: null,
         email: null,
         photoURL: null,
         password: null,
@@ -172,37 +172,38 @@ export class ProfileState {
 
   @Action(UpdateAccountDetails)
   async updateAccountDetails(ctx: StateContext<ProfileStateModel>) {
-    try {
-      const state = ctx.getState();
-      const userId = state.profile?.userId;
-      const displayName = state.accountDetailsForm.model.displayName;
-      const email = state.accountDetailsForm.model.email;
-      // const photoURL = state.accountDetailsForm.model.photoURL;
-      const password = state.accountDetailsForm.model.password;
+    // TODO: uncomment this after the api functions have been fixed
+    // try {
+    //   const state = ctx.getState();
+    //   const userId = state.profile?.userId;
+    //   const username = state.accountDetailsForm.model.username;
+    //   const email = state.accountDetailsForm.model.email;
+    //   // const photoURL = state.accountDetailsForm.model.photoURL;
+    //   const password = state.accountDetailsForm.model.password;
 
-      if (!userId || !displayName || !email || !password)
-        return ctx.dispatch(
-          new SetError(
-            'UserId or display name or email or photo URL or password not set'
-          )
-        );
+    //   if (!userId || !username || !email || !password)
+    //     return ctx.dispatch(
+    //       new SetError(
+    //         'UserId or display name or email or photo URL or password not set'
+    //       )
+    //     );
 
-      const request: IUpdateAccountDetailsRequest = {
-        profile: {
-          userId,
-          accountDetails: {
-            displayName,
-            email,
-            password,
-          },
-        },
-      };
-      const responseRef = await this.profileApi.updateAccountDetails(request);
-      const response = responseRef.data;
-      return ctx.dispatch(new SetProfile(response.profile));
-    } catch (error) {
-      return ctx.dispatch(new SetError((error as Error).message));
-    }
+    //   const request: IUpdateAccountDetailsRequest = {
+    //     profile: {
+    //       userId,
+    //       accountDetails: {
+    //         username,
+    //         email,
+    //         password,
+    //       },
+    //     },
+    //   };
+    //   const responseRef = await this.profileApi.updateAccountDetails(request);
+    //   const response = responseRef.data;
+    //   return ctx.dispatch(new SetProfile(response.profile));
+    // } catch (error) {
+    //   return ctx.dispatch(new SetError((error as Error).message));
+    // }
   }
 
   @Action(UpdateContactDetails)

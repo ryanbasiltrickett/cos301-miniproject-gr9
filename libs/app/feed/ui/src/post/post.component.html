@@ -1,25 +1,35 @@
-<ion-card #card>
-  <ion-card-header>
-    <ion-card-title>{{ post.id }}</ion-card-title>
-    <ion-card-subtitle>{{ post.published }}</ion-card-subtitle>
-  </ion-card-header>
+<div class="post">
+  <div class="post-header">
+    <img class="avatar" src="https://via.placeholder.com/40" alt="User Avatar" />
+    <span class="username">johndoe</span>
+  </div>
+  <div class="post-content">
+    <img src="https://picsum.photos/800/400" alt="Post Image" class="post-image" />
+    <p>{{ post.description }} </p>
+  </div>
 
-  <ion-card-content>
-    <ngx-skeleton-loader
-      count="1"
-      [theme]="{ height: '350px' }"
-      appearance="line"></ngx-skeleton-loader>
-  </ion-card-content>
+  <div class="post-actions">
+    <ion-button fill="clear" class="post-action" (click)="likePost()">
+      <ion-icon name="heart-outline"></ion-icon>
+      <span>{{ post.likes }}</span>
+    </ion-button>
 
-  <ion-card-header>
-    <ion-card-subtitle>{{ post.description }} </ion-card-subtitle>
-  </ion-card-header>
+    <ion-button fill="clear" class="post-action" (click)="onDonateClick()">
+      <ion-icon name="cash-outline"></ion-icon>
+      <span>Donate</span>
+    </ion-button>
 
-  <ion-button fill="clear" (click)="likePost()">
-    Likes: {{ post.likes }}
-  </ion-button>
-  <ion-button fill="clear">Comments</ion-button>
-  <ion-button style="float: right; margin-right: 1rem" fill="outline">
-    Time: {{ post.time }}
-  </ion-button>
-</ion-card>
+    <ion-button fill="clear" class="post-action" (click)="onCommentClick()">
+      <ion-icon name="chatbox-outline"></ion-icon>
+    </ion-button>
+
+    <span class="post-action">
+      <ion-icon name="time-outline"></ion-icon>
+      <span>Total time: {{ post.time }}</span>
+    </span>
+    <ion-button fill="clear" class="post-action" (click)="onShareClick()">
+      <ion-icon name="share-outline"></ion-icon>
+      <!-- <span>Share</span> -->
+    </ion-button>
+  </div>
+</div>

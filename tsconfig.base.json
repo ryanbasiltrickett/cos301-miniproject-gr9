@@ -51,6 +51,8 @@
       "@mp/app/auth/data-access": ["libs/app/auth/data-access/src/index.ts"],
       "@mp/app/auth/feature": ["libs/app/auth/feature/src/index.ts"],
       "@mp/app/auth/util": ["libs/app/auth/util/src/index.ts"],
+      "@mp/app/browse/feature": ["libs/app/browse/feature/src/index.ts"],
+      "@mp/app/browse/ui": ["libs/app/browse/ui/src/index.ts"],
       "@mp/app/copyright/ui": ["libs/app/copyright/ui/src/index.ts"],
       "@mp/app/core/feature": ["libs/app/core/feature/src/index.ts"],
       "@mp/app/create/data-access": [
@@ -73,9 +75,17 @@
       "@mp/app/feed/feature": ["libs/app/feed/feature/src/index.ts"],
       "@mp/app/feed/ui": ["libs/app/feed/ui/src/index.ts"],
       "@mp/app/feed/util": ["libs/app/feed/util/src/index.ts"],
+      "@mp/app/forget/data-access": [
+        "libs/app/forget/data-access/src/index.ts"
+      ],
+      "@mp/app/forget/util": ["libs/app/forget/util/src/index.ts"],
       "@mp/app/forgot/data-access": [
         "libs/app/forgot/data-access/src/index.ts"
       ],
+      "@mp/app/notification/feature": [
+        "libs/app/notification/feature/src/index.ts"
+      ],
+      "@mp/app/notification/ui": ["libs/app/notification/ui/src/index.ts"],
       "@mp/app/forgot/feature": ["libs/app/forgot/feature/src/index.ts"],
       "@mp/app/forgot/util": ["libs/app/forgot/util/src/index.ts"],
       "@mp/app/home/feature": ["libs/app/home/feature/src/index.ts"],
@@ -99,6 +109,11 @@
       "@mp/app/reset/data-access": ["libs/app/reset/data-access/src/index.ts"],
       "@mp/app/reset/feature": ["libs/app/reset/feature/src/index.ts"],
       "@mp/app/reset/util": ["libs/app/reset/util/src/index.ts"],
+      "@mp/app/settings/data-access": [
+        "libs/app/settings/data-access/src/index.ts"
+      ],
+      "@mp/app/settings/feature": ["libs/app/settings/feature/src/index.ts"],
+      "@mp/app/settings/util": ["libs/app/settings/util/src/index.ts"],
       "@mp/app/tos/feature": ["libs/app/tos/feature/src/index.ts"],
       "@mp/app/updates/data-access": [
         "libs/app/updates/data-access/src/index.ts"

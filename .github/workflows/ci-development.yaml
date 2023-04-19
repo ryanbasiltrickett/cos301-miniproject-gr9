@@ -1,9 +1,9 @@
 name: Development Continous Integration (CI)
 on:
   push:
-    branches: [ develop ]
+    branches: [ develop, feat/ui ]
   pull_request:
-    branches: [ develop ]
+    branches: [ develop, feat/ui ]
 
 jobs:
   test_and_build:

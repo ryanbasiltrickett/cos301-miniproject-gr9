@@ -9,6 +9,8 @@ import { IonCard } from '@ionic/angular';
 import { IPost } from '@mp/api/posts/util';
 import { GivePostTime, LikePost } from '@mp/app/feed/util';
 import { Store } from '@ngxs/store';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ToastController } from '@ionic/angular'
 
 @Component({
   selector: 'mp-post',
@@ -20,7 +22,7 @@ export class PostComponent {
   inViewObserver!: IntersectionObserver;
   timer: NodeJS.Timer | undefined;
 
-  constructor(private readonly store: Store, private readonly el: ElementRef) {
+  constructor(private readonly store: Store, private readonly el: ElementRef, private toastController: ToastController) {
     this.inViewObserver = new IntersectionObserver(
       (entries: IntersectionObserverEntry[]) => {
         entries.forEach((entry: IntersectionObserverEntry) => {
@@ -52,5 +54,26 @@ export class PostComponent {
 
   likePost(): void {
     this.store.dispatch(new LikePost(this.post));
+  }
+
+  onDonateClick() {
+    console.log('Donate button clicked');
+    // Add your donate functionality here
+  }
+
+  onCommentClick() {
+    console.log('Comment button clicked');
+    // Add your comment functionality here
+  }
+
+  async onShareClick() {
+    console.log('Share button clicked');
+    // Add your share functionality here
+
+    const toast = await this.toastController.create({
+      message: 'copied to clipboard',
+      duration: 2000,
+    });
+    toast.present();
   }
 }

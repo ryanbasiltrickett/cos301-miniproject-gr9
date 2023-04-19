@@ -1,12 +1,21 @@
 import { Component } from '@angular/core';
+import {} from '@mp/app/auth/data-access';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Login } from '@mp/app/login/util';
 import {
-    ActionsExecuting,
-    actionsExecuting
+  ActionsExecuting,
+  actionsExecuting,
 } from '@ngxs-labs/actions-executing';
+
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
+
+// import {
+//   ContinueWithApple,
+//   ContinueWithFacebook,
+//   ContinueWithGoogle,
+//   ContinueWithTwitter,
+// } from '@mp/app/auth/util';
 
 @Component({
   selector: 'ms-login-page',
@@ -66,5 +75,21 @@ export class LoginPage {
 
   toggleShowPassword() {
     this.showPassword = !this.showPassword;
+  }
+
+  googleLogin() {
+    // this.store.dispatch(new ContinueWithGoogle());
+  }
+
+  facebookLogin() {
+    // this.store.dispatch(new ContinueWithFacebook());
+  }
+
+  appleLogin() {
+    // this.store.dispatch(new ContinueWithApple());
+  }
+
+  twitterLogin() {
+    // this.store.dispatch(new ContinueWithTwitter());
   }
 }
