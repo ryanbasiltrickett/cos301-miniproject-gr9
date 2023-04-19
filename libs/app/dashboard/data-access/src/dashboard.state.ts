@@ -30,17 +30,10 @@ export class DashboardEventState {
 
   @Action(DashboardEvent)
   async dashboardEvent(ctx: StateContext<DashboardEventStateModel>, {event}: IEventRequest) {
-    try{
-      console.log("State Fired");
-    }catch(err){
-      console.log(err);
-    }
-    
     const request: IEventRequest = {
       event,
     };
     const responseRef = await this.api.dashboardEvent(request);
-    // console.log(responseRef.data.event.eventTime);
     const eventDate = new Date();
     const [h, m] = responseRef.data.event.eventTime.split(":");
     eventDate.setHours(parseInt(h, 10));
