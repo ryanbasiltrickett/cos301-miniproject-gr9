@@ -10,3 +10,7 @@ export class BrowseAction{
 export class ClearBrowseAction{
   static readonly type = '[Browse] Clear';
 }
+
+export class GetTrendingAction{
+  static readonly type = '[Browse] Trending';
+}

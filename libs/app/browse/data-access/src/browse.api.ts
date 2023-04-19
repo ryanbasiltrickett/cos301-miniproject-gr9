@@ -55,4 +55,8 @@ export class BrowseApi {
       'getUser'
     )(request);
   }
+
+  async getTrending(){
+    console.log('Calling Firebase');
+  }
 }
