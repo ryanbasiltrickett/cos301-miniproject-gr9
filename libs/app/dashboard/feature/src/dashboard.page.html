@@ -27,8 +27,8 @@
   </ng-template>
   <ion-button (click)="generateEvent()">Test Event</ion-button>
   <ion-card>
-    <ion-header *ngFor="let i of newEvent">
+    <ion-header *ngFor="let i of event$ | async">
       <ion-title>{{i}}</ion-title>
-    </ion-header>
+    </ion-header>      
   </ion-card>
 </ion-content>

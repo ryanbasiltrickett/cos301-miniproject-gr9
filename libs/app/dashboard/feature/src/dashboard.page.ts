@@ -25,7 +25,7 @@ import { ActionsExecuting, actionsExecuting } from '@ngxs-labs/actions-executing
 })
 export class DashboardPage {
   @Select(ProfileState.profile) profile$!: Observable<IProfile | null>;
-  @Select(DashboardEventState.getEvent) event$!: Observable<IEvent | null>;
+  @Select(DashboardEventState.getEvent) event$!: Observable<string[] | null>;
 
   busy$!: Observable<ActionsExecuting>;
   constructor(public alertController: AlertController,
@@ -66,15 +66,15 @@ export class DashboardPage {
     // // console.log(event);
     // this.newEvent.push(event.eventTitle);
     // this.newEvent.push(event.eventTime);
-      await this.getEvent();
+      // await this.getEvent();
   }
 
-  async getEvent(){
-    const event = await firstValueFrom(this.event$);
-    if(event){
-      this.newEvent.push(event.eventTitle);
-      this.newEvent.push(event.eventTime);    
-    }
+  // async getEvent(){
+  //   const event = await firstValueFrom(this.event$);
+  //   if(event){
+  //     this.newEvent.push(event.eventTitle);
+  //     this.newEvent.push(event.eventTime);    
+  //   }
 
-  }
+  // }
 }
