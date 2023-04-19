@@ -3,7 +3,7 @@ import { AlertController } from '@ionic/angular';
 import { IProfile } from '@mp/api/profiles/util';
 import { ProfileState } from '@mp/app/profile/data-access';
 import { Select } from '@ngxs/store';
-import { Observable, firstValueFrom, tap } from 'rxjs';
+import { Observable, firstValueFrom, lastValueFrom, tap,take, takeUntil } from 'rxjs';
 import { ToastController } from '@ionic/angular';
 import { AngularFireMessaging } from '@angular/fire/compat/messaging';
 import { AngularFireFunctions} from '@angular/fire/compat/functions';
@@ -12,6 +12,8 @@ import { IEvent, IEventRequest, IEventResponse } from '@mp/api/events/util';
 import { Functions, httpsCallable } from '@angular/fire/functions';
 import { DashboardEvent } from '@mp/app/dashboard/util';
 import { Store } from '@ngxs/store';
+import { DashboardEventState } from '@mp/app/dashboard/data-access';
+import { ActionsExecuting, actionsExecuting } from '@ngxs-labs/actions-executing';
 // import { DashboardAPI } from '@mp/app/dashboard/data-access';
 // import { DashboardEventState } from '@mp/app/dashboard/data-access';
 
@@ -23,8 +25,9 @@ import { Store } from '@ngxs/store';
 })
 export class DashboardPage {
   @Select(ProfileState.profile) profile$!: Observable<IProfile | null>;
+  @Select(DashboardEventState.getEvent) event$!: Observable<IEvent | null>;
 
-  event$: Observable<IEvent>;
+  busy$!: Observable<ActionsExecuting>;
   constructor(public alertController: AlertController,
      private toastController: ToastController, 
      private afMessaging: AngularFireMessaging,
@@ -34,7 +37,9 @@ export class DashboardPage {
     //  private api: DashboardAPI,
     //  private eventService: EventsService
     
-    ) {this.event$ = this.store.select(state => state.dashboard.event);}
+    ) {
+      // this.event$ = this.store.select(state => state.dashboard.event);
+    }
 
   async makeToast(message: any){
     const toast = await this.toastController.create({
@@ -56,10 +61,20 @@ export class DashboardPage {
       })
     );
 
-    const event = await firstValueFrom(this.event$);
-    this.newEvent.push(event.eventTitle);
-    this.newEvent.push(event.eventTime);
-
+    // const event = await this.getEvent();
+    
+    // // console.log(event);
+    // this.newEvent.push(event.eventTitle);
+    // this.newEvent.push(event.eventTime);
+      await this.getEvent();
   }
 
+  async getEvent(){
+    const event = await firstValueFrom(this.event$);
+    if(event){
+      this.newEvent.push(event.eventTitle);
+      this.newEvent.push(event.eventTime);    
+    }
+
+  }
 }

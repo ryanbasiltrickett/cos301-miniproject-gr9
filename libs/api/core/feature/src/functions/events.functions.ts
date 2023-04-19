@@ -12,7 +12,7 @@ export const generateEvent = functions.https.onCall(
       console.log(request);
       const app = await NestFactory.createApplicationContext(CoreModule);
       const service = app.get(EventsService);
-      return await service.notifyAboutEvent(request);
+      return await service.generateEvent(request);
     }
 );
 

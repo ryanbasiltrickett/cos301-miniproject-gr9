@@ -19,13 +19,13 @@ export class EventsService {
   //   >(new GenerateEventCommand(request));
   // }
 
-  async notifyAboutEvent(
+  async generateEvent(
     request: IEventRequest,
   ): (Promise<IEventResponse>){
     console.log("In service");
     return await this.commandBus.execute<
-      NotifyEventCommand,
+      GenerateEventCommand,
       IEventResponse
-    >(new NotifyEventCommand(request));
+    >(new GenerateEventCommand(request));
   }
 }

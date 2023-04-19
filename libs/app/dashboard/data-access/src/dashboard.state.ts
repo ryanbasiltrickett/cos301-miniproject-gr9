@@ -1,7 +1,7 @@
 import { Action, State, StateContext, Store, Selector } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import { DashboardEvent } from '@mp/app/dashboard/util';
-import { IEvent, IEventRequest } from '@mp/api/events/util';
+import { IEvent, IEventRequest, IEventResponse } from '@mp/api/events/util';
 import { DashboardAPI } from './dashboard.api';
 
 //TODO export this to the create library in data-access
@@ -24,7 +24,7 @@ export class DashboardEventState {
   ) {}
 
   @Selector()
-    static getEventTitle(state: DashboardEventStateModel) {
+    static getEvent(state: DashboardEventStateModel) {
       return state.event;
     }
 
@@ -34,6 +34,7 @@ export class DashboardEventState {
       event,
     };
     const responseRef = await this.api.dashboardEvent(request);
+    console.log(responseRef.data);
     const eventDate = new Date();
     const [h, m] = responseRef.data.event.eventTime.split(":");
     eventDate.setHours(parseInt(h, 10));
@@ -41,7 +42,7 @@ export class DashboardEventState {
     // console.log(eventDate);
 
     const dashboardModel: DashboardEventStateModel = { event: {eventTitle: responseRef.data.event.eventTitle, eventTime: responseRef.data.event.eventTime}};
-    ctx.setState(dashboardModel);
+    return ctx.setState(dashboardModel);
     // console.log(ctx.getState());
   }
 }
