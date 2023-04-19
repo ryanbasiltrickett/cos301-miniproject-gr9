@@ -2,7 +2,7 @@ import { Action, State, StateContext, Store, Selector } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import { BrowseAction, ClearBrowseAction, GetTrendingAction } from '@mp/app/browse/util'; 
 import { BrowseApi } from './browse.api';
-import { IGetUser, IGetUserRequest } from '@mp/api/browse/util';
+import { IGetTrendingRequest, IGetUser, IGetUserRequest } from '@mp/api/browse/util';
 import { Timestamp } from 'firebase-admin/firestore';
 import { IUser } from '@mp/api/users/util';
 // import { Timestamp } from 'rxjs';
@@ -48,6 +48,7 @@ export class BrowseState {
   @Action(GetTrendingAction)
   async getTrending(ctx: StateContext<BrowseStateModel>){
     console.log('Action Fired');
-    this.api.getTrending();
+    const req: IGetTrendingRequest = {reqId: 'system'};
+    this.api.getTrending(req);
   }
 }

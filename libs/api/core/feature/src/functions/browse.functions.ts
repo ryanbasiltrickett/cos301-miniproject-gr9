@@ -1,5 +1,7 @@
 import { BrowseService } from "@mp/api/browse/feature";
 import {
+  IGetTrendingRequest,
+  IGetTrendingResponse,
   IGetUserRequest, 
   IGetUserResponse
 } from '@mp/api/browse/util'
@@ -17,6 +19,10 @@ export const getUser = functions.https.onCall(
   }
 );
 
-// export const getTrending = functions.https.onCall(
-//   async (request: )
-// )
+export const getTrending = functions.https.onCall(
+  async (request: IGetTrendingRequest): Promise<IGetTrendingResponse> => {
+    const app = await NestFactory.createApplicationContext(CoreModule);
+    const service = app.get(BrowseService);
+    return service.getTrending(request);
+  }
+)

@@ -3,7 +3,10 @@ import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import {
     IGetUserRequest,
     IGetUserResponse,
-    GetUserQuery
+    GetUserQuery,
+    IGetTrendingRequest,
+    IGetTrendingResponse,
+    GetTrendingQuery
 } from '@mp/api/browse/util';
 
 @Injectable()
@@ -16,10 +19,18 @@ export class BrowseService{
     async getUser(
         request: IGetUserRequest
     ): Promise<IGetUserResponse>{
-        console.log("Here");
         return await this.queryBus.execute<
         GetUserQuery,
         IGetUserResponse
         >(new GetUserQuery(request))
+    }
+
+    async getTrending(
+        request: IGetTrendingRequest
+    ): Promise<IGetTrendingResponse>{
+        return await this.queryBus.execute<
+        GetTrendingQuery,
+        IGetTrendingResponse
+        >(new GetTrendingQuery(request))
     }
 }

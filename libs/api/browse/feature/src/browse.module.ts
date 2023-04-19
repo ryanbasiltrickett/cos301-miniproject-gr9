@@ -4,12 +4,14 @@ import { BrowseModule as BrowseModuleDA } from '@mp/api/browse/data-access';
 import { BrowseService } from './browse.service';
 
 import {
-  GetUserHandler
+  GetUserHandler,
+  GetTrendingHandler
 } from './queries'
 
 
 export const QueryHandlers = [
-    GetUserHandler
+    GetUserHandler,
+    GetTrendingHandler
 ];
 
 @Module (

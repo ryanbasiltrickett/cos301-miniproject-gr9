@@ -1,6 +1,6 @@
 import { Injectable, NotImplementedException } from '@nestjs/common';
 import * as admin from 'firebase-admin';
-import { IGetUser, IGetUserResponse } from '@mp/api/browse/util';
+import { IGetPost, IGetUser, IGetUserResponse } from '@mp/api/browse/util';
 import { IUser} from '@mp/api/users/util';
 import { where } from '@firebase/firestore';
 
@@ -20,5 +20,18 @@ export class BrowseRepository{
             const data = users.docs.map((doc) => doc.data() as IUser);
             return data;            
         }
+    }
+
+    async getTrending(){
+        const db = admin.firestore();
+        console.log('In Browse Repo');
+        const posts = await db.collection('posts')
+        .where('time', '>', 50)
+        .limit(8)
+        .get();
+        // console.log(posts);
+        const postData = posts.docs.map((doc) => doc.data() as IGetPost);
+        // console.log(postData);
+        return postData;
     }
 }

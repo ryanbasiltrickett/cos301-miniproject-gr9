@@ -4,7 +4,7 @@ import { Functions, httpsCallable } from '@angular/fire/functions';
 import { IProfile } from '@mp/api/profiles/util';
 import { Timestamp } from 'firebase-admin/firestore';
 import * as admin from 'firebase-admin';
-import { IGetUser, IGetUserRequest, IGetUserResponse } from '@mp/api/browse/util';
+import { IGetTrendingRequest, IGetUser, IGetUserRequest, IGetUserResponse } from '@mp/api/browse/util';
 import { IUser } from '@mp/api/users/util';
 import { Subject } from 'rxjs';
 // import {
@@ -56,7 +56,13 @@ export class BrowseApi {
     )(request);
   }
 
-  async getTrending(){
-    console.log('Calling Firebase');
+  async getTrending(request: IGetTrendingRequest){
+    return await httpsCallable<
+    IGetTrendingRequest,
+    IGetUserResponse
+    >(
+      this.functions,
+      'getTrending'
+    )(request);
   }
 }
