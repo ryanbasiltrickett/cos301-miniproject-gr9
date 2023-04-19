@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
-// import { Store } from '@ngxs/store';
-// import {AuthService} from '@mp/api/auth/feature'
-// import {Auth} from '@angular/fire/auth';
-// import { Validators } from '@angular/forms';
-// import { Forget } from '@mp/app/forget/util';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'ms-forget-page',
@@ -12,10 +10,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./forget.page.scss'],
 })
 export class ForgetPage {
-  // email: FormControl = new FormControl('', [Validators.required, Validators.email]);
   forgetForm: FormGroup;
   emailError = '';
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private router: Router) {
     this.forgetForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]]
    });
@@ -25,23 +22,28 @@ export class ForgetPage {
     return this.forgetForm.get('email');
   }
 
-
-
+  async sendPasswordReset(email: string) {
+    const auth = getAuth();
+    await sendPasswordResetEmail(auth, email)
+      .then(() => {
+        // Password reset email sent!
+        window.alert("Password reset email sent to " + email);
+        this.router.navigate(['/login']);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+        // console.log("Something is went wrong. Email not sent");
+        window.alert("Something went wrong. Email not sent to" + email);
+      });
+  }
   sendVerificationCode(){
     const email = this.forgetForm.get('email')?.value;
+    this.sendPasswordReset(email);
     console.log("Sending verification " + email);
     return;
   }
-
-  // async sendVerificationCode(): Promise<void> {
-  //   const email = this.email.value;
-  //   try {
-  //     await this.authService.forgotPasssword(this.auth, email);
-  //     console.log('Password reset email sent successfully.');
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
 
 }
 
