@@ -41,6 +41,12 @@ export class DashboardEventState {
     const request: IEventRequest = {
       event,
     };
-    const responseRef = this.api.dashboardEvent(request);
+    const responseRef = await this.api.dashboardEvent(request);
+    console.log(responseRef.data.event.eventTime);
+    const eventDate = new Date();
+    const [h, m] = responseRef.data.event.eventTime.split(":");
+    eventDate.setHours(parseInt(h, 10));
+    eventDate.setMinutes(parseInt(m, 10));
+    console.log(eventDate);
   }
 }

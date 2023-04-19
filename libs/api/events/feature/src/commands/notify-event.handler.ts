@@ -39,26 +39,8 @@ export class NotifyEventHandler
       const eventIndex = Math.floor(Math.random() * 6);
 
       const generetedTime =  formattedHours + ":" + formattedMinutes;
-      const [h, m] = generetedTime.split(":");
-      const realTime = new Date();
-      realTime.setHours(parseInt(h, 10));
-      realTime.setMinutes(parseInt(m, 10));
-      // const event: IEvent = {eventTitle: possibleEvents[eventIndex], eventTime: realTime};
-      const eventReq = command.request;
-      command.request.event.eventTitle = possibleEvents[eventIndex];
-      command.request.event.eventTime = realTime;
-      const event = eventReq.event;
-      const notification: admin.messaging.Notification = {
-        title: "Its time for Timeshare",
-        body: event.eventTitle + ". This event will occur at: " + event.eventTime,
-      };
-
-      const payload: admin.messaging.Message = {
-        notification,
-        topic: 'all'
-      }
-      console.log(payload);
-      admin.messaging().send(payload);
-      return payload;
+      const response: IEventResponse = {event: {eventTitle: possibleEvents[eventIndex], eventTime: generetedTime}};
+      console.log(response);
+      return response;
     }
 }
