@@ -22,7 +22,7 @@ import { IUser } from '@mp/api/users/util';
     this.searchForm = this.fb.group({
       searchInput: [''],
     });
-    this.users$ = this.store.select(state => state.browse.users);
+    this.users$ = this.store.select(state => state.browse.response);
   }
 
   userName = "";
