@@ -130,7 +130,7 @@ export class ProfilePage {
   ngOnInit() {}
 
   goToSettings() {
-    this.router.navigateByUrl('/settings');
+    this.router.navigate(['/settings']);
   }
 
   donate(post: any) {
