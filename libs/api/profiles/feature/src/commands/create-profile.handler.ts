@@ -31,26 +31,26 @@ export class CreateProfileHandler
         photoURL,
         status: ProfileStatus.INCOMPLETE,
       },
-      personalDetails: {
-        age: null,
-        gender: null,
-        ethnicity: null,
-        status: ProfileStatus.INCOMPLETE,
-      },
-      contactDetails: {
-        cellphone,
-        status: ProfileStatus.INCOMPLETE,
-      },
-      addressDetails: {
-        residentialArea: null,
-        workArea: null,
-        status: ProfileStatus.INCOMPLETE,
-      },
-      occupationDetails: {
-        householdIncome: null,
-        occupation: null,
-        status: ProfileStatus.INCOMPLETE,
-      },
+      // personalDetails: {
+      //   age: null,
+      //   gender: null,
+      //   ethnicity: null,
+      //   status: ProfileStatus.INCOMPLETE,
+      // },
+      // contactDetails: {
+      //   cellphone,
+      //   status: ProfileStatus.INCOMPLETE,
+      // },
+      // addressDetails: {
+      //   residentialArea: null,
+      //   workArea: null,
+      //   status: ProfileStatus.INCOMPLETE,
+      // },
+      // occupationDetails: {
+      //   householdIncome: null,
+      //   occupation: null,
+      //   status: ProfileStatus.INCOMPLETE,
+      // },
       status: ProfileStatus.INCOMPLETE,
       created: Timestamp.fromDate(new Date()),
     };

@@ -34,21 +34,21 @@ export class AuthSagas {
     );
   };
 
-  @Saga()
-  onContactDetailsUpdated = (
-    events$: Observable<any>
-  ): Observable<ICommand> => {
-    return events$.pipe(
-      ofType(ContactDetailsUpdatedEvent),
-      map(
-        (event: ContactDetailsUpdatedEvent) =>
-          new UpdateAuthCommand({
-            auth: {
-              id: event.profile.userId,
-              phoneNumber: event.profile.contactDetails?.cellphone,
-            },
-          })
-      )
-    );
-  };
+  // @Saga()
+  // onContactDetailsUpdated = (
+  //   events$: Observable<any>
+  // ): Observable<ICommand> => {
+  //   return events$.pipe(
+  //     ofType(ContactDetailsUpdatedEvent),
+  //     map(
+  //       (event: ContactDetailsUpdatedEvent) =>
+  //         new UpdateAuthCommand({
+  //           auth: {
+  //             id: event.profile.userId,
+  //             phoneNumber: event.profile.contactDetails?.cellphone,
+  //           },
+  //         })
+  //     )
+  //   );
+  // };
 }

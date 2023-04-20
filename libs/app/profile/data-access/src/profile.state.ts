@@ -38,7 +38,7 @@ export interface ProfileStateModel {
       bio: string | null;
       name: string | null;
       email: string | null;
-      // photoURL: string | null;
+      photoURL: string | null;
       password: string | null;
       visibility: boolean | null;
     };
@@ -94,7 +94,7 @@ export interface ProfileStateModel {
         bio: '',
         name: '',
         email: null,
-        // photoURL: null,
+        photoURL: null,
         password: null,
         visibility: true,
       },
