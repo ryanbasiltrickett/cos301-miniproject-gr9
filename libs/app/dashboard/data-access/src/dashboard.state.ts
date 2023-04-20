@@ -35,17 +35,21 @@ export class DashboardEventState {
       user: event.user
     };
     const responseRef = await this.api.dashboardEvent(request);
-    console.log(responseRef.data);
-    const eventDate = new Date();
-    const [h, m] = responseRef.data.event.eventTime.split(":");
-    eventDate.setHours(parseInt(h, 10));
-    eventDate.setMinutes(parseInt(m, 10));
-    // console.log(eventDate);
-    const d: string[] = [];
-    d.push(responseRef.data.event.eventTitle);
-    d.push(responseRef.data.event.eventTime);
-    const dashboardModel: DashboardEventStateModel = { event: d};
-    ctx.setState(dashboardModel);
-    console.log(ctx.getState());
+    if(responseRef.data){
+      console.log(responseRef.data);
+      const eventDate = new Date();
+      const [h, m] = responseRef.data.event.eventTime.split(":");
+      eventDate.setHours(parseInt(h, 10));
+      eventDate.setMinutes(parseInt(m, 10));
+      // console.log(eventDate);
+      const d: string[] = [];
+      d.push(responseRef.data.event.eventTitle);
+      d.push(responseRef.data.event.eventTime);
+      const dashboardModel: DashboardEventStateModel = { event: d};
+      ctx.setState(dashboardModel);      
+    }else{
+      alert('You can not have more than 5 active events');
+    }
+    // console.log(ctx.getState());
   }
 }
