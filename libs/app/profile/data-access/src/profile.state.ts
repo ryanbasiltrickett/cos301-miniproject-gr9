@@ -172,38 +172,37 @@ export class ProfileState {
 
   @Action(UpdateAccountDetails)
   async updateAccountDetails(ctx: StateContext<ProfileStateModel>) {
-    // TODO: uncomment this after the api functions have been fixed
-    // try {
-    //   const state = ctx.getState();
-    //   const userId = state.profile?.userId;
-    //   const username = state.accountDetailsForm.model.username;
-    //   const email = state.accountDetailsForm.model.email;
-    //   // const photoURL = state.accountDetailsForm.model.photoURL;
-    //   const password = state.accountDetailsForm.model.password;
+    try {
+      const state = ctx.getState();
+      const userId = state.profile?.userId;
+      const username = state.accountDetailsForm.model.username;
+      const email = state.accountDetailsForm.model.email;
+      // const photoURL = state.accountDetailsForm.model.photoURL;
+      const password = state.accountDetailsForm.model.password;
 
-    //   if (!userId || !username || !email || !password)
-    //     return ctx.dispatch(
-    //       new SetError(
-    //         'UserId or display name or email or photo URL or password not set'
-    //       )
-    //     );
+      if (!userId || !username || !email || !password)
+        return ctx.dispatch(
+          new SetError(
+            'UserId or display name or email or photo URL or password not set'
+          )
+        );
 
-    //   const request: IUpdateAccountDetailsRequest = {
-    //     profile: {
-    //       userId,
-    //       accountDetails: {
-    //         username,
-    //         email,
-    //         password,
-    //       },
-    //     },
-    //   };
-    //   const responseRef = await this.profileApi.updateAccountDetails(request);
-    //   const response = responseRef.data;
-    //   return ctx.dispatch(new SetProfile(response.profile));
-    // } catch (error) {
-    //   return ctx.dispatch(new SetError((error as Error).message));
-    // }
+      const request: IUpdateAccountDetailsRequest = {
+        profile: {
+          userId,
+          accountDetails: {
+            username,
+            email,
+            password,
+          },
+        },
+      };
+      const responseRef = await this.profileApi.updateAccountDetails(request);
+      const response = responseRef.data;
+      return ctx.dispatch(new SetProfile(response.profile));
+    } catch (error) {
+      return ctx.dispatch(new SetError((error as Error).message));
+    }
   }
 
   @Action(UpdateContactDetails)

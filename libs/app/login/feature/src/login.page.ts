@@ -10,12 +10,12 @@ import {
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
-// import {
-//   ContinueWithApple,
-//   ContinueWithFacebook,
-//   ContinueWithGoogle,
-//   ContinueWithTwitter,
-// } from '@mp/app/auth/util';
+import {
+  ContinueWithApple,
+  ContinueWithFacebook,
+  ContinueWithGoogle,
+  ContinueWithTwitter,
+} from '@mp/app/auth/util';
 
 @Component({
   selector: 'ms-login-page',
@@ -78,18 +78,18 @@ export class LoginPage {
   }
 
   googleLogin() {
-    // this.store.dispatch(new ContinueWithGoogle());
+    this.store.dispatch(new ContinueWithGoogle());
   }
 
   facebookLogin() {
-    // this.store.dispatch(new ContinueWithFacebook());
+    this.store.dispatch(new ContinueWithFacebook());
   }
 
   appleLogin() {
-    // this.store.dispatch(new ContinueWithApple());
+    this.store.dispatch(new ContinueWithApple());
   }
 
   twitterLogin() {
-    // this.store.dispatch(new ContinueWithTwitter());
+    this.store.dispatch(new ContinueWithTwitter());
   }
 }

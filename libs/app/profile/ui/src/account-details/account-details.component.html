@@ -23,8 +23,7 @@
             <ion-label position="floating" class="required"
               >Display name</ion-label
             >
-            <p>fix the comment below in the script afte a fix has been found</p>
-            <!-- <ion-input
+            <ion-input
               type="text"
               minlength="4"
               maxlength="64"
@@ -32,13 +31,10 @@
               placeholder="Enter display name"
               formControlName="username"
               [value]="accountDetails.username"
-              autocomplete="name"></ion-input> -->
+              autocomplete="name"></ion-input>
           </ion-item>
           <ion-text
-            *ngIf="
-            username?.invalid &&
-              (username?.dirty || username?.touched)
-            "
+            *ngIf="username?.invalid && (username?.dirty || username?.touched)"
             class="ion-padding-start"
             color="danger">
             <small>{{ usernameError }}</small>

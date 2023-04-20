@@ -1,23 +1,23 @@
 import { Component } from '@angular/core';
-import {AuthService} from '@mp/api/auth/feature'
-import {Auth} from '@angular/fire/auth';
+import { Auth } from '@angular/fire/auth';
+import { AuthApi } from 'libs/app/auth/data-access/src/auth.api';
 
 @Component({
-    selector: 'ms-reset-page',
-    templateUrl: './reset.page.html',
-    styleUrls: ['./reset.page.scss'],
-  })
-
+  selector: 'ms-reset-page',
+  templateUrl: './reset.page.html',
+  styleUrls: ['./reset.page.scss'],
+})
 export class ResetPage {
-    constructor(
-        private readonly authService: AuthService, private auth: Auth
-      ) {}
+  constructor(private readonly authApi: AuthApi) {}
 
-    async onSubmit(email: string): Promise<void> {
-        try {
-          await this.authService.forgotPasssword(this.auth, email);
-        } catch (error) {
-          console.log(error);
-        }
-    }
+  async onSubmit(email: string): Promise<void> {
+    alert(
+      'call the forgotPassowrd api, use the below code using the user entered email'
+    );
+    // try {
+    //   await this.authApi.forgotPasssword(email);
+    // } catch (error) {
+    //   console.log(error);
+    // }
+  }
 }

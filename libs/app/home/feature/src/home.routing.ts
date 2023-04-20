@@ -20,6 +20,13 @@ const routes: Routes = [
           import('@mp/app/profile/feature').then((m) => m.ProfileModule),
       },
       {
+        path: 'browse',
+        loadChildren: () =>
+          import('@mp/app/browse/feature').then(
+            (m) => m.AppBrowseFeatureModule
+          ),
+      },
+      {
         path: 'feed',
         loadChildren: () =>
           import('@mp/app/feed/feature').then((m) => m.FeedModule),
