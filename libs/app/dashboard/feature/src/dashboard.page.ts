@@ -3,19 +3,13 @@ import { AlertController } from '@ionic/angular';
 import { IProfile } from '@mp/api/profiles/util';
 import { ProfileState } from '@mp/app/profile/data-access';
 import { Select } from '@ngxs/store';
+import { ActivatedRoute } from '@angular/router';
 import { Observable, firstValueFrom, lastValueFrom, tap,take, takeUntil } from 'rxjs';
 import { ToastController } from '@ionic/angular';
-import { AngularFireMessaging } from '@angular/fire/compat/messaging';
-import { AngularFireFunctions} from '@angular/fire/compat/functions';
-// import { EventsService } from '@mp/api/events/feature';
 import { IEvent, IEventRequest, IEventResponse } from '@mp/api/events/util';
-import { Functions, httpsCallable } from '@angular/fire/functions';
 import { DashboardEvent, GetEvents } from '@mp/app/dashboard/util';
 import { Store } from '@ngxs/store';
 import { DashboardEventState } from '@mp/app/dashboard/data-access';
-import { ActionsExecuting, actionsExecuting } from '@ngxs-labs/actions-executing';
-// import { DashboardAPI } from '@mp/app/dashboard/data-access';
-// import { DashboardEventState } from '@mp/app/dashboard/data-access';
 
 
 @Component({
@@ -32,11 +26,14 @@ export class DashboardPage {
   constructor(public alertController: AlertController,
      private toastController: ToastController, 
      private readonly store: Store,
+     private readonly activeRoute: ActivatedRoute,
     ) {
-      // this.events$ = this.store.select(state => state.dashboard.events);
+      this.activeRoute.paramMap.subscribe(params => {
+        this.ngOnInit();
+    });
     }
   
-    async ngOninit(){
+    async ngOnInit(){
       await this.getEvents();
     }
 
@@ -68,7 +65,7 @@ export class DashboardPage {
   }
 
   async getEvents(){
-    // await this.generateEvent();
+    await this.getUser();
     this.store.dispatch(
       new GetEvents({
         userId: this.userId,

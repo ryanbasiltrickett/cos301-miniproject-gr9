@@ -71,7 +71,7 @@ export class DashboardEventState {
       user: user.userId,
     };
     const responseRef = await this.api.getEvents(request);
-
-    console.log(responseRef.data);
+    const dashboardModel: DashboardEventStateModel = { events: responseRef.data};   
+    ctx.setState(dashboardModel);
   }
 }

@@ -14,7 +14,6 @@ export class DashboardAPI{
       ) {}
     
 async dashboardEvent(request: IEventRequest) {
-    console.log("Calling Firebase");
     return await httpsCallable<
         IEventRequest, IEventResponse
     >(
@@ -24,7 +23,6 @@ async dashboardEvent(request: IEventRequest) {
   }   
   
   async getEvents(request: IEventRequest) {
-    console.log("Calling Firebase2");
     return await httpsCallable<
         IEventRequest, IEvent[]
     >(
