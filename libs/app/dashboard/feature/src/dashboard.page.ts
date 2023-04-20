@@ -25,20 +25,19 @@ import { ActionsExecuting, actionsExecuting } from '@ngxs-labs/actions-executing
 })
 export class DashboardPage {
   @Select(ProfileState.profile) profile$!: Observable<IProfile | null>;
-  @Select(DashboardEventState.getEvent) event$!: Observable<string[] | null>;
+  @Select(DashboardEventState.getEvent) events$!: Observable<IEvent[] | null>;
 
-  busy$!: Observable<ActionsExecuting>;
+  // events$!: Observable<IEvent[]>;
+
   constructor(public alertController: AlertController,
      private toastController: ToastController, 
-     private afMessaging: AngularFireMessaging,
      private readonly store: Store,
-     private  functions: Functions,
-     private fun: AngularFireFunctions,
-    //  private api: DashboardAPI,
-    //  private eventService: EventsService
-    
     ) {
-      // this.event$ = this.store.select(state => state.dashboard.event);
+      // this.events$ = this.store.select(state => state.dashboard.events);
+    }
+  
+    async ngOninit(){
+      await this.getEvents();
     }
 
   async makeToast(message: any){
@@ -53,21 +52,29 @@ export class DashboardPage {
   userId!: string;
 
   async generateEvent(){
-    this.makeToast('Fired');
+    this.makeToast('Event Requested');
     await this.getUser();
     this.store.dispatch(
       new DashboardEvent({
         user: this.userId,
       })
     );
+    
+    // const events = await firstValueFrom(this.events$);
+    // if(events)
+    //   events.forEach(e => {
+    //     console.log(e.eventTime);
+    //   })
+  }
 
+  async getEvents(){
+    // await this.generateEvent();
     this.store.dispatch(
       new GetEvents({
         userId: this.userId,
       })
     )
   }
-
   async getUser(){
     const user = await firstValueFrom(this.profile$);
     if(user){

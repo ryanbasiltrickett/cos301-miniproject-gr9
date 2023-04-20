@@ -26,9 +26,10 @@
     </ion-grid>
   </ng-template>
   <ion-button (click)="generateEvent()">Test Event</ion-button>
-  <ion-card>
-    <ion-header *ngFor="let i of event$ | async">
-      <ion-title>{{i}}</ion-title>
-    </ion-header>      
+  <ion-card *ngFor="let event of events$ | async">
+
+      <ion-title>{{event.eventTitle}}</ion-title>
+      <ion-title>{{event.eventTime}}</ion-title>
+    
   </ion-card>
 </ion-content>
