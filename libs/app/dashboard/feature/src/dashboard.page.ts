@@ -10,7 +10,7 @@ import { AngularFireFunctions} from '@angular/fire/compat/functions';
 // import { EventsService } from '@mp/api/events/feature';
 import { IEvent, IEventRequest, IEventResponse } from '@mp/api/events/util';
 import { Functions, httpsCallable } from '@angular/fire/functions';
-import { DashboardEvent } from '@mp/app/dashboard/util';
+import { DashboardEvent, GetEvents } from '@mp/app/dashboard/util';
 import { Store } from '@ngxs/store';
 import { DashboardEventState } from '@mp/app/dashboard/data-access';
 import { ActionsExecuting, actionsExecuting } from '@ngxs-labs/actions-executing';
@@ -55,12 +55,17 @@ export class DashboardPage {
   async generateEvent(){
     this.makeToast('Fired');
     await this.getUser();
-    console.log(this.userId);
     this.store.dispatch(
       new DashboardEvent({
         user: this.userId,
       })
     );
+
+    this.store.dispatch(
+      new GetEvents({
+        userId: this.userId,
+      })
+    )
   }
 
   async getUser(){

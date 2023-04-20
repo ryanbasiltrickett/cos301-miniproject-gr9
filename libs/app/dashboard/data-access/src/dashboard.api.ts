@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 // import { doc, docData, Firestore } from '@angular/fire/firestore';
 import { Functions, httpsCallable } from '@angular/fire/functions';
 import {
+  IEvent,
     IEventRequest,
     IEventResponse 
 } from '@mp/api/events/util';
@@ -20,5 +21,15 @@ async dashboardEvent(request: IEventRequest) {
       this.functions,
       'generateEvent'
     )(request);
-  }    
+  }   
+  
+  async getEvents(request: IEventRequest) {
+    console.log("Calling Firebase2");
+    return await httpsCallable<
+        IEventRequest, IEvent[]
+    >(
+      this.functions,
+      'getEvents'
+    )(request);
+  } 
 }

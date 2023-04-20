@@ -6,3 +6,12 @@ export class DashboardEvent {
       }
     ) {console.log("Created");}
 }
+
+export class GetEvents{
+  static readonly type = '[Event] GetEvents';
+  constructor(
+    public readonly user: {
+      userId: string
+    }
+  ){}
+}
