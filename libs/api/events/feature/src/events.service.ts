@@ -22,7 +22,6 @@ export class EventsService {
   async generateEvent(
     request: IEventRequest,
   ): (Promise<IEventResponse>){
-    console.log("In service");
     return await this.commandBus.execute<
       GenerateEventCommand,
       IEventResponse

@@ -50,31 +50,23 @@ export class DashboardPage {
     toast.present();
   }
 
-  newEvent: string[] = [];
+  userId!: string;
+
   async generateEvent(){
     this.makeToast('Fired');
-
+    await this.getUser();
+    console.log(this.userId);
     this.store.dispatch(
       new DashboardEvent({
-        eventTitle: 'Test12',
-        eventTime: new Date(),
+        user: this.userId,
       })
     );
-
-    // const event = await this.getEvent();
-    
-    // // console.log(event);
-    // this.newEvent.push(event.eventTitle);
-    // this.newEvent.push(event.eventTime);
-      // await this.getEvent();
   }
 
-  // async getEvent(){
-  //   const event = await firstValueFrom(this.event$);
-  //   if(event){
-  //     this.newEvent.push(event.eventTitle);
-  //     this.newEvent.push(event.eventTime);    
-  //   }
-
-  // }
+  async getUser(){
+    const user = await firstValueFrom(this.profile$);
+    if(user){
+      this.userId = user.userId;
+    }
+  }
 }
