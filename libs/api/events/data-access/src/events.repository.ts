@@ -9,7 +9,7 @@ import { IEvent, IEventResponse } from '@mp/api/events/util';
 @Injectable()
 export class EventsRepository{
     async addEvent(event: IEventResponse, user: string ){
-        if(await this.checkNumEvents(user) < 5){
+        if(await this.checkNumEvents(user) < 2){
             admin.firestore()
             .collection('events')
             .doc(user)
