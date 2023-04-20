@@ -12,7 +12,7 @@ export interface DashboardEventStateModel {
 @State<DashboardEventStateModel>({
   name: 'dashboard',
   defaults: {
-    event: null
+    event: []
   },
 })
 
