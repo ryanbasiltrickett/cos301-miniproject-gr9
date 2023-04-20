@@ -11,26 +11,26 @@ import { map, Observable } from 'rxjs';
 
 @Injectable()
 export class EventsSaga{
-    @Saga()
-    onGenerateEvent = (events$: Observable<any>): Observable<ICommand> => {
-        return events$.pipe(
-            ofType(GenerateEventEvent),
-            map(
-              (event : GenerateEventEvent) =>
-                new GenerateEventCommand({event: event.event})
-            )
-          );
-      };
+    // @Saga()
+    // onGenerateEvent = (events$: Observable<any>): Observable<ICommand> => {
+    //     return events$.pipe(
+    //         ofType(GenerateEventEvent),
+    //         map(
+    //           (event : GenerateEventEvent) =>
+    //             new GenerateEventCommand({event: event.event})
+    //         )
+    //       );
+    //   };
 
-      @Saga()
-      onNotifyEvent = (events$: Observable<any>): Observable<ICommand> => {
-          return events$.pipe(
-              ofType(NotifyEventEvent),
-              map(
-                (event : NotifyEventEvent) =>
-                  new NotifyEventCommand({event: event.event})
-              )
-            );
-        };
+    //   @Saga()
+    //   onNotifyEvent = (events$: Observable<any>): Observable<ICommand> => {
+    //       return events$.pipe(
+    //           ofType(NotifyEventEvent),
+    //           map(
+    //             (event : NotifyEventEvent) =>
+    //               new NotifyEventCommand({event: event.event})
+    //           )
+    //         );
+    //     };
     
 }
