@@ -1,3 +1,4 @@
+import { EventsRepository } from '@mp/api/events/data-access';
 import {
     GenerateEventCommand, IEventResponse
 } from '@mp/api/events/util';
@@ -9,7 +10,8 @@ import { Timestamp } from 'firebase-admin/firestore';
 export class GenerateEventHandler
   implements ICommandHandler<GenerateEventCommand>
 {
-    constructor(private publisher: EventPublisher) {}
+    constructor(private publisher: EventPublisher,
+        private repo: EventsRepository) {}
     async execute(command: GenerateEventCommand): Promise<any> {
         console.log("In command");
         const earliest = 8;
@@ -32,6 +34,7 @@ export class GenerateEventHandler
   
         const generetedTime =  formattedHours + ":" + formattedMinutes;
         const response: IEventResponse = {event: {eventTitle: possibleEvents[eventIndex], eventTime: generetedTime}};
+        this.repo.addEvent(response, command.request.user);
         console.log(response);
         return response;
     }

@@ -29,9 +29,9 @@ export class DashboardEventState {
     }
 
   @Action(DashboardEvent)
-  async dashboardEvent(ctx: StateContext<DashboardEventStateModel>, {event}: IEventRequest) {
+  async dashboardEvent(ctx: StateContext<DashboardEventStateModel>, {user}: IEventRequest) {
     const request: IEventRequest = {
-      event,
+      user: 'testUser'
     };
     const responseRef = await this.api.dashboardEvent(request);
     console.log(responseRef.data);
