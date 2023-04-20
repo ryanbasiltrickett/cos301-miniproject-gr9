@@ -41,6 +41,11 @@ const routes: Routes = [
         pathMatch: 'full',
         redirectTo: '/home/feed',
       },
+      {
+        path: 'settings',
+        loadChildren:  () =>
+          import('@mp/app/settings/feature').then((m) => m.SettingsPage),
+      },
     ],
   },
   {
