@@ -5,6 +5,7 @@ import { EventsService } from './events.service';
 
 import {
   GenerateEventHandler,
+  NotifyEventHandler
 } from './commands';
 
 import {
@@ -13,6 +14,7 @@ import {
 
 export const CommandHandlers = [
   GenerateEventHandler,
+  NotifyEventHandler
 ];
 export const EventHandlers = [
     EventGenerateHandler,
