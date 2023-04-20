@@ -20,4 +20,4 @@ import { SettingsRouting } from './settings.routing';
   ],
   declarations: [SettingsPage],
 })
-export class ProfileModule {}
+export class SettingsModule {}
