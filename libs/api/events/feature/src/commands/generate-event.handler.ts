@@ -23,14 +23,11 @@ export class GenerateEventHandler
   
         const possibleEvents: string[] = [
             "Post now",
-            "Tag a friend in a post",
-            "Send a friend a message",
             "Follow someone new",
-            "Like posts",
             "Give some time to someone you might think need it"
         ];
   
-        const eventIndex = Math.floor(Math.random() * 6);
+        const eventIndex = Math.floor(Math.random() * 3);
   
         const generetedTime =  formattedHours + ":" + formattedMinutes;
         const response: IEventResponse = {event: {eventTitle: possibleEvents[eventIndex], eventTime: generetedTime, user: command.request.user}};
