@@ -4,8 +4,9 @@ import { IProfile } from '@mp/api/profiles/util';
 import { ProfileState } from '@mp/app/profile/data-access';
 import { Select, Store } from '@ngxs/store';
 import { Observable, firstValueFrom } from 'rxjs';
-import { GetTrendingAction } from '@mp/app/browse/util';
+import { ClearBrowseAction, GetTrendingAction } from '@mp/app/browse/util';
 import { IGetPost, IGetTrendingResponse } from '@mp/api/browse/util';
+import { BrowseState } from '@mp/app/browse/data-access';
 
 @Component({
     selector: 'mp-post-list',
@@ -18,7 +19,7 @@ import { IGetPost, IGetTrendingResponse } from '@mp/api/browse/util';
     posts$: Observable<IGetPost[]>
     constructor(private fb: FormBuilder, 
       private readonly store: Store) {
-        this.posts$ = this.store.select(state => state.browse.response);
+        this.posts$ = this.store.select(state => state.browse.posts);
       }
 
     trendingPosts: IGetPost[] | undefined;
@@ -35,6 +36,7 @@ import { IGetPost, IGetTrendingResponse } from '@mp/api/browse/util';
 
     async populate(){
       this.trendingPosts = await firstValueFrom(this.posts$);
+      console.log(this.trendingPosts);
     }
   }
   
