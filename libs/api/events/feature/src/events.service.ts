@@ -10,15 +10,6 @@ import { CommandBus } from '@nestjs/cqrs';
 export class EventsService {
   constructor(private readonly commandBus: CommandBus) {}
 
-  // async generateEvent(
-  //   request: IEventRequest
-  // ): Promise<IEventResponse> {
-  //   return await this.commandBus.execute<
-  //     GenerateEventCommand,
-  //     IEventResponse
-  //   >(new GenerateEventCommand(request));
-  // }
-
   async generateEvent(
     request: IEventRequest,
   ): (Promise<IEventResponse>){
@@ -26,5 +17,14 @@ export class EventsService {
       GenerateEventCommand,
       IEventResponse
     >(new GenerateEventCommand(request));
+  }
+
+  async notifyEvent(
+    request: IEventRequest
+  ): Promise<IEventResponse> {
+    return await this.commandBus.execute<
+      NotifyEventCommand,
+      IEventResponse
+    >(new NotifyEventCommand(request));
   }
 }
