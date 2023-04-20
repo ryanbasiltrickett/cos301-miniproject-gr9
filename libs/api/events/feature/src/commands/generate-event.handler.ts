@@ -5,7 +5,6 @@ import {
 import { CommandHandler, EventPublisher, ICommandHandler, IEvent } from '@nestjs/cqrs';
 import { Timestamp } from 'firebase-admin/firestore';
 
-
 @CommandHandler(GenerateEventCommand)
 export class GenerateEventHandler
   implements ICommandHandler<GenerateEventCommand>
@@ -13,11 +12,14 @@ export class GenerateEventHandler
     constructor(private publisher: EventPublisher,
         private repo: EventsRepository) {}
     async execute(command: GenerateEventCommand): Promise<any> {
-        console.log("In command");
-        const earliest = 8;
-        const latest = 23;
-        const hours = Math.floor(Math.random() * (latest - earliest + 1) + earliest);
-        const minutes = Math.floor(Math.random() * 60);
+        // console.log(command.request.currTime);
+        const nowH = new Date().getHours();
+        const nowM = new Date().getMinutes();
+        const earliestH = nowH + 2;
+        const earliestMin = nowM + 5;
+        const latestH = 23;
+        const hours = Math.floor(Math.random() * (latestH - earliestH + 1) + earliestH);
+        const minutes = Math.floor(Math.random() * (59 - earliestMin + 1) + earliestMin);
         const formattedMinutes = minutes < 10 ? `0${minutes}` : `${minutes}`;
         const formattedHours = hours < 10 ? `0${hours}` : `${hours}`;
   

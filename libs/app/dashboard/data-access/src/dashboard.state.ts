@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { DashboardEvent } from '@mp/app/dashboard/util';
 import { IEvent, IEventRequest, IEventResponse } from '@mp/api/events/util';
 import { DashboardAPI } from './dashboard.api';
+import { time } from 'console';
 
 //TODO export this to the create library in data-access
 export interface DashboardEventStateModel {
@@ -32,7 +33,7 @@ export class DashboardEventState {
   async dashboardEvent(ctx: StateContext<DashboardEventStateModel>, {event}: DashboardEvent) {
     // console.log(user);
     const request: IEventRequest = {
-      user: event.user
+      user: event.user,
     };
     const responseRef = await this.api.dashboardEvent(request);
     if(responseRef.data){
