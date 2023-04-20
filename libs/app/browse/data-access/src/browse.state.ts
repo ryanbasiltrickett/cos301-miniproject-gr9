@@ -41,13 +41,13 @@ export class BrowseState {
     const users: IGetUser = {id: search.userName};
     const req: IGetUserRequest = {user: users};
     const responseRef = await this.api.getUser(req);
-    const model: BrowseStateModel = {response: responseRef.data, posts: null};
+    const model: BrowseStateModel = {response: responseRef.data, posts: ctx.getState().posts};
     ctx.setState(model);
   }
 
   @Action(ClearBrowseAction)
   async clearAction(ctx: StateContext<BrowseStateModel>){
-    ctx.setState({response: null, posts: null});
+    ctx.setState({response: null, posts: ctx.getState().posts});
   }
 
   @Action(GetTrendingAction)
