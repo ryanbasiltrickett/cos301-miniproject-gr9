@@ -25,12 +25,10 @@
         <ion-col size="6" *ngFor="let post of trendingPosts">
           <div class="image-container">
             <!-- <img src="https://picsum.photos/200/200?random={{i}}" alt="Placeholder image" class="image"> -->
-            <ion-card style="width: 150px; height: 150px;">
+            <ion-card style="width: 150px; height: 150px;" color="medium">
+              <img src={{post.photo}} alt="Placeholder image" class="image">
               <ion-header>
                 <ion-card-title>{{post.author}}</ion-card-title>
-                <br>
-                <img src={{post.photo}} alt="Placeholder image" class="image">
-                <br>
               </ion-header>
              <ion-card-content><br><br>{{post.description}}</ion-card-content>
             </ion-card>
