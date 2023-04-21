@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IProfile } from '@mp/api/profiles/util';
 import { ProfileState } from '@mp/app/profile/data-access';
 import { Select } from '@ngxs/store';
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -11,7 +10,5 @@ import { Observable } from 'rxjs';
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage {
-  constructor(private router: Router) {}
-
-  ngOnInit() {}
+  @Select(ProfileState.profile) profile$!: Observable<IProfile | null>;
 }
