@@ -37,6 +37,9 @@
       ],
       "@mp/api/newsfeed/feature": ["libs/api/newsfeed/feature/src/index.ts"],
       "@mp/api/newsfeed/util": ["libs/api/newsfeed/util/src/index.ts"],
+      "@mp/api/posts/data-access": ["libs/api/posts/data-access/src/index.ts"],
+      "@mp/api/posts/feature": ["libs/api/posts/feature/src/index.ts"],
+      "@mp/api/posts/util": ["libs/api/posts/util/src/index.ts"],
       "@mp/api/profiles/data-access": [
         "libs/api/profiles/data-access/src/index.ts"
       ],
@@ -57,9 +60,7 @@
       ],
       "@mp/app/create/feature": ["libs/app/create/feature/src/index.ts"],
       "@mp/app/create/ui": ["libs/app/create/ui/src/index.ts"],
-      "@mp/app/createpost/feature": [
-        "libs/app/createpost/feature/src/index.ts"
-      ],
+      "@mp/app/create/util": ["libs/app/create/util/src/index.ts"],
       "@mp/app/dashboard/data-access": [
         "libs/app/dashboard/data-access/src/index.ts"
       ],
@@ -81,22 +82,18 @@
       "@mp/app/forgot/data-access": [
         "libs/app/forgot/data-access/src/index.ts"
       ],
+      "@mp/app/notification/feature": [
+        "libs/app/notification/feature/src/index.ts"
+      ],
+      "@mp/app/notification/ui": ["libs/app/notification/ui/src/index.ts"],
       "@mp/app/forgot/feature": ["libs/app/forgot/feature/src/index.ts"],
       "@mp/app/forgot/util": ["libs/app/forgot/util/src/index.ts"],
       "@mp/app/home/feature": ["libs/app/home/feature/src/index.ts"],
       "@mp/app/login/data-access": ["libs/app/login/data-access/src/index.ts"],
       "@mp/app/login/feature": ["libs/app/login/feature/src/index.ts"],
       "@mp/app/login/util": ["libs/app/login/util/src/index.ts"],
-      "@mp/app/newsfeed/data-access": [
-        "libs/app/newsfeed/data-access/src/index.ts"
-      ],
-      "@mp/app/newsfeed/feature": ["libs/app/newsfeed/feature/src/index.ts"],
-      "@mp/app/newsfeed/ui": ["libs/app/newsfeed/ui/src/index.ts"],
-      "@mp/app/newsfeed/util": ["libs/app/newsfeed/util/src/index.ts"],
-      "@mp/app/notification/feature": [
-        "libs/app/notification/feature/src/index.ts"
-      ],
-      "@mp/app/notification/ui": ["libs/app/notification/ui/src/index.ts"],
+      "@mp/app/post/data-access": ["libs/app/post/data-access/src/index.ts"],
+      "@mp/app/post/ui": ["libs/app/post/ui/src/index.ts"],
       "@mp/app/privacy/feature": ["libs/app/privacy/feature/src/index.ts"],
       "@mp/app/profile/data-access": [
         "libs/app/profile/data-access/src/index.ts"

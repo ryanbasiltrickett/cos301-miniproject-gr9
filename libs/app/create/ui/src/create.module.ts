@@ -1,7 +1,8 @@
+
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-//import { CreateModule as CreateAccessModule } from '@mp/app/create/data-access';
+import { CreateModule as CreateAccessModule } from '@mp/app/create/data-access';
 import { HeaderModule } from './header';
 import { CreatePostModule } from './create-post';
 
@@ -12,7 +13,7 @@ import { CreatePostModule } from './create-post';
       IonicModule,
       CreatePostModule,
       HeaderModule,
-      //CreateAccessModule,
+      CreateAccessModule,
     ],
     exports: [
         CreatePostModule,

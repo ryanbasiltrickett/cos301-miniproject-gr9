@@ -9,6 +9,7 @@ import {
   TwitterAuthProvider,
   FacebookAuthProvider,
   OAuthProvider,
+  sendPasswordResetEmail,
 } from '@angular/fire/auth';
 import { signOut } from '@firebase/auth';
 
@@ -46,6 +47,10 @@ export class AuthApi {
   async continueWithApple() {
     const provider = new OAuthProvider('apple.com');
     return await signInWithPopup(this.auth, provider);
+  }
+
+  async forgotPasssword(email: string): Promise<void> {
+    return await sendPasswordResetEmail(this.auth, email);
   }
 
   async logout() {

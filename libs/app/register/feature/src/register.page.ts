@@ -9,12 +9,12 @@ import {
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 
-import {
-  ContinueWithApple,
-  ContinueWithFacebook,
-  ContinueWithGoogle,
-  ContinueWithTwitter,
-} from '@mp/app/auth/util';
+// import {
+//   ContinueWithApple,
+//   ContinueWithFacebook,
+//   ContinueWithGoogle,
+//   ContinueWithTwitter,
+// } from '@mp/app/auth/util';
 
 @Component({
   selector: 'ms-register-page',
@@ -78,18 +78,18 @@ export class RegisterPage {
   }
 
   googleSignUp() {
-    this.store.dispatch(new ContinueWithGoogle());
+    // this.store.dispatch(new ContinueWithGoogle());
   }
 
   facebookSignUp() {
-    this.store.dispatch(new ContinueWithFacebook());
+    // this.store.dispatch(new ContinueWithFacebook());
   }
 
   appleSignUp() {
-    this.store.dispatch(new ContinueWithApple());
+    // this.store.dispatch(new ContinueWithApple());
   }
 
   twitterSignUp() {
-    this.store.dispatch(new ContinueWithTwitter());
+    // this.store.dispatch(new ContinueWithTwitter());
   }
 }

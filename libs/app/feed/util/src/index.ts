@@ -1,1 +1,1 @@
-export * from './fead.actions';
+export * from './feed.actions';

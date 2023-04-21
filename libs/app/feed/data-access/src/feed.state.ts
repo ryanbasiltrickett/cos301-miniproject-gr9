@@ -1,77 +1,71 @@
-import { Injectable } from '@angular/core';
-import {
-  IPost,
-  IgeneratePostRequest,
-  IupdateNFPostRequest
-} from '@mp/api/newsfeed/util'
-import {
-  IProfile
-} from '@mp/api/profiles/util'
-import {
-  generatePost,setPage
-} from '@mp/app/feed/util'
-import { SetError } from '@mp/app/errors/util';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
-import produce from 'immer';
-import { tap } from 'rxjs';
 import { FeedApi } from './feed.api';
+import { Injectable } from '@angular/core';
+import { GivePostTime, LikePost, SetFeed, SubscribeToFeed } from '@mp/app/feed/util';
+import { IPost } from '@mp/api/posts/util';
+import { ILikePostRequest } from '@mp/api/posts/util';
+// import { Timestamp } from 'firebase-admin/firestore';
 
 export interface FeedStateModel {
-  profile: IProfile | null;
-  posts: IPost[] |null |undefined;
+  subscribedToFeed: boolean;
+  feed: IPost[];
 }
-
-//Feel free to change this was just for testing purposes
 
 @State<FeedStateModel>({
   name: 'feed',
   defaults: {
-    profile: null,
-    posts: null
+    feed: [],
+    subscribedToFeed: false,
   },
 })
-
 @Injectable()
 export class FeedState {
   constructor(
-    private readonly FeedApi: FeedApi,
+    private readonly feedApi: FeedApi,
     private readonly store: Store
-  ) {}
+  ) {
+    this.feedApi.feed$.subscribe((feed) => {
+      this.store.dispatch(new SetFeed(feed));
+    });
+  }
 
   @Selector()
-  static profile(state: FeedStateModel) {
-    return state.profile;
-  }
-
-  @Action(setPage)
-  setProfile(ctx: StateContext<FeedStateModel>, { posts }: setPage) {
-    return ctx.setState(
-      produce((draft) => {
-        draft.posts = posts;
-      })
-    );
-  }
-
-  @Action(generatePost)
-  async updateAccountDetails(ctx: StateContext<FeedStateModel>) {
-    try {
-      const state = ctx.getState();
-      const userId = state.profile?.userId;
-
-      if (!userId)
-        return ctx.dispatch(
-          new SetError(
-            'UserId not set'
-          )
-        );
-
-      const request: IgeneratePostRequest = {userID: userId}
-
-      const responseRef = await this.FeedApi.generatePost(request);
-      const response = responseRef.data;
-      return ctx.dispatch(new setPage(response.posts.posts));
-    } catch (error) {
-      return ctx.dispatch(new SetError((error as Error).message));
+  static feed(state: FeedStateModel) {
+    if (!state.subscribedToFeed) console.error('subscribe to feed to get data');
+    if (state.feed.length > 0) {
+      return state.feed;
     }
+    return undefined;
+  }
+
+  @Action(SetFeed)
+  setFeed(ctx: StateContext<FeedStateModel>, { feed }: SetFeed) {
+    return ctx.patchState({ feed: feed });
+  }
+
+  @Action(SubscribeToFeed)
+  subscribeToFeed(ctx: StateContext<FeedStateModel>) {
+    this.feedApi.subscribeToFeed();
+    return ctx.patchState({ subscribedToFeed: true });
+  }
+
+  @Action(LikePost)
+  async likePost(ctx: StateContext<FeedStateModel>, { post }: LikePost) {
+    const request: ILikePostRequest = {
+      post
+    };
+    const responseRef = await this.feedApi.updatePostLikeCount(request);
+    // const response = responseRef.data;
+    // console.log('Response from like Post: ', response);
+  }
+
+  @Action(GivePostTime)
+  async givePostTime(ctx: StateContext<FeedStateModel>, { post }: GivePostTime) {
+    const request: ILikePostRequest = {
+      post
+    };
+    const responseRef = await this.feedApi.updatePostTime(request);
+    // const response = responseRef.data;
+    // console.log('Response from like Post: ', response);
   }
 }

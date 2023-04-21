@@ -13,7 +13,7 @@ import {
     IUpdateOccupationDetailsResponse,
     IUpdatePersonalDetailsRequest,
     IUpdatePersonalDetailsResponse
-} from '@mp/api/profiles/util';
+} from '@mp/api/profiles/util';1
 
 @Injectable()
 export class ProfilesApi {

@@ -10,17 +10,14 @@ const routes: Routes = [
       {
         path: 'notification',
         loadChildren: () =>
-          import('@mp/app/notification/feature').then((m) => m.NotificationModule),
+          import('@mp/app/notification/feature').then(
+            (m) => m.NotificationModule
+          ),
       },
       {
         path: 'profile',
         loadChildren: () =>
           import('@mp/app/profile/feature').then((m) => m.ProfileModule),
-      },
-      {
-        path: 'feed',
-        loadChildren: () =>
-          import('@mp/app/feed/feature').then((m) => m.AppFeedFeatureModule),
       },
       {
         path: 'browse',
@@ -30,11 +27,14 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'feed',
+        loadChildren: () =>
+          import('@mp/app/feed/feature').then((m) => m.FeedModule),
+      },
+      {
         path: 'create',
         loadChildren: () =>
-          import('@mp/app/create/feature').then(
-            (m) => m.CreateModule
-          ),
+          import('@mp/app/create/feature').then((m) => m.CreateModule),
       },
       {
         path: '',

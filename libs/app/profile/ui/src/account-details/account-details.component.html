@@ -26,10 +26,7 @@
               autocomplete="name"></ion-input>
           </ion-item>
           <ion-text
-            *ngIf="
-            username?.invalid &&
-              (username?.dirty || username?.touched)
-            "
+            *ngIf="username?.invalid && (username?.dirty || username?.touched)"
             class="ion-padding-start"
             color="danger">
             <small>{{ usernameError }}</small>

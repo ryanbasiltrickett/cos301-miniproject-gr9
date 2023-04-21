@@ -4,7 +4,7 @@ import { ProfileState } from '@mp/app/profile/data-access';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
-
+import { CreatePost } from '@mp/app/create/util';
 import { Store } from '@ngxs/store';
 
 @Component({
@@ -39,12 +39,12 @@ import { Store } from '@ngxs/store';
   
 
   post(): void {
-    // this.store.dispatch(
-    //   new CreatePost({
-    //     poster: 'thuthuka',
-    //     description: this.description,
-    //   })
-    // );
+    this.store.dispatch(
+      new CreatePost({
+        poster: 'thuthuka',
+        description: this.description,
+      })
+    );
   }
     
   

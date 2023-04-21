@@ -14,5 +14,8 @@ service cloud.firestore {
       allow read: if true;
     }
 
+    match /posts/{postId} {
+      allow read, write, list: if true;
+    }
   }
 }
