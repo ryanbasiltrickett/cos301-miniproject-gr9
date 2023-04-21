@@ -24,7 +24,7 @@ export interface FeedStateModel {
 //Feel free to change this was just for testing purposes
 
 @State<FeedStateModel>({
-  name: 'profile',
+  name: 'feed',
   defaults: {
     profile: null,
     posts: null

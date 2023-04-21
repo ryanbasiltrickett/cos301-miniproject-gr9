@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { IProfile } from '@mp/api/profiles/util';
 import { ProfileState } from '@mp/app/profile/data-access';
 //import { FeedState } from '@mp/app/feed/data-access';
-import { Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastController } from '@ionic/angular'
+import { generatePost } from '@mp/app/feed/util';
 
 @Component({
     selector: 'ms-post',
@@ -13,13 +14,15 @@ import { ToastController } from '@ionic/angular'
     styleUrls: ['./post.component.scss'],
   })
   export class PostComponent{
+
+    constructor(private toastController: ToastController, public store: Store) {
+
+    }
+
     onDonateClick() {
       console.log('Donate button clicked');
       // Add your donate functionality here
-    }
-
-    constructor(private toastController: ToastController) {
-
+      this.store.dispatch(new generatePost())
     }
 
     onCommentClick() {
