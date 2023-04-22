@@ -1,9 +1,10 @@
 import { QueryHandler, IQueryHandler, EventPublisher, InvalidQueryHandlerException } from '@nestjs/cqrs';
 import { generatePostQuery, IgeneratePostResponse } from '@mp/api/newsfeed/util';
 import { NewsfeedRepository } from '@mp/api/newsfeed/data-access';
+import { ExceptionCode } from '@capacitor/core';
 
 // query handler
-@QueryHandler(generatePostHandler)
+@QueryHandler(generatePostQuery)
 export class generatePostHandler implements IQueryHandler<generatePostQuery,IgeneratePostResponse> {
   constructor(
     private publisher: EventPublisher,
@@ -11,6 +12,7 @@ export class generatePostHandler implements IQueryHandler<generatePostQuery,Igen
     ) {}
 
   async execute(query: generatePostQuery) : Promise<any> {
+    console.log(`${QueryHandler.name}`)
     const request = query.request;
     const profile = request.profile;
     const limit = request.limit ?? 10; //defualt limit if limit is null ie not specified
@@ -18,7 +20,7 @@ export class generatePostHandler implements IQueryHandler<generatePostQuery,Igen
       const response = await this.repository.getNewsfeed(profile, limit);
       return response;
     } else {
-      throw new InvalidQueryHandlerException();
+      throw new Error ('Invalid request!');
     }
   }
 }
