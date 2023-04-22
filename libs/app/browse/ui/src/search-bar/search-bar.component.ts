@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IProfile } from '@mp/api/profiles/util';
 import { ProfileState } from '@mp/app/profile/data-access';
 import { Select } from '@ngxs/store';
@@ -25,7 +25,7 @@ import { Router } from '@angular/router';
     this.searchForm = this.fb.group({
       searchInput: [''],
     });
-    this.users$ = this.store.select(state => state.browse.response);
+    this.users$ = this.store.select(state => state.browse.user);
   }
 
   userName = "";
@@ -50,11 +50,19 @@ import { Router } from '@angular/router';
     )
   }
 
-  async viewProfile(){
+  async viewProfile(user: any){
     alert('This is working.')
+    const users = await firstValueFrom(this.users$);
+
+    let desiredUser!: IUser;
+    users.forEach(u => {
+      if(u.email === user ){
+        desiredUser = u;
+      }
+    })
+
+    console.log(desiredUser);
+    
     this.clearSearch();
-    this.store.dispatch(
-      new SetProfile({userId: 'Test'})
-    )
   }
 }

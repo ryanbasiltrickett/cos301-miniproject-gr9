@@ -9,7 +9,7 @@ import { IUser } from '@mp/api/users/util';
 
 //TODO export this to the create library in data-access
 export interface BrowseStateModel {
-  response: IUser[] | null;
+  user: IUser[] | null;
   posts: IGetPost[] | null;
 }
 
@@ -17,7 +17,7 @@ export interface BrowseStateModel {
 @State<BrowseStateModel>({
   name: 'browse',
   defaults: {
-    response: null,
+    user: null,
     posts: null
   },
 })
@@ -32,7 +32,7 @@ export class BrowseState {
 
   @Selector()
   static getUsers(state: BrowseStateModel) {
-    return state.response;
+    return state.user;
   }
 
   
@@ -41,13 +41,14 @@ export class BrowseState {
     const users: IGetUser = {id: search.userName};
     const req: IGetUserRequest = {user: users};
     const responseRef = await this.api.getUser(req);
-    const model: BrowseStateModel = {response: responseRef.data, posts: ctx.getState().posts};
+    const model: BrowseStateModel = {user: responseRef.data, posts: ctx.getState().posts};
+    console.log(model);
     ctx.setState(model);
   }
 
   @Action(ClearBrowseAction)
   async clearAction(ctx: StateContext<BrowseStateModel>){
-    ctx.setState({response: null, posts: ctx.getState().posts});
+    ctx.setState({user: null, posts: ctx.getState().posts});
   }
 
   @Action(GetTrendingAction)
@@ -55,7 +56,7 @@ export class BrowseState {
     console.log('Action Fired');
     const req: IGetTrendingRequest = {reqId: 'system'};
     const response = await this.api.getTrending(req);
-    const model: BrowseStateModel = { response: null, posts: response.data};
+    const model: BrowseStateModel = { user: null, posts: response.data};
     ctx.setState(model);
     console.log(ctx.getState());
   }
