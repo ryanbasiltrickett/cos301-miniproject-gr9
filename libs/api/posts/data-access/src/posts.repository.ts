@@ -115,13 +115,13 @@ export class PostsRepository {
   }
 
   async addLike(user: IProfile, post: IPost) {
-    const like: ILike = { postId: post.id, userId: user.userId, value: 1 };
+    const like: ILike = { postId: post.id, userId: user.id, value: 1 };
     post.likes++;
 
     await admin
       .firestore()
       .collection('likes')
-      .doc(user.userId + '_' + post.id)
+      .doc(user.id + '_' + post.id)
       .create(like);
 
     return await admin
@@ -137,7 +137,7 @@ export class PostsRepository {
     await admin
       .firestore()
       .collection('likes')
-      .doc(user.userId + '_' + post.id)
+      .doc(user.id + '_' + post.id)
       .delete();
 
     return await admin
