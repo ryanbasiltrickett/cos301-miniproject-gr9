@@ -60,8 +60,18 @@ import { Router } from '@angular/router';
         desiredUser = u;
       }
     })
+    
+    const profile: IProfile = {
+      userId: desiredUser.id,
+      accountDetails: {
+        email: desiredUser.email,
+        displayName: desiredUser.displayName
+      }
+    };
 
-    console.log(desiredUser);
+    this.store.dispatch(
+      new SetProfile(profile)
+    )
     
     this.clearSearch();
   }
