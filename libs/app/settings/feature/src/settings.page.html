@@ -1,6 +1,11 @@
-<ion-buttons slot="start">  
-    <ion-back-button defaultHref="/"></ion-back-button>
-</ion-buttons>
+<ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/home/profile"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Settings</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
 <ion-content [fullscreen]="true">
     <ng-container *ngIf="(profile$ | async) as profile; else noProfile">
