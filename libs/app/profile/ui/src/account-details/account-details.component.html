@@ -22,7 +22,7 @@
               required="true"
               placeholder="Enter username"
               formControlName="username"
-              [value]="profile.username"
+              [ngModel]="profile.username"
               autocomplete="name"></ion-input>
           </ion-item>
           <ion-text
@@ -32,31 +32,31 @@
             <small>{{ usernameError }}</small>
           </ion-text>
           <ion-item class="ion-no-padding">
-            <ion-label position="floating" class="required">
+            <ion-label position="floating">
               Bio
             </ion-label>
             <ion-input
               type="text"
               minlength="4"
               maxlength="64"
-              required="true"
+              required="false"
               placeholder="Enter your bio"
               formControlName="bio"
-              [value]="profile.bio"
+              [ngModel]="profile.bio"
               autocomplete="name"></ion-input>
           </ion-item>
           <ion-item class="ion-no-padding">
-            <ion-label position="floating" class="required">
+            <ion-label position="floating">
               Name
             </ion-label>
             <ion-input
               type="text"
               minlength="4"
               maxlength="64"
-              required="true"
+              required="false"
               placeholder="Enter your name"
               formControlName="name"
-              [value]="profile.name"
+              [ngModel]="profile.name"
               autocomplete="name"></ion-input>
           </ion-item>
           <ion-item class="ion-no-padding">
@@ -70,7 +70,7 @@
               required="true"
               placeholder="Enter email"
               formControlName="email"
-              [value]="profile.email"
+              [ngModel]="profile.email"
               autocomplete="email"></ion-input>
           </ion-item>
           <ion-text
@@ -98,10 +98,10 @@
             color="danger">
             <small>{{ passwordError }}</small>
           </ion-text>
-          <ion-item class="ion-no-padding">
+          <!-- <ion-item class="ion-no-padding">
             <ion-label class="ion-padding-end">Public Visibility</ion-label>
-            <ion-checkbox [value]="profile.visibility"></ion-checkbox>
-          </ion-item>
+            <ion-checkbox [ngModel]="profile.visibility"></ion-checkbox>
+          </ion-item> -->
         </ion-list>
       </ion-card-content>
       <ion-button

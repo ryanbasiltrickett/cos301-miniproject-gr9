@@ -8,7 +8,8 @@ import {
     actionsExecuting
 } from '@ngxs-labs/actions-executing';
 import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, firstValueFrom } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'ms-profile-account-details-component',
@@ -25,7 +26,7 @@ export class AccountDetailsComponent {
     bio: [''],
     email: ['', [Validators.minLength(6), Validators.maxLength(64)]],
     password: ['', [Validators.minLength(6), Validators.maxLength(64)]],
-    visibility: [false],
+    visibility: [true],
   });
   showPassword = false;
 
@@ -87,8 +88,18 @@ export class AccountDetailsComponent {
 
   constructor(
     private readonly fb: FormBuilder,
-    private readonly store: Store
-  ) {}
+    private readonly store: Store,
+    private readonly activeRoute: ActivatedRoute,
+  ) {
+    // this.activeRoute.paramMap.subscribe(params => {
+    //   this.ngOnInit();
+    // });
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  ngOnInit() {
+    this.accountDetailsForm.reset();
+  }
 
   logout() {
     this.store.dispatch(new Logout());
