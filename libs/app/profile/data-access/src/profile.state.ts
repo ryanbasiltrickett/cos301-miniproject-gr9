@@ -180,7 +180,7 @@ export class ProfileState {
   async updateAccountDetails(ctx: StateContext<ProfileStateModel>) {
     try {
       const state = ctx.getState();
-      const userId = state.profile?.userId;
+      const id = state.profile?.id;
       const username = state.accountDetailsForm.model.username;
       const bio = state.accountDetailsForm.model.bio;
       const name = state.accountDetailsForm.model.name;
@@ -189,7 +189,7 @@ export class ProfileState {
       const password = state.accountDetailsForm.model.password;
       const visibility = state.accountDetailsForm.model.visibility;
 
-      if (!userId || !username || !email || !password)
+      if (!id || !username || !email || !password)
         return ctx.dispatch(
           new SetError(
             'UserId or display name or email or password not set'
@@ -198,15 +198,13 @@ export class ProfileState {
 
       const request: IUpdateAccountDetailsRequest = {
         profile: {
-          userId,
-          accountDetails: {
-            username,
-            bio,
-            name,
-            email,
-            password,
-            visibility,
-          },
+          id,
+          username,
+          bio,
+          name,
+          email,
+          password,
+          visibility,
         },
       };
       const responseRef = await this.profileApi.updateAccountDetails(request);
