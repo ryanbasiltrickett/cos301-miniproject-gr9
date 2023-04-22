@@ -12,6 +12,7 @@ import { Store } from '@ngxs/store';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastController } from '@ionic/angular'
 import { IComment  } from '@mp/api/newsfeed/util';
+import { Router } from '@angular/router';
 // import { generatePost } from '@mp/app/feed/util';
 
 @Component({
@@ -24,7 +25,12 @@ export class PostComponent {
   inViewObserver!: IntersectionObserver;
   timer: NodeJS.Timer | undefined;
 
-  constructor(private readonly store: Store, private readonly el: ElementRef, private toastController: ToastController) {
+  constructor(
+    private readonly store: Store,
+    private readonly el: ElementRef,
+    private toastController: ToastController,
+    private router: Router
+    ) {
     this.inViewObserver = new IntersectionObserver(
       (entries: IntersectionObserverEntry[]) => {
         entries.forEach((entry: IntersectionObserverEntry) => {
@@ -42,6 +48,10 @@ export class PostComponent {
     );
 
     this.inViewObserver.observe(this.el.nativeElement);
+  }
+
+  goToPostPage(): void {
+    this.router.navigate(['/home/post', this.post.id]);
   }
 
   startTimer(): void {

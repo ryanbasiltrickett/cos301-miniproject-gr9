@@ -37,14 +37,19 @@ const routes: Routes = [
           import('@mp/app/create/feature').then((m) => m.CreateModule),
       },
       {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: '/home/feed',
-      },
-      {
         path: 'settings',
         loadChildren:  () =>
           import('@mp/app/settings/feature').then((m) => m.SettingsModule),
+      },
+      {
+        path: 'post/:postid',
+        loadChildren: () =>
+          import('@mp/app/post/feature').then((m) => m.PostPageFeatureModule),
+      },
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: '/home/feed',
       },
     ],
   },
