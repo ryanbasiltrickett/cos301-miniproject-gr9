@@ -21,8 +21,11 @@ export class AccountDetailsComponent {
   busy$!: Observable<ActionsExecuting>;
   accountDetailsForm = this.fb.group({
     username: ['', [Validators.minLength(6), Validators.maxLength(64)]],
+    name: ['', [Validators.minLength(6), Validators.maxLength(64)]],
+    bio: [''],
     email: ['', [Validators.minLength(6), Validators.maxLength(64)]],
     password: ['', [Validators.minLength(6), Validators.maxLength(64)]],
+    visibility: [false],
   });
   showPassword = false;
 
@@ -44,6 +47,10 @@ export class AccountDetailsComponent {
 
   get password() {
     return this.accountDetailsForm.get('password');
+  }
+
+  get visibility() {
+    return this.accountDetailsForm.get('visibility');
   }
 
   get usernameError(): string {

@@ -25,7 +25,7 @@ export class ProfilesApi {
   profile$(id: string) {
     const docRef = doc(
       this.firestore,
-      `profiles/${id}`
+      `users/${id}`
     ).withConverter<IProfile>({
       fromFirestore: (snapshot) => {
         return snapshot.data() as IProfile;
