@@ -13,6 +13,8 @@ import { Store } from '@ngxs/store';
     styleUrls: ['./create-post.component.scss'],
   })
   export class CreatePostComponent{
+    @Select(ProfileState.profile) profile$!: Observable<IProfile | null>;
+    
     constructor(private readonly store: Store) {}
     description = '';
     hashtags = '';
@@ -39,11 +41,16 @@ import { Store } from '@ngxs/store';
   
 
   post(): void {
-    this.store.dispatch(
-      new CreatePost({
-        poster: 'thuthuka',
-        description: this.description,
-      })
+    this.profile$
+    .subscribe(
+      profile => {
+        this.store.dispatch(
+          new CreatePost({
+            poster: profile?.username,
+            description: this.description,
+          })
+        );
+      }
     );
   }
     

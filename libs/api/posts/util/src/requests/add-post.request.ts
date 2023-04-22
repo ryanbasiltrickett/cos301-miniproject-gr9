@@ -2,7 +2,7 @@ import { IPost } from '../interfaces';
 
 export interface ICreatePostRequest {
   post: {
-    poster: string;
+    poster: string | null | undefined;
     description: string;
     mediaUrl?: string;
   };
