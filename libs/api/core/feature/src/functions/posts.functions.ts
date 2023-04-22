@@ -31,11 +31,11 @@ export const updatePostLikes = functions.https.onCall(
   }
 );
 
-export const commentPost = functions.https.onCall(
+export const updateComments = functions.https.onCall(
   async (request: ICommentPostRequest): Promise<ICommentPostResponse> => {
     const app = await NestFactory.createApplicationContext(CoreModule);
     const service = app.get(PostService);
-    return service.commentPost(request);
+    return service.updateComments(request);
   }
 );
 

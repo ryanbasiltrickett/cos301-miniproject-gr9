@@ -43,7 +43,7 @@ export class PostService {
     >(new UpdatePostTimeCommand(request));
   }
 
-  async commentPost(
+  async updateComments(
     request: ICommentPostRequest
   ): Promise<ICommentPostResponse> {
     return await this.commandBus.execute<

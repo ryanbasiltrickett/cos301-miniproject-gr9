@@ -50,6 +50,10 @@ export class Post extends AggregateRoot implements IPost {
     this.apply(new PostTimeUpdatedEvent(this.toJSON()));
   }
 
+  // updateComment() {
+  //   this.apply(new )
+  // }
+
   toJSON() {
     return {
       id: this.id,

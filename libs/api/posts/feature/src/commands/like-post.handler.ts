@@ -25,7 +25,7 @@ export class LikePostHandler implements ICommandHandler<LikePostCommand> {
     if (!request.post.likes) throw new Error('Post likes not found');
     post.likePost();
     post.commit();
-
+    // event to take time down Sim
     const response: ILikePostResponse = { post };
 
     return response;

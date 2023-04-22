@@ -17,7 +17,7 @@ export class PostsRepository {
       image: post.mediaUrl,
       location: post.location
     });
-    
+
     //get data from the new post
     const newPostData = (await newPost.get()).data();
     await newPost.update({id: newPost.id});
@@ -59,6 +59,26 @@ export class PostsRepository {
       .doc(post.id)
       .get();
   }
+
+  async findPost(postId: string) {
+    return await admin
+      .firestore()
+      .collection('posts')
+      .withConverter<IPost>({
+        fromFirestore: (snapshot) => {
+          const snapshotData = snapshot.data();
+          const data = {
+            id: snapshot.id,
+            ...snapshotData,
+          };
+          return data as IPost;
+        },
+        toFirestore: (it: IPost) => it,
+      })
+      .doc(postId)
+      .get();
+  }
+
 
   async updatePost(post: IPost) {
     return await admin

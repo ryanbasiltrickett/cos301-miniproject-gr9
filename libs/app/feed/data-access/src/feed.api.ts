@@ -7,10 +7,13 @@ import {
 } from '@angular/fire/firestore';
 import { Functions, httpsCallable } from '@angular/fire/functions';
 import {
+  ICommentPostRequest,
+  ICommentPostResponse,
   ILikePostRequest,
   ILikePostResponse,
   IPost,
   IUpdatePostTimeRequest,
+  IUpdatePostTimeResponse,
 } from '@mp/api/posts/util';
 import { Subject } from 'rxjs';
 
@@ -50,9 +53,16 @@ export class FeedApi {
   }
 
   async updatePostTime(request: IUpdatePostTimeRequest) {
-    return await httpsCallable<IUpdatePostTimeRequest, IUpdatePostTimeRequest>(
+    return await httpsCallable<IUpdatePostTimeRequest, IUpdatePostTimeResponse>(
       this.functions,
       'updatePostTime'
+    )(request);
+  }
+
+  async updateComments(request: ICommentPostRequest) {
+    return await httpsCallable<ICommentPostRequest, ICommentPostResponse>(
+      this.functions,
+      'updateComments'
     )(request);
   }
 }

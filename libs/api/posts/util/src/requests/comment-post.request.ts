@@ -1,5 +1,6 @@
 import { IComment } from '../interfaces';
 
 export interface ICommentPostRequest{
-  post: IComment;
+  postId?: string,
+  comment: IComment;
 }

@@ -6,11 +6,12 @@ import {
   ViewChild,
 } from '@angular/core';
 import { IonCard } from '@ionic/angular';
-import { IPost } from '@mp/api/posts/util';
-import { GivePostTime, LikePost } from '@mp/app/feed/util';
+import { ICommentPostRequest, IPost } from '@mp/api/posts/util';
+import { CommentPost, GivePostTime, LikePost } from '@mp/app/feed/util';
 import { Store } from '@ngxs/store';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastController } from '@ionic/angular'
+import { IComment  } from '@mp/api/newsfeed/util';
 // import { generatePost } from '@mp/app/feed/util';
 
 @Component({
@@ -65,6 +66,19 @@ export class PostComponent {
   onCommentClick() {
     console.log('Comment button clicked');
     // Add your comment functionality here
+
+    const commentText = 'Hard coded'
+    const commentDetails : IComment = {
+      userId: '1',
+      text: commentText
+    }
+
+    const request : ICommentPostRequest = {
+      postId: this.post.id,
+      comment: commentDetails
+    }
+
+    this.store.dispatch( new CommentPost(request) )
   }
 
   async onShareClick() {
