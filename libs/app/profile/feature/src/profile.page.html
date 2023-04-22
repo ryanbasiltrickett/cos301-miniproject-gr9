@@ -55,7 +55,7 @@
   </ng-template>
 </ion-content> -->
 
-<ion-content>
+<ion-content *ngIf="profile$ | async as profile; else loading">
   <div class="top-section">
     <!-- Banner Image -->
     <div class="banner-image">
@@ -67,14 +67,14 @@
 
     <!-- Name and Username -->
     <div class="name-username">
-      <h2>Name</h2>
-      <p>@Username</p>
+      <h2>{{ profile.name }}</h2>
+      <p>@{{ profile.username }}</p>
     </div>
   </div>
 
   <!-- Bio -->
   <div class="bio">
-    <p>User's bio goes here, on the left-hand side.</p>
+    <p>{{ profile.bio }}</p>
   </div>
 
   <!-- Stats -->
@@ -143,3 +143,15 @@
     </div>
   </div>
 </ion-content>
+<ng-template #loading>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ngx-skeleton-loader
+          count="1"
+          [theme]="{ height: '150px' }"
+          appearance="line"></ngx-skeleton-loader>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ng-template>
