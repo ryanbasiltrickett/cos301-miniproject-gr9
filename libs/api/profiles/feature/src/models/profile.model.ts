@@ -18,8 +18,17 @@ import { AggregateRoot } from '@nestjs/cqrs';
 
 export class Profile extends AggregateRoot implements IProfile {
   constructor(
-    public userId: string,
-    public accountDetails?: IAccountDetails | null | undefined,
+    public id: string,
+    public email?: string,
+    public username?: string,
+    public photoURL?: string,
+    public phoneNumber?: string,
+    public bio?: string,
+    public visibility?: boolean,
+    public name?: string,
+    public timeLeft?: number,
+
+    // public accountDetails?: IAccountDetails | null | undefined,
     // public personalDetails?: IPersonalDetails | null | undefined,
     // public contactDetails?: IContactDetails | null | undefined,
     // public addressDetails?: IAddressDetails | null | undefined,

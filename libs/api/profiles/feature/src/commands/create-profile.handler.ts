@@ -24,13 +24,11 @@ export class CreateProfileHandler
     const cellphone = request.user.phoneNumber;
 
     const data: IProfile = {
-      userId,
-      accountDetails: {
-        username,
-        email,
-        photoURL,
-        status: ProfileStatus.INCOMPLETE,
-      },
+      id: userId,
+      email: email,
+      username: username,
+      photoURL: photoURL,
+      phoneNumber: cellphone,
       // personalDetails: {
       //   age: null,
       //   gender: null,
@@ -51,7 +49,6 @@ export class CreateProfileHandler
       //   occupation: null,
       //   status: ProfileStatus.INCOMPLETE,
       // },
-      status: ProfileStatus.INCOMPLETE,
       created: Timestamp.fromDate(new Date()),
     };
     const profile = this.publisher.mergeObjectContext(Profile.fromData(data));
