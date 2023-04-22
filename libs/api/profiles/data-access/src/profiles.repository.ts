@@ -14,27 +14,27 @@ export class ProfilesRepository {
         },
         toFirestore: (it: IProfile) => it,
       })
-      .doc(profile.userId)
+      .doc(profile.id)
       .get();
   }
 
   async createProfile(profile: IProfile) {
     // Remove password field if present
-    delete profile.accountDetails?.password;
+    delete profile.password;
     return await admin
       .firestore()
       .collection('users')
-      .doc(profile.userId)
+      .doc(profile.id)
       .create(profile);
   }
 
   async updateProfile(profile: IProfile) {
     // Remove password field if present
-    delete profile.accountDetails?.password;
+    delete profile.password;
     return await admin
       .firestore()
       .collection('users')
-      .doc(profile.userId)
+      .doc(profile.id)
       .set(profile, { merge: true });
   }
 }
