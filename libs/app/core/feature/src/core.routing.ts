@@ -55,19 +55,18 @@ const routes: Routes = [
   // {
   //   path: 'reset',
   //   pathMatch: 'full',
-  //   canActivate: [AuthGuard],
+  //   canActivate: [AuthGuard],`
   //   data: { authGuardPipe: redirectLoggedIn },
   //   loadChildren: () =>
   //     import('./reset/reset.module').then((m) => m.ResetPageModule),
   // },
-  // {
-  //   path: 'forgot',
-  //   pathMatch: 'full',
-  //   canActivate: [AuthGuard],
-  //   data: { authGuardPipe: redirectLoggedIn },
-  //   loadChildren: () =>
-  //     import('./forgot/forgot.module').then((m) => m.ForgotPageModule),
-  // },
+  {
+    path: 'forget',
+    canActivate: [AuthGuard],
+    data: { authGuardPipe: redirectLoggedIn },
+    loadChildren: () =>
+      import('@mp/app/forget/data-access').then((m) => m.ForgetModule),
+  },
   {
     path: 'register',
     pathMatch: 'full',

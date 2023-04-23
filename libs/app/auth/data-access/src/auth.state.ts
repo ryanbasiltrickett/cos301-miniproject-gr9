@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { User } from '@angular/fire/auth';
 import {
-    ContinueWithGoogle,
-    Login,
-    Logout,
-    Register,
-    SetUser,
-    SubscribeToAuthState
+  ContinueWithApple,
+  ContinueWithFacebook,
+  ContinueWithGoogle,
+  ContinueWithTwitter,
+  Login,
+  Logout,
+  Register,
+  SetUser,
+  SubscribeToAuthState,
 } from '@mp/app/auth/util';
 import { SetError } from '@mp/app/errors/util';
 import { Navigate } from '@ngxs/router-plugin';
@@ -58,7 +61,7 @@ export class AuthState {
       await this.authApi.login(email, password);
       return ctx.dispatch(new Navigate(['home']));
     } catch (error) {
-      return ctx.dispatch(new SetError((error as Error).message));
+      return ctx.dispatch(new SetError("There is no account registered to your email"));
     }
   }
 
@@ -71,7 +74,7 @@ export class AuthState {
       await this.authApi.register(email, password);
       return ctx.dispatch(new Navigate(['home']));
     } catch (error) {
-      return ctx.dispatch(new SetError((error as Error).message));
+      return ctx.dispatch(new SetError("Unfortunately there was an error with your registration"));
     }
   }
 
@@ -79,6 +82,36 @@ export class AuthState {
   async continueWithGoogle(ctx: StateContext<AuthStateModel>) {
     try {
       await this.authApi.continueWithGoogle();
+      return ctx.dispatch(new Navigate(['home']));
+    } catch (error) {
+      return ctx.dispatch(new SetError((error as Error).message));
+    }
+  }
+
+  @Action(ContinueWithFacebook)
+  async continueWithFacebook(ctx: StateContext<AuthStateModel>) {
+    try {
+      await this.authApi.continueWithFacebook();
+      return ctx.dispatch(new Navigate(['home']));
+    } catch (error) {
+      return ctx.dispatch(new SetError((error as Error).message));
+    }
+  }
+
+  @Action(ContinueWithApple)
+  async continueWithApple(ctx: StateContext<AuthStateModel>) {
+    try {
+      await this.authApi.continueWithApple();
+      return ctx.dispatch(new Navigate(['home']));
+    } catch (error) {
+      return ctx.dispatch(new SetError((error as Error).message));
+    }
+  }
+
+  @Action(ContinueWithTwitter)
+  async continueWithTwitter(ctx: StateContext<AuthStateModel>) {
+    try {
+      await this.authApi.continueWithTwitter();
       return ctx.dispatch(new Navigate(['home']));
     } catch (error) {
       return ctx.dispatch(new SetError((error as Error).message));
