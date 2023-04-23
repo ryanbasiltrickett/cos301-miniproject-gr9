@@ -78,6 +78,7 @@
         "libs/app/events/data-access/src/index.ts"
       ],
       "@mp/app/events/feature": ["libs/app/events/feature/src/index.ts"],
+      
       "@mp/app/events/ui": ["libs/app/events/ui/src/index.ts"],
       "@mp/app/events/util": ["libs/app/events/util/src/index.ts"],
       "@mp/app/feed/data-access": ["libs/app/feed/data-access/src/index.ts"],
