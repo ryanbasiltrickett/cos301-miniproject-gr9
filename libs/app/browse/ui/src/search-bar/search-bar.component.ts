@@ -60,17 +60,17 @@ import { Router } from '@angular/router';
       }
     })
     
-    const profile: IProfile = {
-      userId: desiredUser.id,
-      accountDetails: {
-        email: desiredUser.email,
-        displayName: desiredUser.displayName
-      }
-    };
+    // const profile: IProfile = {
+    //   userId: desiredUser.id,
+    //   accountDetails: {
+    //     email: desiredUser.email,
+    //     displayName: desiredUser.displayName
+    //   }
+    // };
 
-    this.store.dispatch(
-      new SetProfile(profile)
-    );
+    // this.store.dispatch(
+    //   new SetProfile(profile)
+    // );
 
     this.router.navigate(['home/profile']);
     
