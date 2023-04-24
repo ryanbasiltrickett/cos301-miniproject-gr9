@@ -77,21 +77,19 @@ export class FeedState {
   async generatePost(ctx: StateContext<FeedStateModel>) {
     try {
       const state = ctx.getState();
-      const userId = state.profile?.userId;
-      const timeLeft=state.profile?.timeLeft;
       const limit=state.limit;
 
-      if (!userId||!timeLeft||!limit)
+      if (!limit)
         return ctx.dispatch(
           new SetError(
             'UserId ,TimeLeft or limit not set'
           )
         );
 
-      const request: IgeneratePostRequest = {profile:{userId,timeLeft},limit};
+      const request: IgeneratePostRequest = {limit};
       const responseRef = await this.FeedApi.generatePost(request);
       const response = responseRef.data;
-      return ctx.dispatch(new setPage(response.posts.posts));
+      return ctx.dispatch(new setPage(response.posts));
     } catch (error) {
       return ctx.dispatch(new SetError((error as Error).message));
     }
@@ -107,11 +105,11 @@ export class FeedState {
         return ctx.dispatch(
           new SetError('Feed string not set')
         );
-    
+
       const request :IgenNewsfeedRequest={ dud:{}};
       const responseRef =await this.FeedApi.generateNewsFeed(request);
       const reponse =responseRef.data;
-      return ctx.dispatch(new SetError('what are we suuposed to do here')); 
+      return ctx.dispatch(new SetError('what are we suuposed to do here'));
     } catch (error) {
       return ctx.dispatch(new SetError((error as Error).message));
     }
@@ -127,7 +125,7 @@ export class FeedState {
         return ctx.dispatch(
           new SetError('The NewsFeed Post not set')
         );
-      
+
       const request: IupdateNFPostRequest={dud:{}};
       const responseRef=await this.FeedApi.updateNewsFeedPost(request);
       const reponse=responseRef.data;

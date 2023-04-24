@@ -14,13 +14,12 @@ export class generatePostHandler implements IQueryHandler<generatePostQuery,Igen
   async execute(query: generatePostQuery) : Promise<any> {
     console.log(`${QueryHandler.name}`)
     const request = query.request;
-    const profile = request.profile;
     const limit = request.limit ?? 10; //defualt limit if limit is null ie not specified
-    if (profile) {
-      const response = await this.repository.getNewsfeed(profile, limit);
+
+      const data = await this.repository.getGlobalFeed(limit);
+      const response: IgeneratePostResponse = {
+        posts: data
+      }
       return response;
-    } else {
-      throw new Error ('Invalid request!');
-    }
   }
 }
