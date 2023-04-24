@@ -6,6 +6,7 @@ import { IPost } from '@mp/api/newsfeed/util';
 // import { ProfileState } from '@mp/app/profile/data-access';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
+import { GetPost } from '@mp/app/post/util';
 
 @Component({
   selector: 'mp-browse',
@@ -21,7 +22,7 @@ export class PostPageComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe((params) => {
       this.postid = params['postid'];
-      // this.store.dispatch(new GetPost(id));
+      this.store.dispatch(new GetPost(params['postid']));
     });
   }
 }
