@@ -30,10 +30,10 @@ export class PostState {
   }
 
   @Action(GetPost)
-  getPost(ctx: StateContext<PostStateModel>, id: string) {
+  getPost(ctx: StateContext<PostStateModel>, { id }: GetPost) {
     return this.postApi.post$(id).pipe(
       tap((post: IPost) => {
-        console.log("Post received: ", post);
+        console.log('Post received: ', post);
         ctx.patchState({ post });
       })
     );

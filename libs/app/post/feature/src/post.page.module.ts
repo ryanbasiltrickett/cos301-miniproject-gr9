@@ -5,7 +5,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { RouterModule } from '@angular/router';
 import { postFeatureRoutes } from './post.routes';
 import { PostModule as PostDataAccessModule } from '@mp/app/post/data-access';
-// import { _ as PageUiModule } from '@mp/app/browse/ui';
+import { FeedModule as FeedUiModule, HeaderModule } from '@mp/app/feed/ui';
 import { PostPageComponent } from './post.page.component';
 
 @NgModule({
@@ -15,6 +15,8 @@ import { PostPageComponent } from './post.page.component';
     NgxSkeletonLoaderModule,
     IonicModule,
     PostDataAccessModule,
+    FeedUiModule,
+    HeaderModule,
   ],
   declarations: [PostPageComponent],
   exports: [PostPageComponent],

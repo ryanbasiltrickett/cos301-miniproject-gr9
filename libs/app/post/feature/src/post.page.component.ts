@@ -7,6 +7,7 @@ import { IPost } from '@mp/api/newsfeed/util';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { GetPost } from '@mp/app/post/util';
+import { PostState } from '@mp/app/post/data-access';
 
 @Component({
   selector: 'mp-browse',
@@ -14,7 +15,7 @@ import { GetPost } from '@mp/app/post/util';
   styleUrls: ['./post.page.component.scss'],
 })
 export class PostPageComponent implements OnInit {
-  post$!: IPost;
+  @Select(PostState.post) post$!: Observable<IPost | null>;
   postid: string | undefined;
 
   constructor(private route: ActivatedRoute, private store: Store) {}
@@ -24,5 +25,9 @@ export class PostPageComponent implements OnInit {
       this.postid = params['postid'];
       this.store.dispatch(new GetPost(params['postid']));
     });
+  }
+
+  addComment() {
+    alert('add comment');
   }
 }
