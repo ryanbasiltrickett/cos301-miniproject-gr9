@@ -22,7 +22,7 @@ export class ProfilePage {
     following: 54,
     timeRemaining: '48 mins',
   };
-
+  browse = sessionStorage.getItem('browse');
   posts = [
     // Media content
     {
@@ -128,9 +128,9 @@ export class ProfilePage {
   constructor(private router: Router,
     private activeRoute: ActivatedRoute,
     private store: Store) {
-  //   this.activeRoute.paramMap.subscribe(params => {
-  //     this.resetProfile();
-  // });
+    this.activeRoute.paramMap.subscribe(params => {
+      this.checkProfile();
+    });
   }
 
   
@@ -183,10 +183,13 @@ export class ProfilePage {
       )      
     }
 
-
     // console.log(currUser);
 
-    // sessionStorage.clear();
+    sessionStorage.clear();
     // console.log('Called');
+  }
+
+  checkProfile(){
+    this.browse = sessionStorage.getItem('browse');
   }
 }

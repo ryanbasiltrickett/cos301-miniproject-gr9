@@ -74,15 +74,7 @@ export let currUser: IProfile;
     const currState = this.store.snapshot();
     currUser = currState.profile.profile;
 
-    // sessionStorage.setItem('id', currUser.id);
-    // sessionStorage.setItem('bio', currUser.bio);
-    // sessionStorage.setItem('created', currUser.created);
-    // sessionStorage.setItem('email', currUser.email);
-    // sessionStorage.setItem('name', currUser.name);
-    // sessionStorage.setItem('photoURL', currUser.photoURL);
-    // sessionStorage.setItem('timeLeft', currUser.timeLeft);
-    // // sessionStorage.setItem('username', currUser.username);
-    // sessionStorage.setItem('visibility', currUser.visibility);
+    sessionStorage.setItem('browse', 'true');
 
     this.store.dispatch(
       new SetProfile(profile)
