@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
-import { doc, docData, Firestore } from '@angular/fire/firestore';
+import {
+  collection,
+  Firestore,
+  onSnapshot,
+  query,
+} from '@angular/fire/firestore';
 import { Functions, httpsCallable } from '@angular/fire/functions';
 import {
     IPost,
@@ -17,6 +22,16 @@ import {
     IProfile
 } from '@mp/api/profiles/util'
 
+import {  
+  ICommentPostRequest,
+  ICommentPostResponse,
+  ILikePostRequest,
+  ILikePostResponse,
+  IUpdatePostTimeRequest,
+  IUpdatePostTimeResponse,
+} from '@mp/api/posts/util';
+import { Subject } from 'rxjs';
+
 @Injectable()
 export class FeedApi {
   constructor(
@@ -24,27 +39,45 @@ export class FeedApi {
     private readonly functions: Functions
   ) {}
 
-  profile$(id: string) {
-    const docRef = doc(
-      this.firestore,
-      `profiles/${id}`
-    ).withConverter<IProfile>({
-      fromFirestore: (snapshot) => {
-        return snapshot.data() as IProfile;
-      },
-      toFirestore: (it: IProfile) => it,
+  feed$: Subject<IPost[]> = new Subject<IPost[]>();
+
+  subscribeToFeed() {
+    // Change this such that each post is individually subscribed to
+    const postsSnapshot = query(collection(this.firestore, 'posts'));
+
+    // maybe unsubscribe from this subscription
+    const unsubscribe = onSnapshot(postsSnapshot, (snapshot) => {
+      this.feed$.next(
+        snapshot.docs.map((doc) => {
+          const post = doc.data();
+          const data = {
+            id: doc.id,
+            ...post,
+          };
+          return data as IPost;
+        })
+      );
     });
-    return docData(docRef, { idField: 'id' });
   }
 
-
-  async generatePost(request: IgeneratePostRequest) {
-    return await httpsCallable<
-      IgeneratePostRequest,
-      IgeneratePostResponse
-    >(
+  async updatePostLikeCount(request: ILikePostRequest) {
+    return await httpsCallable<ILikePostRequest, ILikePostResponse>(
       this.functions,
-      'generatePost'
+      'updatePostLikes'
+    )(request);
+  }
+
+  async updatePostTime(request: IUpdatePostTimeRequest) {
+    return await httpsCallable<IUpdatePostTimeRequest, IUpdatePostTimeResponse>(
+      this.functions,
+      'updatePostTime'
+    )(request);
+  }
+
+  async updateComments(request: ICommentPostRequest) {
+    return await httpsCallable<ICommentPostRequest, ICommentPostResponse>(
+      this.functions,
+      'updateComments'
     )(request);
   }
 

@@ -1,37 +1,104 @@
-import { Component } from '@angular/core';
-import { IProfile } from '@mp/api/profiles/util';
-import { ProfileState } from '@mp/app/profile/data-access';
-//import { FeedState } from '@mp/app/feed/data-access';
-import { Select } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  ViewChild,
+} from '@angular/core';
+import { IonCard } from '@ionic/angular';
+import { ICommentPostRequest, IPost } from '@mp/api/posts/util';
+import { CommentPost, GivePostTime, LikePost } from '@mp/app/feed/util';
+import { Store } from '@ngxs/store';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ToastController } from '@ionic/angular'
+import { IComment  } from '@mp/api/newsfeed/util';
+import { Router } from '@angular/router';
+// import { generatePost } from '@mp/app/feed/util';
 
 @Component({
-    selector: 'ms-post',
-    templateUrl: './post.component.html',
-    styleUrls: ['./post.component.scss'],
-  })
-  export class PostComponent{
-    
-      public NoOfLikes = 0 ;
-    	public Isliked = false;
+  selector: 'mp-post',
+  templateUrl: './post.component.html',
+  styleUrls: ['./post.component.scss'],
+})
+export class PostComponent {
+  @Input() post!: IPost;
+  inViewObserver!: IntersectionObserver;
+  timer: NodeJS.Timer | undefined;
 
-      public toggleLike(event: Event) {
-
-      this.Isliked = !this.Isliked;
-
-
-      if (this.Isliked)  
+  constructor(
+    private readonly store: Store,
+    private readonly el: ElementRef,
+    private toastController: ToastController,
+    private router: Router
+    ) {
+    this.inViewObserver = new IntersectionObserver(
+      (entries: IntersectionObserverEntry[]) => {
+        entries.forEach((entry: IntersectionObserverEntry) => {
+          // One could use this control flow to subscibe to updated to a post
+          if (entry.isIntersecting) {
+            this.startTimer();
+          } else {
+            this.stopTimer();
+          }
+        });
+      },
       {
-        this.NoOfLikes++;
-        (event.currentTarget as HTMLIonButtonElement).querySelector('#heartIcon')?.setAttribute("name", "heart");
-        
-      } 
-      else 
-      {
-        this.NoOfLikes--;
-        (event.currentTarget as HTMLIonButtonElement).querySelector('#heartIcon')?.setAttribute("name", "heart-outline");
+        threshold: 0.7,
       }
+    );
 
-    }
+    this.inViewObserver.observe(this.el.nativeElement);
   }
+
+  goToPostPage(): void {
+    this.router.navigate(['/home/post', this.post.id]);
+  }
+
+  startTimer(): void {
+    this.timer = setInterval(() => {
+      this.store.dispatch(new GivePostTime(this.post));
+    }, 1000);
+  }
+
+  stopTimer(): void {
+    if (this.timer) clearInterval(this.timer);
+  }
+
+  likePost(): void {
+    this.store.dispatch(new LikePost(this.post));
+  }
+
+  onDonateClick() {
+    console.log('Donate button clicked');
+    // Add your donate functionality here
+  }
+
+  onCommentClick() {
+    console.log('Comment button clicked');
+    // Add your comment functionality here
+
+    const commentText = 'Hard coded'
+    const commentDetails : IComment = {
+      userId: '1',
+      text: commentText
+    }
+
+    const request : ICommentPostRequest = {
+      postId: this.post.id,
+      comment: commentDetails
+    }
+
+    this.store.dispatch( new CommentPost(request) )
+  }
+
+  async onShareClick() {
+    console.log('Share button clicked');
+    // Add your share functionality here
+
+    const toast = await this.toastController.create({
+      message: 'copied to clipboard',
+      duration: 2000,
+    });
+    toast.present();
+  }
+}
