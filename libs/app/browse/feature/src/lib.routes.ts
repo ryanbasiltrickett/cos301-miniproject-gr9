@@ -3,9 +3,11 @@ import { BrowseComponent } from './browse.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProfileStatusComponent } from '@mp/app/profile/ui';
+import { ProfilePage } from '@mp/app/profile/feature';
 
 export const appBrowseFeatureRoutes: Route[] = [
-  { path: '', pathMatch: 'full', component: BrowseComponent}
+  { path: '', pathMatch: 'full', component: BrowseComponent},
+  { path: 'home/profile', component: ProfilePage}
 ];
 
 

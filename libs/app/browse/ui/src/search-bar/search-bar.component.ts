@@ -51,7 +51,6 @@ import { Router } from '@angular/router';
   }
 
   async viewProfile(user: any){
-    alert('This is working.')
     const users = await firstValueFrom(this.users$);
 
     let desiredUser!: IUser;
@@ -71,7 +70,9 @@ import { Router } from '@angular/router';
 
     this.store.dispatch(
       new SetProfile(profile)
-    )
+    );
+
+    this.router.navigate(['home/profile']);
     
     this.clearSearch();
   }
