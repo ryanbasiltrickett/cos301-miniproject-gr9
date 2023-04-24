@@ -1,0 +1,7 @@
+export {INewsfeed} from './newsfeed.interface'
+export {INFPost} from './post-details.interface'
+export {IPost} from './post.interface'
+export {IComment} from './comment.interface'
+export {IPostArray} from './postArray.interface'
+export {IuserPosts} from './userPosts.interface'
+export {IFollowers} from './followers.interface'

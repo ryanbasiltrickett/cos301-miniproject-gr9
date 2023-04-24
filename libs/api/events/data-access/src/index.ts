@@ -1,1 +1,2 @@
-export * from './lib/api-events-data-access';
+export * from './events.module';
+export * from './events.repository';

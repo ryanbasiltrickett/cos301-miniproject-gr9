@@ -3,19 +3,13 @@ import { AlertController } from '@ionic/angular';
 import { IProfile } from '@mp/api/profiles/util';
 import { ProfileState } from '@mp/app/profile/data-access';
 import { Select } from '@ngxs/store';
+import { ActivatedRoute } from '@angular/router';
 import { Observable, firstValueFrom, lastValueFrom, tap,take, takeUntil } from 'rxjs';
 import { ToastController } from '@ionic/angular';
-import { AngularFireMessaging } from '@angular/fire/compat/messaging';
-import { AngularFireFunctions} from '@angular/fire/compat/functions';
-// import { EventsService } from '@mp/api/events/feature';
 import { IEvent, IEventRequest, IEventResponse } from '@mp/api/events/util';
-import { Functions, httpsCallable } from '@angular/fire/functions';
-import { DashboardEvent } from '@mp/app/dashboard/util';
+import { DashboardEvent, GetEvents } from '@mp/app/dashboard/util';
 import { Store } from '@ngxs/store';
 import { DashboardEventState } from '@mp/app/dashboard/data-access';
-import { ActionsExecuting, actionsExecuting } from '@ngxs-labs/actions-executing';
-// import { DashboardAPI } from '@mp/app/dashboard/data-access';
-// import { DashboardEventState } from '@mp/app/dashboard/data-access';
 
 
 @Component({
@@ -25,20 +19,22 @@ import { ActionsExecuting, actionsExecuting } from '@ngxs-labs/actions-executing
 })
 export class DashboardPage {
   @Select(ProfileState.profile) profile$!: Observable<IProfile | null>;
-  @Select(DashboardEventState.getEvent) event$!: Observable<string[] | null>;
+  @Select(DashboardEventState.getEvent) events$!: Observable<IEvent[] | null>;
 
-  busy$!: Observable<ActionsExecuting>;
+  // events$!: Observable<IEvent[]>;
+
   constructor(public alertController: AlertController,
      private toastController: ToastController, 
-     private afMessaging: AngularFireMessaging,
      private readonly store: Store,
-     private  functions: Functions,
-     private fun: AngularFireFunctions,
-    //  private api: DashboardAPI,
-    //  private eventService: EventsService
-    
+     private readonly activeRoute: ActivatedRoute,
     ) {
-      // this.event$ = this.store.select(state => state.dashboard.event);
+      this.activeRoute.paramMap.subscribe(params => {
+        this.ngOnInit();
+    });
+    }
+  
+    async ngOnInit(){
+      await this.getEvents();
     }
 
   async makeToast(message: any){
@@ -50,31 +46,36 @@ export class DashboardPage {
     toast.present();
   }
 
-  newEvent: string[] = [];
-  async generateEvent(){
-    this.makeToast('Fired');
+  userId!: string;
 
+  async generateEvent(){
+    this.makeToast('Event Requested');
+    await this.getUser();
     this.store.dispatch(
       new DashboardEvent({
-        eventTitle: 'Test12',
-        eventTime: new Date(),
+        user: this.userId,
       })
     );
-
-    // const event = await this.getEvent();
     
-    // // console.log(event);
-    // this.newEvent.push(event.eventTitle);
-    // this.newEvent.push(event.eventTime);
-      // await this.getEvent();
+    // const events = await firstValueFrom(this.events$);
+    // if(events)
+    //   events.forEach(e => {
+    //     console.log(e.eventTime);
+    //   })
   }
 
-  // async getEvent(){
-  //   const event = await firstValueFrom(this.event$);
-  //   if(event){
-  //     this.newEvent.push(event.eventTitle);
-  //     this.newEvent.push(event.eventTime);    
-  //   }
-
-  // }
+  async getEvents(){
+    await this.getUser();
+    this.store.dispatch(
+      new GetEvents({
+        userId: this.userId,
+      })
+    )
+  }
+  async getUser(){
+    const user = await firstValueFrom(this.profile$);
+    if(user){
+      this.userId = user.userId;
+    }
+  }
 }

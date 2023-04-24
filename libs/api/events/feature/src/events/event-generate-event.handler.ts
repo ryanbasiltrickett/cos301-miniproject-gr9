@@ -5,6 +5,6 @@ import { EventsHandler, IEventHandler } from '@nestjs/cqrs';
 export class EventGenerateHandler implements IEventHandler<GenerateEventEvent> {
 
   async handle(event: GenerateEventEvent) {
-    console.log(event);
+    // console.log(event);
   }
 }

@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+  <div
+    style="display: flex; flex-direction: row; justify-content: space-evenly">
+    <p>_time_remaining</p>
+    <p>_logo_</p>
+    <p>_messages_</p>
+  </div>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Feed</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col style="display: flex; flex-direction: column; gap: 1rem">
+        <ng-container *ngIf="feed$ | async as feed; else loading">
+          <mp-post *ngFor="let post of feed" [post]="post"></mp-post>
+        </ng-container>
+        <ng-template #loading>
+          <ngx-skeleton-loader
+            count="1"
+            [theme]="{ height: '350px' }"
+            appearance="line"></ngx-skeleton-loader>
+        </ng-template>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

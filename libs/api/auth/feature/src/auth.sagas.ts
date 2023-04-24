@@ -19,32 +19,36 @@ export class AuthSagas {
         (event: AccountDetailsUpdatedEvent) =>
           new UpdateAuthCommand({
             auth: {
-              id: event.profile.userId,
-              displayName: event.profile.accountDetails?.displayName,
-              email: event.profile.accountDetails?.email,
-              photoURL: event.profile.accountDetails?.photoURL,
-              password: event.profile.accountDetails?.password,
+              id: event.profile.id,
+              username: event.profile.username,
+              email: event.profile.email,
+              photoURL: event.profile.photoURL,
+              password: event.profile.password,
+              bio: event.profile.bio,
+              name: event.profile.name,
+              visibility: event.profile.visibility,
+              timeLeft: event.profile.timeLeft,
             },
           })
       )
     );
   };
 
-  @Saga()
-  onContactDetailsUpdated = (
-    events$: Observable<any>
-  ): Observable<ICommand> => {
-    return events$.pipe(
-      ofType(ContactDetailsUpdatedEvent),
-      map(
-        (event: ContactDetailsUpdatedEvent) =>
-          new UpdateAuthCommand({
-            auth: {
-              id: event.profile.userId,
-              phoneNumber: event.profile.contactDetails?.cellphone,
-            },
-          })
-      )
-    );
-  };
+  // @Saga()
+  // onContactDetailsUpdated = (
+  //   events$: Observable<any>
+  // ): Observable<ICommand> => {
+  //   return events$.pipe(
+  //     ofType(ContactDetailsUpdatedEvent),
+  //     map(
+  //       (event: ContactDetailsUpdatedEvent) =>
+  //         new UpdateAuthCommand({
+  //           auth: {
+  //             id: event.profile.userId,
+  //             phoneNumber: event.profile.contactDetails?.cellphone,
+  //           },
+  //         })
+  //     )
+  //   );
+  // };
 }

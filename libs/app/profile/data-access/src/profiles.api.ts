@@ -13,7 +13,7 @@ import {
     IUpdateOccupationDetailsResponse,
     IUpdatePersonalDetailsRequest,
     IUpdatePersonalDetailsResponse
-} from '@mp/api/profiles/util';
+} from '@mp/api/profiles/util';1
 
 @Injectable()
 export class ProfilesApi {
@@ -25,7 +25,7 @@ export class ProfilesApi {
   profile$(id: string) {
     const docRef = doc(
       this.firestore,
-      `profiles/${id}`
+      `users/${id}`
     ).withConverter<IProfile>({
       fromFirestore: (snapshot) => {
         return snapshot.data() as IProfile;

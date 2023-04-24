@@ -9,6 +9,7 @@ import {
 } from '@ngxs-labs/actions-executing';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'ms-profile-account-details-component',
@@ -20,35 +21,45 @@ export class AccountDetailsComponent {
   @Select(actionsExecuting([UpdateAccountDetails]))
   busy$!: Observable<ActionsExecuting>;
   accountDetailsForm = this.fb.group({
-    displayName: ['', [Validators.minLength(6), Validators.maxLength(64)]],
+    username: ['', [Validators.minLength(6), Validators.maxLength(64)]],
+    name: ['', [Validators.minLength(6), Validators.maxLength(64)]],
+    bio: [''],
     email: ['', [Validators.minLength(6), Validators.maxLength(64)]],
-    photoURL: ['', [Validators.minLength(6), Validators.maxLength(64)]],
     password: ['', [Validators.minLength(6), Validators.maxLength(64)]],
+    visibility: [true],
   });
   showPassword = false;
 
-  get displayName() {
-    return this.accountDetailsForm.get('displayName');
+  get username() {
+    return this.accountDetailsForm.get('username');
+  }
+
+  get bio() {
+    return this.accountDetailsForm.get('bio');
+  }
+
+  get name() {
+    return this.accountDetailsForm.get('name');
   }
 
   get email() {
     return this.accountDetailsForm.get('email');
   }
 
-  get photoURL() {
-    return this.accountDetailsForm.get('photoURL');
-  }
-
   get password() {
     return this.accountDetailsForm.get('password');
   }
 
-  get displayNameError(): string {
-    if (this.displayName?.errors?.['required'])
+  get visibility() {
+    return this.accountDetailsForm.get('visibility');
+  }
+
+  get usernameError(): string {
+    if (this.username?.errors?.['required'])
       return 'Display name is required';
-    if (this.displayName?.errors?.['minlength'])
+    if (this.username?.errors?.['minlength'])
       return 'Display name should be longer than 6 characters';
-    if (this.displayName?.errors?.['maxlength'])
+    if (this.username?.errors?.['maxlength'])
       return 'Display name should be shorter than 64 characters';
 
     return 'Display name is invalid';
@@ -75,20 +86,20 @@ export class AccountDetailsComponent {
     return 'Password is invalid';
   }
 
-  get photoURLError(): string {
-    if (this.photoURL?.errors?.['required']) return 'Photo URL is required';
-    if (this.photoURL?.errors?.['minlength'])
-      return 'Photo URL should be longer than 6 characters';
-    if (this.photoURL?.errors?.['maxlength'])
-      return 'Photo URL should be shorter than 64 characters';
-
-    return 'Photo URL is invalid';
-  }
-
   constructor(
     private readonly fb: FormBuilder,
-    private readonly store: Store
-  ) {}
+    private readonly store: Store,
+    private readonly activeRoute: ActivatedRoute,
+  ) {
+    // this.activeRoute.paramMap.subscribe(params => {
+    //   this.ngOnInit();
+    // });
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  ngOnInit() {
+    this.accountDetailsForm.reset();
+  }
 
   logout() {
     this.store.dispatch(new Logout());
