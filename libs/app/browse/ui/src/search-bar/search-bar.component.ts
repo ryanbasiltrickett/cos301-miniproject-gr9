@@ -11,15 +11,18 @@ import { IUser } from '@mp/api/users/util';
 import { SetProfile, SubscribeToProfile } from '@mp/app/profile/util';
 import { Router } from '@angular/router';
 
+export let currUser: IProfile;
 @Component({
     selector: 'ms-search-bar',
     templateUrl: './search-bar.component.html',
     styleUrls: ['./search-bar.component.scss'],
   })
+
   export class SearchBarComponent{
     searchForm: FormGroup;
     users$: Observable<IUser[]>
 
+   
   constructor(private fb: FormBuilder, private readonly store: Store,
     private router: Router) {
     this.searchForm = this.fb.group({
@@ -69,17 +72,17 @@ import { Router } from '@angular/router';
     };
 
     const currState = this.store.snapshot();
-    const currUser = currState.profile.profile;
+    currUser = currState.profile.profile;
 
-    sessionStorage.setItem('id', currUser.id);
-    sessionStorage.setItem('bio', currUser.bio);
-    sessionStorage.setItem('created', currUser.created);
-    sessionStorage.setItem('email', currUser.email);
-    sessionStorage.setItem('name', currUser.name);
-    sessionStorage.setItem('photoURL', currUser.photoURL);
-    sessionStorage.setItem('timeLeft', currUser.timeLeft);
-    // sessionStorage.setItem('username', currUser.username);
-    sessionStorage.setItem('visibility', currUser.visibility);
+    // sessionStorage.setItem('id', currUser.id);
+    // sessionStorage.setItem('bio', currUser.bio);
+    // sessionStorage.setItem('created', currUser.created);
+    // sessionStorage.setItem('email', currUser.email);
+    // sessionStorage.setItem('name', currUser.name);
+    // sessionStorage.setItem('photoURL', currUser.photoURL);
+    // sessionStorage.setItem('timeLeft', currUser.timeLeft);
+    // // sessionStorage.setItem('username', currUser.username);
+    // sessionStorage.setItem('visibility', currUser.visibility);
 
     this.store.dispatch(
       new SetProfile(profile)

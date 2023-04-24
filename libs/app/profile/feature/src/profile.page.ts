@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 import { IProfile } from '@mp/api/profiles/util';
 import { ProfileState } from '@mp/app/profile/data-access';
 import { Select, Store } from '@ngxs/store';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { SetProfile } from '@mp/app/profile/util';
+import { currUser } from '@mp/app/browse/ui';
 
 @Component({
   selector: 'ms-profile-page',
@@ -134,7 +135,17 @@ export class ProfilePage {
 
   
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  ngOnInit() {}
+  ngOnInit() {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        // Check if the current route is home/dashboard and the previous route was home/profile
+        if (event.url !== '/home/profile') {
+          // Call your function here that should be called when the route changes
+          this.resetProfile();
+        }
+      }
+    });
+  }
 
   goToSettings() {
     this.router.navigate(['/home/settings']);
@@ -155,21 +166,27 @@ export class ProfilePage {
     // Implement the share functionality
   }
 
-//   resetProfile(){
-//     const resetProfile: IProfile = {
-//       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-//       id: sessionStorage.getItem('id')!,
-//       email: sessionStorage.getItem('email'),
-//       username: sessionStorage.getItem('username'),
-//       bio: sessionStorage.getItem('bio'),
-//       name: sessionStorage.getItem('name'),
-//       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-//       timeLeft: parseInt(sessionStorage.getItem('timeLeft')!),
-//     }
+  resetProfile(){
+    // const resetProfile: IProfile = {
+    //   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    //   id: sessionStorage.getItem('id')!,
+    //   email: sessionStorage.getItem('email'),
+    //   username: sessionStorage.getItem('username'),
+    //   bio: sessionStorage.getItem('bio'),
+    //   name: sessionStorage.getItem('name'),
+    //   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    //   timeLeft: parseInt(sessionStorage.getItem('timeLeft')!),
+    // }
+    if(currUser != null){
+      this.store.dispatch(
+        new SetProfile(currUser)
+      )      
+    }
 
-//     this.store.dispatch(
-//       new SetProfile(resetProfile)
-//     )
-//     // console.log('Called');
-//   }
+
+    // console.log(currUser);
+
+    // sessionStorage.clear();
+    // console.log('Called');
+  }
 }
