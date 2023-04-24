@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { IProfile } from '@mp/api/profiles/util';
 import { ProfileState } from '@mp/app/profile/data-access';
-import { Select } from '@ngxs/store';
-import { Router } from '@angular/router';
+import { Select, Store } from '@ngxs/store';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { SetProfile } from '@mp/app/profile/util';
 
 @Component({
   selector: 'ms-profile-page',
@@ -123,8 +124,15 @@ export class ProfilePage {
 
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  constructor(private router: Router) {}
+  constructor(private router: Router,
+    private activeRoute: ActivatedRoute,
+    private store: Store) {
+  //   this.activeRoute.paramMap.subscribe(params => {
+  //     this.resetProfile();
+  // });
+  }
 
+  
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   ngOnInit() {}
 
@@ -146,4 +154,22 @@ export class ProfilePage {
     console.log('Share:', post);
     // Implement the share functionality
   }
+
+//   resetProfile(){
+//     const resetProfile: IProfile = {
+//       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+//       id: sessionStorage.getItem('id')!,
+//       email: sessionStorage.getItem('email'),
+//       username: sessionStorage.getItem('username'),
+//       bio: sessionStorage.getItem('bio'),
+//       name: sessionStorage.getItem('name'),
+//       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+//       timeLeft: parseInt(sessionStorage.getItem('timeLeft')!),
+//     }
+
+//     this.store.dispatch(
+//       new SetProfile(resetProfile)
+//     )
+//     // console.log('Called');
+//   }
 }

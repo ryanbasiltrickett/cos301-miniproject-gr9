@@ -60,19 +60,32 @@ import { Router } from '@angular/router';
       }
     })
     
-    // const profile: IProfile = {
-    //   userId: desiredUser.id,
-    //   accountDetails: {
-    //     email: desiredUser.email,
-    //     displayName: desiredUser.displayName
-    //   }
-    // };
+    const profile: IProfile = {
+      id: desiredUser.id,
+      email: desiredUser.email,
+      username: desiredUser.username,
+      bio: desiredUser.bio,
+      name: desiredUser.name
+    };
 
-    // this.store.dispatch(
-    //   new SetProfile(profile)
-    // );
+    const currState = this.store.snapshot();
+    const currUser = currState.profile.profile;
 
-    this.router.navigate(['home/profile']);
+    sessionStorage.setItem('id', currUser.id);
+    sessionStorage.setItem('bio', currUser.bio);
+    sessionStorage.setItem('created', currUser.created);
+    sessionStorage.setItem('email', currUser.email);
+    sessionStorage.setItem('name', currUser.name);
+    sessionStorage.setItem('photoURL', currUser.photoURL);
+    sessionStorage.setItem('timeLeft', currUser.timeLeft);
+    // sessionStorage.setItem('username', currUser.username);
+    sessionStorage.setItem('visibility', currUser.visibility);
+
+    this.store.dispatch(
+      new SetProfile(profile)
+    );
+
+    await this.router.navigate(['home/profile']);
     
     this.clearSearch();
   }
