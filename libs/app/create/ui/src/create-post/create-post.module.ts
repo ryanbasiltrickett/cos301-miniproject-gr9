@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { NgxsFormPluginModule } from '@ngxs/form-plugin';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { CreatePostComponent } from './create-post.component';
+import { HeaderModule } from '@mp/app/feed/ui';
 
 @NgModule({
     declarations: [CreatePostComponent],
@@ -17,6 +18,7 @@ import { CreatePostComponent } from './create-post.component';
       NgxSkeletonLoaderModule,
       NgxsFormPluginModule,
       ReactiveFormsModule,
+      HeaderModule,
       ProfileModule,
     ],
     exports: [CreatePostComponent],

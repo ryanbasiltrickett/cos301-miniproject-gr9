@@ -9,7 +9,7 @@ import { Store } from '@ngxs/store';
 import { take } from 'rxjs/operators';
 
 @Component({
-    selector: 'ms-create-post',
+    selector: 'mp-create-post',
     templateUrl: './create-post.component.html',
     styleUrls: ['./create-post.component.scss'],
   })
