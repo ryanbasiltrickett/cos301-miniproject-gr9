@@ -50,4 +50,13 @@ export class NewsfeedRepository {
     const sortedPosts = posts.sort((a, b) => b.published.toMillis() - a.published.toMillis());
     return sortedPosts;
   }
+
+  async getGlobalFeed(limit: number) {
+    const db = admin.firestore();
+    const posts = await db.collection('posts')
+    .orderBy('published', 'desc')
+    .limit(limit)
+    .get();
+    return posts.docs.map((doc) => doc.data() as IPost);
+  }
 }
