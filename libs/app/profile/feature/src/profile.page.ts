@@ -167,26 +167,13 @@ export class ProfilePage {
   }
 
   resetProfile(){
-    // const resetProfile: IProfile = {
-    //   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    //   id: sessionStorage.getItem('id')!,
-    //   email: sessionStorage.getItem('email'),
-    //   username: sessionStorage.getItem('username'),
-    //   bio: sessionStorage.getItem('bio'),
-    //   name: sessionStorage.getItem('name'),
-    //   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    //   timeLeft: parseInt(sessionStorage.getItem('timeLeft')!),
-    // }
     if(currUser != null){
       this.store.dispatch(
         new SetProfile(currUser)
       )      
     }
 
-    // console.log(currUser);
-
     sessionStorage.clear();
-    // console.log('Called');
   }
 
   checkProfile(){
