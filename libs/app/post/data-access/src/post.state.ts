@@ -3,7 +3,8 @@ import { PostApi } from './post.api';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs';
-import { GetPost } from '@mp/app/post/util';
+import { GetPost, addComment } from '@mp/app/post/util';
+import { IAddCommentRequest } from '@mp/api/posts/util';
 
 export interface PostStateModel {
   post: IPost | null;
@@ -37,5 +38,19 @@ export class PostState {
         ctx.patchState({ post });
       })
     );
+  }
+
+  @Action(addComment)
+  async addComment(ctx: StateContext<PostStateModel>, { id, text}: addComment) {
+    let post_ = ctx.getState().post;
+
+    const request: IAddCommentRequest = {
+        post: post_,
+        comment: text,
+        userId: id
+    }
+
+    post_ =  (await this.postApi.addComment(request)).data.post;
+    return ctx.patchState({post:post_,comments: post_.comments});
   }
 }

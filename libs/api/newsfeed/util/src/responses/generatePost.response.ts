@@ -1,5 +1,5 @@
-import { IPostArray } from "../interfaces";
+import { IPost } from "@mp/api/posts/util";
 
 export interface IgeneratePostResponse {
-    posts: IPostArray
+    posts: IPost[]
 }

@@ -15,7 +15,8 @@ export class PostsRepository {
       published: Timestamp.now(),
       time: 0,
       image: post.mediaUrl,
-      location: post.location
+      location: post.location,
+      comments: post.comments
     });
 
     //get data from the new post
