@@ -3,7 +3,7 @@ import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 @Component({
   selector: 'mp-events-page',
-  templateUrl: './events.page.component.html',
-  styleUrls: ['./events.page.component.scss'],
+  templateUrl: './events.component.html',
+  styleUrls: ['./events.component.scss'],
 })
 export class EventsComponent {}

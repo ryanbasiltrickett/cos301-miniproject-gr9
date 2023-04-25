@@ -5,10 +5,10 @@ import { IonicModule } from '@ionic/angular';
 import { ProfileModule } from '@mp/app/profile/data-access';
 import { NgxsFormPluginModule } from '@ngxs/form-plugin';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { HeaderComponent } from './header.component';
+import { EventComponent } from './event.component';
 
 @NgModule({
-    declarations: [HeaderComponent],
+    declarations: [EventComponent],
     imports: [
       CommonModule,
       IonicModule,
@@ -17,6 +17,8 @@ import { HeaderComponent } from './header.component';
       ReactiveFormsModule,
       ProfileModule,
     ],
-    exports: [HeaderComponent],
+    exports: [EventComponent],
   })
-  export class HeaderModule {}
+  export class EventModule {
+    
+  }

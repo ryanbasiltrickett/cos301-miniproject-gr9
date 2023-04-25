@@ -1,3 +1,3 @@
 export * from './events.module';
-export * from './events.page.component';
-export * from './events.routing';
+export * from './events.component';
+// export * from './events.routing';
