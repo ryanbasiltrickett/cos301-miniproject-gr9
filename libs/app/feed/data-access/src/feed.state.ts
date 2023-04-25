@@ -47,9 +47,9 @@ export class FeedState {
   }
 
   @Action(SubscribeToFeed)
-  async subscribeToFeed(ctx: StateContext<FeedStateModel>) {
+  subscribeToFeed(ctx: StateContext<FeedStateModel>) {
     this.feedApi.subscribeToFeed();
-    return await ctx.patchState({ subscribedToFeed: true});
+    return ctx.patchState({ subscribedToFeed: true});
   }
 
   @Action(LikePost)

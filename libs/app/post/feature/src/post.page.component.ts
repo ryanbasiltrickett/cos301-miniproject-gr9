@@ -6,7 +6,7 @@ import { IPost } from '@mp/api/newsfeed/util';
 // import { ProfileState } from '@mp/app/profile/data-access';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { GetPost } from '@mp/app/post/util';
+import { GetPost, addComment } from '@mp/app/post/util';
 import { PostState } from '@mp/app/post/data-access';
 
 @Component({
@@ -28,6 +28,6 @@ export class PostPageComponent implements OnInit {
   }
 
   addComment() {
-    alert('add comment');
+    this.store.dispatch(new addComment("userid","text"));//Temporary Not sure how we are going to get the comment and userdID yet
   }
 }
