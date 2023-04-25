@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProfileState } from '@mp/app/profile/data-access';
 
 @Component({
@@ -12,7 +13,7 @@ import { ProfileState } from '@mp/app/profile/data-access';
     seconds = "00";
     time = 34549; // 9:49:49
 
-    constructor() {
+    constructor(private readonly router: Router) {
       // update hours, seconds, minutes every second
       setInterval(() => {
         this.time--;
@@ -20,6 +21,10 @@ import { ProfileState } from '@mp/app/profile/data-access';
         this.minutes = Math.floor((this.time % 3600) / 60).toString();
         this.seconds = Math.floor((this.time % 3600) % 60).toString();
       }, 1000);
+    }
+
+    goToEvents(){
+      this.router.navigate(['home/events']);
     }
 
   }

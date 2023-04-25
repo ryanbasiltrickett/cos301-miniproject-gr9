@@ -7,9 +7,9 @@
       <img src="assets/logos/NameIcon.png" alt="TimeShare Logo" class="logo"/>
       <nav>
           <ul class="topNav">
-              <li><a routerLink="/events" class="events">
-                <ion-icon slot="icon-only" name="calendar-outline"></ion-icon>
-              </a></li>
+              <li (click)="goToEvents()">
+                <ion-icon  slot="icon-only" name="calendar-outline"></ion-icon>
+              </li>
           </ul>
       </nav>
     </header>
