@@ -55,14 +55,7 @@
   </ng-template>
 </ion-content> -->
 
-<ion-header [translucent]="true">
-  <div
-    style="display: flex; flex-direction: row; justify-content: space-evenly">
-    <p>_time_remaining</p>
-    <p>_logo_</p>
-    <p>_messages_</p>
-  </div>
-</ion-header>
+<ms-header></ms-header>
 
 <ion-content *ngIf="profile$ | async as profile; else loading">
   <div class="top-section">

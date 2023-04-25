@@ -1,14 +1,17 @@
 <ion-header [translucent]="true">
-    <ion-toolbar>
-      <div style="display: flex; flex-direction: row; justify-content: space-evenly; width: 100%;">
-        <p>_time_remaining</p>
-        <p>_logo_</p>
-        <ion-buttons slot="end">
-          <ion-button>
-            <ion-icon slot="icon-only" name="mail-outline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
+  <ion-toolbar>
+    <header>
+      <div class="time-remaining">
+        <p style="margin: 0">{{ hours }} : {{ minutes }} : {{ seconds }}</p>
       </div>
-    </ion-toolbar>
-  </ion-header>
-  
+      <img src="assets/logos/NameIcon.png" alt="TimeShare Logo" class="logo"/>
+      <nav>
+          <ul class="topNav">
+              <li (click)="goToEvents()">
+                <ion-icon  slot="icon-only" name="calendar-outline"></ion-icon>
+              </li>
+          </ul>
+      </nav>
+    </header>
+  </ion-toolbar>
+</ion-header>

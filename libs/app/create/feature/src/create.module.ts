@@ -6,8 +6,9 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { RouterModule } from '@angular/router';
 import { appCreateFeatureRoutes} from './create.routing';
 
-import { CreateModule as CreateUiModule } from '@mp/app/create/ui';
+import { CreatePostComponent, CreatePostModule, CreateModule as CreateUiModule } from '@mp/app/create/ui';
 import { CreateComponent } from './create.page.component';
+import { HeaderModule } from '@mp/app/feed/ui';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { CreateComponent } from './create.page.component';
     NgxSkeletonLoaderModule,
     IonicModule,
     FormsModule,
-    CreateUiModule,
+    HeaderModule,
+    CreatePostModule,
   ],
   declarations: [CreateComponent],
   exports: [CreateComponent],

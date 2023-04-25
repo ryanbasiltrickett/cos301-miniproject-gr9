@@ -6,8 +6,8 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { RouterModule } from '@angular/router';
 import { appNotificationFeatureRoutes} from './notification.routing';
 
-import { HeaderModule} from '@mp/app/notification/ui';
 import { NotificationComponent } from './notification.page.component';
+import { HeaderModule } from '@mp/app/feed/ui';
 
 @NgModule({
   imports: [

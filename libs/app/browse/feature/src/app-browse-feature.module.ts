@@ -7,6 +7,7 @@ import { appBrowseFeatureRoutes } from './lib.routes';
 
 import { BrowseModule as BrowseUiModule } from '@mp/app/browse/ui';
 import { BrowseComponent } from './browse.component';
+import { HeaderModule } from '@mp/app/feed/ui';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { BrowseComponent } from './browse.component';
     NgxSkeletonLoaderModule,
     IonicModule,
     BrowseUiModule,
+    HeaderModule,
   ],
   declarations: [BrowseComponent],
   exports: [BrowseComponent],

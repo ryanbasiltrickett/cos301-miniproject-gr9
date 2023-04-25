@@ -22,18 +22,18 @@ export class PostApi {
     private readonly functions: Functions
   ) {}
 
-  // post$(id: string) {
-  //   const docRef = doc(
-  //     this.firestore,
-  //     `posts/${id}`
-  //   ).withConverter<Ipost>({
-  //     fromFirestore: (snapshot) => {
-  //       return snapshot.data() as Ipost;
-  //     },
-  //     toFirestore: (it: Ipost) => it,
-  //   });
-  //   return docData(docRef, { idField: 'id' });
-  // }
+  post$(id: string) {
+    const docRef = doc(
+      this.firestore,
+      `posts/${id}`
+    ).withConverter<IPost>({
+      fromFirestore: (snapshot) => {
+        return snapshot.data() as IPost;
+      },
+      toFirestore: (it: IPost) => it,
+    });
+    return docData(docRef, { idField: 'id' });
+  }
 
   async createPost(request: ICreatePostRequest) {
     return await httpsCallable<ICreatePostRequest, IAddPostResponse>(

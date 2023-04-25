@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { FeedModule as FeedDataAccessModule } from '@mp/app/feed/data-access';
-import { FeedModule as FeedUiModule } from '@mp/app/feed/ui';
+import { FeedModule as FeedUiModule, HeaderModule } from '@mp/app/feed/ui';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { FeedPage } from './feed.page.component';
 import { FeedRouting } from './feed.routing';
@@ -16,6 +16,7 @@ import { FeedRouting } from './feed.routing';
     FeedRouting,
     FeedUiModule,
     FeedDataAccessModule,
+    HeaderModule,
     NgxSkeletonLoaderModule,
   ],
   declarations: [FeedPage],
