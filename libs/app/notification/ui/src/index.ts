@@ -1,2 +1,2 @@
 export * from './notification-list';
-export * from './notification.module';
+export * from './notification-list/notification.module';
