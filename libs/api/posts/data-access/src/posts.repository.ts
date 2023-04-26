@@ -5,6 +5,10 @@ import { Injectable, NotImplementedException } from '@nestjs/common';
 import * as admin from 'firebase-admin';
 import { Timestamp } from 'firebase-admin/firestore';
 
+interface IIds{
+  id: string;
+}
+
 @Injectable()
 export class PostsRepository {
   async createPost(post: IPost) {
@@ -22,13 +26,16 @@ export class PostsRepository {
 
     const events = await admin.firestore().collection('events').doc(post.authorId!).collection('active-events')
     .where('eventTitle', '==', 'Post now').get();
+
     const eventData = events.docs.map((doc) => doc.data() as IEvent);
 
     eventData.forEach((event) => {
       if(event.date.toDate().getDate() === Timestamp.now().toDate().getDate()){
         console.log("Welldone event completed");
+        admin.firestore().collection('events').doc(post.authorId!).collection('active-events').doc('twez4qUJF8RY5LvBV4oB').delete();
+        return;
       }
-    })
+    });
 
     //get data from the new post
     const newPostData = (await newPost.get()).data();

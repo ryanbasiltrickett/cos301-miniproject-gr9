@@ -31,7 +31,7 @@ export class GenerateEventHandler
         const eventIndex = Math.floor(Math.random() * 2);
   
         const generetedTime =  formattedHours + ":" + formattedMinutes;
-        const response: IEventResponse = {event: [{eventTitle: possibleEvents[eventIndex], eventTime: generetedTime, user: command.request.user, date: new Timestamp(new Date().getSeconds(), new Date().getMilliseconds())}]};
+        const response: IEventResponse = {event: [{eventTitle: possibleEvents[eventIndex], eventTime: generetedTime, user: command.request.user, date: Timestamp.fromDate(new Date())}]};
         if(await this.repo.addEvent(response, command.request.user)){
             return response;
         }  
