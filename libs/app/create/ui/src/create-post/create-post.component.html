@@ -5,7 +5,7 @@
           <ion-title size="large">Create</ion-title>
         </ion-toolbar>
       </ion-header>
-    
+
       <ion-item lines="none" class="user-info">
         <ion-avatar slot="start">
           <img src="https://via.placeholder.com/50">
@@ -15,7 +15,7 @@
           <img src="https://via.placeholder.com/150">
         </ion-avatar> -->
       </ion-item>
-    
+
       <ion-item class="post-input">
         <ion-textarea
           label="description"
@@ -23,9 +23,13 @@
           [(ngModel)]="description"
           class="description-textarea"></ion-textarea>
       </ion-item>
+      <ion-button expand="block" (click)="post()" class="post-button">
+        <ion-label>Post</ion-label>
+      </ion-button>
   </div>
 
-  <div>       
+  <div>
+
     <!-- <ion-item class="post-input">
       <ion-input
         label="hashtags"
@@ -36,27 +40,25 @@
         <ion-label>Add Location</ion-label>
       </ion-button>
     </ion-item>
-  
+
     <div class="media-buttons">
       <input type="file" (change)="onFileSelected($event)" #fileInput style="display: none" accept="image/*">
-  
+
       <ion-button (click)="fileInput.click()" fill="outline">
         <ion-icon slot="start" name="image"></ion-icon>
         <ion-label>Upload Photo</ion-label>
       </ion-button>
-      
+
       <input type="file" (change)="onVideoSelected($event)" #videoInput style="display: none" accept="video/*">
-  
+
       <ion-button (click)="videoInput.click()" fill="outline">
         <ion-icon slot="start" name="videocam"></ion-icon>
         <ion-label>Upload Video</ion-label>
       </ion-button>
-      
+
     </div> -->
-  
-    <ion-button expand="block" (click)="post()" class="post-button">
-      <ion-label>Post</ion-label>
-    </ion-button>
+
+
   </div>
 </div>
 <ng-template #loading>

@@ -13,6 +13,8 @@ import {
   ILikePostResponse,
   IUpdatePostTimeRequest,
   IUpdatePostTimeResponse,
+  IAddCommentRequest,
+  IAddCommentResponse,
 } from '@mp/api/posts/util';
 
 @Injectable()
@@ -22,18 +24,18 @@ export class PostApi {
     private readonly functions: Functions
   ) {}
 
-  // post$(id: string) {
-  //   const docRef = doc(
-  //     this.firestore,
-  //     `posts/${id}`
-  //   ).withConverter<Ipost>({
-  //     fromFirestore: (snapshot) => {
-  //       return snapshot.data() as Ipost;
-  //     },
-  //     toFirestore: (it: Ipost) => it,
-  //   });
-  //   return docData(docRef, { idField: 'id' });
-  // }
+  post$(id: string) {
+    const docRef = doc(
+      this.firestore,
+      `posts/${id}`
+    ).withConverter<IPost>({
+      fromFirestore: (snapshot) => {
+        return snapshot.data() as IPost;
+      },
+      toFirestore: (it: IPost) => it,
+    });
+    return docData(docRef, { idField: 'id' });
+  }
 
   async createPost(request: ICreatePostRequest) {
     return await httpsCallable<ICreatePostRequest, IAddPostResponse>(
@@ -67,6 +69,13 @@ export class PostApi {
     return await httpsCallable<IDeletePostRequest, IDeletePostResponse>(
       this.functions,
       'deletePost'
+    )(request);
+  }
+
+  async addComment(request: IAddCommentRequest) {
+    return await httpsCallable<IAddCommentRequest,IAddCommentResponse>(
+      this.functions,
+      'addComment'
     )(request);
   }
 }

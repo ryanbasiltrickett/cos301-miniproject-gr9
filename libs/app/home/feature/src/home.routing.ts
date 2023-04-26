@@ -8,11 +8,9 @@ const routes: Routes = [
     component: HomePage,
     children: [
       {
-        path: 'notification',
+        path: 'events',
         loadChildren: () =>
-          import('@mp/app/notification/feature').then(
-            (m) => m.NotificationModule
-          ),
+          import('@mp/app/events/feature').then((m) => m.EventsModule),
       },
       {
         path: 'profile',

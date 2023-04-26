@@ -7,6 +7,7 @@ import { ProfileModule as ProfileUiModule } from '@mp/app/profile/ui';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { ProfilePage } from './profile.page';
 import { ProfileRouting } from './profile.routing';
+import { HeaderModule } from '@mp/app/feed/ui';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { ProfileRouting } from './profile.routing';
     IonicModule,
     ProfileRouting,
     ProfileUiModule,
+    HeaderModule,
     ProfileDataAccessModule,
     NgxSkeletonLoaderModule,
   ],

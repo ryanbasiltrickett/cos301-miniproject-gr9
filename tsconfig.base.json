@@ -105,6 +105,7 @@
       "@mp/app/post/data-access": ["libs/app/post/data-access/src/index.ts"],
       "@mp/app/post/feature": ["libs/app/post/feature/src/index.ts"],
       "@mp/app/post/ui": ["libs/app/post/ui/src/index.ts"],
+      "@mp/app/post/util": ["libs/app/post/util/src/index.ts"],
       "@mp/app/privacy/feature": ["libs/app/privacy/feature/src/index.ts"],
       "@mp/app/profile/data-access": [
         "libs/app/profile/data-access/src/index.ts"
@@ -144,6 +145,7 @@
         "libs/app/welcome/data-access/src/index.ts"
       ],
       "@mp/app/welcome/feature": ["libs/app/welcome/feature/src/index.ts"],
+      "@mp/app/welcome/ui": ["libs/app/welcome/ui/src/index.ts"],
       "@mp/app/welcome/util": ["libs/app/welcome/util/src/index.ts"],
       "@mp/cli/core/feature": ["libs/cli/core/feature/src/index.ts"]
     }

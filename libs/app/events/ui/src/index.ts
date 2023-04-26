@@ -1,1 +1,2 @@
-export * from './lib/app-events-ui';
+export * from './event';
+export * from './events.module';

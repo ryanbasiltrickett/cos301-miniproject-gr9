@@ -3,13 +3,12 @@ import { IProfile } from '@mp/api/profiles/util';
 import { ProfileState } from '@mp/app/profile/data-access';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { CreatePost } from '@mp/app/create/util';
 import { Store } from '@ngxs/store';
 import { take } from 'rxjs/operators';
 
 @Component({
-    selector: 'ms-create-post',
+    selector: 'mp-create-post',
     templateUrl: './create-post.component.html',
     styleUrls: ['./create-post.component.scss'],
   })

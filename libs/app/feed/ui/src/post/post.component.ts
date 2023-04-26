@@ -8,11 +8,14 @@ import {
 import { IonCard } from '@ionic/angular';
 import { ICommentPostRequest, IPost } from '@mp/api/posts/util';
 import { CommentPost, GivePostTime, LikePost } from '@mp/app/feed/util';
-import { Store } from '@ngxs/store';
+import { Store, Select } from '@ngxs/store';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ToastController } from '@ionic/angular'
 import { IComment  } from '@mp/api/newsfeed/util';
 import { Router } from '@angular/router';
+import { ProfileState } from '@mp/app/profile/data-access';
+import { IProfile } from '@mp/api/profiles/util';
+import { Observable, take } from 'rxjs';
 // import { generatePost } from '@mp/app/feed/util';
 
 @Component({
@@ -21,6 +24,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./post.component.scss'],
 })
 export class PostComponent {
+  @Select(ProfileState.profile) profile$!: Observable<IProfile | null>;
   @Input() post!: IPost;
   inViewObserver!: IntersectionObserver;
   timer: NodeJS.Timer | undefined;
@@ -55,9 +59,17 @@ export class PostComponent {
   }
 
   startTimer(): void {
-    this.timer = setInterval(() => {
-      this.store.dispatch(new GivePostTime(this.post));
-    }, 1000);
+    this.profile$
+    .pipe(take(1))
+    .subscribe(
+      profile => {
+          if (this.post.author !== profile?.username) {
+            this.timer = setInterval(() => {
+              this.store.dispatch(new GivePostTime(this.post));
+            }, 1000);
+          }
+      }
+    );
   }
 
   stopTimer(): void {
@@ -69,8 +81,7 @@ export class PostComponent {
   }
 
   onDonateClick() {
-    console.log('Donate button clicked');
-    // Add your donate functionality here
+    this.likePost();
   }
 
   onCommentClick() {
