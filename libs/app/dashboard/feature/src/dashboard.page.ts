@@ -56,12 +56,6 @@ export class DashboardPage {
         user: this.userId,
       })
     );
-    
-    // const events = await firstValueFrom(this.events$);
-    // if(events)
-    //   events.forEach(e => {
-    //     console.log(e.eventTime);
-    //   })
   }
 
   async getEvents(){
@@ -75,7 +69,7 @@ export class DashboardPage {
   async getUser(){
     const user = await firstValueFrom(this.profile$);
     if(user){
-      this.userId = user.userId;
+      this.userId = user.id;
     }
   }
 }

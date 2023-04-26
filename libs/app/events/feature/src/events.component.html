@@ -44,6 +44,12 @@
               <p>00 : 00 : 00</p>
           </div>
         </div>
-        <button class="button" role="getEvents"><span class="text">Get event</span></button>
+        <!-- <button class="button" role="getEvents"><span class="text">Get event</span></button> -->
     </div>
+
+    <button class="button" role="getEvents" (click)="generateEvent()"><span class="text">Get event</span></button>
+    <ion-card *ngFor="let event of events$ | async">
+        <ion-title>{{event.eventTitle}}</ion-title>
+        <ion-title>{{event.eventTime}}</ion-title>
+    </ion-card>
 </ion-content>
