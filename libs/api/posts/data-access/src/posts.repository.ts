@@ -1,3 +1,4 @@
+import { IEvent } from '@mp/api/events/util';
 import { IPost, IComment, ILike, IRecentPost } from '@mp/api/posts/util';
 import { IProfile } from '@mp/api/profiles/util';
 import { Injectable, NotImplementedException } from '@nestjs/common';
@@ -19,8 +20,16 @@ export class PostsRepository {
       comments: post.comments
     });
 
-    const events = await admin.firestore().collection('events').doc(post.authorId!).collection('active-events').get();
-    console.log(events);
+    const events = await admin.firestore().collection('events').doc(post.authorId!).collection('active-events')
+    .where('eventTitle', '==', 'Post now').get();
+    const eventData = events.docs.map((doc) => doc.data() as IEvent);
+
+    eventData.forEach((event) => {
+      if(event.date.toDate().getDate() === Timestamp.now().toDate().getDate()){
+        console.log("Welldone event completed");
+      }
+    })
+
     //get data from the new post
     const newPostData = (await newPost.get()).data();
     await newPost.update({id: newPost.id});

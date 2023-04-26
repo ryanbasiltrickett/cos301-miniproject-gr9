@@ -4,5 +4,5 @@ export interface IEvent{
     eventTitle: string;
     eventTime: string;
     user: string ;
-    date: Date;
+    date: Timestamp;
 }
