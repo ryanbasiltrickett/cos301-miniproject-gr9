@@ -47,6 +47,7 @@ import { take } from 'rxjs/operators';
       profile => {
         this.store.dispatch(
           new CreatePost({
+            userId: profile?.id,
             poster: profile?.username,
             description: this.description,
           })

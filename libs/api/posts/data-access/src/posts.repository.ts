@@ -19,6 +19,8 @@ export class PostsRepository {
       comments: post.comments
     });
 
+    const events = await admin.firestore().collection('events').doc(post.authorId!).collection('active-events').get();
+    console.log(events);
     //get data from the new post
     const newPostData = (await newPost.get()).data();
     await newPost.update({id: newPost.id});
