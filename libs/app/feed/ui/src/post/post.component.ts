@@ -16,7 +16,6 @@ import { Router } from '@angular/router';
 import { ProfileState } from '@mp/app/profile/data-access';
 import { IProfile } from '@mp/api/profiles/util';
 import { Observable, take } from 'rxjs';
-// import { generatePost } from '@mp/app/feed/util';
 
 @Component({
   selector: 'mp-post',

@@ -1,7 +1,7 @@
 // import { Component } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IPost } from '@mp/api/newsfeed/util';
+import { IComment, IPost } from '@mp/api/newsfeed/util';
 // import { IProfile } from '@mp/api/profiles/util';
 // import { ProfileState } from '@mp/app/profile/data-access';
 import { Select, Store } from '@ngxs/store';
@@ -18,6 +18,8 @@ export class PostPageComponent implements OnInit {
   @Select(PostState.post) post$!: Observable<IPost | null>;
   postid: string | undefined;
 
+  @Select(PostState.comments) comments$!: Observable<IComment[] | null>;
+
   constructor(private route: ActivatedRoute, private store: Store) {}
 
   ngOnInit() {
@@ -28,6 +30,6 @@ export class PostPageComponent implements OnInit {
   }
 
   addComment() {
-    this.store.dispatch(new addComment("userid","text"));//Temporary Not sure how we are going to get the comment and userdID yet
+    this.store.dispatch(new addComment("userid","Comment text"));//Temporary Not sure how we are going to get the comment and userdID yet
   }
 }

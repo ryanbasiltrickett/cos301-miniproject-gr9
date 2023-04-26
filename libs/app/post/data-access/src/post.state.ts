@@ -30,12 +30,18 @@ export class PostState {
     return state.post;
   }
 
+  @Selector()
+  static comments(state: PostStateModel) {
+    return state.comments;
+  }
+
   @Action(GetPost)
   getPost(ctx: StateContext<PostStateModel>, { id }: GetPost) {
     return this.postApi.post$(id).pipe(
       tap((post: IPost) => {
         console.log('Post received: ', post);
-        ctx.patchState({ post });
+        ctx.patchState({ post:post,comments:post.comments});
+
       })
     );
   }

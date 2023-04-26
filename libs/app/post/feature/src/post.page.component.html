@@ -8,17 +8,17 @@
 
       <p>Comments</p>
 
-        <!-- <ng-container *ngIf="comments$ | async as comments; else noComments">
-            <mp-comment *ngFor="let comment of comments" [comment]="comment"></mp-comment>
-        </ng-container> -->
+        <ng-container *ngIf="comments$ | async as comments; else noComments">
+            <mp-comment  *ngFor="let comment of comments" [comment]="comment"></mp-comment>
+        </ng-container>
 
-        <div *ngFor="let i of [1, 2, 3, 4, 5]">
+        <!-- <div *ngFor="let i of [1, 2, 3, 4, 5]">
             <ngx-skeleton-loader
                 count="1"
                 [theme]="{ height: '30px' }"
                 appearance="line"
             ></ngx-skeleton-loader>
-        </div>
+        </div> -->
 
         <ng-template #noComments>
             <p>No comments yet</p>
