@@ -31,7 +31,7 @@ export class DashboardEventState {
 
   @Action(DashboardEvent)
   async dashboardEvent(ctx: StateContext<DashboardEventStateModel>, {event}: DashboardEvent) {
-    // console.log(user);
+    console.log("Event Requested");
     const request: IEventRequest = {
       user: event.user,
     };

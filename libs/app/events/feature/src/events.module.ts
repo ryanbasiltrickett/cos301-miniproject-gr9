@@ -8,6 +8,7 @@ import { appEventsFeatureRoutes} from './events.routing';
 
 import { EventsComponent } from './events.component';
 import { HeaderModule } from '@mp/app/feed/ui';
+import { DashboardModule as DashboardDataAccessModule } from '@mp/app/dashboard/data-access';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { HeaderModule } from '@mp/app/feed/ui';
     IonicModule,
     FormsModule,
     HeaderModule,
+    DashboardDataAccessModule
   ],
   declarations: [EventsComponent],
   exports: [EventsComponent],

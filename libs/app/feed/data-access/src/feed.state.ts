@@ -43,6 +43,7 @@ export class FeedState {
 
   @Action(SetFeed)
   setFeed(ctx: StateContext<FeedStateModel>, { feed }: SetFeed) {
+    console.log("Am i Here");
     return ctx.patchState({ feed: feed });
   }
 
