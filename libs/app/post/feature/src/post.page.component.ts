@@ -30,6 +30,6 @@ export class PostPageComponent implements OnInit {
   }
 
   addComment() {
-    this.store.dispatch(new addComment("userid","Comment text"));//Temporary Not sure how we are going to get the comment and userdID yet
+    this.store.dispatch(new addComment("userid","Comment text","username"));//Temporary Not sure how we are going to get the comment and userdID yet
   }
 }

@@ -6,7 +6,10 @@
         <mp-post style="margin-top: 2rem" [post]="post"></mp-post>
       </ng-container>
 
-      <p>Comments</p>
+      <div style="color: darkblue;">
+        <p>Comments</p>
+      </div>
+
 
         <ng-container *ngIf="comments$ | async as comments; else noComments">
             <mp-comment  *ngFor="let comment of comments" [comment]="comment"></mp-comment>

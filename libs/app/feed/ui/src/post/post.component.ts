@@ -88,9 +88,11 @@ export class PostComponent {
     // Add your comment functionality here
 
     const commentText = 'Hard coded'
+    const usernameText = 'Hard coded'
     const commentDetails : IComment = {
       userId: '1',
-      text: commentText
+      text: commentText,
+      username: usernameText
     }
 
     const request : ICommentPostRequest = {

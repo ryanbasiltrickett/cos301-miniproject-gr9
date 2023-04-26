@@ -47,13 +47,14 @@ export class PostState {
   }
 
   @Action(addComment)
-  async addComment(ctx: StateContext<PostStateModel>, { id, text}: addComment) {
+  async addComment(ctx: StateContext<PostStateModel>, { id, text, usernam}: addComment) {
     let post_ = ctx.getState().post;
 
     const request: IAddCommentRequest = {
         post: post_,
         comment: text,
-        userId: id
+        userId: id,
+        username: usernam,
     }
 
     post_ =  (await this.postApi.addComment(request)).data.post;
