@@ -81,7 +81,8 @@ export class PostComponent {
   }
 
   onDonateClick() {
-    this.likePost();
+    
+    // this.likePost();
   }
 
   onCommentClick() {
