@@ -27,14 +27,21 @@ export class PostsRepository {
     const events = await admin.firestore().collection('events').doc(post.authorId!).collection('active-events')
     .where('eventTitle', '==', 'Post now').get();
 
-    const eventData = events.docs.map((doc) => doc.data() as IEvent);
 
+    const eventIds: string [] = [];
+    const eventData = events.docs.map((doc) => doc.data() as IEvent);
+    events.docs.forEach(doc => {
+      eventIds.push(doc.id);
+    })
+
+    let index = 0;
     eventData.forEach((event) => {
       if(event.date.toDate().getDate() === Timestamp.now().toDate().getDate()){
         console.log("Welldone event completed");
-        admin.firestore().collection('events').doc(post.authorId!).collection('active-events').doc('twez4qUJF8RY5LvBV4oB').delete();
+        admin.firestore().collection('events').doc(post.authorId!).collection('active-events').doc(eventIds[index]).delete();
         return;
       }
+      index++;
     });
 
     //get data from the new post
