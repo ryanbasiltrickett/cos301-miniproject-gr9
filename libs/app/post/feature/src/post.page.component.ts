@@ -55,5 +55,6 @@ export class PostPageComponent implements OnInit {
         );
       }
     );
+    this.toggleForm()
   }
 }
