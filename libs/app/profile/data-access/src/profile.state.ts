@@ -46,42 +46,6 @@ export interface ProfileStateModel {
     status: string;
     errors: object;
   };
-  // addressDetailsForm: {
-  //   model: {
-  //     residentialArea: string | null;
-  //     workArea: string | null;
-  //   };
-  //   dirty: false;
-  //   status: string;
-  //   errors: object;
-  // };
-  // contactDetailsForm: {
-  //   model: {
-  //     cellphone: string | null;
-  //   };
-  //   dirty: false;
-  //   status: string;
-  //   errors: object;
-  // };
-  // personalDetailsForm: {
-  //   model: {
-  //     age: AgeGroup | null;
-  //     gender: Gender | null;
-  //     ethnicity: Ethnicity | null;
-  //   };
-  //   dirty: false;
-  //   status: string;
-  //   errors: object;
-  // };
-  // occupationDetailsForm: {
-  //   model: {
-  //     householdIncome: HouseholdIncome | null;
-  //     occupation: string | null;
-  //   };
-  //   dirty: false;
-  //   status: string;
-  //   errors: object;
-  // };
 }
 
 @State<ProfileStateModel>({
@@ -102,42 +66,6 @@ export interface ProfileStateModel {
       status: '',
       errors: {},
     },
-    // addressDetailsForm: {
-    //   model: {
-    //     residentialArea: null,
-    //     workArea: null,
-    //   },
-    //   dirty: false,
-    //   status: '',
-    //   errors: {},
-    // },
-    // contactDetailsForm: {
-    //   model: {
-    //     cellphone: null,
-    //   },
-    //   dirty: false,
-    //   status: '',
-    //   errors: {},
-    // },
-    // personalDetailsForm: {
-    //   model: {
-    //     age: null,
-    //     gender: null,
-    //     ethnicity: null,
-    //   },
-    //   dirty: false,
-    //   status: '',
-    //   errors: {},
-    // },
-    // occupationDetailsForm: {
-    //   model: {
-    //     householdIncome: null,
-    //     occupation: null,
-    //   },
-    //   dirty: false,
-    //   status: '',
-    //   errors: {},
-    // },
   },
 })
 @Injectable()
