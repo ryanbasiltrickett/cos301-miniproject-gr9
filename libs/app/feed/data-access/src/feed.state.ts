@@ -1,12 +1,15 @@
-import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
+import { Action, Select, Selector, State, StateContext, Store } from '@ngxs/store';
 import { FeedApi } from './feed.api';
 import { Injectable } from '@angular/core';
 import { CommentPost, GivePostTime, LikePost, SetFeed, SubscribeToFeed } from '@mp/app/feed/util';
-import { IComment, ICommentPostRequest, IPost } from '@mp/api/posts/util';
+import { IComment, ICommentPostRequest, IPost, IUpdatePostTimeRequest } from '@mp/api/posts/util';
 import { ILikePostRequest } from '@mp/api/posts/util';
 import { ICommand } from '@nestjs/cqrs';
 import { SetError } from '@mp/app/errors/util';
 import { IgeneratePostRequest } from '@mp/api/newsfeed/util';
+import { IProfile } from '@mp/api/profiles/util';
+import { Observable, take } from 'rxjs';
+import { ProfileState } from '@mp/app/profile/data-access';
 // import { Timestamp } from 'firebase-admin/firestore';
 
 export interface FeedStateModel {
@@ -23,6 +26,8 @@ export interface FeedStateModel {
 })
 @Injectable()
 export class FeedState {
+  @Select(ProfileState.profile) profile$!: Observable<IProfile | null>;
+
   constructor(
     private readonly feedApi: FeedApi,
     private readonly store: Store
@@ -54,21 +59,36 @@ export class FeedState {
 
   @Action(LikePost)
   async likePost(ctx: StateContext<FeedStateModel>, { post }: LikePost) {
-    const request: ILikePostRequest = {
-      post,
-      // retrieve profile id Sim
-    };
-    const responseRef = await this.feedApi.updatePostLikeCount(request);
+    this.profile$
+      .pipe(take(1))
+      .subscribe(profile => {
+        if (profile !== null) {
+          const request: ILikePostRequest = {
+            profile,
+            post,
+          };
+
+          this.feedApi.updatePostLikeCount(request);
+        }
+      });
     // const response = responseRef.data;
     // console.log('Response from like Post: ', response);
   }
 
   @Action(GivePostTime)
   async givePostTime(ctx: StateContext<FeedStateModel>, { post }: GivePostTime) {
-    const request: ILikePostRequest = {
-      post
-    };
-    const responseRef = await this.feedApi.updatePostTime(request);
+    this.profile$
+      .pipe(take(1))
+      .subscribe(profile => {
+        if (profile !== null) {
+          const request: IUpdatePostTimeRequest = {
+            profile,
+            post,
+          };
+
+          this.feedApi.updatePostTime(request);
+        }
+      })
     // const response = responseRef.data;
     // console.log('Response from like Post: ', response);
   }
