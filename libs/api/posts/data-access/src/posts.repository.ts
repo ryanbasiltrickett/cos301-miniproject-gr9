@@ -3,7 +3,7 @@ import { IPost, IComment, ILike, IRecentPost } from '@mp/api/posts/util';
 import { IProfile } from '@mp/api/profiles/util';
 import { Injectable, NotImplementedException } from '@nestjs/common';
 import * as admin from 'firebase-admin';
-import { Timestamp } from 'firebase-admin/firestore';
+import { FieldValue, Timestamp } from 'firebase-admin/firestore';
 
 interface IIds{
   id: string;
@@ -39,6 +39,7 @@ export class PostsRepository {
       if(event.date.toDate().getDate() === Timestamp.now().toDate().getDate()){
         console.log("Welldone event completed");
         admin.firestore().collection('events').doc(post.authorId!).collection('active-events').doc(eventIds[index]).delete();
+        admin.firestore().collection('users').doc(post.authorId!).update('timeLeft', FieldValue.increment(120));
         return;
       }
       index++;
