@@ -39,7 +39,7 @@ export class PostsRepository {
       if(event.date.toDate().getDate() === Timestamp.now().toDate().getDate()){
         console.log("Welldone event completed");
         admin.firestore().collection('events').doc(post.authorId!).collection('active-events').doc(eventIds[index]).delete();
-        admin.firestore().collection('users').doc(post.authorId!).update('timeLeft', FieldValue.increment(120));
+        admin.firestore().collection('users').doc(post.authorId!).update('timeLeft', FieldValue.increment(300));
         return;
       }
       index++;
