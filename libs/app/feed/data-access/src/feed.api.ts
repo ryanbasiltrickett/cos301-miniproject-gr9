@@ -71,10 +71,10 @@ export class FeedApi {
     )(request);
   }
 
-  generatePost(request: IgeneratePostRequest) {
-    return httpsCallable<IgeneratePostRequest, IgeneratePostResponse>(
-      this.functions,
-      'generatePost'
-    )(request);
-  }
+  // generatePost(request: IgeneratePostRequest) {
+  //   return httpsCallable<IgeneratePostRequest, IgeneratePostResponse>(
+  //     this.functions,
+  //     'generatePost'
+  //   )(request);
+  // }
 }

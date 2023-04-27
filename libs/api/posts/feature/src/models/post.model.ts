@@ -42,7 +42,7 @@ export class Post extends AggregateRoot implements IPost {
   }
 
   likePost() {
-    this.likes++;
+    this.likes += 5;
     this.apply(new PostLikedEvent(this.toJSON()));
   }
 
