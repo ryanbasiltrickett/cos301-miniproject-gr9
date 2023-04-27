@@ -29,7 +29,6 @@ export class UpdatePostTimeHandler
     post.updateTime();
     post.commit();
 
-    
     const profileDoc = await this.profileRepo.findOne(request.profile);
     const profileData = profileDoc.data();
 
@@ -37,7 +36,7 @@ export class UpdatePostTimeHandler
 
     const profile = this.publisher.mergeObjectContext(Profile.fromData(profileData));
 
-    profile.updateTime();
+    profile.decreaseTime(1);
     profile.commit();
   }
 }

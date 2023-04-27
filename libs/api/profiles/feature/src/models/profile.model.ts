@@ -56,11 +56,11 @@ export class Profile extends AggregateRoot implements IProfile {
     this.apply(new ProfileCreatedEvent(this.toJSON()));
   }
 
-  updateTime() {
+  decreaseTime(time: number) {
     if (this.timeLeft === null || this.timeLeft === undefined) {
       this.timeLeft = 10800;
     } else {
-      this.timeLeft--;
+      this.timeLeft -= time;
     }
     this.apply(new ProfileTimeUpdatedEvent(this.toJSON()));
   }
