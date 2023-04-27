@@ -1,0 +1,35 @@
+<div class="post" (click)="goToPostPage()">
+  <div class="post-header">
+    <img class="avatar" src="https://via.placeholder.com/40" alt="User Avatar" />
+    <span class="username">{{ post.author }}</span>
+  </div>
+  <div class="post-content">
+    <!-- <img src="https://picsum.photos/800/400" alt="Post Image" class="post-image" /> -->
+    <p>{{ post.description }} </p>
+  </div>
+
+  <div class="post-actions">
+    <!-- <ion-button fill="clear" class="post-action" (click)="likePost()">
+      <ion-icon name="heart-outline"></ion-icon>
+      <span>{{ post.likes }}</span>
+    </ion-button> -->
+
+    <ion-button fill="clear" class="post-action" (click)="onDonateClick()">
+      <ion-icon name="cash-outline"></ion-icon>
+      <span>Donate</span>
+    </ion-button>
+
+    <ion-button fill="clear" class="post-action" (click)="onCommentClick()">
+      <ion-icon name="chatbox-outline"></ion-icon>
+    </ion-button>
+
+    <span class="post-action">
+      <ion-icon name="time-outline"></ion-icon>
+      <span>{{ post.time }}</span>
+    </span>
+    <ion-button fill="clear" class="post-action" (click)="onShareClick()">
+      <ion-icon name="share-outline"></ion-icon>
+      <!-- <span>Share</span> -->
+    </ion-button>
+  </div>
+</div>

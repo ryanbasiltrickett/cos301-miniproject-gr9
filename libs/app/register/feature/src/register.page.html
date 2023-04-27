@@ -1,11 +1,6 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Register</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-buttons slot="start">  
+  <ion-back-button defaultHref="/"></ion-back-button>
+</ion-buttons>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
@@ -14,18 +9,22 @@
     </ion-toolbar>
   </ion-header>
 
+  <div class="ion-padding-bottom" style="display: flex; justify-content: center;">
+    <ion-img src="/assets/logos/main-logo.png" class="ion-align-self-center" style="width:50%;"></ion-img>
+  </div>
+
   <form
     [formGroup]="registerForm"
     ngxsForm="register.registerForm"
     (submit)="register()">
-    <ion-list class="ion-padding-vertical">
+    <ion-text class="ion-padding-start">Welcome To TimeShare</ion-text>
+    <ion-list>
       <ion-item>
-        <ion-label position="floating" class="required">Email</ion-label>
         <ion-input
           type="email"
           minlength="6"
           maxlength="64"
-          placeholder="Enter email"
+          placeholder="Enter your email"
           required="true"
           autocomplete="email"
           formControlName="email"></ion-input>
@@ -37,12 +36,11 @@
         <small>{{ emailError }}</small>
       </ion-text>
       <ion-item>
-        <ion-label position="floating" class="required">Password</ion-label>
         <ion-input
           [type]="showPassword ? 'text' : 'password'"
           minlength="6"
           maxlength="64"
-          placeholder="Enter password"
+          placeholder="Enter your password"
           required="true"
           autocomplete="password"
           formControlName="password"></ion-input>
@@ -73,6 +71,63 @@
         </ion-col>
       </ion-row>
       <ion-row class="ion-padding-top">
+        <ion-col class="ion-text-center ">
+          <p class="horizontal-line"><span>or sign up with</span></p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button
+              expand="block"
+              fill="outline"
+              color="dark"
+              (click)="googleSignUp()">
+              <ion-icon name="logo-google"></ion-icon>
+              <ion-text style="padding-left: 5px">
+                Sign up with Google
+              </ion-text>
+            </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button
+              expand="block"
+              fill="outline"
+              color="dark"
+              (click)="facebookSignUp()">
+              <ion-icon name="logo-facebook"></ion-icon>
+              <ion-text style="padding-left: 5px">
+                Sign up with Facebook
+              </ion-text>
+            </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-button
+              expand="block"
+              fill="outline"
+              color="dark"
+              (click)="appleSignUp()">
+              <ion-icon name="logo-apple"></ion-icon>
+              <ion-text style="padding-left: 5px">
+                Sign up with Apple
+              </ion-text>
+            </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button
+              expand="block"
+              fill="outline"
+              color="dark"
+              (click)="twitterSignUp()">
+              <ion-icon name="logo-twitter"></ion-icon>
+              <ion-text style="padding-left: 5px">
+                Sign up with Twitter
+              </ion-text>
+            </ion-button>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-padding-top">
         <ion-col class="ion-text-center">
           Already have an account?
           <ion-nav-link routerLink="/login">
@@ -80,18 +135,6 @@
           </ion-nav-link>
         </ion-col>
       </ion-row>
-      <ion-row>
-        <ion-col class="ion-text-center">
-          Having trouble?
-          <ion-nav-link routerLink="/forgot">
-            <ion-text color="primary">Forgot Password</ion-text>
-          </ion-nav-link>
-        </ion-col>
-      </ion-row>
     </ion-grid>
   </form>
 </ion-content>
-
-<ion-footer collapse="condense" class="ion-padding ion-text-center">
-  <ms-copyright-component></ms-copyright-component>
-</ion-footer>

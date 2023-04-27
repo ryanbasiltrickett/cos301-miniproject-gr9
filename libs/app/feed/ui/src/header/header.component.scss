@@ -1,0 +1,25 @@
+:host {
+    display: block;
+  }
+  
+  .header {
+    background-color: #3b5998;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .time-remaining {
+    align-self: center;
+    border: 1.7px solid rgba(128, 128, 128, 0.475);
+    border-radius: 15px;
+    padding: 11px;
+  }

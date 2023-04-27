@@ -6,11 +6,15 @@ export class Auth extends AggregateRoot implements IAuth {
   constructor(
     public id: string,
     public email?: string | null | undefined,
-    public displayName?: string | null | undefined,
+    public username?: string | null | undefined,
     public photoURL?: string | null | undefined,
     public phoneNumber?: string | null | undefined,
     public customClaims?: { [key: string]: any } | null | undefined,
-    public created?: Timestamp | null | undefined
+    public created?: Timestamp | null | undefined,
+    public bio?: string | null | undefined,
+    public name?: string | null | undefined,
+    public visibility?: boolean | null | undefined,
+    public timeLeft?: number | null | undefined,
   ) {
     super();
   }
@@ -19,11 +23,15 @@ export class Auth extends AggregateRoot implements IAuth {
     const instance = new Auth(
       user.id,
       user.email,
-      user.displayName,
+      user.username,
       user.photoURL,
       user.phoneNumber,
       user.customClaims,
-      user.created
+      user.created,
+      user.bio,
+      user.name,
+      user.visibility,
+      user.timeLeft,
     );
     return instance;
   }
@@ -40,11 +48,15 @@ export class Auth extends AggregateRoot implements IAuth {
     return {
       id: this.id,
       email: this.email,
-      displayName: this.displayName,
+      username: this.username,
       photoURL: this.photoURL,
       phoneNumber: this.phoneNumber,
       customClaims: this.customClaims,
       created: this.created,
+      bio: this.bio,
+      name: this.name,
+      visibility: this.visibility,
+      timeLeft: this.timeLeft,
     };
   }
 }

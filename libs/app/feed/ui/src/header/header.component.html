@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <div
+      style="
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        width: 100%;
+      ">
+      <div class="time-remaining">
+        <p style="margin: 0">{{ hours }} : {{ minutes }} : {{ seconds }}</p>
+      </div>
+
+      <img
+        style="width: 50px; height: 50px"
+        src="assets/logos/main-logo.png"
+        alt="TimeShare Logo" />
+
+      <ion-buttons slot="end">
+        <ion-button>
+          <ion-icon slot="icon-only" name="mail-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </div>
+  </ion-toolbar>
+</ion-header>
