@@ -5,9 +5,11 @@ import { IComment, IPost } from '@mp/api/newsfeed/util';
 // import { IProfile } from '@mp/api/profiles/util';
 // import { ProfileState } from '@mp/app/profile/data-access';
 import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, take } from 'rxjs';
 import { GetPost, addComment } from '@mp/app/post/util';
 import { PostState } from '@mp/app/post/data-access';
+import { ProfileState } from '@mp/app/profile/data-access';
+import { IProfile } from '@mp/api/profiles/util';
 
 @Component({
   selector: 'mp-browse',
@@ -16,6 +18,7 @@ import { PostState } from '@mp/app/post/data-access';
 })
 export class PostPageComponent implements OnInit {
   @Select(PostState.post) post$!: Observable<IPost | null>;
+  @Select(ProfileState.profile) profile$!: Observable<IProfile | null>
   postid: string | undefined;
 
   @Select(PostState.comments) comments$!: Observable<IComment[] | null>;
@@ -29,7 +32,21 @@ export class PostPageComponent implements OnInit {
     });
   }
 
-  addComment() {
-    this.store.dispatch(new addComment("userid","Comment text","username"));//Temporary Not sure how we are going to get the comment and userdID yet
+  async addComment() {
+    const dat = prompt("Comment");
+    this.profile$
+    .pipe(take(1))
+    .subscribe(
+      profile => {
+        if (profile?.id && dat && profile.username)
+        this.store.dispatch(
+          new addComment(
+            profile?.id,
+            dat,
+            profile.username
+          )
+        );
+      }
+    );
   }
 }
