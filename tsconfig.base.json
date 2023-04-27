@@ -19,6 +19,11 @@
       "@mp/api/auth/data-access": ["libs/api/auth/data-access/src/index.ts"],
       "@mp/api/auth/feature": ["libs/api/auth/feature/src/index.ts"],
       "@mp/api/auth/util": ["libs/api/auth/util/src/index.ts"],
+      "@mp/api/browse/data-access": [
+        "libs/api/browse/data-access/src/index.ts"
+      ],
+      "@mp/api/browse/feature": ["libs/api/browse/feature/src/index.ts"],
+      "@mp/api/browse/util": ["libs/api/browse/util/src/index.ts"],
       "@mp/api/core/feature": ["libs/api/core/feature/src/index.ts"],
       "@mp/api/events/data-access": ["libs/api/events/data-access/src/index.ts"],
       "@mp/api/events/feature": ["libs/api/events/feature/src/index.ts"],
@@ -54,8 +59,11 @@
       "@mp/app/auth/data-access": ["libs/app/auth/data-access/src/index.ts"],
       "@mp/app/auth/feature": ["libs/app/auth/feature/src/index.ts"],
       "@mp/app/auth/util": ["libs/app/auth/util/src/index.ts"],
+      
+      "@mp/app/browse/data-access": ["libs/app/browse/data-access/src/index.ts"],
       "@mp/app/browse/feature": ["libs/app/browse/feature/src/index.ts"],
       "@mp/app/browse/ui": ["libs/app/browse/ui/src/index.ts"],
+      "@mp/app/browse/util": ["libs/app/browse/util/src/index.ts"],
       "@mp/app/copyright/ui": ["libs/app/copyright/ui/src/index.ts"],
       "@mp/app/core/feature": ["libs/app/core/feature/src/index.ts"],
       "@mp/app/create/data-access": [

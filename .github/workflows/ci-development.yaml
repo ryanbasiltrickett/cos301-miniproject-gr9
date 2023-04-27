@@ -17,12 +17,12 @@ jobs:
           touch .env
           echo ${{ secrets.ENV_FILE }} >> .env
 
-      - name: Cache Dependencies
-        uses: actions/cache@v2
-        with:
-          path: |
-            **/node_modules
-          key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+      # - name: Cache Dependencies
+      #   uses: actions/cache@v2
+      #   with:
+      #     path: |
+      #       **/node_modules
+      #     key: ${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install Dependencies
         run: yarn install --frozen-lockfile 

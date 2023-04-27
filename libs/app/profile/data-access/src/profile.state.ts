@@ -162,6 +162,7 @@ export class ProfileState {
     const user = this.store.selectSnapshot(AuthState.user);
     if (!user) return ctx.dispatch(new SetError('User not set'));
 
+    console.log(this.profileApi.profile$(user.uid));
     return this.profileApi
       .profile$(user.uid)
       .pipe(tap((profile: IProfile) => ctx.dispatch(new SetProfile(profile))));

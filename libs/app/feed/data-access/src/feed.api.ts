@@ -10,11 +10,26 @@ import {
 import { Functions, httpsCallable } from '@angular/fire/functions';
 import { IgeneratePostRequest, IgeneratePostResponse } from '@mp/api/newsfeed/util';
 import {
+    IPost,
+    IgenNewsfeedRequest,
+    IgenNewsfeedResponse,
+    IgeneratePostRequest,
+    IgeneratePostResponse,
+    IupdateNFPostRequest,
+    IupdateNFPostResponse
+} from '@mp/api/newsfeed/util'
+import {
+    IUser
+} from '@mp/api/users/util'
+import {
+    IProfile
+} from '@mp/api/profiles/util'
+
+import {  
   ICommentPostRequest,
   ICommentPostResponse,
   ILikePostRequest,
   ILikePostResponse,
-  IPost,
   IUpdatePostTimeRequest,
   IUpdatePostTimeResponse,
 } from '@mp/api/posts/util';
@@ -71,10 +86,23 @@ export class FeedApi {
     )(request);
   }
 
-  generatePost(request: IgeneratePostRequest) {
-    return httpsCallable<IgeneratePostRequest, IgeneratePostResponse>(
+  async generateNewsFeed(request: IgenNewsfeedRequest){
+    return await httpsCallable<
+      IgenNewsfeedRequest,
+      IgenNewsfeedResponse
+    >(
       this.functions,
-      'generatePost'
+      'generateNewsFeed'
+    )(request);
+  }
+
+  async updateNewsFeedPost(request: IupdateNFPostRequest){
+    return httpsCallable<
+      IupdateNFPostRequest,
+      IupdateNFPostResponse
+    >(
+      this.functions,
+      'updateNewFeedPost'
     )(request);
   }
 }

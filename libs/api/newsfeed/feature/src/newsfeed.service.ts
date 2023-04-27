@@ -5,7 +5,6 @@ import {
 } from '@mp/api/newsfeed/util'
 import { Injectable } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-import { Query } from 'firebase-admin/firestore';
 
 @Injectable()
 export class  NewsfeedService {

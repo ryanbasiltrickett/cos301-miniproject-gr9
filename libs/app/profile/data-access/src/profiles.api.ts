@@ -32,6 +32,7 @@ export class ProfilesApi {
       },
       toFirestore: (it: IProfile) => it,
     });
+    // console.log(docRef);
     return docData(docRef, { idField: 'id' });
   }
 
