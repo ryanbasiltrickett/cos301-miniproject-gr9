@@ -26,7 +26,15 @@
       <ion-row>
         <ion-col size="6" *ngFor="let post of posts$ | async">
           <div class="image-container">
-            <img src="{{post.photo}}" alt="Placeholder image" class="image">
+            <!-- <img src="{{post.photo}}" alt="Placeholder image" class="image"> -->
+            <ion-card>
+              <ion-header>
+                <ion-title>{{post.author}}</ion-title>
+              </ion-header>
+    
+              <ion-card-content>{{post.description}}</ion-card-content>
+            </ion-card>
+            
           </div>
         </ion-col>
       </ion-row>
