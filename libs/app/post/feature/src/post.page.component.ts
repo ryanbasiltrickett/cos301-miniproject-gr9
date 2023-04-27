@@ -20,6 +20,12 @@ export class PostPageComponent implements OnInit {
   @Select(PostState.post) post$!: Observable<IPost | null>;
   @Select(ProfileState.profile) profile$!: Observable<IProfile | null>
   postid: string | undefined;
+  usernam = '';
+  showForm = false;
+
+  toggleForm() {
+    this.showForm = !this.showForm;
+  }
 
   @Select(PostState.comments) comments$!: Observable<IComment[] | null>;
 
@@ -33,7 +39,8 @@ export class PostPageComponent implements OnInit {
   }
 
   async addComment() {
-    const dat = prompt("Comment");
+    // const dat = prompt("Comment");
+    const dat = this.usernam;
     this.profile$
     .pipe(take(1))
     .subscribe(

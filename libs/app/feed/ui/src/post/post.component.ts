@@ -17,6 +17,7 @@ import { ProfileState } from '@mp/app/profile/data-access';
 import { IProfile } from '@mp/api/profiles/util';
 import { Observable, take } from 'rxjs';
 
+
 @Component({
   selector: 'mp-post',
   templateUrl: './post.component.html',
@@ -87,20 +88,20 @@ export class PostComponent {
     console.log('Comment button clicked');
     // Add your comment functionality here
 
-    const commentText = 'Hard coded'
-    const usernameText = 'Hard coded'
-    const commentDetails : IComment = {
-      userId: '1',
-      text: commentText,
-      username: usernameText
-    }
+    // const commentText = 'Hard coded'
+    // const usernameText = 'Hard coded'
+    // const commentDetails : IComment = {
+    //   userId: '1',
+    //   text: commentText,
+    //   username: usernameText
+    // }
 
-    const request : ICommentPostRequest = {
-      postId: this.post.id,
-      comment: commentDetails
-    }
+    // const request : ICommentPostRequest = {
+    //   postId: this.post.id,
+    //   comment: commentDetails
+    // }
 
-    this.store.dispatch( new CommentPost(request) )
+    // this.store.dispatch( new CommentPost(request) )
   }
 
   async onShareClick() {

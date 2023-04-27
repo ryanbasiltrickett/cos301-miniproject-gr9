@@ -8,6 +8,7 @@ import { PostModule as PostDataAccessModule } from '@mp/app/post/data-access';
 import { FeedModule as FeedUiModule, HeaderModule } from '@mp/app/feed/ui';
 import { PostModule as PostUiModule} from '@mp/app/post/ui';
 import { PostPageComponent } from './post.page.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { PostPageComponent } from './post.page.component';
     PostDataAccessModule,
     FeedUiModule,
     HeaderModule,
-    PostUiModule
+    PostUiModule,
+    FormsModule
   ],
   declarations: [PostPageComponent],
   exports: [PostPageComponent],
