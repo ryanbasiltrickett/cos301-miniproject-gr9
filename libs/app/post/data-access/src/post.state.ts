@@ -3,8 +3,8 @@ import { PostApi } from './post.api';
 import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs';
-import { GetPost, addComment } from '@mp/app/post/util';
-import { IAddCommentRequest } from '@mp/api/posts/util';
+import { GetPost, addComment, deleteComment } from '@mp/app/post/util';
+import { IAddCommentRequest, IDeleteCommentRequest } from '@mp/api/posts/util';
 
 export interface PostStateModel {
   post: IPost | null;
@@ -58,6 +58,19 @@ export class PostState {
     }
 
     post_ =  (await this.postApi.addComment(request)).data.post;
+    return ctx.patchState({post:post_,comments: post_.comments});
+  }
+
+  @Action(deleteComment)
+  async deleteComment(ctx: StateContext<PostStateModel>, {index}: deleteComment) {
+    let post_ = ctx.getState().post;
+
+    const request: IDeleteCommentRequest = {
+        post: post_,
+        index: index
+    }
+
+    post_ =  (await this.postApi.deleteComment(request)).data.post;
     return ctx.patchState({post:post_,comments: post_.comments});
   }
 }

@@ -42,6 +42,10 @@
             Add comment
         </ion-button>
 
+        <ion-button expand="block" color="primary" (click)="deleteComment(0)">
+          Delete comment
+      </ion-button>
+
       <ng-template #loading>
         <ngx-skeleton-loader
           count="1"
