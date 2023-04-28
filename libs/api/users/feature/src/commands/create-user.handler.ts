@@ -18,7 +18,7 @@ export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
       bio: request.auth.bio,
       name: request.auth.name,
       visibility: request.auth.visibility,
-      timeLeft: 1000,
+      timeLeft: 10800,
       // customClaims: request.auth.customClaims,
       created: request.auth.created,
     };

@@ -26,24 +26,15 @@
 <ion-content>
     <h1>Events</h1>
     <div id="container">
-        <div class="notification">
+        <div class="notification" *ngFor="let event of events$ | async">
             <img src="assets/logos/Iconhdpi.png" alt="Profile Picture">
             <div class="notificationDescription">
-              <p class="notifLabel">Make a post before the time is up and get double the reward</p>
+              <p class="notifLabel">{{event.eventTitle}}</p>
             </div>
             <div class="countdown">
-                <p>00 : 00 : 00</p>
+                <p>{{event.eventTime}}</p>
             </div>
           </div>
-        <div class="notification">
-            <img src="assets/logos/Iconhdpi.png" alt="Profile Picture">
-            <div class="notificationDescription">
-              <p class="notifLabel">Make a post before the time is up and get double the reward</p>
-            </div>
-            <div class="countdown">
-              <p>00 : 00 : 00</p>
-          </div>
-        </div>
-        <button class="button" role="getEvents"><span class="text">Get event</span></button>
+        <button class="button" role="getEvents" (click)="generateEvent()"><span class="text">Request event</span></button>
     </div>
 </ion-content>

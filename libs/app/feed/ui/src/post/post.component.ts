@@ -2,7 +2,9 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  EventEmitter,
   Input,
+  Output,
   ViewChild,
 } from '@angular/core';
 import { IonCard } from '@ionic/angular';
@@ -26,6 +28,8 @@ import { Observable, take } from 'rxjs';
 export class PostComponent {
   @Select(ProfileState.profile) profile$!: Observable<IProfile | null>;
   @Input() post!: IPost;
+  @Output() donateTime = new EventEmitter<IPost>();
+
   inViewObserver!: IntersectionObserver;
   timer: NodeJS.Timer | undefined;
 
@@ -81,7 +85,7 @@ export class PostComponent {
   }
 
   onDonateClick() {
-    this.likePost();
+    this.donateTime.emit(this.post);
   }
 
   onCommentClick() {
@@ -107,6 +111,8 @@ export class PostComponent {
   async onShareClick() {
     console.log('Share button clicked');
     // Add your share functionality here
+
+    //alert('/home/post/' + this.post.id);
 
     const toast = await this.toastController.create({
       message: 'copied to clipboard',

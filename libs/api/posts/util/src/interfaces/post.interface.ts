@@ -12,4 +12,5 @@ export interface IPost{
     hashtags? : string[];
     comments? : IComment[];
     time: number;
+    authorId: string | undefined;
 }

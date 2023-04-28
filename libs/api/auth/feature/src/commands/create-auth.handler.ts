@@ -22,7 +22,7 @@ export class CreateAuthHandler implements ICommandHandler<CreateAuthCommand> {
       bio: null,
       visibility: true,
       name: null,
-      timeLeft: 1000,
+      timeLeft: 10800,
     };
     const auth = this.publisher.mergeObjectContext(Auth.fromData(data));
 

@@ -6,6 +6,7 @@ import { ProfileModule } from '@mp/app/profile/data-access';
 import { NgxsFormPluginModule } from '@ngxs/form-plugin';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { PostListComponent } from './post-list.component';
+import { BrowseModule as BrowseDataAccessModule } from '@mp/app/browse/data-access';
 
 @NgModule({
     declarations: [PostListComponent],
@@ -16,6 +17,7 @@ import { PostListComponent } from './post-list.component';
       NgxsFormPluginModule,
       ReactiveFormsModule,
       ProfileModule,
+      BrowseDataAccessModule
     ],
     exports: [PostListComponent],
   })

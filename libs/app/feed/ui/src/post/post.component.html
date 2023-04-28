@@ -14,7 +14,7 @@
       <span>{{ post.likes }}</span>
     </ion-button> -->
 
-    <ion-button fill="clear" class="post-action" (click)="onDonateClick()">
+    <ion-button fill="clear" class="post-action" (click)="onDonateClick();$event.stopPropagation()">
       <ion-icon name="cash-outline"></ion-icon>
       <span>Donate</span>
     </ion-button>
@@ -27,7 +27,7 @@
       <ion-icon name="time-outline"></ion-icon>
       <span>{{ post.time }}</span>
     </span>
-    <ion-button fill="clear" class="post-action" (click)="onShareClick()">
+    <ion-button fill="clear" class="post-action" (click)="onShareClick();$event.stopPropagation()">
       <ion-icon name="share-outline"></ion-icon>
       <!-- <span>Share</span> -->
     </ion-button>

@@ -1,18 +1,11 @@
 
 # TimeShare (Mini Project 2023)
 
-[![codecov](https://codecov.io/github/ryanbasiltrickett/cos301-miniproject-gr9/branch/develop/graph/badge.svg?token=1jTA7rirTi)](https://codecov.io/github/ryanbasiltrickett/cos301-miniproject-gr9)
 [![Production Continous Integration (CI)](https://github.com/ryanbasiltrickett/cos301-miniproject-gr9/actions/workflows/ci-production.yaml/badge.svg?branch=main&event=push)](https://github.com/ryanbasiltrickett/cos301-miniproject-gr9/actions/workflows/ci-production.yaml)
+[![Production Continous Deployment (CD)](https://github.com/ryanbasiltrickett/cos301-miniproject-gr9/actions/workflows/cd-production.yaml/badge.svg)](https://github.com/ryanbasiltrickett/cos301-miniproject-gr9/actions/workflows/cd-production.yaml)
+[![codecov](https://codecov.io/github/ryanbasiltrickett/cos301-miniproject-gr9/branch/develop/graph/badge.svg?token=1jTA7rirTi)](https://codecov.io/github/ryanbasiltrickett/cos301-miniproject-gr9)
 
 Description
-
-
-## Documentation
-
-- [System Documentation](https://linktodocumentation)
-- [Design Documentation](https://linktodocumentation)
-- [Integration Documentation](https://linktodocumentation)
-- [Data Design Documentation](https://linktodocumentation)
 
 
 ## Features

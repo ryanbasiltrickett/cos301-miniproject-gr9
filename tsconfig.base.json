@@ -19,7 +19,15 @@
       "@mp/api/auth/data-access": ["libs/api/auth/data-access/src/index.ts"],
       "@mp/api/auth/feature": ["libs/api/auth/feature/src/index.ts"],
       "@mp/api/auth/util": ["libs/api/auth/util/src/index.ts"],
+      "@mp/api/browse/data-access": [
+        "libs/api/browse/data-access/src/index.ts"
+      ],
+      "@mp/api/browse/feature": ["libs/api/browse/feature/src/index.ts"],
+      "@mp/api/browse/util": ["libs/api/browse/util/src/index.ts"],
       "@mp/api/core/feature": ["libs/api/core/feature/src/index.ts"],
+      "@mp/api/events/data-access": ["libs/api/events/data-access/src/index.ts"],
+      "@mp/api/events/feature": ["libs/api/events/feature/src/index.ts"],
+      "@mp/api/events/util": ["libs/api/events/util/src/index.ts"],
       "@mp/api/eventstore/data-access": [
         "libs/api/eventstore/data-access/src/index.ts"
       ],
@@ -51,8 +59,11 @@
       "@mp/app/auth/data-access": ["libs/app/auth/data-access/src/index.ts"],
       "@mp/app/auth/feature": ["libs/app/auth/feature/src/index.ts"],
       "@mp/app/auth/util": ["libs/app/auth/util/src/index.ts"],
+      
+      "@mp/app/browse/data-access": ["libs/app/browse/data-access/src/index.ts"],
       "@mp/app/browse/feature": ["libs/app/browse/feature/src/index.ts"],
       "@mp/app/browse/ui": ["libs/app/browse/ui/src/index.ts"],
+      "@mp/app/browse/util": ["libs/app/browse/util/src/index.ts"],
       "@mp/app/copyright/ui": ["libs/app/copyright/ui/src/index.ts"],
       "@mp/app/core/feature": ["libs/app/core/feature/src/index.ts"],
       "@mp/app/create/data-access": [
@@ -71,7 +82,13 @@
       ],
       "@mp/app/errors/feature": ["libs/app/errors/feature/src/index.ts"],
       "@mp/app/errors/util": ["libs/app/errors/util/src/index.ts"],
+      "@mp/app/events/data-access": [
+        "libs/app/events/data-access/src/index.ts"
+      ],
       "@mp/app/events/feature": ["libs/app/events/feature/src/index.ts"],
+      
+      "@mp/app/events/ui": ["libs/app/events/ui/src/index.ts"],
+      "@mp/app/events/util": ["libs/app/events/util/src/index.ts"],
       "@mp/app/feed/data-access": ["libs/app/feed/data-access/src/index.ts"],
       "@mp/app/feed/feature": ["libs/app/feed/feature/src/index.ts"],
       "@mp/app/feed/ui": ["libs/app/feed/ui/src/index.ts"],
