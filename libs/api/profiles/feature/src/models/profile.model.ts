@@ -65,6 +65,15 @@ export class Profile extends AggregateRoot implements IProfile {
     this.apply(new ProfileTimeUpdatedEvent(this.toJSON()));
   }
 
+  increaseTime(time: number) {
+    if (this.timeLeft === null || this.timeLeft === undefined) {
+      this.timeLeft = 10800;
+    } else {
+      this.timeLeft += time;
+    }
+    this.apply(new ProfileTimeUpdatedEvent(this.toJSON()));
+  }
+
   // updateAddressDetails(addressDetails: IAddressDetails) {
   //   if (!this.addressDetails) this.addressDetails = {};
   //   this.addressDetails.residentialArea = addressDetails.residentialArea

@@ -15,6 +15,7 @@ export class PostsRepository {
     //create the new post in the posts collection
     const newPost = await admin.firestore().collection('posts').add({
       author: post.author,
+      authorId: post.authorId,
       description: post.description,
       likes: 0,
       published: Timestamp.now(),
