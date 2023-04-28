@@ -11,16 +11,18 @@ export class CreatePostHandler implements ICommandHandler<CreatePostCommand> {
     console.log(CreatePostHandler.name);
 
     const request = command.request;
-
+    console.log(request.post.userId);
     const data: IPost = {
       id: 'overwrite_please',
-      author: request.post.poster,
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      author: request.post.poster!,
       published: Timestamp.now(),
       description: request.post.description,
       mediaUrl: request.post.mediaUrl,
       comments: [],
       likes: 0,
       time: 0,
+      authorId: request.post.userId,
     };
 
     const post = this.publisher.mergeObjectContext(Post.fromData(data));

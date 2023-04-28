@@ -66,6 +66,7 @@ export class FeedState {
 
   @Action(SetFeed)
   setFeed(ctx: StateContext<FeedStateModel>, { feed }: SetFeed) {
+    console.log("Am i Here");
     return ctx.patchState({ feed: feed });
   }
 
@@ -131,4 +132,44 @@ export class FeedState {
 
     return ctx.patchState({ feed: posts });
   }
+
+  // @Action(generateNewsFeed)
+  // async generateNewsFeed(ctx:StateContext<FeedStateModel>){
+  //   try {
+  //     const state=ctx.getState();
+  //     const feed=state.feed;
+
+  //     if(!feed)
+  //       return ctx.dispatch(
+  //         new SetError('Feed string not set')
+  //       );
+    
+  //     const request :IgenNewsfeedRequest={ dud:{}};
+  //     const responseRef =await this.FeedApi.generateNewsFeed(request);
+  //     const reponse =responseRef.data;
+  //     return ctx.dispatch(new SetError('what are we suuposed to do here')); 
+  //   } catch (error) {
+  //     return ctx.dispatch(new SetError((error as Error).message));
+  //   }
+  // }
+
+  // @Action(updateNewsFeedPost)
+  // async updateNewsFeedPost(ctx: StateContext<FeedStateModel>){
+  //   try {
+  //     const state=ctx.getState();
+  //     const NfPost=state.InfPost;
+
+  //     if(!NfPost)
+  //       return ctx.dispatch(
+  //         new SetError('The NewsFeed Post not set')
+  //       );
+      
+  //     const request: IupdateNFPostRequest={dud:{}};
+  //     const responseRef=await this.FeedApi.updateNewsFeedPost(request);
+  //     const reponse=responseRef.data;
+  //     return ctx.dispatch(new SetError('What are we supposed to do here'));
+  //   } catch (error) {
+  //     return ctx.dispatch(new SetError((error as Error).message));
+  //   }
+  // }
 }

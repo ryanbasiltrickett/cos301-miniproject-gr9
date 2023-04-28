@@ -50,6 +50,9 @@ import { NgxsModule } from '@ngxs/store';
 import { MomentModule } from 'ngx-moment';
 import { CoreRouting } from './core.routing';
 import { CoreShell } from './core.shell';
+import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
+import { AngularFireFunctionsModule } from '@angular/fire/compat/functions';
+import { AngularFireModule } from '@angular/fire/compat';
 
 let resolvePersistenceEnabled: (enabled: boolean) => void;
 
@@ -92,6 +95,8 @@ const FIREBASE_OPTIONS: FirebaseOptions = {
     provideRemoteConfig(() => getRemoteConfig()),
     provideAnalytics(() => getAnalytics()),
     provideMessaging(() => getMessaging()),
+    AngularFireMessagingModule,
+    AngularFireFunctionsModule,
     provideAuth(() => {
       const auth = getAuth();
       if (FIREBASE_USE_EMULATORS) {
@@ -102,6 +107,7 @@ const FIREBASE_OPTIONS: FirebaseOptions = {
       return auth;
     }),
     provideFirebaseApp(() => initializeApp(FIREBASE_OPTIONS)),
+    AngularFireModule.initializeApp(FIREBASE_OPTIONS),
     provideFirestore(() => {
       const firestore = getFirestore();
       if (FIREBASE_USE_EMULATORS) {

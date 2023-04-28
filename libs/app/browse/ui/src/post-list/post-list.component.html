@@ -3,7 +3,7 @@
     <ion-grid>
       <ion-row>
         <ion-col>
-          <ion-segment value="Media" mode="md" (ionChange)="onSegmentChanged($event)">
+          <ion-segment value="Media" mode="md">
             <ion-segment-button value="Media">
               <ion-label>Media</ion-label>
             </ion-segment-button>
@@ -11,24 +11,50 @@
               <ion-label>Text</ion-label>
             </ion-segment-button>
           </ion-segment>
-          
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-          <h2>Trending</h2>
+          <ion-item>
+            <ion-label style="font-size:larger;">Trending</ion-label>
+          </ion-item>
         </ion-col>
       </ion-row>
     </ion-grid>
 
     <ion-grid>
       <ion-row>
-        <ion-col size="6" *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]">
+        <ion-col size="6" *ngFor="let post of posts$ | async">
           <div class="image-container">
-            <img src="https://picsum.photos/200/200?random={{i}}" alt="Placeholder image" class="image">
+            <!-- <img src="{{post.photo}}" alt="Placeholder image" class="image"> -->
+            <ion-card>
+              <ion-header>
+                <ion-title>{{post.author}}</ion-title>
+              </ion-header>
+    
+              <ion-card-content>{{post.description}}</ion-card-content>
+            </ion-card>
+            
           </div>
         </ion-col>
       </ion-row>
     </ion-grid>
   </div>
 </ion-content>
+<!--<ion-card  color="white">
+            <ion-item style="text-align: left; font-size: smaller;">
+              <ion-avatar slot='start' style="margin-right: 2px;">
+                <img src="https://ionicframework.com/docs/img/demos/avatar.svg" alt="Profile Image">
+              </ion-avatar>
+              <ion-label style="font-weight: bold;" >{{post.author}}</ion-label>
+            </ion-item>
+            <div class = "item item-body">
+               <img class = "full-image" src = "{{post.photo}}">
+               {{post.description}}
+            </div>
+    </ion-card>-->
+<!--
+  <div class="image-container">
+            <img src="https://picsum.photos/200/200?random={{i}}" alt="Placeholder image" class="image">
+          </div>
+-->

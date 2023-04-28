@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { IProfile } from '@mp/api/profiles/util';
 import { ProfileState } from '@mp/app/profile/data-access';
-import { Select } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Select, Store } from '@ngxs/store';
+import { Observable, firstValueFrom } from 'rxjs';
+import { DashboardEventState } from '@mp/app/dashboard/data-access';
+import { IEvent } from '@mp/api/events/util';
+import { AlertController, ToastController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+import { DashboardEvent, GetEvents } from '@mp/app/dashboard/util';
 
 @Component({
     selector: 'mp-event',
@@ -12,15 +17,59 @@ import { Observable } from 'rxjs';
 
   export class EventComponent implements OnInit {
 
-    dummyData = [
-      { description: 'Make a post before the time is up and get double the reward', time: '15 : 12 : 34' },
-      { description: 'Make a post before the time is up and get double the reward', time: '5 : 5 : 55' }
-    ];
-
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  constructor() {}
-
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  ngOnInit(): void {}
+    @Select(ProfileState.profile) profile$!: Observable<IProfile | null>;
+    @Select(DashboardEventState.getEvent) events$!: Observable<IEvent[] | null>;
+  
+    // events$!: Observable<IEvent[]>;
+  
+    constructor(public alertController: AlertController,
+       private toastController: ToastController, 
+       private readonly store: Store,
+       private readonly activeRoute: ActivatedRoute,
+      ) {
+        this.activeRoute.paramMap.subscribe(params => {
+          this.ngOnInit();
+      });
+      }
+    
+      async ngOnInit(){
+        await this.getEvents();
+      }
+  
+    async makeToast(message: any){
+      const toast = await this.toastController.create({
+        message,
+        duration: 2000,
+        position: 'top',
+      })
+      toast.present();
+    }
+  
+    userId!: string;
+  
+    async generateEvent(){
+      this.makeToast('Event Requested');
+      await this.getUser();
+      this.store.dispatch(
+        new DashboardEvent({
+          user: this.userId,
+        })
+      );
+    }
+  
+    async getEvents(){
+      await this.getUser();
+      this.store.dispatch(
+        new GetEvents({
+          userId: this.userId,
+        })
+      )
+    }
+    async getUser(){
+      const user = await firstValueFrom(this.profile$);
+      if(user){
+        this.userId = user.id;
+      }
+    }
   
   }

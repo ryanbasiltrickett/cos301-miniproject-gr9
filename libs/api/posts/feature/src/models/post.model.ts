@@ -16,9 +16,11 @@ export class Post extends AggregateRoot implements IPost {
     public author: string,
     public published: FirebaseFirestore.Timestamp,
     public time: number,
+    public authorId: string | undefined,
     public description?: string | null | undefined,
     public imageURL?: string | null | undefined,
-    public comments?: IComment[]
+    public comments?: IComment[],
+
   ) {
     super();
   }
@@ -30,9 +32,10 @@ export class Post extends AggregateRoot implements IPost {
       post.author,
       post.published,
       post.time,
+      post.authorId,
       post.description,
       post.mediaUrl,
-      post.comments
+      post.comments,
     );
     return instance;
   }
@@ -70,6 +73,7 @@ export class Post extends AggregateRoot implements IPost {
       comments: this.comments,
       author: this.author,
       time: this.time,
+      authorId: this.authorId 
     };
   }
 }

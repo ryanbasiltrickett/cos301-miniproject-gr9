@@ -7,6 +7,7 @@ import { NgxsFormPluginModule } from '@ngxs/form-plugin';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { EventComponent } from './event.component';
 
+
 @NgModule({
     declarations: [EventComponent],
     imports: [
@@ -15,7 +16,7 @@ import { EventComponent } from './event.component';
       NgxSkeletonLoaderModule,
       NgxsFormPluginModule,
       ReactiveFormsModule,
-      ProfileModule,
+      ProfileModule
     ],
     exports: [EventComponent],
   })

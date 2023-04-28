@@ -50,7 +50,7 @@ export class NewsfeedRepository {
     const sortedPosts = posts.sort((a, b) => b.published.toMillis() - a.published.toMillis());
     return sortedPosts;
   }
-
+  
   async getGlobalFeed(limit: number) {
     const db = admin.firestore();
     const posts = await db.collection('posts')

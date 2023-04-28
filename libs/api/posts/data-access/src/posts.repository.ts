@@ -1,8 +1,13 @@
+import { IEvent } from '@mp/api/events/util';
 import { IPost, IComment, ILike, IRecentPost } from '@mp/api/posts/util';
 import { IProfile } from '@mp/api/profiles/util';
 import { Injectable, NotImplementedException } from '@nestjs/common';
 import * as admin from 'firebase-admin';
-import { Timestamp } from 'firebase-admin/firestore';
+import { FieldValue, Timestamp } from 'firebase-admin/firestore';
+
+interface IIds{
+  id: string;
+}
 
 @Injectable()
 export class PostsRepository {
@@ -17,6 +22,27 @@ export class PostsRepository {
       image: post.mediaUrl,
       location: post.location,
       comments: post.comments
+    });
+
+    const events = await admin.firestore().collection('events').doc(post.authorId!).collection('active-events')
+    .where('eventTitle', '==', 'Post now').get();
+
+
+    const eventIds: string [] = [];
+    const eventData = events.docs.map((doc) => doc.data() as IEvent);
+    events.docs.forEach(doc => {
+      eventIds.push(doc.id);
+    })
+
+    let index = 0;
+    eventData.forEach((event) => {
+      if(event.date.toDate().getDate() === Timestamp.now().toDate().getDate()){
+        console.log("Welldone event completed");
+        admin.firestore().collection('events').doc(post.authorId!).collection('active-events').doc(eventIds[index]).delete();
+        admin.firestore().collection('users').doc(post.authorId!).update('timeLeft', FieldValue.increment(300));
+        return;
+      }
+      index++;
     });
 
     //get data from the new post
