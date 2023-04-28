@@ -26,3 +26,4 @@ export class Followers extends AggregateRoot implements IFollowers {
     return instance;
   }
 }
+

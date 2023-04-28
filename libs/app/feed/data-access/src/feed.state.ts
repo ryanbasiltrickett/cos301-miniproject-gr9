@@ -6,6 +6,7 @@ import { IComment, ICommentPostRequest, IPost } from '@mp/api/posts/util';
 import { ILikePostRequest } from '@mp/api/posts/util';
 import { ICommand } from '@nestjs/cqrs';
 import { SetError } from '@mp/app/errors/util';
+import { IgeneratePostRequest } from '@mp/api/newsfeed/util';
 // import { Timestamp } from 'firebase-admin/firestore';
 
 export interface FeedStateModel {
@@ -42,13 +43,14 @@ export class FeedState {
 
   @Action(SetFeed)
   setFeed(ctx: StateContext<FeedStateModel>, { feed }: SetFeed) {
+    console.log("Am i Here");
     return ctx.patchState({ feed: feed });
   }
 
   @Action(SubscribeToFeed)
   subscribeToFeed(ctx: StateContext<FeedStateModel>) {
     this.feedApi.subscribeToFeed();
-    return ctx.patchState({ subscribedToFeed: true });
+    return ctx.patchState({ subscribedToFeed: true});
   }
 
   @Action(LikePost)

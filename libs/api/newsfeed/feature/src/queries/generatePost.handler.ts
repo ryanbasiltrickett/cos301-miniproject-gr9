@@ -3,7 +3,7 @@ import { generatePostQuery, IgeneratePostResponse } from '@mp/api/newsfeed/util'
 import { NewsfeedRepository } from '@mp/api/newsfeed/data-access';
 
 // query handler
-@QueryHandler(generatePostHandler)
+@QueryHandler(generatePostQuery)
 export class generatePostHandler implements IQueryHandler<generatePostQuery,IgeneratePostResponse> {
   constructor(
     private publisher: EventPublisher,
@@ -11,6 +11,7 @@ export class generatePostHandler implements IQueryHandler<generatePostQuery,Igen
     ) {}
 
   async execute(query: generatePostQuery) : Promise<any> {
+    console.log(`${QueryHandler.name}`)
     const request = query.request;
     const profile = request.profile;
     const limit = request.limit ?? 10; //defualt limit if limit is null ie not specified

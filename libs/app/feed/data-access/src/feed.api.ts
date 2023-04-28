@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import {
   collection,
+  DocumentData,
   Firestore,
   onSnapshot,
+  orderBy,
   query,
 } from '@angular/fire/firestore';
 import { Functions, httpsCallable } from '@angular/fire/functions';
+import { IgeneratePostRequest, IgeneratePostResponse } from '@mp/api/newsfeed/util';
 import {
     IPost,
     IgenNewsfeedRequest,
@@ -43,7 +46,9 @@ export class FeedApi {
 
   subscribeToFeed() {
     // Change this such that each post is individually subscribed to
-    const postsSnapshot = query(collection(this.firestore, 'posts'));
+
+    const postsSnapshot = query(collection(this.firestore, 'posts'),orderBy('published','desc'));
+
 
     // maybe unsubscribe from this subscription
     const unsubscribe = onSnapshot(postsSnapshot, (snapshot) => {

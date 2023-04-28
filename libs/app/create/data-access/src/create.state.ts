@@ -34,6 +34,7 @@ export class CreateState {
 
   @Action(CreatePost)
   createPost(ctx: StateContext<CreatePostStateModel>, { post }: CreatePost) {
+    
     const request: ICreatePostRequest = {
       post,
     };

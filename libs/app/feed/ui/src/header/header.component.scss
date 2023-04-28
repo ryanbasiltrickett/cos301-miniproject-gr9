@@ -1,25 +1,169 @@
-:host {
-    display: block;
-  }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Raleway", sans-serif;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+}
   
-  .header {
-    background-color: #3b5998;
-    color: white;
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1em 7.5%;
+    position: sticky;
+    top: 0;
+    width: 100%;
+}
+
+header p {
+    font-size: 1em;
+    min-width: 100px;
+}
+
+.logo {
+    width: 40%;
+}
+  
+.topNav ion-nav-link {
+    color: #010101;
+    text-decoration: none;
+}
+
+.topNav ion-icon {
+    padding: 0.6em 0.6em;
+    font-size: 1.3em;
+}
+  
+.topNav {
+    list-style: none;
+    display: flex;
+    float: right;
+}
+  
+.topNav li {
+    padding: 0 5px;
+}
+
+nav {
+    min-width: 100px;
+}
+
+main {
+    padding: 1.25em;
+    flex-grow: 1;
+}
+
+h1 {
+    font-size: 1.5em;
+}
+
+.notification {
+    margin: 0.6em 1em 0 1em;
+    display: flex;
+    justify-content: flex-start;
+}
+
+#recent::before {
+    content: "Recent";
+    font-size: 0.8em;
+    font-weight: 900;
+}
+
+#old::before {
+    content: "Older";
+    font-size: 0.8em;
+    font-weight: 900;
+}
+
+#recent, #old {
+    margin: 2em 0;
+}
+
+#recent :first-child, #old :first-child {
+    margin-top: 0.5em;
+}
+
+.notification img {
+    border-radius: 50%;
+    width: 3.5em;
+}
+
+.notificationDescription {
+    display: flex;
+    justify-content: center;
+    flex-flow: column nowrap;
+}
+
+.notificationDescription p {
+    font-size: 0.8em;
+    padding: 0.2em 0.5em;
+}
+
+.notificationDescription :last-child {
+    color: #010101ab;
+}
+
+.notificationDescription .bold {
+    font-weight: 900;
+    font-size: 1em;
+    color: #010101;
+}
+
+.notificationBtn {
+    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.notificationBtn button {
+    background-color: transparent;
+    border: none;
+    margin: 1em 1em 1em 0;
+}
+
+.notificationBtn ion-icon {
+    font-size: 1.2em
+}
+
+.notificationBtn :last-child {
+    margin-right: 0;
+}
+
+.Accept {
+    color: #478BA2;
+}
+
+.Reject {
+    color: #cd3b3b;
+}
+  
+  .bottomNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25em 4%;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
   }
   
-  .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-  }
-  
-  .time-remaining {
-    align-self: center;
-    border: 1.7px solid rgba(128, 128, 128, 0.475);
-    border-radius: 15px;
-    padding: 11px;
+  .bottomNav a {
+    float: left;
+    color: #000;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 30px;
   }

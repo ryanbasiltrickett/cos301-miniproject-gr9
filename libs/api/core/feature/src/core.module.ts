@@ -4,6 +4,7 @@ import { NewsfeedModule } from '@mp/api/newsfeed/feature';
 import { PostsModule } from '@mp/api/posts/feature';
 import { ProfilesModule } from '@mp/api/profiles/feature';
 import { UsersModule } from '@mp/api/users/feature';
+import { EventsModule } from '@mp/api/events/feature';
 import { Module } from '@nestjs/common';
 import { BrowseModule} from '@mp/api/browse/feature';
 
@@ -15,6 +16,7 @@ import { BrowseModule} from '@mp/api/browse/feature';
     UsersModule,
     PostsModule,
     NewsfeedModule,
+    EventsModule
     BrowseModule
   ],
 })
