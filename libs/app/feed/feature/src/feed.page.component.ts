@@ -16,7 +16,7 @@ export class FeedPage {
   @ViewChild(IonModal) modal!: IonModal;
   isModalOpen = false;
   donate_amount: number | undefined;
-  postBeingDonatedTo: IPost | undefined;
+  postBeingDonatedTo!: IPost;
 
   constructor(private readonly store: Store) {
     this.store.dispatch(new SubscribeToFeed());
@@ -38,9 +38,10 @@ export class FeedPage {
   onWillDismiss(event: Event) {
     const ev = event as CustomEvent<OverlayEventDetail<string>>;
     if (ev.detail.role === 'confirm') {
-      console.log("Donate amount:", ev.detail.data);
-      alert("Donate amount: " + ev.detail.data)
-      // this.store.dispatch(new GivePostTime(this.postBeingDonatedTo, ev.detail.data));
+      if (this.donate_amount)
+        this.store.dispatch(
+          new GivePostTime(this.postBeingDonatedTo, this.donate_amount)
+        );
       // this.message = `Hello, ${ev.detail.data}!`;
     }
     this.isModalOpen = false;

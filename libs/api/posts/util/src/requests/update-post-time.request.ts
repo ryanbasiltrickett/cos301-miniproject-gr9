@@ -4,4 +4,5 @@ import { IPost } from '../interfaces';
 export interface IUpdatePostTimeRequest {
   profile: IProfile;
   post: IPost;
+  amount: number;
 }

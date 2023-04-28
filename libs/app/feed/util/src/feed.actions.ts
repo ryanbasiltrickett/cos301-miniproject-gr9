@@ -18,7 +18,7 @@ export class SubscribeToFeed {
 
 export class GivePostTime {
   static readonly type = '[Feed] GivePostTime';
-  constructor(public readonly post: IPost) {}
+  constructor(public readonly post: IPost, public readonly amount? :number) {}
 }
 
 export class generatePost {

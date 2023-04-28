@@ -51,8 +51,8 @@ export class Post extends AggregateRoot implements IPost {
     this.apply(new CommentAddedEvent(this.toJSON()));
   }
 
-  updateTime() {
-    this.time++;
+  updateTime(increaseByAmount: number) {
+    this.time += increaseByAmount;
     this.apply(new PostTimeUpdatedEvent(this.toJSON()));
   }
 
