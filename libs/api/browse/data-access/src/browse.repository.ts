@@ -19,6 +19,8 @@ export class BrowseRepository{
 
             const data = users.docs.map((doc) => doc.data() as IUser);
             return data;            
+        } else {
+            return null;
         }
     }
 
