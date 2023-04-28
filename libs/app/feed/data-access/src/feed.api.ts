@@ -8,7 +8,6 @@ import {
   query,
 } from '@angular/fire/firestore';
 import { Functions, httpsCallable } from '@angular/fire/functions';
-import { IgeneratePostRequest, IgeneratePostResponse } from '@mp/api/newsfeed/util';
 import {
     IPost,
     IgenNewsfeedRequest,

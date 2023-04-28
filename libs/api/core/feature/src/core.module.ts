@@ -16,7 +16,7 @@ import { BrowseModule} from '@mp/api/browse/feature';
     UsersModule,
     PostsModule,
     NewsfeedModule,
-    EventsModule
+    EventsModule,
     BrowseModule
   ],
 })
