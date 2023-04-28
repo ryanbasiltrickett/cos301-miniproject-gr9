@@ -5,7 +5,6 @@ import { IonicModule } from '@ionic/angular';
 import { CopyrightModule } from '@mp/app/copyright/ui';
 import { VersionModule } from '@mp/app/version/ui';
 import { WelcomeModule as WelcomeDataAccessModule } from '@mp/app/welcome/data-access';
-import { WelcomeModule as TimeShareUIModule } from '@mp/app/welcome/ui';
 import { WelcomePage } from './welcome.page';
 import { WelcomeRouting } from './welcome.routing';
 
@@ -14,7 +13,6 @@ import { WelcomeRouting } from './welcome.routing';
     CommonModule,
     FormsModule,
     IonicModule,
-    TimeShareUIModule,
     WelcomeRouting,
     WelcomeDataAccessModule,
     CopyrightModule,

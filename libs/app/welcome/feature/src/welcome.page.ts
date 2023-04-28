@@ -3,7 +3,7 @@ import { ContinueWithGoogle } from '@mp/app/welcome/util';
 import { Store } from '@ngxs/store';
 
 @Component({
-  selector: 'ms-welcome-page, welcome-welcome-carousel-component',
+  selector: 'ms-welcome-page',
   templateUrl: './welcome.page.html',
   styleUrls: ['./welcome.page.scss'],
 })
