@@ -5,5 +5,6 @@ export class GetPost {
 
 export class addComment {
   static readonly type = '[Post] AddComment';
-  constructor(public readonly id: string, public readonly text: string ) {}
+  constructor(public readonly id: string, public readonly text: string,public readonly usernam: string ) {}
 }
+

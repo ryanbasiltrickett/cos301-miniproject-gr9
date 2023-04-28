@@ -30,24 +30,31 @@ export class PostState {
     return state.post;
   }
 
+  @Selector()
+  static comments(state: PostStateModel) {
+    return state.comments;
+  }
+
   @Action(GetPost)
   getPost(ctx: StateContext<PostStateModel>, { id }: GetPost) {
     return this.postApi.post$(id).pipe(
       tap((post: IPost) => {
         console.log('Post received: ', post);
-        ctx.patchState({ post });
+        ctx.patchState({ post:post,comments:post.comments});
+
       })
     );
   }
 
   @Action(addComment)
-  async addComment(ctx: StateContext<PostStateModel>, { id, text}: addComment) {
+  async addComment(ctx: StateContext<PostStateModel>, { id, text, usernam}: addComment) {
     let post_ = ctx.getState().post;
 
     const request: IAddCommentRequest = {
         post: post_,
         comment: text,
-        userId: id
+        userId: id,
+        username: usernam,
     }
 
     post_ =  (await this.postApi.addComment(request)).data.post;

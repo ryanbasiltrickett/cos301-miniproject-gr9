@@ -1,1 +1,2 @@
-export * from './lib/app-post-ui';
+export * from './post.module';
+export * from './comment'

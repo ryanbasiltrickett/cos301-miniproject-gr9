@@ -2,7 +2,9 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  EventEmitter,
   Input,
+  Output,
   ViewChild,
 } from '@angular/core';
 import { IonCard } from '@ionic/angular';
@@ -16,7 +18,7 @@ import { Router } from '@angular/router';
 import { ProfileState } from '@mp/app/profile/data-access';
 import { IProfile } from '@mp/api/profiles/util';
 import { Observable, take } from 'rxjs';
-// import { generatePost } from '@mp/app/feed/util';
+
 
 @Component({
   selector: 'mp-post',
@@ -26,6 +28,8 @@ import { Observable, take } from 'rxjs';
 export class PostComponent {
   @Select(ProfileState.profile) profile$!: Observable<IProfile | null>;
   @Input() post!: IPost;
+  @Output() donateTime = new EventEmitter<IPost>();
+
   inViewObserver!: IntersectionObserver;
   timer: NodeJS.Timer | undefined;
 
@@ -81,30 +85,34 @@ export class PostComponent {
   }
 
   onDonateClick() {
-    this.likePost();
+    this.donateTime.emit(this.post);
   }
 
   onCommentClick() {
     console.log('Comment button clicked');
     // Add your comment functionality here
 
-    const commentText = 'Hard coded'
-    const commentDetails : IComment = {
-      userId: '1',
-      text: commentText
-    }
+    // const commentText = 'Hard coded'
+    // const usernameText = 'Hard coded'
+    // const commentDetails : IComment = {
+    //   userId: '1',
+    //   text: commentText,
+    //   username: usernameText
+    // }
 
-    const request : ICommentPostRequest = {
-      postId: this.post.id,
-      comment: commentDetails
-    }
+    // const request : ICommentPostRequest = {
+    //   postId: this.post.id,
+    //   comment: commentDetails
+    // }
 
-    this.store.dispatch( new CommentPost(request) )
+    // this.store.dispatch( new CommentPost(request) )
   }
 
   async onShareClick() {
     console.log('Share button clicked');
     // Add your share functionality here
+
+    //alert('/home/post/' + this.post.id);
 
     const toast = await this.toastController.create({
       message: 'copied to clipboard',

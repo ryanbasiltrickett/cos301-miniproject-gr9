@@ -21,10 +21,12 @@ export class AddCommentHandler implements ICommandHandler<AddCommentCommand> {
     if (!postData) throw new Error('Post not found');
     if (!request.comment) throw new Error('Post Comment not found');
     if (!request.userId) throw new Error('comment User ID not found');
+    if (!request.username) throw new Error('username not found');
 
     const data: IComment = {
       userId: request.userId,
-      text: request.comment
+      text: request.comment,
+      username: request.username
     };
 
     const post = this.publisher.mergeObjectContext(Post.fromData(postData));
