@@ -1,0 +1,40 @@
+<ms-header></ms-header>
+<!-- <ion-content [fullscreen]="true">
+    <ion-header>
+        <h1>Events</h1>
+    </ion-header>
+    <div id="container">
+        <ng-container *ngIf="">
+            <mp-event *ngFor="1"></mp-event>
+        </ng-container>
+        <button class="button" role="getEvents"><span class="text">Get event</span></button>
+    </div>
+    <!-- <ion-grid>
+      <ion-row>
+        <ion-col style="display: flex; flex-direction: column; gap: 1rem">
+          
+          <ng-template #loading>
+            <ngx-skeleton-loader
+              count="1"
+              [theme]="{ height: '350px' }"
+              appearance="line"></ngx-skeleton-loader>
+          </ng-template>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content> -->
+<ion-content>
+    <h1>Events</h1>
+    <div id="container">
+        <div class="notification" *ngFor="let event of events$ | async">
+            <img src="assets/logos/Iconhdpi.png" alt="Profile Picture">
+            <div class="notificationDescription">
+              <p class="notifLabel">{{event.eventTitle}}</p>
+            </div>
+            <div class="countdown">
+                <p>{{event.eventTime}}</p>
+            </div>
+          </div>
+        <button class="button" role="getEvents" (click)="generateEvent()"><span class="text">Request event</span></button>
+    </div>
+</ion-content>

@@ -1,0 +1,34 @@
+<ion-buttons slot="start">  
+  <ion-back-button defaultHref="/"></ion-back-button>
+</ion-buttons>
+
+<ion-content [fullscreen]="true">
+  
+  <div class="center-container ion-align-items-center">
+
+    <ion-grid>
+      
+      <ion-item>
+        <ion-input
+          type="email"
+          minlength="8"
+          maxlength="64"
+          placeholder="Enter your recovery email"
+          required="true"
+          autocomplete="email"
+          formControlName="email"></ion-input>
+      </ion-item>
+
+      <ion-row>
+        <ion-col>
+          <ion-nav-link [routerLink]="['welcome']">
+            <ion-button (click)="sendVerificationCode()" expand="block">Send Verification Code</ion-button>
+          </ion-nav-link>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+
+  </div>
+
+</ion-content>

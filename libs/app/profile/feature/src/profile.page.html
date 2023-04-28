@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title class="ion-align-items-center">
       Profile
@@ -53,4 +53,96 @@
       </ion-row>
     </ion-grid>
   </ng-template>
+</ion-content> -->
+
+<ms-header></ms-header>
+
+<ion-content *ngIf="profile$ | async as profile; else loading">
+  <div class="top-section">
+    <!-- Banner Image -->
+    <div class="banner-image">
+      <img src="/assets/images/White Picture.jpg" alt="Banner Image">
+    </div>
+    <div class="profile-picture">
+      <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100" alt="Profile Picture">
+    </div>
+
+    <!-- Name and Username -->
+    <div class="name-username">
+      <h2>{{ profile.name }}</h2>
+      <p>@{{ profile.username }}</p>
+    </div>
+  </div>
+
+  <!-- Bio -->
+  <div class="bio">
+    <p>{{ profile.bio }}</p>
+  </div>
+
+  <!-- Stats -->
+  <!-- Stats -->
+<div class="stats">
+  <div>Time Remaining:</div>
+  <div class="stats-value">{{ profile.timeLeft }} seconds</div>
+</div>
+
+
+  <!-- Edit Profile Button -->
+  <ng-container *ngIf="!browse">
+    <ion-button expand="block" (click)="goToSettings()">Edit Profile</ion-button>
+  </ng-container>
+
+
+  <!-- Content Tabs -->
+  <ion-segment [(ngModel)]="selectedSegment">
+    <ion-segment-button value="all">All</ion-segment-button>
+    <ion-segment-button value="media">Media</ion-segment-button>
+    <ion-segment-button value="text">Text</ion-segment-button>
+  </ion-segment>
+
+  <!-- Content All -->
+<div class="content-all" *ngIf="selectedSegment === 'all'">
+  <div *ngFor="let post of posts" class="post-content">
+    <ng-container *ngIf="post.type === 'media'; else textContent">
+      <img src="{{post.url}}" alt="{{post.description}}">
+    </ng-container>
+    <ng-template #textContent>
+      <p>{{post.text}}</p>
+    </ng-template>
+    <div class="actions">
+      <ion-button size="small">Donate</ion-button>
+      <ion-button size="small">Comment</ion-button>
+      <ion-button size="small">Share</ion-button>
+      <p>Total Time: {{post.total_time}}</p>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Content Grid -->
+  <div class="content-grid" *ngIf="selectedSegment === 'media'">
+    <!-- Media view (2 columns) -->
+    <div *ngFor="let post of posts" class="post-content">
+      <img src="{{post.url}}" alt="{{post.description}}">
+    </div>
+  </div>
+
+  <!-- Text view (list) -->
+  <div *ngIf="selectedSegment === 'text'">
+    <div *ngFor="let post of posts" class="post-content-list">
+      <p>{{post.text}}</p>
+    </div>
+  </div>
 </ion-content>
+<ng-template #loading>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ngx-skeleton-loader
+          count="1"
+          [theme]="{ height: '150px' }"
+          appearance="line"></ngx-skeleton-loader>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ng-template>

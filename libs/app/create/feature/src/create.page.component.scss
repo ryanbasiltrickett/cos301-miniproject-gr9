@@ -1,0 +1,53 @@
+:host {
+    ion-content {
+      --background: #f4f5f8;
+    }
+  }
+  
+  .description-textarea {
+    --padding-start: 0;
+    --padding-end: 0;
+  }
+  
+  .user-info {
+    margin-top: 1rem;
+  }
+  
+  .post-input {
+    margin: 1rem 0;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .location-button {
+    --border-color: #000000;
+    --border-width: 1px;
+  }
+  
+  .media-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin: 1rem 0;
+  }
+  
+  ion-button {
+    --border-color: #000000;
+    --border-width: 1px;
+  }
+  
+  .post-button {
+    margin-top: 2rem;
+    --border-color: #000000;
+    --border-width: 1px;
+  }
+  
+  ion-toolbar {
+    --background: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .content {
+    padding: 1rem;
+  }
+  

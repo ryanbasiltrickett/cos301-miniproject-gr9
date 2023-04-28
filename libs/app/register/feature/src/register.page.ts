@@ -1,12 +1,21 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ContinueWithApple, ContinueWithFacebook, ContinueWithGoogle, ContinueWithTwitter } from '@mp/app/auth/util';
 import { Register } from '@mp/app/register/util';
 import {
     ActionsExecuting,
     actionsExecuting
 } from '@ngxs-labs/actions-executing';
+
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
+
+// import {
+//   ContinueWithApple,
+//   ContinueWithFacebook,
+//   ContinueWithGoogle,
+//   ContinueWithTwitter,
+// } from '@mp/app/auth/util';
 
 @Component({
   selector: 'ms-register-page',
@@ -67,5 +76,21 @@ export class RegisterPage {
 
   toggleShowPassword() {
     this.showPassword = !this.showPassword;
+  }
+
+  googleSignUp() {
+    this.store.dispatch(new ContinueWithGoogle());
+  }
+
+  facebookSignUp() {
+    this.store.dispatch(new ContinueWithFacebook());
+  }
+
+  appleSignUp() {
+    this.store.dispatch(new ContinueWithApple());
+  }
+
+  twitterSignUp() {
+    this.store.dispatch(new ContinueWithTwitter());
   }
 }

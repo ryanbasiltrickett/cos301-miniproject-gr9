@@ -1,0 +1,53 @@
+<ms-header></ms-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Feed</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col style="display: flex; flex-direction: column; gap: 1rem">
+        <ng-container *ngIf="feed$ | async as feed; else loading">
+          <mp-post
+            (donateTime)="onDonateTime($event)"
+            *ngFor="let post of feed"
+            [post]="post"></mp-post>
+        </ng-container>
+        <ng-template #loading>
+          <ngx-skeleton-loader
+            count="1"
+            [theme]="{ height: '350px' }"
+            appearance="line"></ngx-skeleton-loader>
+        </ng-template>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-modal [isOpen]="isModalOpen" (willDismiss)="onWillDismiss($event)">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-buttons slot="start">
+            <ion-button (click)="cancel()">Cancel</ion-button>
+          </ion-buttons>
+          <ion-title>Donate</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="confirm()" [strong]="true">Confirm</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content class="ion-padding">
+        <ion-item>
+          <ion-label position="stacked">How much time would you like to donate</ion-label>
+          <ion-input
+            type="number"
+            placeholder="3 (minutes)"
+            [(ngModel)]="donate_amount"></ion-input>
+        </ion-item>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+</ion-content>

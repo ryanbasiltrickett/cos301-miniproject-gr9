@@ -1,0 +1,75 @@
+<div class = "content-div" *ngIf="profile$ | async as profile; else loading">
+  <div>
+    <ion-header collapse="condense">
+        <ion-toolbar>
+          <ion-title size="large">Create</ion-title>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-item lines="none" class="user-info">
+        <ion-avatar slot="start">
+          <img src="https://via.placeholder.com/50">
+        </ion-avatar>
+        <ion-label>{{ profile.username }}</ion-label>
+        <!-- <ion-avatar slot="end">
+          <img src="https://via.placeholder.com/150">
+        </ion-avatar> -->
+      </ion-item>
+
+      <ion-item class="post-input">
+        <ion-textarea
+          label="description"
+          placeholder="What would you like to say"
+          [(ngModel)]="description"
+          class="description-textarea"></ion-textarea>
+      </ion-item>
+      <ion-button expand="block" (click)="post()" class="post-button">
+        <ion-label>Post</ion-label>
+      </ion-button>
+  </div>
+
+  <div>
+
+    <!-- <ion-item class="post-input">
+      <ion-input
+        label="hashtags"
+        placeholder="hashtag"
+        [(ngModel)]="hashtags">#</ion-input>
+      <ion-button (click)="addLocation()" fill="outline" class="location-button">
+        <ion-icon slot="start" name="location"></ion-icon>
+        <ion-label>Add Location</ion-label>
+      </ion-button>
+    </ion-item>
+
+    <div class="media-buttons">
+      <input type="file" (change)="onFileSelected($event)" #fileInput style="display: none" accept="image/*">
+
+      <ion-button (click)="fileInput.click()" fill="outline">
+        <ion-icon slot="start" name="image"></ion-icon>
+        <ion-label>Upload Photo</ion-label>
+      </ion-button>
+
+      <input type="file" (change)="onVideoSelected($event)" #videoInput style="display: none" accept="video/*">
+
+      <ion-button (click)="videoInput.click()" fill="outline">
+        <ion-icon slot="start" name="videocam"></ion-icon>
+        <ion-label>Upload Video</ion-label>
+      </ion-button>
+
+    </div> -->
+
+
+  </div>
+</div>
+<ng-template #loading>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ngx-skeleton-loader
+          count="1"
+          [theme]="{ height: '150px' }"
+          appearance="line"></ngx-skeleton-loader>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ng-template>

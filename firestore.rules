@@ -5,14 +5,12 @@ service cloud.firestore {
       allow read, write, list: if false;
     }
     
-    // Request.auth is empty due to a bug
-    // match /profiles/{userId} {
-    //   allow read: if request.auth != null && request.auth.uid == userId;
-    // }
-    
-    match /profiles/{userId} {
+    match /users/{userId} {
       allow read: if true;
     }
 
+    match /posts/{postId} {
+      allow read, write, list: if true;
+    }
   }
 }

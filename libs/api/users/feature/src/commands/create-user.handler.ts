@@ -13,10 +13,13 @@ export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
     const data: IUser = {
       id: request.auth.id,
       email: request.auth.email,
-      displayName: request.auth.displayName,
+      username: request.auth.username,
       photoURL: request.auth.photoURL,
-      phoneNumber: request.auth.phoneNumber,
-      customClaims: request.auth.customClaims,
+      bio: request.auth.bio,
+      name: request.auth.name,
+      visibility: request.auth.visibility,
+      timeLeft: 10800,
+      // customClaims: request.auth.customClaims,
       created: request.auth.created,
     };
     const user = this.publisher.mergeObjectContext(User.fromData(data));

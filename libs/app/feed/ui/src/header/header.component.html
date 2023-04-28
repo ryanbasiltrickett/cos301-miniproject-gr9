@@ -1,0 +1,17 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <header>
+      <div class="time-remaining">
+        <p style="margin: 0">{{ hours }} : {{ minutes }} : {{ seconds }}</p>
+      </div>
+      <img src="assets/logos/NameIcon.png" alt="TimeShare Logo" class="logo"/>
+      <nav>
+          <ul class="topNav">
+              <li (click)="goToEvents()">
+                <ion-icon  slot="icon-only" name="calendar-outline"></ion-icon>
+              </li>
+          </ul>
+      </nav>
+    </header>
+  </ion-toolbar>
+</ion-header>

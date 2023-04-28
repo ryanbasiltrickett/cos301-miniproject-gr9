@@ -1,0 +1,166 @@
+
+a {
+    text-decoration: none;
+  }
+  
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25em 4%;
+    position: sticky;
+    top: 0;
+    width: 100%;
+  }
+  
+  header p {
+    font-size: 1em;
+    min-width: 100px;
+  }
+  
+  .logo {
+    width: 40%;
+  }
+  
+  .topNav a {
+    color: #010101;
+    text-decoration: none;
+  }
+  
+  .topNav i {
+    padding: 0.6em 0.6em;
+    font-size: 1.3em;
+  }
+  
+  .topNav {
+    list-style: none;
+    display: flex;
+    float: right;
+  }
+  
+  .topNav li {
+    padding: 0 5px;
+  }
+  
+  nav {
+    min-width: 100px;
+  }
+  
+  main {
+    padding: 1.25em;
+    flex-grow: 1;
+  }
+  
+  h1 {
+    padding: 1.25em;
+    font-size: 1.5em;
+  }
+  
+  .notification {
+    margin: 0.6em 1em 0 1em;
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  #container {
+    margin: 0.5em 0;
+  }
+  
+  #container :first-child {
+    margin-top: 0.5em;
+  }
+  
+  .notification img {
+    border-radius: 50%;
+    width: 3.5em;
+  }
+  
+  .notificationDescription {
+    display: flex;
+    justify-content: center;
+    flex-flow: column nowrap;
+  }
+  
+  .notificationDescription p {
+    font-size: 0.8em;
+    padding: 0em 1em;
+    margin: 0;
+  }
+  
+  .countdown {
+    display: flex;
+    align-items: center;
+    margin-left: 0.3em;
+  }
+  
+  .countdown>p {
+    font-size: 0.7em;
+    width: 5em;
+  }
+  
+  .bottomNav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25em 4%;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+  }
+  
+  .bottomNav a {
+    float: left;
+    color: #000;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 30px;
+  }
+  
+  .button {
+    float: right;
+    margin: 2em;
+    align-items: center;
+    background-image: linear-gradient(135deg, #478ba2 40%, #e9755a);
+    border: 0;
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: #f5f5f5;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    font-size: 1em;
+    font-weight: 900;
+    height: 54px;
+    justify-content: center;
+    letter-spacing: .4px;
+    line-height: 1;
+    max-width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 3px;
+    text-decoration: none;
+    text-transform: uppercase;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+  
+  .button-75:active {
+    outline: 0;
+  }
+  
+  .button-75 span {
+    transition: all 200ms;
+  }
+  
+  @media screen and (max-width: 991px) {
+    .button-75 {
+      font-size: 15px;
+      height: 50px;
+    }
+  
+    .button-75 span {
+      line-height: 50px;
+    }
+  }

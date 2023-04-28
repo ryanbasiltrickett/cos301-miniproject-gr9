@@ -1,0 +1,33 @@
+.image-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  margin-bottom: 1rem;
+
+  .image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+  }
+}
+
+ion-segment {
+  --color: black;
+  --color-checked: black;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+
+  ion-button {
+    margin: 0 0.5rem;
+  }
+}
+
+.trending{
+  font-weight: bold;
+}
