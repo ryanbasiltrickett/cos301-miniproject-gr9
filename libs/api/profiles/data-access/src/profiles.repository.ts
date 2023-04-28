@@ -18,14 +18,32 @@ export class ProfilesRepository {
       .get();
   }
 
+  async findOneById(profileID: string) {
+    return await admin
+      .firestore()
+      .collection('users')
+      .withConverter<IProfile>({
+        fromFirestore: (snapshot) => {
+          return snapshot.data() as IProfile;
+        },
+        toFirestore: (it: IProfile) => it,
+      })
+      .doc(profileID)
+      .get();
+  }
+
   async createProfile(profile: IProfile) {
     // Remove password field if present
     delete profile.password;
-    return await admin
+    if ((await this.findOne(profile)).exists) {
+      return await admin
       .firestore()
       .collection('users')
       .doc(profile.id)
       .create(profile);
+    } else {
+      return await this.updateProfile(profile);
+    }
   }
 
   async updateProfile(profile: IProfile) {

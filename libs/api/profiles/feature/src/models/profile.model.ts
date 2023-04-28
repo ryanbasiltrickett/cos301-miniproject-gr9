@@ -11,8 +11,7 @@ import {
     // OccupationDetailsUpdatedEvent,
     // PersonalDetailsUpdatedEvent,
     ProfileCreatedEvent,
-    ProfileStatus,
-    ProfileStatusUpdatedEvent
+    ProfileTimeUpdatedEvent,
 } from '@mp/api/profiles/util';
 import { Timestamp } from 'firebase-admin/firestore';
 import { AggregateRoot } from '@nestjs/cqrs';
@@ -55,6 +54,24 @@ export class Profile extends AggregateRoot implements IProfile {
 
   create() {
     this.apply(new ProfileCreatedEvent(this.toJSON()));
+  }
+
+  decreaseTime(time: number) {
+    if (this.timeLeft === null || this.timeLeft === undefined) {
+      this.timeLeft = 10800;
+    } else {
+      this.timeLeft -= time;
+    }
+    this.apply(new ProfileTimeUpdatedEvent(this.toJSON()));
+  }
+
+  increaseTime(time: number) {
+    if (this.timeLeft === null || this.timeLeft === undefined) {
+      this.timeLeft = 10800;
+    } else {
+      this.timeLeft += time;
+    }
+    this.apply(new ProfileTimeUpdatedEvent(this.toJSON()));
   }
 
   // updateAddressDetails(addressDetails: IAddressDetails) {

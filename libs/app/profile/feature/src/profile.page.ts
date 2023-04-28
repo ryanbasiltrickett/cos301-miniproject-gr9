@@ -10,18 +10,13 @@ import { currUser } from '@mp/app/browse/ui';
 @Component({
   selector: 'ms-profile-page',
   templateUrl: './profile.page.html',
+  styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage {
   @Select(ProfileState.profile) profile$!: Observable<IProfile | null>;
 
   selectedSegment = 'all';
 
-  userStats = {
-    posts: 2,
-    followers: 23,
-    following: 54,
-    timeRemaining: '48 mins',
-  };
   browse = sessionStorage.getItem('browse');
   posts = [
     // Media content

@@ -2,7 +2,9 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  EventEmitter,
   Input,
+  Output,
   ViewChild,
 } from '@angular/core';
 import { IonCard } from '@ionic/angular';
@@ -10,22 +12,26 @@ import { ICommentPostRequest, IPost } from '@mp/api/posts/util';
 import { CommentPost, GivePostTime, LikePost } from '@mp/app/feed/util';
 import { Store, Select } from '@ngxs/store';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ToastController } from '@ionic/angular'
-import { IComment  } from '@mp/api/newsfeed/util';
+import { ToastController } from '@ionic/angular';
+import { IComment } from '@mp/api/newsfeed/util';
 import { Router } from '@angular/router';
 import { ProfileState } from '@mp/app/profile/data-access';
 import { IProfile } from '@mp/api/profiles/util';
 import { Observable, take } from 'rxjs';
-// import { generatePost } from '@mp/app/feed/util';
+import { collection, doc, onSnapshot, query } from '@angular/fire/firestore';
+import { FeedApi } from '@mp/app/feed/data-access';
 
 @Component({
   selector: 'mp-post',
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.scss'],
 })
-export class PostComponent {
+export class PostComponent implements AfterViewInit {
   @Select(ProfileState.profile) profile$!: Observable<IProfile | null>;
   @Input() post!: IPost;
+  postTime = 0;
+  @Output() donateTime = new EventEmitter<IPost>();
+
   inViewObserver!: IntersectionObserver;
   timer: NodeJS.Timer | undefined;
 
@@ -33,8 +39,9 @@ export class PostComponent {
     private readonly store: Store,
     private readonly el: ElementRef,
     private toastController: ToastController,
+    private readonly feedApi: FeedApi,
     private router: Router
-    ) {
+  ) {
     this.inViewObserver = new IntersectionObserver(
       (entries: IntersectionObserverEntry[]) => {
         entries.forEach((entry: IntersectionObserverEntry) => {
@@ -54,22 +61,25 @@ export class PostComponent {
     this.inViewObserver.observe(this.el.nativeElement);
   }
 
+  ngAfterViewInit(): void {
+    onSnapshot(this.feedApi.getPostSubscription(this.post.id), (doc) => {
+      const post = doc.data() as IPost;
+      this.postTime = post.time;
+    });
+  }
+
   goToPostPage(): void {
     this.router.navigate(['/home/post', this.post.id]);
   }
 
   startTimer(): void {
-    this.profile$
-    .pipe(take(1))
-    .subscribe(
-      profile => {
-          if (this.post.author !== profile?.username) {
-            this.timer = setInterval(() => {
-              this.store.dispatch(new GivePostTime(this.post));
-            }, 1000);
-          }
+    this.profile$.pipe(take(1)).subscribe((profile) => {
+      if (this.post.author !== profile?.username) {
+        this.timer = setInterval(() => {
+          this.store.dispatch(new GivePostTime(this.post));
+        }, 1000);
       }
-    );
+    });
   }
 
   stopTimer(): void {
@@ -81,30 +91,34 @@ export class PostComponent {
   }
 
   onDonateClick() {
-    this.likePost();
+    this.donateTime.emit(this.post);
   }
 
   onCommentClick() {
     console.log('Comment button clicked');
     // Add your comment functionality here
 
-    const commentText = 'Hard coded'
-    const commentDetails : IComment = {
-      userId: '1',
-      text: commentText
-    }
+    // const commentText = 'Hard coded'
+    // const usernameText = 'Hard coded'
+    // const commentDetails : IComment = {
+    //   userId: '1',
+    //   text: commentText,
+    //   username: usernameText
+    // }
 
-    const request : ICommentPostRequest = {
-      postId: this.post.id,
-      comment: commentDetails
-    }
+    // const request : ICommentPostRequest = {
+    //   postId: this.post.id,
+    //   comment: commentDetails
+    // }
 
-    this.store.dispatch( new CommentPost(request) )
+    // this.store.dispatch( new CommentPost(request) )
   }
 
   async onShareClick() {
     console.log('Share button clicked');
     // Add your share functionality here
+
+    //alert('/home/post/' + this.post.id);
 
     const toast = await this.toastController.create({
       message: 'copied to clipboard',

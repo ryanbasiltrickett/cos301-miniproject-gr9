@@ -17,7 +17,8 @@ import {
     OccupationDetailsUpdatedHandler,
     PersonalDetailsUpdatedHandler,
     ProfileCreatedHandler,
-    ProfileStatusUpdatedHandler
+    ProfileStatusUpdatedHandler,
+    ProfileTimeUpdatedHandler
 } from './events';
 import { ProfilesSagas } from './profiles.sagas';
 import { ProfilesService } from './profiles.service';
@@ -38,6 +39,7 @@ export const EventHandlers = [
   OccupationDetailsUpdatedHandler,
   AccountDetailsUpdatedHandler,
   ProfileStatusUpdatedHandler,
+  ProfileTimeUpdatedHandler,
 ];
 
 @Module({

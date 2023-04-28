@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
   collection,
+  doc,
   DocumentData,
   Firestore,
   onSnapshot,
@@ -9,22 +10,18 @@ import {
 } from '@angular/fire/firestore';
 import { Functions, httpsCallable } from '@angular/fire/functions';
 import {
-    IPost,
-    IgenNewsfeedRequest,
-    IgenNewsfeedResponse,
-    IgeneratePostRequest,
-    IgeneratePostResponse,
-    IupdateNFPostRequest,
-    IupdateNFPostResponse
-} from '@mp/api/newsfeed/util'
-import {
-    IUser
-} from '@mp/api/users/util'
-import {
-    IProfile
-} from '@mp/api/profiles/util'
+  IPost,
+  IgenNewsfeedRequest,
+  IgenNewsfeedResponse,
+  IgeneratePostRequest,
+  IgeneratePostResponse,
+  IupdateNFPostRequest,
+  IupdateNFPostResponse,
+} from '@mp/api/newsfeed/util';
+import { IUser } from '@mp/api/users/util';
+import { IProfile } from '@mp/api/profiles/util';
 
-import {  
+import {
   ICommentPostRequest,
   ICommentPostResponse,
   ILikePostRequest,
@@ -46,8 +43,10 @@ export class FeedApi {
   subscribeToFeed() {
     // Change this such that each post is individually subscribed to
 
-    const postsSnapshot = query(collection(this.firestore, 'posts'),orderBy('published','desc'));
-
+    const postsSnapshot = query(
+      collection(this.firestore, 'posts'),
+      orderBy('published', 'desc')
+    );
 
     // maybe unsubscribe from this subscription
     const unsubscribe = onSnapshot(postsSnapshot, (snapshot) => {
@@ -62,6 +61,10 @@ export class FeedApi {
         })
       );
     });
+  }
+
+  getPostSubscription(postId: string) {
+    return doc(this.firestore, 'posts', postId);
   }
 
   async updatePostLikeCount(request: ILikePostRequest) {
@@ -85,21 +88,15 @@ export class FeedApi {
     )(request);
   }
 
-  async generateNewsFeed(request: IgenNewsfeedRequest){
-    return await httpsCallable<
-      IgenNewsfeedRequest,
-      IgenNewsfeedResponse
-    >(
+  async generateNewsFeed(request: IgenNewsfeedRequest) {
+    return await httpsCallable<IgenNewsfeedRequest, IgenNewsfeedResponse>(
       this.functions,
       'generateNewsFeed'
     )(request);
   }
 
-  async updateNewsFeedPost(request: IupdateNFPostRequest){
-    return httpsCallable<
-      IupdateNFPostRequest,
-      IupdateNFPostResponse
-    >(
+  async updateNewsFeedPost(request: IupdateNFPostRequest) {
+    return httpsCallable<IupdateNFPostRequest, IupdateNFPostResponse>(
       this.functions,
       'updateNewFeedPost'
     )(request);

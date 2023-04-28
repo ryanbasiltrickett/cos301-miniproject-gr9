@@ -6,27 +6,45 @@
         <mp-post style="margin-top: 2rem" [post]="post"></mp-post>
       </ng-container>
 
-      <p>Comments</p>
+      <div style="color: darkblue;">
+        <p>Comments</p>
+      </div>
 
-        <!-- <ng-container *ngIf="comments$ | async as comments; else noComments">
-            <mp-comment *ngFor="let comment of comments" [comment]="comment"></mp-comment>
-        </ng-container> -->
 
-        <div *ngFor="let i of [1, 2, 3, 4, 5]">
+        <ng-container *ngIf="comments$ | async as comments; else noComments">
+            <mp-comment  *ngFor="let comment of comments" [comment]="comment"></mp-comment>
+        </ng-container>
+
+        <!-- <div *ngFor="let i of [1, 2, 3, 4, 5]">
             <ngx-skeleton-loader
                 count="1"
                 [theme]="{ height: '30px' }"
                 appearance="line"
             ></ngx-skeleton-loader>
-        </div>
+        </div> -->
 
         <ng-template #noComments>
             <p>No comments yet</p>
         </ng-template>
 
+        <!-- <ion-button (click)="toggleForm()">{{ showForm ? 'Comment' : 'Comment' }}</ion-button>
+          <div *ngIf="showForm"> -->
+            <ion-item class="post-input">
+              <ion-textarea
+                label="description"
+                placeholder="Comment..."
+                [(ngModel)]="usernam"
+                class="description-textarea"></ion-textarea>
+            </ion-item>
+          <!-- </div> -->
+
         <ion-button expand="block" color="primary" (click)="addComment()">
             Add comment
         </ion-button>
+
+        <!-- <ion-button expand="block" color="primary" (click)="deleteComment(0)">
+          Delete comment
+      </ion-button> -->
 
       <ng-template #loading>
         <ngx-skeleton-loader

@@ -4,4 +4,5 @@ export interface IAddCommentRequest{
   post: IPost|null;
   comment: string;
   userId: string;
+  username: string;
 }
