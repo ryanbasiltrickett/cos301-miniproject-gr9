@@ -10,6 +10,7 @@ import { currUser } from '@mp/app/browse/ui';
 @Component({
   selector: 'ms-profile-page',
   templateUrl: './profile.page.html',
+  styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage {
   @Select(ProfileState.profile) profile$!: Observable<IProfile | null>;
