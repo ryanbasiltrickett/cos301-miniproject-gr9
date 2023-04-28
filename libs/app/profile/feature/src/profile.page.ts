@@ -16,12 +16,6 @@ export class ProfilePage {
 
   selectedSegment = 'all';
 
-  userStats = {
-    posts: 2,
-    followers: 23,
-    following: 54,
-    timeRemaining: '48 mins',
-  };
   browse = sessionStorage.getItem('browse');
   posts = [
     // Media content
