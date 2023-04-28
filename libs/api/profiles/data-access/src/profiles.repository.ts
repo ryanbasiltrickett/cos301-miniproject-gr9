@@ -18,6 +18,20 @@ export class ProfilesRepository {
       .get();
   }
 
+  async findOneById(profileID: string) {
+    return await admin
+      .firestore()
+      .collection('users')
+      .withConverter<IProfile>({
+        fromFirestore: (snapshot) => {
+          return snapshot.data() as IProfile;
+        },
+        toFirestore: (it: IProfile) => it,
+      })
+      .doc(profileID)
+      .get();
+  }
+
   async createProfile(profile: IProfile) {
     // Remove password field if present
     delete profile.password;

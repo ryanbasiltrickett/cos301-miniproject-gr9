@@ -17,6 +17,9 @@ import {
   IAddCommentRequest,
   AddCommentCommand,
   IAddCommentResponse,
+  IDeleteCommentRequest,
+  IDeleteCommentResponse,
+  DeleteCommentCommand,
 } from '@mp/api/posts/util';
 import { Injectable } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
@@ -67,5 +70,12 @@ export class PostService {
       AddCommentCommand,
       IAddCommentResponse
     >(new AddCommentCommand(request));
+  }
+
+  async deleteComment(request: IDeleteCommentRequest): Promise<IDeleteCommentResponse> {
+    return await this.commandBus.execute<
+      DeleteCommentCommand,
+      IDeleteCommentResponse
+      >(new DeleteCommentCommand(request));
   }
 }

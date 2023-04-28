@@ -6,7 +6,7 @@ import { IComment, IPost } from '@mp/api/newsfeed/util';
 // import { ProfileState } from '@mp/app/profile/data-access';
 import { Select, Store } from '@ngxs/store';
 import { Observable, take } from 'rxjs';
-import { GetPost, addComment } from '@mp/app/post/util';
+import { GetPost, addComment, deleteComment } from '@mp/app/post/util';
 import { PostState } from '@mp/app/post/data-access';
 import { ProfileState } from '@mp/app/profile/data-access';
 import { IProfile } from '@mp/api/profiles/util';
@@ -21,6 +21,7 @@ export class PostPageComponent implements OnInit {
   @Select(ProfileState.profile) profile$!: Observable<IProfile | null>
   postid: string | undefined;
   usernam = '';
+  commentIndex = -1;
   // showForm = false;
 
   // toggleForm() {
@@ -60,5 +61,9 @@ export class PostPageComponent implements OnInit {
     );
     this.usernam = '';
     //this.toggleForm()
+  }
+
+  async deleteComment(index: number) {
+    this.store.dispatch(new deleteComment(index));
   }
 }

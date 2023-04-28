@@ -7,26 +7,30 @@ import {
   CreatePostHandler,
   LikePostHandler,
   UpdatePostTimeHandler,
-  AddCommentHandler
+  AddCommentHandler,
+  DeleteCommentHandler
 } from './commands';
 import {
   PostCreatedHandler,
   PostLikedHandler,
   PostTimeUpdatedHandler,
-  CommentAddedHandler
+  CommentAddedHandler,
+  CommentDeletedHandler
 } from './events';
 
 export const CommandHandlers = [
   CreatePostHandler,
   LikePostHandler,
   UpdatePostTimeHandler,
-  AddCommentHandler
+  AddCommentHandler,
+  DeleteCommentHandler
 ];
 export const EventHandlers = [
   PostCreatedHandler,
   PostLikedHandler,
   PostTimeUpdatedHandler,
-  CommentAddedHandler
+  CommentAddedHandler,
+  CommentDeletedHandler
 ];
 
 @Module({
