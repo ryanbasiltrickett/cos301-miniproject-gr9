@@ -15,6 +15,8 @@ import {
   IUpdatePostTimeResponse,
   IAddCommentRequest,
   IAddCommentResponse,
+  IDeleteCommentRequest,
+  IDeleteCommentResponse,
 } from '@mp/api/posts/util';
 
 @Injectable()
@@ -76,6 +78,13 @@ export class PostApi {
     return await httpsCallable<IAddCommentRequest,IAddCommentResponse>(
       this.functions,
       'addComment'
+    )(request);
+  }
+
+  async deleteComment(request: IDeleteCommentRequest) {
+    return await httpsCallable<IDeleteCommentRequest,IDeleteCommentResponse>(
+      this.functions,
+      'deleteComment'
     )(request);
   }
 }
