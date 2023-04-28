@@ -21,11 +21,14 @@ export class PostPageComponent implements OnInit {
   @Select(ProfileState.profile) profile$!: Observable<IProfile | null>
   postid: string | undefined;
   usernam = '';
-  showForm = false;
+  // showForm = false;
 
-  toggleForm() {
-    this.showForm = !this.showForm;
-  }
+  // toggleForm() {
+  //   this.showForm = !this.showForm;
+  //   if (!this.showForm) {
+  //     this.usernam = '';
+  //   }
+  // }
 
   @Select(PostState.comments) comments$!: Observable<IComment[] | null>;
 
@@ -55,6 +58,7 @@ export class PostPageComponent implements OnInit {
         );
       }
     );
-    this.toggleForm()
+    this.usernam = '';
+    //this.toggleForm()
   }
 }

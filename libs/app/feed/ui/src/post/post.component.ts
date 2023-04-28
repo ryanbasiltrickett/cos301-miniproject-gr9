@@ -112,6 +112,8 @@ export class PostComponent {
     console.log('Share button clicked');
     // Add your share functionality here
 
+    alert('/home/post/' + this.post.id);
+
     const toast = await this.toastController.create({
       message: 'copied to clipboard',
       duration: 2000,
