@@ -1,25 +1,25 @@
 {
   "name": "app-browse-feature",
-  "$schema": "../node_modules/nx/schemas/project-schema.json",
-  "projectType": "library",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/app/browse/feature/src",
-  "prefix": "mp",
+  "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nrwl/angular:ng-packagr-lite",
-      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "project": "libs/app/browse/feature/ng-package.json"
-      },
-      "configurations": {
-        "production": {
-          "tsConfig": "libs/app/browse/feature/tsconfig.lib.prod.json"
-        },
-        "development": {
-          "tsConfig": "libs/app/browse/feature/tsconfig.lib.json"
-        }
-      },
-      "defaultConfiguration": "production"
+        "outputPath": "dist/libs/app/browse/feature",
+        "main": "libs/app/browse/feature/src/index.ts",
+        "tsConfig": "libs/app/browse/feature/tsconfig.lib.json",
+        "assets": ["libs/app/browse/feature/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/app/browse/feature/**/*.ts"]
+      }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
@@ -33,16 +33,6 @@
           "ci": true,
           "codeCoverage": true
         }
-      }
-    },
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": [
-          "libs/app/browse/feature/**/*.ts",
-          "libs/app/browse/feature/**/*.html"
-        ]
       }
     }
   },

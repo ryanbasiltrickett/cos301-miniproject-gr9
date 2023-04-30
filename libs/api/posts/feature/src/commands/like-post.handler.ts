@@ -4,7 +4,7 @@ import { ILikePostResponse, LikePostCommand } from '@mp/api/posts/util';
 import { PostsRepository } from '@mp/api/posts/data-access';
 import { ProfilesRepository } from '@mp/api/profiles/data-access';
 import { Post } from '../models';
-import { Profile } from 'libs/api/profiles/feature/src/models';
+import { Profile } from '@mp/api/profiles/feature';
 
 @CommandHandler(LikePostCommand)
 export class LikePostHandler implements ICommandHandler<LikePostCommand> {

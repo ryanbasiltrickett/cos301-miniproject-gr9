@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
 import { BrowseAction } from '@mp/app/browse/util';
 
 @Component({
-  selector: 'mp-browse',
-  templateUrl: './browse.component.html',
-  styleUrls: ['./browse.component.scss'],
+  selector: 'mp-browse-page',
+  templateUrl: './browse.page.html',
+  styleUrls: ['./browse.page.scss'],
 })
-export class BrowseComponent {
+export class BrowsePage {
   // @Select(PostState.posts) posts$!: Observable<IPost[]>;
   hours = "00";
     minutes = "00";
