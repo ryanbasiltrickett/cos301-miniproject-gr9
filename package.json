@@ -8,6 +8,8 @@
     "export:emulators": "firebase emulators:export .emulators",
     "start:app:dev": "yarn run env-cmd -f .env nx run app:serve --configuration=development",
     "start:api:dev": "yarn run env-cmd -f .env nx run api:serve --configuration=development",
+    "start:app:prod": "yarn run env-cmd -f .env nx run app:serve --configuration=production",
+    "start:api:prod": "yarn run env-cmd -f .env nx run api:serve --configuration=production",
     "start:cli:dev": "yarn run env-cmd -f .env nx run cli:serve --configuration=development",
     "start:emulators": "firebase emulators:start",
     "start:emulators:imported": "firebase emulators:start --import .emulators",
