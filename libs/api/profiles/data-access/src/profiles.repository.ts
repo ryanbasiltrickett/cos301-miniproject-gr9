@@ -35,15 +35,11 @@ export class ProfilesRepository {
   async createProfile(profile: IProfile) {
     // Remove password field if present
     delete profile.password;
-    if ((await this.findOne(profile)).exists) {
-      return await admin
+    return await admin
       .firestore()
       .collection('users')
       .doc(profile.id)
-      .create(profile);
-    } else {
-      return await this.updateProfile(profile);
-    }
+      .set(profile, { merge: true });
   }
 
   async updateProfile(profile: IProfile) {
