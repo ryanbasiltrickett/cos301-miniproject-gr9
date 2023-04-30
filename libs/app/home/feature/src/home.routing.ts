@@ -20,8 +20,8 @@ const routes: Routes = [
       {
         path: 'browse',
         loadChildren: () =>
-          import('@mp/app/browse/feature').then(
-            (m) => m.AppBrowseFeatureModule
+          import('@mp/app/search/feature').then(
+            (m) => m.SearchModule
           ),
       },
       {

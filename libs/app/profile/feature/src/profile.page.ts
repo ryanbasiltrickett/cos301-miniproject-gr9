@@ -5,7 +5,7 @@ import { Select, Store } from '@ngxs/store';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { SetProfile } from '@mp/app/profile/util';
-import { currUser } from '@mp/app/browse/ui';
+import { currUser } from '@mp/app/search/ui';
 
 @Component({
   selector: 'ms-profile-page',
