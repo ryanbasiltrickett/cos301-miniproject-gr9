@@ -1,5 +1,5 @@
-export * from './app-browse-feature.module';
+export * from './browse.module';
 
-export * from './lib.routes';
+export * from './browse.routing';
 
-export * from './browse.component';
+export * from './browse.page';

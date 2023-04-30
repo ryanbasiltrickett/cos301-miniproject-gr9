@@ -1,17 +1,17 @@
 import { Route } from '@angular/router';
-import { BrowseComponent } from './browse.component';
+import { BrowsePage } from './browse.page';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProfilePage } from '@mp/app/profile/feature';
 
-export const appBrowseFeatureRoutes: Route[] = [
-  { path: '', pathMatch: 'full', component: BrowseComponent},
+export const routes: Route[] = [
+  { path: '', pathMatch: 'full', component: BrowsePage},
   { path: 'home/profile', component: ProfilePage}
 ];
 
 
 @NgModule({
-  imports: [RouterModule.forChild(appBrowseFeatureRoutes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
 export class BrowseRouting {}
