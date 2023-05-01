@@ -67,7 +67,7 @@ export class FeedState {
   @Action(SetFeed)
   setFeed(ctx: StateContext<FeedStateModel>, { feed }: SetFeed) {
     // only update the whole feed if there is a new post
-    if (feed.length > ctx.getState().feed.length) {
+    if (feed.length != ctx.getState().feed.length) {
       return ctx.patchState({ feed: feed });
     } else {
       // return the same state if there is no new post
