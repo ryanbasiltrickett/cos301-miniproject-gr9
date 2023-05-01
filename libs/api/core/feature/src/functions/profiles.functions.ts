@@ -1,5 +1,6 @@
 import { ProfilesService } from '@mp/api/profiles/feature';
 import {
+  IGetUserPostResponse,
     IUpdateAccountDetailsRequest,
     IUpdateAccountDetailsResponse,
     // IUpdateAddressDetailsRequest,
@@ -29,7 +30,7 @@ export const updateAccountDetails = functions.https.onCall(
 export const getUserPosts = functions.https.onCall(
   async(
     request: string
-  ): Promise<IGetPost> =>{
+  ): Promise<IGetUserPostResponse> =>{
     const app = await NestFactory.createApplicationContext(CoreModule);
     const service = app.get(ProfilesService);
     return service.getUserPosts(request);

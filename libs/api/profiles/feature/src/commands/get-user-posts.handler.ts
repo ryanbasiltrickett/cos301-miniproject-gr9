@@ -1,4 +1,4 @@
-import { QueryHandler, IQueryHandler, EventPublisher, InvalidQueryHandlerException, CommandHandler } from '@nestjs/cqrs';
+import { QueryHandler, IQueryHandler, EventPublisher, InvalidQueryHandlerException, CommandHandler, ICommandHandler } from '@nestjs/cqrs';
 import { GetTrendingQuery, IGetTrendingResponse } from '@mp/api/browse/util';
 //TODO: Browse Repo
 import { ProfilesRepository } from '@mp/api/profiles/data-access';
@@ -7,10 +7,10 @@ import { GetPostCommand, IGetUserPostResponse } from '@mp/api/profiles/util';
 
 // query handler
 @CommandHandler(GetPostCommand)
-export class GetUserPostsHandler implements IQueryHandler<GetPostCommand, IGetUserPostResponse> {
+export class GetUserPostsHandler implements ICommandHandler<GetPostCommand, IGetUserPostResponse> {
   constructor(
     private publisher: EventPublisher,
-    private readonly repository:(ProfilesRepository)
+    private readonly repository:(ProfilesRepository)    
     ) {}
 
   async execute(command: GetPostCommand) : Promise<any> {

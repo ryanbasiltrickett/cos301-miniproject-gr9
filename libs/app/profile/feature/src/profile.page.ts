@@ -4,7 +4,7 @@ import { ProfileState } from '@mp/app/profile/data-access';
 import { Select, Store } from '@ngxs/store';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { SetProfile } from '@mp/app/profile/util';
+import { GetUserPosts, SetProfile } from '@mp/app/profile/util';
 import { currUser } from '@mp/app/browse/ui';
 
 @Component({
@@ -140,6 +140,10 @@ export class ProfilePage {
         }
       }
     });
+
+    this.store.dispatch(
+      new GetUserPosts()
+    );
   }
 
   goToSettings() {

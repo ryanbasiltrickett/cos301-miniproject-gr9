@@ -89,8 +89,8 @@ export class ProfilesApi {
 
   async getUserPosts(request: string){
     return await httpsCallable<
-    string,
-    IGetUserPostResponse
+      string,
+      IGetUserPostResponse
   >(
     this.functions,
     'getUserPosts'
