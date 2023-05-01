@@ -8,7 +8,8 @@ import {
     UpdateContactDetailsHandler,
     UpdateOccupationDetailsHandler,
     UpdatePersonalDetailsHandler,
-    UpdateProfileStatusHandler
+    UpdateProfileStatusHandler,
+    GetUserPostsHandler
 } from './commands';
 import {
     AccountDetailsUpdatedHandler,
@@ -22,6 +23,7 @@ import {
 } from './events';
 import { ProfilesSagas } from './profiles.sagas';
 import { ProfilesService } from './profiles.service';
+
 export const CommandHandlers = [
   CreateProfileHandler,
   UpdateContactDetailsHandler,
@@ -30,6 +32,7 @@ export const CommandHandlers = [
   UpdateOccupationDetailsHandler,
   UpdateAccountDetailsHandler,
   UpdateProfileStatusHandler,
+  GetUserPostsHandler,
 ];
 export const EventHandlers = [
   ProfileCreatedHandler,

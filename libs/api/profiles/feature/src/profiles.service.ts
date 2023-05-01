@@ -1,4 +1,7 @@
+import { IGetPost } from '@mp/api/browse/util';
 import {
+  GetPostCommand,
+    IGetUserPostResponse,
     IUpdateAccountDetailsRequest,
     IUpdateAccountDetailsResponse,
     // IUpdateAddressDetailsRequest,
@@ -31,39 +34,12 @@ export class ProfilesService {
     >(new UpdateAccountDetailsCommand(request));
   }
 
-  // async updateAddressDetails(
-  //   request: IUpdateAddressDetailsRequest
-  // ): Promise<IUpdateAddressDetailsResponse> {
-  //   return await this.commandBus.execute<
-  //     UpdateAddressDetailsCommand,
-  //     IUpdateAddressDetailsResponse
-  //   >(new UpdateAddressDetailsCommand(request));
-  // }
-
-  // async updateContactDetails(
-  //   request: IUpdateContactDetailsRequest
-  // ): Promise<IUpdateContactDetailsResponse> {
-  //   return await this.commandBus.execute<
-  //     UpdateContactDetailsCommand,
-  //     IUpdateContactDetailsResponse
-  //   >(new UpdateContactDetailsCommand(request));
-  // }
-
-  // async updatePersonalDetails(
-  //   request: IUpdatePersonalDetailsRequest
-  // ): Promise<IUpdatePersonalDetailsResponse> {
-  //   return await this.commandBus.execute<
-  //     UpdatePersonalDetailsCommand,
-  //     IUpdatePersonalDetailsResponse
-  //   >(new UpdatePersonalDetailsCommand(request));
-  // }
-
-  // async updateOccupationDetails(
-  //   request: IUpdateOccupationDetailsRequest
-  // ): Promise<IUpdateOccupationDetailsResponse> {
-  //   return await this.commandBus.execute<
-  //     UpdateOccupationDetailsCommand,
-  //     IUpdateOccupationDetailsResponse
-  //   >(new UpdateOccupationDetailsCommand(request));
-  // }
+  async getUserPosts(
+    request: string
+  ): Promise<IGetUserPostResponse>{
+    return await this.commandBus.execute<
+      GetPostCommand,
+      IGetUserPostResponse
+    >(new GetPostCommand(request));
+  }
 }

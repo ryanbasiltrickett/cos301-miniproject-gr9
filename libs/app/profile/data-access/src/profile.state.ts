@@ -15,6 +15,7 @@ import { AuthState } from '@mp/app/auth/data-access';
 import { Logout as AuthLogout } from '@mp/app/auth/util';
 import { SetError } from '@mp/app/errors/util';
 import {
+  GetUserPosts,
     Logout,
     SetProfile,
     SubscribeToProfile,
@@ -28,6 +29,7 @@ import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import produce from 'immer';
 import { tap } from 'rxjs';
 import { ProfilesApi } from './profiles.api';
+import { IGetPost } from '@mp/api/browse/util';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ProfileStateModel {
@@ -46,6 +48,7 @@ export interface ProfileStateModel {
     status: string;
     errors: object;
   };
+  posts: IGetPost[] | null;
 }
 
 @State<ProfileStateModel>({
@@ -66,6 +69,7 @@ export interface ProfileStateModel {
       status: '',
       errors: {},
     },
+    posts: null
   },
 })
 @Injectable()
@@ -78,6 +82,11 @@ export class ProfileState {
   @Selector()
   static profile(state: ProfileStateModel) {
     return state.profile;
+  }
+
+  @Selector()
+  static posts(state: ProfileStateModel) {
+    return state.posts;
   }
 
   @Action(Logout)
@@ -144,123 +153,29 @@ export class ProfileState {
     }
   }
 
-  // @Action(UpdateContactDetails)
-  // async updateContactDetails(ctx: StateContext<ProfileStateModel>) {
-  //   try {
-  //     const state = ctx.getState();
-  //     const userId = state.profile?.userId;
-  //     const cellphone = state.contactDetailsForm.model.cellphone;
-
-  //     if (!userId || !cellphone)
-  //       return ctx.dispatch(new SetError('UserId or cellphone not set'));
-
-  //     const request: IUpdateContactDetailsRequest = {
-  //       profile: {
-  //         userId,
-  //         contactDetails: {
-  //           cellphone,
-  //         },
-  //       },
-  //     };
-  //     const responseRef = await this.profileApi.updateContactDetails(request);
-  //     const response = responseRef.data;
-  //     return ctx.dispatch(new SetProfile(response.profile));
-  //   } catch (error) {
-  //     return ctx.dispatch(new SetError((error as Error).message));
-  //   }
-  // }
-
-  // @Action(UpdateAddressDetails)
-  // async updateAddressDetails(ctx: StateContext<ProfileStateModel>) {
-  //   try {
-  //     const state = ctx.getState();
-  //     const userId = state.profile?.userId;
-  //     const residentialArea = state.addressDetailsForm.model.residentialArea;
-  //     const workArea = state.addressDetailsForm.model.workArea;
-
-  //     if (!userId || !residentialArea || !workArea)
-  //       return ctx.dispatch(
-  //         new SetError('UserId or residential area or work area not set')
-  //       );
-
-  //     const request: IUpdateAddressDetailsRequest = {
-  //       profile: {
-  //         userId,
-  //         addressDetails: {
-  //           residentialArea,
-  //           workArea,
-  //         },
-  //       },
-  //     };
-  //     const responseRef = await this.profileApi.updateAddressDetails(request);
-  //     const response = responseRef.data;
-  //     return ctx.dispatch(new SetProfile(response.profile));
-  //   } catch (error) {
-  //     return ctx.dispatch(new SetError((error as Error).message));
-  //   }
-  // }
-
-  // @Action(UpdatePersonalDetails)
-  // async updatePersonalDetails(ctx: StateContext<ProfileStateModel>) {
-  //   try {
-  //     const state = ctx.getState();
-  //     const userId = state.profile?.userId;
-  //     const age = state.personalDetailsForm.model.age;
-  //     const gender = state.personalDetailsForm.model.gender;
-  //     const ethnicity = state.personalDetailsForm.model.ethnicity;
-
-  //     if (!userId || !age || !gender || !ethnicity)
-  //       return ctx.dispatch(
-  //         new SetError('UserId or age or gender or ethnicity not set')
-  //       );
-
-  //     const request: IUpdatePersonalDetailsRequest = {
-  //       profile: {
-  //         userId,
-  //         personalDetails: {
-  //           age,
-  //           gender,
-  //           ethnicity,
-  //         },
-  //       },
-  //     };
-  //     const responseRef = await this.profileApi.updatePersonalDetails(request);
-  //     const response = responseRef.data;
-  //     return ctx.dispatch(new SetProfile(response.profile));
-  //   } catch (error) {
-  //     return ctx.dispatch(new SetError((error as Error).message));
-  //   }
-  // }
-
-  // @Action(UpdateOccupationDetails)
-  // async updateOccupationDetails(ctx: StateContext<ProfileStateModel>) {
-  //   try {
-  //     const state = ctx.getState();
-  //     const userId = state.profile?.userId;
-  //     const householdIncome = state.occupationDetailsForm.model.householdIncome;
-  //     const occupation = state.occupationDetailsForm.model.occupation;
-
-  //     if (!userId || !householdIncome || !occupation)
-  //       return ctx.dispatch(
-  //         new SetError('UserId or householdIncome or occupation not set')
-  //       );
-
-  //     const request: IUpdateOccupationDetailsRequest = {
-  //       profile: {
-  //         userId,
-  //         occupationDetails: {
-  //           householdIncome,
-  //           occupation,
-  //         },
-  //       },
-  //     };
-  //     const responseRef = await this.profileApi.updateOccupationDetails(
-  //       request
-  //     );
-  //     const response = responseRef.data;
-  //     return ctx.dispatch(new SetProfile(response.profile));
-  //   } catch (error) {
-  //     return ctx.dispatch(new SetError((error as Error).message));
-  //   }
-  // }
+  @Action(GetUserPosts)
+  async getUserPosts(ctx: StateContext<ProfileStateModel>){
+    const req = ctx.getState().accountDetailsForm.model.username;
+    const response = await this.profileApi.getUserPosts(req!);
+    const model: ProfileStateModel = { 
+      profile: ctx.getState().profile,
+      accountDetailsForm: {
+        model: {
+          username: ctx.getState().accountDetailsForm.model.username,
+          bio: ctx.getState().accountDetailsForm.model.bio,
+          name: ctx.getState().accountDetailsForm.model.name,
+          email: ctx.getState().accountDetailsForm.model.email,
+          photoURL: ctx.getState().accountDetailsForm.model.photoURL,
+          password: ctx.getState().accountDetailsForm.model.password,
+          visibility: ctx.getState().accountDetailsForm.model.visibility,
+        },
+        dirty: ctx.getState().accountDetailsForm.dirty,
+        status: ctx.getState().accountDetailsForm.status,
+        errors: ctx.getState().accountDetailsForm.errors,
+      },
+      posts: response.data.posts
+    };
+    ctx.setState(model);
+    console.log(ctx.getState());
+  }
 }
