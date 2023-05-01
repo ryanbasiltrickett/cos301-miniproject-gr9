@@ -6,6 +6,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { GetUserPosts, SetProfile } from '@mp/app/profile/util';
 import { currUser } from '@mp/app/browse/ui';
+import { IGetPost } from '@mp/api/browse/util';
 
 @Component({
   selector: 'ms-profile-page',
@@ -14,7 +15,7 @@ import { currUser } from '@mp/app/browse/ui';
 })
 export class ProfilePage {
   @Select(ProfileState.profile) profile$!: Observable<IProfile | null>;
-  @Select(ProfileState.posts) posts$!: Observable<IProfile | null>;
+  @Select(ProfileState.posts) posts$!: Observable<IGetPost[] | null>;
 
   selectedSegment = 'all';
 
