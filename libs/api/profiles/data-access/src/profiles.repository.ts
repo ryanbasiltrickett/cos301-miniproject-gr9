@@ -51,4 +51,11 @@ export class ProfilesRepository {
       .doc(profile.id)
       .set(profile, { merge: true });
   }
+
+  async getUserPosts(user: string){
+    return await admin.firestore()
+    .collection('posts')
+    .where('author', '==', user)
+    .get();
+  }
 }

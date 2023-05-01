@@ -15,6 +15,7 @@ import { AuthState } from '@mp/app/auth/data-access';
 import { Logout as AuthLogout } from '@mp/app/auth/util';
 import { SetError } from '@mp/app/errors/util';
 import {
+  GetUserPosts,
     Logout,
     SetProfile,
     SubscribeToProfile,
@@ -28,6 +29,7 @@ import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import produce from 'immer';
 import { tap } from 'rxjs';
 import { ProfilesApi } from './profiles.api';
+import { IGetTrendingRequest } from '@mp/api/browse/util';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface ProfileStateModel {
@@ -142,6 +144,16 @@ export class ProfileState {
     } catch (error) {
       return ctx.dispatch(new SetError((error as Error).message));
     }
+  }
+
+  @Action(GetUserPosts)
+  async getUserPosts(ctx: StateContext<ProfileStateModel>){
+    console.log('Action Fired');
+    const req: IGetTrendingRequest = {reqId: 'system'};
+    // const response = await this.api.getTrending(req);
+    // const model: ProfileStateModel = { user: null, posts: response.data};
+    // ctx.setState(model);
+    // console.log(ctx.getState());
   }
 
   // @Action(UpdateContactDetails)
