@@ -84,6 +84,11 @@ export class ProfileState {
     return state.profile;
   }
 
+  @Selector()
+  static posts(state: ProfileStateModel) {
+    return state.posts;
+  }
+
   @Action(Logout)
   async logout(ctx: StateContext<ProfileStateModel>) {
     return ctx.dispatch(new AuthLogout());
