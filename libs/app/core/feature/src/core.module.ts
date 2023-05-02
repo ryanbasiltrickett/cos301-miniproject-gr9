@@ -53,6 +53,7 @@ import { CoreShell } from './core.shell';
 import { AngularFireMessagingModule } from '@angular/fire/compat/messaging';
 import { AngularFireFunctionsModule } from '@angular/fire/compat/functions';
 import { AngularFireModule } from '@angular/fire/compat';
+import { NgxsResetPluginModule } from 'ngxs-reset-plugin';
 
 let resolvePersistenceEnabled: (enabled: boolean) => void;
 
@@ -155,6 +156,7 @@ const FIREBASE_OPTIONS: FirebaseOptions = {
     NgxsRouterPluginModule.forRoot(),
     NgxsStoragePluginModule.forRoot(),
     NgxsActionsExecutingModule.forRoot(),
+    NgxsResetPluginModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       // Register the ServiceWorker as soon as the application is stable

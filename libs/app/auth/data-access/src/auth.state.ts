@@ -121,6 +121,10 @@ export class AuthState {
   @Action(Logout)
   async logout(ctx: StateContext<AuthStateModel>) {
     await this.authApi.logout();
+    ctx.setState({
+      user: null,
+    });
+    
     return ctx.dispatch(new Navigate(['/']));
   }
 }
