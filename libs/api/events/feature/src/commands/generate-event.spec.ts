@@ -1,13 +1,17 @@
 import { Test } from '@nestjs/testing';
 import { GenerateEventHandler } from './generate-event.handler';
 import { EventPublisher } from '@nestjs/cqrs';
-import { GenerateEventCommand, IEventRequest, IEvent} from '@mp/api/events/util';
+import { GenerateEventCommand } from '@mp/api/events/util';
+import { Timestamp } from 'firebase-admin/firestore';
+import { EventsRepository } from '@mp/api/events/data-access';
 
 describe('GenerateEventHandler', () => {
   let handler: GenerateEventHandler;
-  let publisher: EventPublisher;
-
+  let mockRepository: any;
   beforeEach(async () => {
+    mockRepository = {
+      addEvent: jest.fn(),
+    };
     const moduleRef = await Test.createTestingModule({
       providers: [
         GenerateEventHandler,
@@ -17,30 +21,47 @@ describe('GenerateEventHandler', () => {
             mergeObjectContext: jest.fn(),
           },
         },
+        { provide: EventsRepository, useValue: mockRepository },
       ],
     }).compile();
 
     handler = moduleRef.get<GenerateEventHandler>(GenerateEventHandler);
-    publisher = moduleRef.get<EventPublisher>(EventPublisher);
   });
 
-  describe('execute()', () => {
-    it('should return an empty array', async () => {
-        const now = new Date();
-        const eventI: IEvent = {eventTitle: "test", eventTime: now};
-        const eventReq: IEventRequest = {event: eventI};
-        const command = new GenerateEventCommand(eventReq)
+  describe('execute', () => {
+    it('should generate and add an event to the repository', async () => {
+      const request = {
+        currTime: new Date(),
+        user: 'testuser',
+      };
 
-        const result = await handler.execute(command);
+      const command = new GenerateEventCommand(request);
+      const response = await handler.execute(command);
 
-        const [time, event] = result;
-        const [hours, minutes] = time.split(":");
-    
-        expect(parseInt(hours, 10)).toBeGreaterThanOrEqual(8);
-        expect(parseInt(hours, 10)).toBeLessThanOrEqual(23);
-        expect(parseInt(minutes, 10)).toBeGreaterThanOrEqual(0);
-        expect(parseInt(minutes, 10)).toBeLessThanOrEqual(59);
-        expect(event).toMatch(/Post now|Tag a friend in a post|Send a frind a message|Follow someone new|Like posts|Give some time to someone you might think need it/);
+      expect(mockRepository.addEvent).toHaveBeenCalledWith(
+        {
+          event: [
+            {
+              eventTitle: 'Post now',
+              eventTime: expect.stringMatching(/^\d{2}:\d{2}$/),
+              user: 'testuser',
+              date: expect.any(Timestamp),
+            },
+          ],
+        },
+        'testuser',
+      );
+
+      expect(response).toEqual({
+        event: [
+          {
+            eventTitle: 'Post now',
+            eventTime: expect.stringMatching(/^\d{2}:\d{2}$/),
+            user: 'testuser',
+            date: expect.any(Timestamp),
+          },
+        ],
+      });
     });
   });
 });
