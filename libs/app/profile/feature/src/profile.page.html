@@ -88,51 +88,24 @@
 
 
   <!-- Edit Profile Button -->
-  <ng-container *ngIf="!browse">
+  <ng-container *ngIf="browse !== 'true'">
     <ion-button expand="block" (click)="goToSettings()">Edit Profile</ion-button>
   </ng-container>
 
 
-  <!-- Content Tabs -->
-  <ion-segment [(ngModel)]="selectedSegment">
-    <ion-segment-button value="all">All</ion-segment-button>
-    <ion-segment-button value="media">Media</ion-segment-button>
-    <ion-segment-button value="text">Text</ion-segment-button>
-  </ion-segment>
 
   <!-- Content All -->
 <div class="content-all" *ngIf="selectedSegment === 'all'">
-  <div *ngFor="let post of posts" class="post-content">
-    <ng-container *ngIf="post.type === 'media'; else textContent">
-      <img src="{{post.url}}" alt="{{post.description}}">
-    </ng-container>
-    <ng-template #textContent>
-      <p>{{post.text}}</p>
-    </ng-template>
-    <div class="actions">
-      <ion-button size="small">Donate</ion-button>
-      <ion-button size="small">Comment</ion-button>
-      <ion-button size="small">Share</ion-button>
-      <p>Total Time: {{post.total_time}}</p>
-    </div>
-  </div>
+  <ion-card *ngFor="let post of posts$ | async" class="post-content">
+
+      <p>{{post.description}}</p><br> 
+      <span>
+        <ion-icon name="time-outline"></ion-icon>
+        <span>{{ post.time }}</span>
+      </span>
+  </ion-card>
 </div>
 
-
-  <!-- Content Grid -->
-  <div class="content-grid" *ngIf="selectedSegment === 'media'">
-    <!-- Media view (2 columns) -->
-    <div *ngFor="let post of posts" class="post-content">
-      <img src="{{post.url}}" alt="{{post.description}}">
-    </div>
-  </div>
-
-  <!-- Text view (list) -->
-  <div *ngIf="selectedSegment === 'text'">
-    <div *ngFor="let post of posts" class="post-content-list">
-      <p>{{post.text}}</p>
-    </div>
-  </div>
 </ion-content>
 <ng-template #loading>
   <ion-grid>

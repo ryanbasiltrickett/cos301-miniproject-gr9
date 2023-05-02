@@ -1,4 +1,5 @@
-import { IProfile } from '@mp/api/profiles/util';
+import { IGetPost } from '@mp/api/browse/util';
+import { IGetUserPostResponse, IProfile } from '@mp/api/profiles/util';
 import { Injectable } from '@nestjs/common';
 import * as admin from 'firebase-admin';
 
@@ -50,5 +51,20 @@ export class ProfilesRepository {
       .collection('users')
       .doc(profile.id)
       .set(profile, { merge: true });
+  }
+
+  async getUserPosts(user: string){
+    console.log(user);
+    const data = await admin.firestore()
+    .collection('posts')
+    .where('author', '==', user)
+    .limit(5)
+    .get();
+
+    const postData = data.docs.map((doc) => doc.data() as IGetPost);
+
+    const response: IGetUserPostResponse = {posts : postData};
+    
+    return response;
   }
 }

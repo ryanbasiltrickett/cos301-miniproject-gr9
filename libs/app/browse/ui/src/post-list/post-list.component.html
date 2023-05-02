@@ -13,8 +13,7 @@
     <ion-grid>
       <ion-row>
         <ion-col size="6" *ngFor="let post of posts$ | async">
-          <div class="image-container">
-            <!-- <img src="{{post.photo}}" alt="Placeholder image" class="image"> -->
+          <div>
             <ion-card>
               <ion-header>
                 <ion-title>{{post.author}}</ion-title>

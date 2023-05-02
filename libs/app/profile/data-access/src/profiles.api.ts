@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { doc, docData, Firestore } from '@angular/fire/firestore';
 import { Functions, httpsCallable } from '@angular/fire/functions';
 import {
+  IGetUserPostResponse,
     IProfile,
     IUpdateAccountDetailsRequest,
     IUpdateAccountDetailsResponse,
@@ -84,5 +85,15 @@ export class ProfilesApi {
       this.functions,
       'updateOccupationDetails'
     )(request);
+  }
+
+  async getUserPosts(request: string){
+    return await httpsCallable<
+      string,
+      IGetUserPostResponse
+  >(
+    this.functions,
+    'getUserPosts'
+  )(request);
   }
 }

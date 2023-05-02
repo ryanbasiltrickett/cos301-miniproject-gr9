@@ -12,8 +12,8 @@ export class BrowseRepository{
         if(user.id.length != 0){
             const db = admin.firestore();
             const users = await db.collection('users')
-            .where('email', '>=',  user.id)
-            .where('email', '<', user.id + '\uf8ff')
+            .where('username', '>=',  user.id)
+            .where('username', '<', user.id + '\uf8ff')
             .limit(5)
             .get();
 
