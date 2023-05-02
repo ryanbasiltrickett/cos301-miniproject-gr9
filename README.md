@@ -1,17 +1,18 @@
 
 # TimeShare (Mini Project 2023)
 
-[![Production Continous Integration (CI)](https://github.com/ryanbasiltrickett/cos301-miniproject-gr9/actions/workflows/ci-production.yaml/badge.svg?branch=main&event=push)](https://github.com/ryanbasiltrickett/cos301-miniproject-gr9/actions/workflows/ci-production.yaml)
-[![Production Continous Deployment (CD)](https://github.com/ryanbasiltrickett/cos301-miniproject-gr9/actions/workflows/cd-production.yaml/badge.svg)](https://github.com/ryanbasiltrickett/cos301-miniproject-gr9/actions/workflows/cd-production.yaml)
 [![codecov](https://codecov.io/github/ryanbasiltrickett/cos301-miniproject-gr9/branch/develop/graph/badge.svg?token=1jTA7rirTi)](https://codecov.io/github/ryanbasiltrickett/cos301-miniproject-gr9)
 
 Description
 
+TimeShare is a social media that encourages meaningful social interaction. With the component of time users are more interactive and engaged within the community.
 
 ## Features
 
-- Features
-
+- Posting
+- Customisable Profiles
+- Events
+- User Interaction
 
 ## Tech Stack
 
